@@ -1,0 +1,29 @@
+//nav bar
+nav {
+	.btn {
+		color: #0080ff;
+
+		&:hover {
+			color: white;
+		}
+	}
+}
+
+//hero
+.hero {
+	h1 {
+		font-size: 4rem;
+		line-height: 5rem;
+	}
+}
+
+//shared class
+.section-text {
+	p {
+		font-size: 1.5rem;
+	}
+	//footer
+}
+footer {
+	background-color: #1d2224;
+}

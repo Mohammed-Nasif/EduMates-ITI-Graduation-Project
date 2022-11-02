@@ -2,7 +2,7 @@ import './navdropdown.scss';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-const Dropdown = (props) => {
+export const Navdropdown = (props) => {
     // toggle flag to control the dropdown menu
     let [toggle, setToggle] = useState(false);  
     // function to change the state of toggle flag 
@@ -39,4 +39,3 @@ const Dropdown = (props) => {
   )
 }
 
-export default Dropdown;
