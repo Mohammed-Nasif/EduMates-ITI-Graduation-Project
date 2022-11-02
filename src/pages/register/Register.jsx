@@ -18,7 +18,7 @@ export const Register = () => {
 	const animatedComponents = makeAnimated();
 
 	const [avatarSrc, setAvatarSrc] = useState(DefaultAvatar);
-
+	
 	const { topicsOptions } = useContext(TopicsContext);
 
 	const {
@@ -107,6 +107,8 @@ export const Register = () => {
 					email,
 					photoURL:
 						'https://firebasestorage.googleapis.com/v0/b/edumates---graduation-project.appspot.com/o/Default-avatar.jpg?alt=media&token=e466ecc4-7260-4f1a-996d-b245e89c2281',
+					coverURL: '',
+					description: '',
 					bDate,
 					userTopics,
 					matesList: [],
