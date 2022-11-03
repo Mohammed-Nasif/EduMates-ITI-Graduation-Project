@@ -53,7 +53,7 @@ export const NavbarComponent = () => {
 		}
 	};
 	return (
-		<div className='navbar-container position-fixed'>
+		<div className='navbar-container sticky-top mb-4'>
 			<div className='nav-content d-flex align-items-center position-relative'>
 				<div className='row w-100'>
 					<div className='nav-search-container col-9'>

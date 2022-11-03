@@ -7,10 +7,17 @@ import { auth } from '../../firebase';
 export const Main = () => {
 	return (
 		<>
-			<NavbarComponent />
-			<Sidebar />
-			<Home />
-			<button onClick={() => signOut(auth)}>Logout</button>
+			<div className="container-fluid">
+				<div className="row">
+					<div className="col-2 p-0">
+						<Sidebar />
+					</div>
+					<div className="col-10 p-0">
+						<NavbarComponent  />
+						<Home className='w-100' />
+					</div>
+				</div>
+			</div>
 		</>
 	);
 };

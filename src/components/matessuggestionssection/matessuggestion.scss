@@ -1,28 +1,28 @@
 .component-layout {
-    position: absolute;
-    top: 5rem;
-    right: 11rem;
-    border: 0.5px solid rgb(196, 196, 196);
-    border-radius: 20px;
-    background-color: white;
-    z-index: 1000;
-    h4 {
-        font-size: 17px;
-    }
-    .visible-section {
-        p {
-            line-height: 0.5;
-
-        }
-    }
-    .show-more-section {
-        border-top: 0.5px solid rgb(196, 196, 196);
-        p {
-            color: #0dcaf2;
-            cursor: pointer;
-            }
-    }
-    img {
-        border-radius: 50%;
-    }
+  width: 15rem;
+	// top: 5rem;
+	// right: 11rem;
+	border: 0.5px solid rgb(196, 196, 196);
+	border-radius: 1rem;
+	background-color: white;
+	z-index: 1000;
+	h4 {
+		font-size: 1rem;
+	}
+	.visible-section {
+		p {
+			line-height: 0.5;
+		}
+	}
+	.show-more-section {
+		border-top: 0.5px solid rgb(196, 196, 196);
+		p {
+			color: #0080FF;
+			cursor: pointer;
+      margin-bottom: 0.5rem ;
+		}
+	}
+	img {
+		border-radius: 50%;
+	}
 }

@@ -1,82 +1,82 @@
-$PrimaryColor: #1D2224;
-$secondaryColor: #FFFFFF;
-$terColor:  #0080FF;
+$PrimaryColor: #1d2224;
+$secondaryColor: #ffffff;
+$terColor: #0080ff;
 $quatColor: #686868;
 
-.sidebar-container{
-    width: 16%;
-    height: 100vh;
-    color: $secondaryColor;
-    background-color: $PrimaryColor;
-    border-right: .0625rem solid $secondaryColor;
-    // GENERAL STYLES:
-    .f-roboto{
-        font-family: 'Roboto', sans-serif;
-    }
-    .fw4{
-        font-weight: 400;
-    }
-    .fw5{
-        font-weight: 500;
-    }
-    
-    a{
-        text-decoration: none !important;
-    }
-    // user information style
-    .user-info{
-        width: 100%;
-        padding: 2%;
-        text-align: center;
-        .user-img{
-            width: 2.8125rem;
-            height: 2.8125rem;
-            border-radius: 50%;
-            margin: .3125rem auto;
-            img{
-                width: 100%;
-                height: 100%;
-                border-radius: 50%;
-            }
-        }
-        .user-name{
-            font-size: 1rem;
-            line-height: 1.1719rem;
-        }
-        .user-profile{
-            font-size: .75rem;
-            line-height: .875rem;
-        }
-    }
-    .sidebar-list{
-        .sidebar-icon{
-            margin: 0 1.25rem;
-            font-size: 1.125rem;
-        }
-        .sidebar-icon.active{
-           color: $quatColor;
-        }
-        ul{
-            list-style: none;
-            li.sidebar-item{
-                border-left: .375rem solid transparent ;
-                margin: .3125rem 0;
-                padding: .9375rem .1875rem;
-                display: flex;
-                align-items: center;
-                a{
-                    font-weight: 400;
-                    font-size: 1rem;
-                    line-height: 1.1875rem;
-                    color: $secondaryColor;
-                    padding: 0 .3125rem;
-                }
-            }
-            li.active{
-                border-left: .375rem solid $terColor ;
-                background-color: $quatColor;
-                box-shadow: 0px 1px 3px $secondaryColor;
-            }
-        }
-    }
+.sidebar-container {
+	width: 17.6%;
+	height: 100vh;
+	color: $secondaryColor;
+	background-color: $PrimaryColor;
+	border-right: 0.0625rem solid $secondaryColor;
+	// GENERAL STYLES:
+	.f-roboto {
+		font-family: 'Roboto', sans-serif;
+	}
+	.fw4 {
+		font-weight: 400;
+	}
+	.fw5 {
+		font-weight: 500;
+	}
+
+	a {
+		text-decoration: none !important;
+	}
+	// user information style
+	.user-info {
+		width: 100%;
+		padding: 2%;
+		text-align: center;
+		.user-img {
+			width: 2.8125rem;
+			height: 2.8125rem;
+			border-radius: 50%;
+			margin: 0.3125rem auto;
+			img {
+				width: 100%;
+				height: 100%;
+				border-radius: 50%;
+			}
+		}
+		.user-name {
+			font-size: 1rem;
+			line-height: 1.1719rem;
+		}
+		.user-profile {
+			font-size: 0.75rem;
+			line-height: 0.875rem;
+		}
+	}
+	.sidebar-list {
+		.sidebar-icon {
+			margin: 0 1.25rem;
+			font-size: 1.125rem;
+		}
+		.sidebar-icon.active {
+			color: $quatColor;
+		}
+		ul {
+			list-style: none;
+			li.sidebar-item {
+				border-left: 0.375rem solid transparent;
+				margin: 0.3125rem 0;
+				padding: 0.9375rem 0.1875rem;
+				display: flex;
+				align-items: center;
+				a {
+					font-weight: 400;
+					font-size: 1rem;
+					line-height: 1.1875rem;
+					color: $secondaryColor;
+					padding: 0 0.3125rem;
+				}
+			}
+			li.active {
+				border-left: 0.375rem solid $terColor;
+				background-color: $quatColor;
+				box-shadow: 0px 1px 3px $secondaryColor;
+			}
+		}
+	}
 }
