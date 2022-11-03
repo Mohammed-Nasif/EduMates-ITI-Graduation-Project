@@ -5,20 +5,20 @@ import { Suggestedmate } from './Suggestedmate';
 
 export const MatesSuggestion = () => {
 	let suggestions = [
-		{ name: 'Salwa Kamel', friends: '4 mutual friends', image: photo },
+		{ name: 'Salwa Kamel', discription: '4 mutual friends', image: photo },
 		{
 			name: 'Salwa Kamel',
-			friends: '4 mutual friends',
+			discription: '4 mutual friends',
 			image: photo,
 		},
 		{
 			name: 'Salwa Kamel',
-			friends: '4 mutual friends',
+			discription: '4 mutual friends',
 			image: photo,
 		},
 		{
 			name: 'Salwa Kamel',
-			friends: '4 mutual friends',
+			discriotion: '4 mutual friends',
 			image: photo,
 		},
 	];
@@ -36,13 +36,13 @@ export const MatesSuggestion = () => {
 	};
 
 	return (
-		<div className='component-layout' style={{ width: 23 + 'rem' }}>
-			<h4 className='fw-bold ps-4 pt-3'>People you may Know:</h4>
+		<div className="component-layout mb-2">
+			<h4 className="fw-bold ps-4 pt-3">People you may Know:</h4>
 			{slicedSuggestions.map((person, i) => {
-				return <Suggestedmate key={i} name={person.name} friends={person.friends} image={person.image}></Suggestedmate>;
+				return <Suggestedmate key={i} name={person.name} friends={person.discription} image={person.image}></Suggestedmate>;
 			})}
-			<div className='show-more-section'>
-				<p className='link text-center pt-3' onClick={expandMatesSuggestions}>
+			<div className="show-more-section">
+				<p className="link text-center pt-2" onClick={expandMatesSuggestions}>
 					{seeMore ? 'show less' : 'show more'}
 				</p>
 			</div>

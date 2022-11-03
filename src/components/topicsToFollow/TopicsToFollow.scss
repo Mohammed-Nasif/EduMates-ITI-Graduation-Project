@@ -1,21 +1,20 @@
 .topics-suggestion-layout {
-    position: absolute;
-    top: 23rem;
-    right: 11rem;
-    border: 0.5px solid rgb(196, 196, 196);
-    border-radius: 20px;
-    background-color: white;
-    h4 {
-        font-size: 17px;
-    }
-    .show-more-section{
-        border-top: 0.5px solid rgb(196, 196, 196);
-        p {
-            color: #0dcaf2;
-            cursor: pointer;
-            }
-    }
-    .plus-icon {
-        color: #0dcaf2;
-    }
+	width: 15rem;
+	border: 0.5px solid rgb(196, 196, 196);
+	border-radius: 20px;
+	background-color: white;
+	h4 {
+		font-size: 1rem;
+	}
+	.show-more-section {
+		border-top: 0.5px solid rgb(196, 196, 196);
+		p {
+			color: #0080ff;
+			cursor: pointer;
+			margin-bottom: 0.5rem;
+		}
+	}
+	.plus-icon {
+		color: #0080ff;
+	}
 }

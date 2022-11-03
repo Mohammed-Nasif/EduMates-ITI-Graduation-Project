@@ -4,7 +4,7 @@ import { BsPlusCircle } from 'react-icons/bs';
 export const TopicsToFollow = () => {
 	const topicsToFollow = ['#JavaScript', '#DevOps', '#Ui-Ux'];
 	return (
-		<div className='topics-suggestion-layout' style={{ width: 23 + 'rem' }}>
+		<div className='topics-suggestion-layout'>
 			<h4 className='fw-bold ps-4 pt-3'>Topics</h4>
 			<div className='ps-4 pt-3'>
 				{topicsToFollow.map((topic, i) => {
@@ -19,7 +19,7 @@ export const TopicsToFollow = () => {
 				})}
 			</div>
 			<div className='show-more-section'>
-				<p className='link text-center pt-3'>Show All</p>
+				<p className='link text-center pt-2'>Show All</p>
 			</div>
 		</div>
 	);
