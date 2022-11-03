@@ -19,7 +19,7 @@ export const Landing = () => {
 			{/* start navBar */}
 			<div className='mx-5'>
 				<Navbar bg='transparent' expand='lg' className='mt-3'>
-					<Navbar.Brand href='#home'>
+					<Navbar.Brand>
 						<img src={logo} alt='' />
 					</Navbar.Brand>
 					<Navbar.Toggle aria-controls='basic-navbar-nav' />
