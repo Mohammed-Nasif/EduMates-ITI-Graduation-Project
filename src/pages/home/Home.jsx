@@ -2,25 +2,26 @@ import './home.scss';
 import { AddPost } from '../../components/addpost/Addpost';
 import { Post } from '../../components/post/Post';
 import { MatesSuggestion } from '../../components/matessuggestionssection/MatesSuggestion';
-import { TopicsToFollow, topicsToFollow } from '../../components/topicsToFollow/TopicsToFollow';
+import { TopicsToFollow } from '../../components/topicsToFollow/TopicsToFollow';
+import { useContext } from 'react';
+import { PostsContext } from './../../context/PostsContext';
 
 export const Home = () => {
+	const { allPosts } = useContext(PostsContext);
 	return (
 		<>
-			<div className="home container-fluid ps-3 d-flex justify-content-around">
+			<div className='home container-fluid ps-3 d-flex justify-content-around'>
 				<main>
-					<div className="mb-5">
+					<div className='mb-5'>
 						<AddPost />
 					</div>
-
-					<Post />
-					<Post />
-					<Post />
-					<Post />
+					{allPosts.map((post) => {
+						return <Post postObj={post} key={post.postId} />;
+					})}
 				</main>
 				<aside>
 					<MatesSuggestion />
-          <TopicsToFollow />
+					<TopicsToFollow />
 				</aside>
 			</div>
 		</>

@@ -7,16 +7,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthContextProvider } from './context/AuthContext';
 import { TopicsContextProvider } from './context/TopicsContext';
+import { PostsContextProvider } from './context/PostsContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<AuthContextProvider>
 		<TopicsContextProvider>
-			<BrowserRouter>
-				<React.StrictMode>
-					<App />
-				</React.StrictMode>
-			</BrowserRouter>
+			<PostsContextProvider>
+				<BrowserRouter>
+					<React.StrictMode>
+						<App />
+					</React.StrictMode>
+				</BrowserRouter>
+			</PostsContextProvider>
 		</TopicsContextProvider>
 	</AuthContextProvider>,
 );

@@ -23,7 +23,7 @@ export const MatesSuggestion = () => {
 		},
 	];
 	const [slicedSuggestions, setSlicedSuggestions] = useState(suggestions.slice(0, 2));
-	console.log(slicedSuggestions);
+	// console.log(slicedSuggestions);
 	const [seeMore, setSeeMore] = useState(false);
 	const expandMatesSuggestions = function () {
 		if (seeMore === true) {
