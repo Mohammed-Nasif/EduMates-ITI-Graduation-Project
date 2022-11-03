@@ -1,6 +1,6 @@
 import './post.scss';
 import { BsHandThumbsUp, BsChatRightText, BsReplyAll, BsHash, BsHandThumbsUpFill, BsFillCursorFill } from 'react-icons/bs';
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect, useMemo } from 'react';
 import { arrayRemove, arrayUnion, doc, updateDoc, onSnapshot, deleteDoc, Timestamp } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { AuthContext } from '../../context/AuthContext';
@@ -27,9 +27,12 @@ export function Post({ postObj }) {
 		return () => {
 			unsubPostOwner();
 			unsubPostComments();
-			if (postObj.likedBy.includes(postOwner.uid)) setIsLiked(true);
 		};
-	}, [postObj, postOwner.uid]);
+	}, [postObj]);
+
+	useMemo(() => {
+		if (postObj.likedBy.includes(postOwner.uid)) setIsLiked(true);
+	}, [postObj.likedBy, postOwner.uid]);
 
 	const handleLike = async () => {
 		setIsLiked((prev) => !prev);
@@ -99,9 +102,9 @@ export function Post({ postObj }) {
 				</div>
 				<p className='px-4 mb-1 lh-sm'>{postObj.postContent}</p>
 				<div className='px-4 my-2'>
-					{postObj.postTopics.map((topic) => {
+					{postObj.postTopics.map((topic, i) => {
 						return (
-							<span className='tag border border-2 fw-semibold p-1 me-2 rounded-1 lh-sm'>
+							<span className='tag border border-2 fw-semibold p-1 me-2 rounded-1 lh-sm' key={i}>
 								<strong>
 									<BsHash className='fs-5' />
 								</strong>
