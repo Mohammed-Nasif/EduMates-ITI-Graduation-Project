@@ -90,9 +90,11 @@ export function Post({ postObj }) {
 							</div>
 						</div>
 
-						<div className='delete btn ms-auto' onClick={handleDelete}>
-							X
-						</div>
+						{postObj.createdBy === currentUser.uid && (
+							<div className='delete btn ms-auto' onClick={handleDelete}>
+								X
+							</div>
+						)}
 					</div>
 				</div>
 				<p className='px-4 mb-1 lh-sm'>{postObj.postContent}</p>
