@@ -2,19 +2,20 @@
 	.user-photo {
 		width: 45px;
 		height: 45px;
-		overflow: hidden;
-		border-radius: 50%;
 		img {
-			width: 100%;
+			height: 100%;
+			max-width: 100%;
+			object-fit: cover;
 		}
 	}
-	.user-description {
-		font-size: 0.85rem;
+	.date {
+		font-size: 0.75rem;
+		cursor: pointer;
 	}
 	.post-image {
 		max-height: 300px;
 		img {
-			width: 100%;
+			max-width: 100%;
 		}
 	}
 	.tag {
@@ -30,7 +31,7 @@
 			transition: 0.2s all ease-in-out;
 		}
 		&:active {
-			border-color: transparent;
+			border-color: transparent !important;
 			.icon {
 				bottom: 7px;
 				rotate: 12deg;
@@ -42,7 +43,8 @@
 	.comments {
 		.user-photo {
 			width: 40px;
-      height: 40px;
+			height: 40px;
+      overflow: hidden;
 			img {
 				width: 100%;
 				object-fit: contain;
@@ -52,9 +54,19 @@
 			font-size: 0.75rem;
 		}
 		.comment-body {
-			width: 80%;
-      margin-left: 1rem;
-      font-size: 0.85rem;
+			width: 75%;
+			margin-left: 1rem;
+			font-size: 0.85rem;
+
+      textarea {
+        border: 1px solid lightgray;
+        border-radius: 0.5rem;
+        resize: none;
+        width: 100%;
+        &:focus-visible {
+          outline: none;
+        }
+      }
 		}
 	}
 }

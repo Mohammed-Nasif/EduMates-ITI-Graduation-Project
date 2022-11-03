@@ -1,6 +1,6 @@
 import './sidebar.scss';
 import { Link } from 'react-router-dom';
-import logo from './../../assets/images/EduMates.svg';
+import logo from './../../assets/images/EduMatesLight.svg';
 import { BsFillHouseFill, BsHash, BsCollectionPlay, BsTrophyFill, BsGearFill } from 'react-icons/bs';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
