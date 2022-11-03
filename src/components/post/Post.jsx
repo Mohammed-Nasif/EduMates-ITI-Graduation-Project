@@ -30,10 +30,10 @@ export function Post({ postObj }) {
 		};
 	}, [postObj]);
 
-	useMemo(() => {
-		if (postObj.likedBy.includes(postOwner.uid)) setIsLiked(true);
-	}, [postObj.likedBy, postOwner.uid]);
-
+	useEffect(() => {
+		if (postObj.likedBy.includes(currentUser.uid)) setIsLiked(true);
+	}, [currentUser, postObj.likedBy]);
+	
 	const handleLike = async () => {
 		setIsLiked((prev) => !prev);
 		if (isLiked) {
