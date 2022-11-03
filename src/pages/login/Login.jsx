@@ -21,7 +21,7 @@ export const Login = () => {
 
 		try {
 			await signInWithEmailAndPassword(auth, email, password);
-			navigate('/');
+			navigate('/eduMates/home');
 		} catch (err) {
 			console.log(err);
 		}

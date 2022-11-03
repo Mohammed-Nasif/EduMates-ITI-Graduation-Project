@@ -10,27 +10,27 @@ export const Sidebar = () => {
 
 	const list = [
 		{
-			path: '/',
+			path: '/eduMates/home',
 			name: 'Home',
 			icon: BsFillHouseFill,
 		},
 		{
-			path: '/',
+			path: '/eduMates/topics',
 			name: 'Topics',
 			icon: BsHash,
 		},
 		{
-			path: '/',
+			path: '/eduMates/courses',
 			name: 'Courses',
 			icon: BsCollectionPlay,
 		},
 		{
-			path: '/',
+			path: '/eduMates/classroom',
 			name: 'Classroom',
 			icon: BsTrophyFill,
 		},
 		{
-			path: '/',
+			path: '/eduMates/setting',
 			name: 'Setting',
 			icon: BsGearFill,
 		},
@@ -59,7 +59,7 @@ export const Sidebar = () => {
 					<img src={currentUser.photoURL} alt='user-img' />
 				</div>
 				<p className='user-name mb-0 f-roboto fw5'>{currentUser.displayName}</p>
-				<Link to='/profile' className='user-profile f-roboto fw5'>
+				<Link to={`/eduMates/profile/${currentUser.displayName}`} className='user-profile f-roboto fw5'>
 					View Profile
 				</Link>
 			</div>
