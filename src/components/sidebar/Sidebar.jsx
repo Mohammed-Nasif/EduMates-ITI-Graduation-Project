@@ -46,11 +46,10 @@ export const Sidebar = () => {
 	const handleClick = (i) => {
 		setClickState(i);
 	};
-
 	return (
 		<div className='sidebar-container m-0  position-fixed'>
 			<div className='mb-3 w-100 mx-auto text-center'>
-				<Link to='/'>
+				<Link to='/eduMates/home'>
 					<img src={logo} alt='EduMates' className='pt-3' />
 				</Link>
 			</div>

@@ -12,10 +12,47 @@
 		font-size: 0.75rem;
 		cursor: pointer;
 	}
+	.drop {
+		width: 10rem;
+		top: 1rem;
+		right: 0.5rem;
+		background-color: #f1f1f1;
+		border-radius: 0.2rem;
+		opacity: 0;
+		visibility: hidden;
+		box-shadow: -2px 2px 5px lightgray;
+		transition: 0.2s all ease-in-out;
+		&::before {
+			content: '';
+			position: absolute;
+			width: 0px;
+			height: 0px;
+			border-bottom: 20px solid #f1f1f1;
+			border-left: 20px solid transparent;
+			right: 0;
+			top: -10px;
+			z-index: 1;
+		}
+		div {
+      position: relative;
+			z-index: 2;
+		}
+		div:hover {
+      background-color: #1D2224;
+			cursor: pointer;
+      color: white;
+		}
+	}
+	.show {
+		opacity: 1;
+		visibility: visible;
+		top: 2rem;
+	}
+
 	.post-image {
 		max-height: 300px;
 		img {
-			max-width: 100%;
+      max-height: inherit;
 		}
 	}
 	.tag {
@@ -44,29 +81,35 @@
 		.user-photo {
 			width: 40px;
 			height: 40px;
-      overflow: hidden;
+			overflow: hidden;
 			img {
 				width: 100%;
-				object-fit: contain;
 			}
 		}
 		.user-name {
 			font-size: 0.75rem;
+		}
+		.date {
+			font-size: xx-small;
 		}
 		.comment-body {
 			width: 75%;
 			margin-left: 1rem;
 			font-size: 0.85rem;
 
-      textarea {
-        border: 1px solid lightgray;
-        border-radius: 0.5rem;
-        resize: none;
-        width: 100%;
-        &:focus-visible {
-          outline: none;
-        }
-      }
+			textarea {
+				border: 1px solid lightgray;
+				border-radius: 0.5rem;
+				resize: none;
+				width: 100%;
+				&:focus-visible {
+					outline: none;
+				}
+			}
+		}
+		.remove-comment {
+			cursor: pointer;
+			font-size: 0.85rem;
 		}
 	}
 }

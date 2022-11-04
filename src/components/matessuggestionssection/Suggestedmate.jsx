@@ -6,10 +6,10 @@ export const Suggestedmate = (props) => {
 			<div className="row py-2 g-3 d-flex align-items-center align-items-center ">
 				<div className="col-9">
 					<div className="row g-2">
-						<div className="col-3">
+						<div className="col-3 p-1 ">
 							<img src={props.image} className="w-100" alt="profile pic" />
 						</div>
-						<div className="col-9">
+						<div className="col-9 mt-0 py-2 ">
 							<p className="fw-bold w-13">{props.name}</p>
 							<p className="w-10">{props.friends}</p>
 						</div>
