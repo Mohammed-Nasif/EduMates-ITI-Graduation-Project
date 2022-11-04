@@ -17,6 +17,7 @@ export const Postcomment = ({ comment, postId }) => {
 			unsubCommentOwner();
 		};
 	}, [comment]);
+
 	const getTimeDiff = () => {
 		if (comment.commentedAt) {
 			const diff = new Date() - comment.commentedAt.toDate();
@@ -26,8 +27,8 @@ export const Postcomment = ({ comment, postId }) => {
 			return days > 0 ? (days === 1 ? `Yesterday` : `${days} day ago`) : hours > 0 ? (hours === 1 ? `Last hour` : `${hours} hours ago`) : mins > 1 ? `${mins} minutes ago` : `Just Now`;
 		}
 	};
+
 	const deleteComment = async () => {
-		console.log('first');
 		await updateDoc(doc(db, 'postComments', postId), {
 			comments: arrayRemove(comment),
 		});

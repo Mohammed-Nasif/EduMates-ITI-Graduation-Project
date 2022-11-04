@@ -18,7 +18,7 @@ export const Register = () => {
 	const animatedComponents = makeAnimated();
 
 	const [avatarSrc, setAvatarSrc] = useState(DefaultAvatar);
-	
+
 	const { topicsOptions } = useContext(TopicsContext);
 
 	const {
@@ -80,7 +80,8 @@ export const Register = () => {
 								photoURL: downloadURL,
 								bDate,
 								userTopics,
-								matesList: [],
+								matesList: [res.user.uid],
+								userNotifies: [],
 							});
 
 							// Create User Chat Collection
@@ -111,7 +112,8 @@ export const Register = () => {
 					description: '',
 					bDate,
 					userTopics,
-					matesList: [],
+					matesList: [res.user.uid],
+					userNotifies: [],
 				});
 
 				// Create User Chat Collection
@@ -125,7 +127,7 @@ export const Register = () => {
 				});
 
 				// After All Operations Go To Home Page
-				navigate('/');
+				navigate('/eduMates/home');
 			}
 		} catch (error) {
 			console.error(error);
