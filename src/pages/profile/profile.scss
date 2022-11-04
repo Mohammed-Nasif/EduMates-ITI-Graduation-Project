@@ -81,4 +81,20 @@
   .camera {
     font-size: 28px ;
   }
+  .cvr-img-confirm {
+    position: relative;
+    bottom: 4.5rem;
+    left: 15rem;
+    .btn {
+      width: 100px;
+      height: 33px;
+    }
+  }
+  .prf-img-confirm {
+    margin-left: 200px;
+    .btn {
+      width: 100px;
+      height: 33px;
+    }
+  }
 }
