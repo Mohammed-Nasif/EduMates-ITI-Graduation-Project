@@ -13,7 +13,7 @@ export const PostsContextProvider = ({ children }) => {
 		const unsubscribe = onSnapshot(q, (querySnapshot) => {
 			const postsRes = [];
 			querySnapshot.forEach((doc) => {
-				postsRes.push(doc.data());
+				postsRes.unshift(doc.data());
 			});
 			setAllPosts(postsRes);
 		});
