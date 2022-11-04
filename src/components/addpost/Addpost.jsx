@@ -18,7 +18,7 @@ export function AddPost() {
 	const [isActive, setisACtive] = useState(false);
 	const { topicsOptions } = useContext(TopicsContext);
 	const { currentUser } = useContext(AuthContext);
-
+	const [isError, setIsError] = useState(false);
 	useEffect(() => {
 		if (!postImg) return;
 		const src = URL.createObjectURL(postImg);
@@ -34,16 +34,27 @@ export function AddPost() {
 		txtarea.current.focus();
 	};
 	const clean = () => {
+    console.log('C L E A N');
+		txtarea.current.value = '';
+		setisACtive(false);
+		setPreview();
 		setPostImg();
 		setPostText('');
 		setPostTopics([]);
-		setisACtive(false);
+		setIsError(false);
+	};
+	const removeImg = () => {
+		setPostImg();
 		setPreview();
-		txtarea.current.value = '';
 	};
 	const handleSubmit = async () => {
 		const postId = uuid();
 		try {
+			if (!postTopics.length) {
+				setIsError(true);
+				console.log('ok');
+				return;
+			}
 			if (postImg) {
 				const storageRef = ref(storage, postId);
 				const uploadTask = uploadBytesResumable(storageRef, postImg);
@@ -70,6 +81,7 @@ export function AddPost() {
 								comments: [],
 							});
 						});
+						clean();
 					}
 				);
 			} else if (postText.trim() !== '') {
@@ -119,6 +131,7 @@ export function AddPost() {
 						/>
 						{isActive && (
 							<>
+								{isError && postTopics < 1 && <p className="alert alert-danger">Choose 1 topic</p>}
 								<Select
 									className="m-2 "
 									options={topicsOptions}
@@ -127,7 +140,10 @@ export function AddPost() {
 										setPostTopics(v.map((topic) => topic.label));
 									}}
 								/>
-								<div className="preview w-100 d-flex align-items-center justify-content-center">
+								<div className="preview w-100 d-flex align-items-center justify-content-center position-relative">
+									<div className="del position-absolute" onClick={removeImg}>
+										X
+									</div>
 									<img src={preview} alt="" />
 								</div>
 							</>

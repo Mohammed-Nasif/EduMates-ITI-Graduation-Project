@@ -10,16 +10,16 @@ export const Home = () => {
 	const { allPosts } = useContext(PostsContext);
 	return (
 		<>
-			<div className='home container-fluid ps-3 d-flex justify-content-around'>
-				<main>
-					<div className='mb-5'>
+			<div className="home ps-3 d-flex ">
+				<main className='ms-5'>
+					<div className="mb-5">
 						<AddPost />
 					</div>
 					{allPosts.map((post) => {
-						return <Post postObj={post} key={post.postId} />;
-					})}
+							return <Post postObj={post} key={post.postId} />;
+						})}
 				</main>
-				<aside>
+				<aside className='fixed-top'>
 					<MatesSuggestion />
 					<TopicsToFollow />
 				</aside>

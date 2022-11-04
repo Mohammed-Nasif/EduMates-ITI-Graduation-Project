@@ -1,8 +1,12 @@
-import { useEffect, useState } from 'react';
-import { onSnapshot, doc } from 'firebase/firestore';
+import { useContext, useEffect, useState } from 'react';
+import { onSnapshot, doc, updateDoc, arrayRemove } from 'firebase/firestore';
 import { db } from '../../firebase';
-export const Postcomment = ({ comment }) => {
+import { AuthContext } from '../../context/AuthContext';
+import { BsTrashFill } from 'react-icons/bs';
+
+export const Postcomment = ({ comment, postId }) => {
 	const [commentOwner, setCommentOwner] = useState({});
+	const { currentUser } = useContext(AuthContext);
 
 	useEffect(() => {
 		const unsubCommentOwner = onSnapshot(doc(db, 'users', comment.commentBy), (doc) => {
@@ -13,16 +17,40 @@ export const Postcomment = ({ comment }) => {
 			unsubCommentOwner();
 		};
 	}, [comment]);
+	const getTimeDiff = () => {
+		if (comment.commentedAt) {
+			const diff = new Date() - comment.commentedAt.toDate();
+			var days = Math.floor(diff / 86400000); // days
+			var hours = Math.floor((diff % 86400000) / 3600000); // hours
+			var mins = Math.round(((diff % 86400000) % 3600000) / 60000); // minutes
+			return days > 0 ? (days === 1 ? `Yesterday` : `${days} day ago`) : hours > 0 ? (hours === 1 ? `Last hour` : `${hours} hours ago`) : mins > 1 ? `${mins} minutes ago` : `Just Now`;
+		}
+	};
+	const deleteComment = async () => {
+		console.log('first');
+		await updateDoc(doc(db, 'postComments', postId), {
+			comments: arrayRemove(comment),
+		});
+	};
 
 	return (
-		<div className='d-flex' key={comment.commentId}>
-			<div className='user-photo rounded-circle'>
-				<img src={commentOwner.photoURL} alt='' />
+		<div className="d-flex border-bottom border-1 mb-1" key={comment.commentId}>
+			<div className="user-photo rounded-circle">
+				<img src={commentOwner.photoURL} alt="" />
 			</div>
-			<div className='comment-body'>
-				<div className='user-name fw-bold mb-1'>{commentOwner.displayName}</div>
-				<p className='comment-txt lh-sm'>{comment.commentContent}</p>
+
+			<div className="comment-body">
+				<div className="user-name fw-bold ">{commentOwner.displayName}</div>
+				<div className="date fw-light mb-2" title={comment.commentedAt && comment.commentedAt.toDate().toLocaleString()}>
+					{getTimeDiff()}
+				</div>
+				<p className="comment-txt lh-sm mb-2">{comment.commentContent}</p>
 			</div>
+			{comment.commentBy === currentUser.uid && (
+				<div className="remove-comment ms-auto px-2 h-2" onClick={deleteComment}>
+					<BsTrashFill/>
+				</div>
+			)}
 		</div>
 	);
 };
