@@ -63,16 +63,14 @@ export const NavbarComponent = () => {
 					</div>
 					<div className='nav-icons col-3 d-flex align-items-center'>
 						<div className='col-3'>
-							<Link to='/'>
+							<Link>
 								<BsTrophyFill className='nav-icon' />
 							</Link>
 						</div>
 						<div className='col-3'>
-							{/* <Link to='/'><BsFillChatDotsFill className='nav-icon'/></Link> */}
 							<Navdropdown icon={BsFillChatDotsFill} notifications={chats} />
 						</div>
 						<div className='col-3'>
-							{/* <Link to='/'><BsBellFill className='nav-icon'/></Link> */}
 							<Navdropdown icon={BsBellFill} notifications={notificationsList} />
 						</div>
 						<div className='col-3'>
