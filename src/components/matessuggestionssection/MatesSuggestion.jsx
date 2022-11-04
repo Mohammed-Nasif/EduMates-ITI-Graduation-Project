@@ -36,7 +36,7 @@ export const MatesSuggestion = () => {
 	};
 
 	return (
-		<div className="component-layout mb-2">
+		<div className="component-layout mb-4">
 			<h4 className="fw-bold ps-4 pt-3">People you may Know:</h4>
 			{slicedSuggestions.map((person, i) => {
 				return <Suggestedmate key={i} name={person.name} friends={person.discription} image={person.image}></Suggestedmate>;
