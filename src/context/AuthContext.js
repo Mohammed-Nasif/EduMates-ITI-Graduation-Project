@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from 'react';
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
+import { onSnapshot, doc } from 'firebase/firestore';
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
@@ -8,8 +9,9 @@ export const AuthContextProvider = ({ children }) => {
 
 	useEffect(() => {
 		const unSub = onAuthStateChanged(auth, (user) => {
-			setCurrentUser(user);
-			// console.log(user);
+			onSnapshot(doc(db, 'users', user.uid), (doc) => {
+				setCurrentUser(doc.data());
+			});
 		});
 
 		// Clean Up Fn When Leave
@@ -17,6 +19,6 @@ export const AuthContextProvider = ({ children }) => {
 			unSub();
 		};
 	}, []);
-    
+
 	return <AuthContext.Provider value={{ currentUser }}>{children}</AuthContext.Provider>;
 };
