@@ -1,0 +1,16 @@
+$mainColor: #0080ff;
+$gray: #918e8e;
+
+.upload_course {
+  border: 2px solid transparent;
+  border-radius: 20px;
+  padding: 1rem;
+  .upload_btn {
+    color: $mainColor;
+    border: 1px solid $mainColor;
+    padding: 0.4rem 0.7rem;
+    font-size: 1.2rem;
+    margin: 0.5rem 0.5rem 0.5rem 0rem;
+    cursor: pointer;
+  }
+}

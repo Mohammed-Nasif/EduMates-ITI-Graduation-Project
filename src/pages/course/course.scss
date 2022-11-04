@@ -1,0 +1,30 @@
+.course {
+  overflow: hidden;
+  background-color: white;
+  width: 22rem;
+  height: 20rem;
+  border-radius: 14px;
+  @media only screen and (max-width: 768px) {
+    width: 19rem;
+  }
+  .course_body {
+    padding: 0 1.2rem;
+  }
+  h5 {
+    padding: 1rem 1.2rem 0rem 1.2rem;
+    font-size: 1.2rem;
+  }
+
+  .course_img {
+    img {
+      width: 100%;
+    }
+  }
+
+  .star {
+    color: white;
+  }
+  .gold {
+    color: gold;
+  }
+}
