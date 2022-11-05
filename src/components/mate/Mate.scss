@@ -1,14 +1,14 @@
 .Mate {
     .card {
         border: 0.5px solid rgb(196, 196, 196);
-        border-radius: 20px;
+        border-radius: 1rem;
         background-color: white;
-        width: 16rem;
+        width: 100%;
         .cover-photo {
             height: 8rem;
             img {
-                border-top-left-radius: 20px;
-                border-top-right-radius: 20px;
+                border-top-left-radius: 1rem;
+                border-top-right-radius: 1rem;
             }
         }
         .profile-photo {

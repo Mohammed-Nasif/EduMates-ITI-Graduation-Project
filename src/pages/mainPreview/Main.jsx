@@ -7,10 +7,10 @@ export const Main = () => {
 		<>
 			<div className='container-fluid'>
 				<div className='row'>
-					<div className='col-2 p-0'>
+					<div className='col-2 col-sm-1 col-lg-2  p-0'>
 						<Sidebar />
 					</div>
-					<div className='col-10 p-0'>
+					<div className='col-10 col-sm-11 col-lg-10  p-0'>
 						<NavbarComponent />
 						<Outlet className='w-100' />
 					</div>
