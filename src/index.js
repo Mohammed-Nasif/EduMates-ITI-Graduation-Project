@@ -8,19 +8,22 @@ import { BrowserRouter } from 'react-router-dom';
 import { AuthContextProvider } from './context/AuthContext';
 import { TopicsContextProvider } from './context/TopicsContext';
 import { PostsContextProvider } from './context/PostsContext';
+import { UsersContextProvider } from './context/UsersContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<AuthContextProvider>
-		<TopicsContextProvider>
-			<PostsContextProvider>
-				<BrowserRouter>
-					<React.StrictMode>
-						<App />
-					</React.StrictMode>
-				</BrowserRouter>
-			</PostsContextProvider>
-		</TopicsContextProvider>
+		<UsersContextProvider>
+			<TopicsContextProvider>
+				<PostsContextProvider>
+					<BrowserRouter>
+						<React.StrictMode>
+							<App />
+						</React.StrictMode>
+					</BrowserRouter>
+				</PostsContextProvider>
+			</TopicsContextProvider>
+		</UsersContextProvider>
 	</AuthContextProvider>,
 );
 
