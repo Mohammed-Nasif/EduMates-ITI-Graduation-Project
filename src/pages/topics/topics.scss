@@ -41,19 +41,18 @@
     .user-topics{
         .topic-container{
             cursor: default;
-            padding: .3125rem;
             .name-container{
-                width:max-content;
                 display: flex;
                 align-items: center;
-                flex-direction: row-reverse;
                 .topic-name{
                     width: auto;
-                    padding: 0 .9375rem .125rem;
-                    margin-bottom: 0;
+                    padding: .125rem .9375rem;
+                    margin: .125rem;
                     font-weight: 400;
                     font-size: .9375rem;
                     line-height: 1.3125rem;
+                    border: .125rem solid transparent;
+                    border-radius: .25rem;
                 }
                 .topic-name.active{
                     color: blue;
@@ -74,6 +73,10 @@
             }
             .add-icon:hover{
                 color: blue;
+            }
+            .prev-click{
+                pointer-events: none;
+                color: rgb(117, 116, 116);
             }
         }
     }

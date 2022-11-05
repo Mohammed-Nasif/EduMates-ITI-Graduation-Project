@@ -40,7 +40,6 @@ export const Topics = () => {
 	const includeTopics = (uTopics, pTopics)=>{ 
 		let flag = false;
 		const uTopicsSet = new Set(uTopics);
-		console.log(uTopicsSet);
 		for(let item of pTopics){
 			if(uTopicsSet.has(item)){
 				flag = true;

@@ -29,10 +29,11 @@ const Alltopics = (props)=>{
     const handleAddTopic = (topic)=>{
         setSelectedTopic(topic);
         let topics = props.userTopics;
-        if(!topics.includes(topic)){
+        if(!topics.includes(topic) && topic){
             topics.push(topic);
             props.onAddTopic(topic, [...topics]);
         }
+        console.log(isSelect);
         setSelectOpt(false);
     }
     const options = [];
@@ -59,7 +60,7 @@ const Alltopics = (props)=>{
                     {
                         topicsToFollowShow.map((topic, index)=>{
                         return (
-                            <div className="col-3 topic-container" key={index}>
+                            <div className="col-3 topic-container mb-2" key={index}>
                                 <div className='name-container'>
                                     <p   onClick={()=> handleSelectTopic(topic,index)} 
                                         onMouseOver= {()=> handleHoverAdd(index)}
@@ -82,7 +83,7 @@ const Alltopics = (props)=>{
                 onChange = {(event) => handleSelectOption(event)}/>
                 </div>
                 <div className='icon-container d-flex align-items-center'>
-                <BsCheckCircleFill className='add-icon fs-2 mb-3'
+                <BsCheckCircleFill className={isSelect || selectOpt? 'add-icon fs-2 mb-3':'add-icon fs-2 mb-3 prev-click'}
                 onClick = {()=> handleAddTopic(selectedTopic)}/>
             </div>
             </div>
