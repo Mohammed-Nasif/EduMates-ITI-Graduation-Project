@@ -1,56 +1,25 @@
-import pPhoto from '../../pp.jpg';
-import cPhoto from '../../cp.jpg';
 import Mate from '../../components/mate/Mate';
 import './matesList.scss';
 import { MatesSuggestion } from '../../components/matessuggestionssection/MatesSuggestion';
 import { TopicsToFollow } from '../../components/topicsToFollow/TopicsToFollow';
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
+import { AuthContext } from './../../context/AuthContext';
 
 export const MatesList = () => {
-	const matesList = [
-		{
-			mateName: 'Samya Abdelrahman',
-			description: 'student',
-			coverPhoto: cPhoto,
-			profilePhoto: pPhoto,
-		},
-		{
-			mateName: 'Samya Abdelrahman',
-			description: 'student',
-			coverPhoto: cPhoto,
-			profilePhoto: pPhoto,
-		},
-		{
-			mateName: 'Samya Abdelrahman',
-			description: 'student',
-			coverPhoto: cPhoto,
-			profilePhoto: pPhoto,
-		},
-		{
-			mateName: 'Samya Abdelrahman',
-			description: 'student',
-			coverPhoto: cPhoto,
-			profilePhoto: pPhoto,
-		},
-	];
+	const { currentUser } = useContext(AuthContext);
+
+	const currUser = useMemo(() => {
+		return currentUser;
+	}, [currentUser]);
+
 	return (
 		<>
-			<div className="mateslist ps-3 d-flex ">
-				<main className="">
-					<h1 className='mb-4'>Mates List </h1>
-					<div className="MatesList ">
-						<div className="row">
-							{matesList.map((mate, i) => {
-								return (
-									<div className="col-xxl-3 col-lg-4 col-sm-6 mb-3">
-										<Mate key={i} name={mate.mateName} description={mate.description} cPhoto={mate.coverPhoto} pPhoto={mate.profilePhoto}></Mate>
-									</div>
-								);
-							})}
-						</div>
-					</div>
+			<div className='mateslist ps-3 d-flex '>
+				<main className=''>
+					<h1 className='mb-4'>Mates List</h1>
+					<Mateslistwrapper currUser={currUser} />
 				</main>
-				<aside className="fixed-top">
+				<aside className='fixed-top'>
 					<MatesSuggestion />
 					<TopicsToFollow />
 				</aside>
@@ -59,45 +28,21 @@ export const MatesList = () => {
 	);
 };
 
-// export const MatesList = () => {
-// 	// simulating data
-// 	const matesList = [
-// 		{
-// 			mateName: 'Samya Abdelrahman',
-// 			description: 'student',
-// 			coverPhoto: cPhoto,
-// 			profilePhoto: pPhoto,
-// 		},
-// 		{
-// 			mateName: 'Samya Abdelrahman',
-// 			description: 'student',
-// 			coverPhoto: cPhoto,
-// 			profilePhoto: pPhoto,
-// 		},
-// 		{
-// 			mateName: 'Samya Abdelrahman',
-// 			description: 'student',
-// 			coverPhoto: cPhoto,
-// 			profilePhoto: pPhoto,
-// 		},
-// 		{
-// 			mateName: 'Samya Abdelrahman',
-// 			description: 'student',
-// 			coverPhoto: cPhoto,
-// 			profilePhoto: pPhoto,
-// 		},
-// 	];
-// 	return (
-// 		<div className="MatesList ">
-// 			<div className="row">
-// 				{matesList.map((mate, i) => {
-// 					return (
-// 						<div className="col">
-// 							<Mate key={i} name={mate.mateName} description={mate.description} cPhoto={mate.coverPhoto} pPhoto={mate.profilePhoto}></Mate>
-// 						</div>
-// 					);
-// 				})}
-// 			</div>
-// 		</div>
-// 	);
-// };
+export const Mateslistwrapper = ({ currUser }) => {
+	return (
+		<div className='MatesList'>
+			<div className='row'>
+				{Object.keys(currUser).length !== 0 &&
+					currUser.matesList.map((mateId) => {
+						return (
+							currUser.uid !== mateId && (
+								<div className='col-xxl-3 col-lg-4 col-sm-6 mb-3' key={mateId}>
+									<Mate mateId={mateId} currUser={currUser}></Mate>
+								</div>
+							)
+						);
+					})}
+			</div>
+		</div>
+	);
+};

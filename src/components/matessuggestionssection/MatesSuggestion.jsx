@@ -11,7 +11,7 @@ export const MatesSuggestion = () => {
 		<div className='component-layout mb-4'>
 			<h4 className='fw-bold ps-4 pt-3'>People you may Know:</h4>
 			<div className={seeMore ? 'seemore' : 'seeless'}>
-				<MatesWrapper allUsers={allUsers} />
+			<MatesWrapper allUsers={allUsers} />
 			</div>
 			<div className='show-more-section'>
 				<p className='link text-center pt-2' onClick={() => setSeeMore((prev) => !prev)}>
