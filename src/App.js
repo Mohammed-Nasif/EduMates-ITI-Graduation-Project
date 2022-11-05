@@ -1,3 +1,4 @@
+
 import { Register } from './pages/register/Register';
 import { Login } from './pages/login/Login';
 import { Main } from './pages/mainPreview/Main';
@@ -10,15 +11,16 @@ import { Profile } from './pages/profile/Profile';
 import { Editprofile } from './pages/editprofile/Editprofile';
 import { Topics } from './pages/topics/Topics';
 
-const App = () => {
-	const { currentUser } = useContext(AuthContext);
 
-	const ProtectedRoute = () => {
-		if (!currentUser) {
-			return <Navigate to='/' />;
-		}
-		return <Main />;
-	};
+const App = () => {
+  const { currentUser } = useContext(AuthContext);
+
+  const ProtectedRoute = () => {
+    if (!currentUser) {
+      return <Navigate to="/" />;
+    }
+    return <Main />;
+  };
 
 	return (
 		<Routes>
@@ -42,6 +44,7 @@ const App = () => {
 			<Route path='register' element={<Register />} />
 		</Routes>
 	);
+
 };
 
 export default App;
