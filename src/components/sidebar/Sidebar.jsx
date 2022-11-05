@@ -8,7 +8,6 @@ import { AuthContext } from '../../context/AuthContext';
 export const Sidebar = () => {
 	const { currentUser } = useContext(AuthContext);
 
-
 	const list = [
 		{
 			path: '/eduMates/home',
@@ -37,32 +36,29 @@ export const Sidebar = () => {
 		},
 	];
 	return (
-		<div className="sidebar-container m-0  position-fixed">
-			<div className="mb-3 w-100 mx-auto text-center logo">
-				<Link to="/eduMates/home">
-					<img src={logo} alt="EduMates" className="pt-3" />
+		<div className='sidebar-container m-0  position-fixed'>
+			<div className='mb-3 w-100 mx-auto text-center logo'>
+				<Link to='/eduMates/home'>
+					<img src={logo} alt='EduMates' className='pt-3' />
 				</Link>
 			</div>
-			<div className="user-info mb-2">
-				<div className="user-img mb-2">
-					<img src={currentUser.photoURL} alt="user-img" />
+			<div className='user-info mb-2'>
+				<div className='user-img mb-2'>
+					<img src={currentUser.photoURL} alt='user-img' />
 				</div>
-				<p className="user-name mb-0 f-roboto fw5 text-truncate">{currentUser.displayName}</p>
-				<Link
-					to={`/eduMates/profile/${currentUser.displayName}`}
-					className="user-profile f-roboto fw5"
-				>
+				<p className='user-name mb-0 f-roboto fw5 text-truncate'>{currentUser.displayName}</p>
+				<Link to={`/eduMates/profile/${currentUser.displayName}/${currentUser.uid}`} className='user-profile f-roboto fw5'>
 					View Profile
 				</Link>
 			</div>
-			<div className="sidebar-list">
-				<ul className="ps-0">
+			<div className='sidebar-list'>
+				<ul className='ps-0'>
 					{list.map((item, i) => {
 						return (
-							<NavLink to={item.path} key={i} className={(state)=>state.isActive?'active':''}>
+							<NavLink to={item.path} key={i} className={(state) => (state.isActive ? 'active' : '')}>
 								<li className={'sidebar-item'}>
-									<item.icon className="sidebar-icon text-center" />
-									<p className="mb-0 f-roboto fw4">{item.name}</p>
+									<item.icon className='sidebar-icon text-center' />
+									<p className='mb-0 f-roboto fw4'>{item.name}</p>
 								</li>
 							</NavLink>
 						);
