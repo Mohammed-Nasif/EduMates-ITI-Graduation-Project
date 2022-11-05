@@ -1,5 +1,5 @@
 import './navavatar.scss';
-import { useState, useContext } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { BsPersonCircle } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
@@ -14,9 +14,22 @@ export const Navavatar = (props) => {
 	const handleClick = () => {
 		toggle ? setToggle(false) : setToggle(true);
 	};
+	// handle when click outside
+	let dropdownRef = useRef();
+    useEffect(() => {
+      let handler = (e)=>{
+        if(!dropdownRef.current.contains(e.target)){
+         setToggle(false);
+        }      
+      };
+      document.addEventListener("mousedown", handler);
+      return() =>{
+        document.removeEventListener("mousedown", handler);
+      }
+    });
 
 	return (
-		<div className='navavatar-container'>
+		<div className='navavatar-container' ref={dropdownRef}>
 			{/* Avatar icon: */}
 			<div className='avatar-icon'>
 				<BsPersonCircle className={toggle ? 'nav-icon active fs-5' : 'nav-icon fs-5'} onClick={handleClick} />

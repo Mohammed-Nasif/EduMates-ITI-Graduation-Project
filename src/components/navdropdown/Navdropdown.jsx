@@ -1,6 +1,6 @@
 import './navdropdown.scss';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export const Navdropdown = (props) => {
 	// toggle flag to control the dropdown menu
@@ -9,8 +9,23 @@ export const Navdropdown = (props) => {
 	const handleClick = () => {
 		toggle ? setToggle(false) : setToggle(true);
 	};
+
+	// handle when click outside
+	let dropdownRef = useRef();
+    useEffect(() => {
+      let handler = (e)=>{
+        if(!dropdownRef.current.contains(e.target)){
+            setToggle(false);
+        }      
+      };
+      document.addEventListener("mousedown", handler);
+      return() =>{
+        document.removeEventListener("mousedown", handler);
+      }
+    }, []);
+
 	return (
-		<div className='dropdown-container'>
+		<div className='dropdown-container' ref={dropdownRef}>
 			<div className='dropdown-icon'>
 				<Link>
 					<props.icon className={toggle ? 'nav-icon active' : 'nav-icon'} onClick={handleClick} />
