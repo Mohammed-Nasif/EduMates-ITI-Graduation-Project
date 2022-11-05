@@ -8,9 +8,6 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { Home } from "./pages/home/Home";
 import { Profile } from "./pages/profile/Profile";
 import { Editprofile } from "./pages/editprofile/Editprofile";
-// import { Course } from "./pages/course/Course";
-// import { Courses } from "./pages/courses/Courses";
-// import { Topics } from "./pages/topics/Topics";
 
 const App = () => {
   const { currentUser } = useContext(AuthContext);
