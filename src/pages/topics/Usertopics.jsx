@@ -2,16 +2,13 @@ import './topics.scss';
 import {BsFillXCircleFill} from "react-icons/bs";
 import React, { useState } from 'react';
 
-// import { AuthContext } from '../../context/AuthContext';
-
 
 export const Usertopics = (props)=>{
-    // const { currentUser } = useContext(AuthContext);
     let followedTopics = props.userTopics;
     let [isSelect, setIsSelect] = useState(undefined);
     let [hoverDelete, setHoverDelete] = useState(undefined);
   
-  
+    
     const handleSelectTopic = (topic, index)=>{
       setIsSelect(index);
       props.onSelectTopic(topic);
@@ -38,7 +35,7 @@ export const Usertopics = (props)=>{
                     {
                         followedTopics?.map((topic, index)=>{
                         return (
-                            <div className="col-3 topic-container" key={index}>
+                            <div className="col-3 topic-container mb-2" key={index}>
                                 <div className='name-container'>
                                     <p onClick={()=> handleSelectTopic(topic,index)} onMouseOver = {()=> handleHoverDelete(topic, index)} 
                                     onMouseLeave={handleMouseLeave}
