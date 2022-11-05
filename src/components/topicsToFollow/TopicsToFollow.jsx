@@ -1,5 +1,6 @@
 import './TopicsToFollow.scss';
 import { BsPlusCircle } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 
 export const TopicsToFollow = () => {
 	const topicsToFollow = ['#JavaScript', '#DevOps', '#Ui-Ux'];
@@ -19,7 +20,9 @@ export const TopicsToFollow = () => {
 				})}
 			</div>
 			<div className='show-more-section'>
-				<p className='link text-center pt-2'>Show All</p>
+				<p className='link text-center pt-2'>
+					<Link to="/eduMates/topics" className='text-decoration-none'>Show All</Link>
+				</p>
 			</div>
 		</div>
 	);
