@@ -3,9 +3,9 @@ import img1 from './jonas 3.png'
 import img2 from './indian.png'
 import img3 from './nassif.png'
 import img4 from './jonas.png'
-import { Course } from '../course/Course'
-import { Topics } from '../topics/Topics'
-import { UploadCourse } from './../uploadYourCourse/UploadCourse'
+import { Course } from '../../components/course/Course'
+import { Topics } from '../../components/topics/Topics'
+import { UploadCourse } from '../../components/uploadYourCourse/UploadCourse'
 
 export const Courses = props => {
   const courses = [
