@@ -1,10 +1,18 @@
+@import '../../assets/sass/mixin';
 $PrimaryColor: #1d2224;
 $secondaryColor: #ffffff;
 $terColor: #0080ff;
 $quatColor: #686868;
 
 .sidebar-container {
-	width: 17.6%;
+	width: 16.67%;
+
+	@include mediaQ(sm) {
+		width: 8.33%;
+	}
+	@include mediaQ(lg) {
+		width: 16.67%;
+	}
 	height: 100vh;
 	color: $secondaryColor;
 	background-color: $PrimaryColor;
@@ -23,6 +31,17 @@ $quatColor: #686868;
 	a {
 		text-decoration: none !important;
 	}
+
+	.logo {
+		// background-color: #0080ff;
+		overflow: hidden;
+		img {
+			width: 80%;
+			@include mediaQ(lg) {
+				width: 35%;
+			}
+		}
+	}
 	// user information style
 	.user-info {
 		width: 100%;
@@ -33,6 +52,10 @@ $quatColor: #686868;
 			height: 2.8125rem;
 			border-radius: 50%;
 			margin: 0.3125rem auto;
+      @include mediaQ(lg) {
+				width: 5rem;
+			height: 5rem;
+			}
 			img {
 				width: 100%;
 				height: 100%;
@@ -40,44 +63,60 @@ $quatColor: #686868;
 			}
 		}
 		.user-name {
-			font-size: 1rem;
+			font-size: 0.75rem;
 			line-height: 1.1719rem;
+      @include mediaQ(lg) {
+			font-size: 1rem;
+      }
 		}
 		.user-profile {
-			font-size: 0.75rem;
-			line-height: 0.875rem;
+			font-size: 0.6rem;
+
+      @include mediaQ(lg) {
+        font-size: 0.8rem;
+        }
 		}
 	}
 	.sidebar-list {
 		.sidebar-icon {
-			margin: 0 1.25rem;
-			font-size: 1.125rem;
+			margin-left: 20%;
+			font-size: 1.75rem;
+			@include mediaQ(lg) {
+        margin: 0 1.25rem;
+        font-size: 1.125rem;
+			}
 		}
 		.sidebar-icon.active {
 			color: $quatColor;
 		}
 		ul {
-			list-style: none;
-			li.sidebar-item {
-				border-left: 0.375rem solid transparent;
-				margin: 0.3125rem 0;
-				padding: 0.9375rem 0.1875rem;
-				display: flex;
-				align-items: center;
-				a {
-					font-weight: 400;
-					font-size: 1rem;
-					line-height: 1.1875rem;
-					color: $secondaryColor;
-					padding: 0 0.3125rem;
-          // display: none;
+			a {
+				color: $secondaryColor;
+				list-style: none;
+				li.sidebar-item {
+					border-left: 0.375rem solid transparent;
+					padding: 0.75rem 0.1875rem;
+					display: flex;
+					align-items: center;
+					&:hover {
+						border-left: 0.375rem solid $terColor;
+					}
+          p{
+            display: none;
+            @include mediaQ(lg) {
+              display: inline-block;
+            }
+          }
+				}
+				&.active li.sidebar-item {
+					border-left: 0.375rem solid $terColor;
 				}
 			}
-			li.active {
-				border-left: 0.375rem solid $terColor;
-				background-color: $quatColor;
-				box-shadow: 0px 1px 3px $secondaryColor;
-			}
+			// li.active {
+			// 	border-left: 0.375rem solid $terColor;
+			// 	background-color: $quatColor;
+			// 	box-shadow: 0px 1px 3px $secondaryColor;
+			// }
 		}
 	}
 }
