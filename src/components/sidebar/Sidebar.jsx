@@ -36,18 +36,6 @@ export const Sidebar = () => {
 			icon: BsGearFill,
 		},
 	];
-	// let [hoverState, setHoverState] = useState(undefined);
-	// let [clickState, setClickState] = useState(0);
-
-	// const handleHover = (i) => {
-	// 	setHoverState(i);
-	// };
-	// const handleHoverLeave = () => {
-	// 	setHoverState(undefined);
-	// };
-	// const handleClick = (i) => {
-	// 	setClickState(i);
-	// };
 	return (
 		<div className="sidebar-container m-0  position-fixed">
 			<div className="mb-3 w-100 mx-auto text-center logo">
