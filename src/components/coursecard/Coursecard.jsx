@@ -1,6 +1,5 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
-import './course.scss'
+import './coursecard.scss';
 import {
   BsBoxArrowInRight,
   BsStarFill,
@@ -8,7 +7,7 @@ import {
   BsStar
 } from 'react-icons/bs'
 
-export const Course = props => {
+export const Coursecard = props => {
   const rating = value => {
     let rate = (value / 100) * 5
     return Math.round(rate * 2) / 2

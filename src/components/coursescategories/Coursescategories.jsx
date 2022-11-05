@@ -1,6 +1,6 @@
 
-import './topics.scss'
-export const Topics = () => {
+import './coursescategories.scss';
+export const Coursescategories = () => {
   let topics = [
     'java script',
     'css',
