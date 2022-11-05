@@ -8,6 +8,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { Home } from './pages/home/Home';
 import { Profile } from './pages/profile/Profile';
 import { Editprofile } from './pages/editprofile/Editprofile';
+import { Topics } from './pages/topics/Topics';
 
 const App = () => {
 	const { currentUser } = useContext(AuthContext);
@@ -34,6 +35,7 @@ const App = () => {
 					<Route path='edit' element={<Editprofile />} />
 					<Route path='matesList' element={<Profile />} />
 				</Route>
+				<Route path='topics' element={<Topics/>}/>
 			</Route>
 			<Route path='/' element={<Landing />} />
 			<Route path='login' element={<Login />} />

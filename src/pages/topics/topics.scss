@@ -1,0 +1,82 @@
+.topics {
+  
+	main {
+		width: 55%;
+	}
+	aside {
+		width: 25%;
+  
+    top: 5rem;
+    right: 2rem;
+    left: auto;
+    display: block;
+
+	}
+	.fixed-top{
+		z-index: 0;
+	}
+    .topics-comp-container{
+        width: 100%;
+        .topics-container{
+            .title{
+                font-weight: 700;
+                font-size: 1.5rem;
+                line-height: 1.75rem;
+            }
+            .topics-content{
+                border-bottom: .0313rem  solid gray;
+            }
+        }
+    }
+}
+
+
+
+.subtopics-container{
+    .sub-title{
+        font-weight: 700;
+        font-size: 1rem;
+        line-height: 1.1875rem;
+    }
+    .user-topics{
+        .topic-container{
+            cursor: default;
+            padding: .3125rem;
+            .name-container{
+                width:max-content;
+                display: flex;
+                align-items: center;
+                flex-direction: row-reverse;
+                .topic-name{
+                    width: auto;
+                    padding: 0 .9375rem .125rem;
+                    margin-bottom: 0;
+                    font-weight: 400;
+                    font-size: .9375rem;
+                    line-height: 1.3125rem;
+                }
+                .topic-name.active{
+                    color: blue;
+                    border: .125rem solid blue;
+                    border-radius: .25rem;
+                }
+            }
+       
+        }
+        .icon-container {
+            flex-direction: row-reverse;
+            .delete-icon, .add-icon{
+                display: block;
+                cursor: pointer;
+            }
+            .delete-icon:hover{
+                color: rgb(117, 116, 116);
+            }
+            .add-icon:hover{
+                color: blue;
+            }
+        }
+    }
+    
+}
+

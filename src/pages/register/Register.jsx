@@ -125,7 +125,7 @@ export const Register = () => {
 				});
 
 				// After All Operations Go To Home Page
-				navigate('/');
+				navigate('/eduMates/home');
 			}
 		} catch (error) {
 			console.error(error);
