@@ -1,10 +1,10 @@
 import './profile.scss';
 import cover from './cover.png';
 import personalProfile from './pp.png';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { BsPeople, BsPencilSquare, BsUpload, BsCameraFill } from 'react-icons/bs';
 import { AiOutlineCheck } from 'react-icons/ai';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useContext } from 'react';
 import { Editmodal } from './Editmodal';
 import { AddPost } from '../../components/addpost/Addpost';
@@ -12,6 +12,7 @@ import { Post } from '../../components/post/Post';
 import { MatesSuggestion } from '../../components/matessuggestionssection/MatesSuggestion';
 import { TopicsToFollow } from '../../components/topicsToFollow/TopicsToFollow';
 import { PostsContext } from './../../context/PostsContext';
+import { AuthContext } from '../../context/AuthContext';
 
 export const Profile = () => {
 	const currentCvrImg = cover;
@@ -23,6 +24,16 @@ export const Profile = () => {
 	const [modalShow, setModalShow] = useState(false);
 	const [cvrUpdateConfirm, setCvrUpdateConfirm] = useState(false); /**variable to show save/cancel changes div after choosing the photo */
 	const [profileUpdateConfirm, setProfileUpdateConfirm] = useState(false);
+	const [isOwner, setIsOwner] = useState(false);
+	const { currentUser } = useContext(AuthContext);
+	const { allPosts } = useContext(PostsContext);
+
+	const param = useParams();
+
+	useEffect(() => {
+		if (param.userId === currentUser.uid) setIsOwner(true);
+	}, [currentUser.uid, param.userId]);
+	console.log(isOwner);
 
 	// function to upload profile picture
 	function updateProfileImg(e) {
@@ -76,74 +87,73 @@ export const Profile = () => {
 		setProfileUpdateConfirm(false);
 	}
 
-	const { allPosts } = useContext(PostsContext);
 
 	return (
 		<>
-			<section className="profile ">
-				<div className="container p-0 mx-auto">
-					<div className="profile_wrapper  w-100 text-sm-center">
-						<div className="cover_photo ">
-							<img src={coverPic} alt="profile_cover_img" />
+			<section className='profile '>
+				<div className='container p-0 mx-auto'>
+					<div className='profile_wrapper  w-100 text-sm-center'>
+						<div className='cover_photo '>
+							<img src={coverPic} alt='profile_cover_img' />
 						</div>
-						<div className="upload-cvr-photo ms-auto me-4">
-							<input type="file" className="w-100" onChange={updateCoverImg} />
-							<button className="btn border p-0">
+						<div className='upload-cvr-photo ms-auto me-4'>
+							<input type='file' className='w-100' onChange={updateCoverImg} />
+							<button className='btn border p-0'>
 								Change Cover Photo <BsUpload />
 							</button>
 						</div>
 						{cvrUpdateConfirm && (
-							<div className="cvr-img-confirm">
-								<button className="btn btn-primary me-3 p-0" onClick={confirmCvrImgUpdate}>
+							<div className='cvr-img-confirm'>
+								<button className='btn btn-primary me-3 p-0' onClick={confirmCvrImgUpdate}>
 									Save
 								</button>
-								<button className="btn btn-dark pt-1" onClick={cancelCvrImgUpdate}>
+								<button className='btn btn-dark pt-1' onClick={cancelCvrImgUpdate}>
 									Cancel
 								</button>
 							</div>
 						)}
 
-						<div className="d-flex justify-content-between ">
-							<div className="person d-flex flex-start  flex-column  ">
-								<div className="d-flex flex-column align-items-baseline mb-4">
-									<div className="profile_img ">
-										<img src={profilePic} alt="profile_img" />
+						<div className='d-flex justify-content-between '>
+							<div className='person d-flex flex-start  flex-column  '>
+								<div className='d-flex flex-column align-items-baseline mb-4'>
+									<div className='profile_img '>
+										<img src={profilePic} alt='profile_img' />
 									</div>
 									{profileUpdateConfirm && (
-										<div className="prf-img-confirm mt-4">
-											<button className="btn btn-primary me-3 p-0" onClick={confirmProfileImgUpdate}>
+										<div className='prf-img-confirm mt-4'>
+											<button className='btn btn-primary me-3 p-0' onClick={confirmProfileImgUpdate}>
 												Save
 											</button>
-											<button className="btn btn-dark pt-1" onClick={cancelProfileImgUpdate}>
+											<button className='btn btn-dark pt-1' onClick={cancelProfileImgUpdate}>
 												Cancel
 											</button>
 										</div>
 									)}
-									<div className="upload-profile-photo d-flex border">
-										<input type="file" onChange={updateProfileImg} />
-										<button className="btn pb-3 p-2">
-											<BsCameraFill className="camera" />
+									<div className='upload-profile-photo d-flex border'>
+										<input type='file' onChange={updateProfileImg} />
+										<button className='btn pb-3 p-2'>
+											<BsCameraFill className='camera' />
 										</button>
 									</div>
 								</div>
-								<div className="personal_info text-start">
-									<h2 className="user_name m-0">{userName}</h2>
-									<p className="user_Bio text-secondary  fs-5 my-1">{userDescription}</p>
+								<div className='personal_info text-start'>
+									<h2 className='user_name m-0'>{userName}</h2>
+									<p className='user_Bio text-secondary  fs-5 my-1'>{userDescription}</p>
 								</div>
 							</div>
-							<div className="edit_and_matList my-2 pe-2">
-								<div className="edit" onClick={() => setModalShow(true)}>
-									<div className="text-dark">
-										<h4 className="d-inline ">Edit Profile</h4>
-										<span className="px-1 text-dark">
+							<div className='edit_and_matList my-2 pe-2'>
+								<div className='edit' onClick={() => setModalShow(true)}>
+									<div className='text-dark'>
+										<h4 className='d-inline '>Edit Profile</h4>
+										<span className='px-1 text-dark'>
 											<BsPencilSquare />
 										</span>
 									</div>
 								</div>
-								<div className="mates">
-									<Link to="/eduMates/profile/matesList" className="text-dark">
-										<h4 className="d-inline">Mates List</h4>
-										<span className="px-1 mx-1">
+								<div className='mates'>
+									<Link to='/eduMates/profile/matesList' className='text-dark'>
+										<h4 className='d-inline'>Mates List</h4>
+										<span className='px-1 mx-1'>
 											<BsPeople />
 										</span>
 									</Link>
@@ -152,23 +162,22 @@ export const Profile = () => {
 						</div>
 					</div>
 
-					<div className="profile_content ps-3 d-flex">
-						<main className="">
-							<div className="">
+					<div className='profile_content ps-3 d-flex'>
+						<main className=''>
+							<div className=''>
 								<AddPost />
 							</div>
 							{/* {allPosts.map((post) => {
 								return <Post postObj={post} key={post.postId} />;
 							})} */}
 						</main>
-						<aside className="">
+						<aside className=''>
 							<MatesSuggestion />
 							<TopicsToFollow />
 						</aside>
 					</div>
-
 				</div>
-				{/* <Editmodal show={modalShow} onHide={() => setModalShow(false)} onConfirm={handleConfirm}></Editmodal> */}
+				<Editmodal show={modalShow} onHide={() => setModalShow(false)} onConfirm={handleConfirm}></Editmodal>
 			</section>
 		</>
 	);
