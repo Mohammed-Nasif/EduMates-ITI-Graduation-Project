@@ -10,8 +10,8 @@ import { Profile } from './pages/profile/Profile';
 import { Editprofile } from './pages/editprofile/Editprofile';
 import { Topics } from './pages/topics/Topics';
 import { Courses } from './pages/courses/Courses';
-import { Mateslist } from './pages/mateslist/Mateslist';
 import { Chathome } from './pages/chat/Chathome';
+import { Mateslist } from './pages/mateslist/MatesList';
 
 const App = () => {
 	const { currentUser } = useContext(AuthContext);
@@ -37,7 +37,7 @@ const App = () => {
 					<Route path='profile'>
 						<Route path=':userName/:userId' element={<Profile />} />
 						<Route path='edit' element={<Editprofile />} />
-						<Route path='matesList' element={<Mateslist/>} />
+						<Route path='matesList' element={<Mateslist />} />
 					</Route>
 					<Route path='topics' element={<Topics />} />
 					<Route path='courses' element={<Courses />} />

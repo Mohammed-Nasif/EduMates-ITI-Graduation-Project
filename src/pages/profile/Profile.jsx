@@ -1,7 +1,7 @@
 import './profile.scss';
 import { Link, useParams } from 'react-router-dom';
 import { BsPeople, BsPencilSquare, BsUpload, BsCameraFill } from 'react-icons/bs';
-import { AiOutlineCheck } from 'react-icons/ai';
+// import { AiOutlineCheck } from 'react-icons/ai';
 import { useState, useEffect } from 'react';
 import { useContext } from 'react';
 import { Editmodal } from './Editmodal';
@@ -12,11 +12,9 @@ import { TopicsToFollow } from '../../components/topicsToFollow/TopicsToFollow';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { db, storage } from '../../firebase';
 import { PostsContext } from './../../context/PostsContext';
-import { arrayRemove, arrayUnion, doc, setDoc, updateDoc } from 'firebase/firestore';
+import { arrayRemove, arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import { AuthContext } from '../../context/AuthContext';
 import { UsersContext } from '../../context/UsersContext';
-import { useMemo } from 'react';
-import { useCallback } from 'react';
 
 export const Profile = () => {
 	const { currentUser } = useContext(AuthContext);
@@ -39,17 +37,29 @@ export const Profile = () => {
 	const [isMAte, setIsMate] = useState();
 	useEffect(() => {
 		window.scrollTo(0, 0);
-		if (currentUser?.matesList?.includes(param.userId)) setIsMate(true);
+		if (currentUser.matesList.includes(param.userId)) setIsMate(true);
 
 		setIsOwner(() => {
 			if (param.userId === currentUser?.uid) return true;
 		});
 		console.log(isOwner);
-		setUserName(profileOwner?.displayName);
-		setProfilePic(profileOwner?.photoURL);
-		setUserDescription(profileOwner?.description || 'No description yet!');
-		setCoverPic(profileOwner?.coverURL || 'https://firebasestorage.googleapis.com/v0/b/edumates---graduation-project.appspot.com/o/cover.gif?alt=media&token=eba8e3fd-4a82-4f69-b1d4-034f9557c5a2');
-	}, [currentUser?.uid, param.userId]);
+		setUserName(profileOwner.displayName);
+		setProfilePic(profileOwner.photoURL);
+		setUserDescription(profileOwner.description || 'No description yet!');
+		setCoverPic(
+			profileOwner.coverURL ||
+				'https://firebasestorage.googleapis.com/v0/b/edumates---graduation-project.appspot.com/o/cover.gif?alt=media&token=eba8e3fd-4a82-4f69-b1d4-034f9557c5a2',
+		);
+	}, [
+		currentUser.uid,
+		currentUser.matesList,
+		param.userId,
+		profileOwner.displayName,
+		profileOwner.photoURL,
+		profileOwner.description,
+		isOwner,
+		profileOwner.coverURL,
+	]);
 
 	// function to upload profile picture
 	function updateProfileImg(e) {
@@ -111,7 +121,7 @@ export const Profile = () => {
 						coverURL: downloadURL,
 					});
 				});
-			}
+			},
 		);
 		setCvrUpdateConfirm(false);
 	};
@@ -129,7 +139,7 @@ export const Profile = () => {
 						photoURL: downloadURL,
 					});
 				});
-			}
+			},
 		);
 
 		setProfileUpdateConfirm(false);
@@ -153,7 +163,7 @@ export const Profile = () => {
 
 	let userPosts = allPosts.filter((post) => profileOwner.uid === post.createdBy);
 	for (let post of userPosts) {
-		feed.push({ date: post.createdAt, post: post, profileshared:false });
+		feed.push({ date: post.createdAt, post: post, profileshared: false });
 	}
 	let sharedPosts = allPosts.filter((post) => !!post.sharedBy.find((share) => share.sharedUserId === profileOwner.uid));
 	for (let post of sharedPosts) {
@@ -188,96 +198,94 @@ export const Profile = () => {
 
 	return (
 		<>
-			<section className="profile ">
-				<div className="container p-0 mx-auto">
-					<div className="profile_wrapper  w-100 text-sm-center">
-						<div className="cover_photo ">
-							<img src={coverPic} alt="profile_cover_img" />
+			<section className='profile '>
+				<div className='container p-0 mx-auto'>
+					<div className='profile_wrapper  w-100 text-sm-center'>
+						<div className='cover_photo '>
+							<img src={coverPic} alt='profile_cover_img' />
 						</div>
 						{isOwner && (
-							<div className="upload-cvr-photo ms-auto me-4">
-								<input type="file" className="w-100" accept="image/*" onChange={updateCoverImg} />
-								<button className="btn border p-0">
+							<div className='upload-cvr-photo ms-auto me-4'>
+								<input type='file' className='w-100' accept='image/*' onChange={updateCoverImg} />
+								<button className='btn border p-0'>
 									Change Cover Photo <BsUpload />
 								</button>
 							</div>
 						)}
 						{cvrUpdateConfirm && (
-							<div className="cvr-img-confirm">
-								<button className="btn btn-primary me-3 p-0" onClick={confirmCvrImgUpdate}>
+							<div className='cvr-img-confirm'>
+								<button className='btn btn-primary me-3 p-0' onClick={confirmCvrImgUpdate}>
 									Save
 								</button>
-								<button className="btn btn-dark pt-1" onClick={cancelCvrImgUpdate}>
+								<button className='btn btn-dark pt-1' onClick={cancelCvrImgUpdate}>
 									Cancel
 								</button>
 							</div>
 						)}
 
-						<div className="d-flex justify-content-between ">
-							<div className="person d-flex flex-start  flex-column  ">
-								<div className="d-flex flex-column align-items-baseline mb-4">
-									<div className="profile_img ">
-										<img src={profilePic} alt="profile_img" />
+						<div className='d-flex justify-content-between '>
+							<div className='person d-flex flex-start  flex-column  '>
+								<div className='d-flex flex-column align-items-baseline mb-4'>
+									<div className='profile_img '>
+										<img src={profilePic} alt='profile_img' />
 									</div>
 									{profileUpdateConfirm && (
-										<div className="prf-img-confirm mt-4">
-											<button className="btn btn-primary me-3 p-0" onClick={confirmProfileImgUpdate}>
+										<div className='prf-img-confirm mt-4'>
+											<button className='btn btn-primary me-3 p-0' onClick={confirmProfileImgUpdate}>
 												Save
 											</button>
-											<button className="btn btn-dark pt-1" onClick={cancelProfileImgUpdate}>
+											<button className='btn btn-dark pt-1' onClick={cancelProfileImgUpdate}>
 												Cancel
 											</button>
 										</div>
 									)}
 									{isOwner && (
-										<div className="upload-profile-photo d-flex border">
-											<input type="file" accept="image/*" onChange={updateProfileImg} />
-											<button className="btn pb-3 p-2">
-												<BsCameraFill className="camera" />
+										<div className='upload-profile-photo d-flex border'>
+											<input type='file' accept='image/*' onChange={updateProfileImg} />
+											<button className='btn pb-3 p-2'>
+												<BsCameraFill className='camera' />
 											</button>
 										</div>
 									)}
 								</div>
-								<div className="personal_info text-start">
-									<h2 className="user_name m-0">{userName}</h2>
-									<p className="user_Bio text-secondary  fs-5 my-1">{userDescription}</p>
+								<div className='personal_info text-start'>
+									<h2 className='user_name m-0'>{userName}</h2>
+									<p className='user_Bio text-secondary  fs-5 my-1'>{userDescription}</p>
 								</div>
 							</div>
 
 							{!isOwner && isMAte && (
 								<button
-									className="follow btn btn-outline-dark m-5"
+									className='follow btn btn-outline-dark m-5'
 									onClick={() => {
 										removeFromMatesList();
-									}}
-								>
+									}}>
 									Unfollow
 								</button>
 							)}
 							{!isOwner && !isMAte && (
 								<button
-									className="follow btn btn-outline-primary m-5"
+									className='follow btn btn-outline-primary m-5'
 									onClick={() => {
 										addToMatesList();
-									}}
-								>
+									}}>
 									follow
 								</button>
 							)}
 							{isOwner && (
-								<div className="edit_and_matList my-2 pe-2">
-									<div className="edit" onClick={() => setModalShow(true)}>
-										<div className="text-dark">
-											<h4 className="d-inline ">Edit Profile</h4>
-											<span className="px-1 text-dark">
+								<div className='edit_and_matList my-2 pe-2'>
+									<div className='edit' onClick={() => setModalShow(true)}>
+										<div className='text-dark'>
+											<h4 className='d-inline '>Edit Profile</h4>
+											<span className='px-1 text-dark'>
 												<BsPencilSquare />
 											</span>
 										</div>
 									</div>
-									<div className="mates">
-										<Link to="/eduMates/profile/matesList" className="text-dark">
-											<h4 className="d-inline">Mates List</h4>
-											<span className="px-1 mx-1">
+									<div className='mates'>
+										<Link to='/eduMates/profile/matesList' className='text-dark'>
+											<h4 className='d-inline'>Mates List</h4>
+											<span className='px-1 mx-1'>
 												<BsPeople />
 											</span>
 										</Link>
@@ -287,10 +295,10 @@ export const Profile = () => {
 						</div>
 					</div>
 
-					<div className="profile_content ps-3 d-flex">
-						<main className="">
+					<div className='profile_content ps-3 d-flex'>
+						<main className=''>
 							{isOwner && (
-								<div className="mb-4">
+								<div className='mb-4'>
 									<AddPost />
 								</div>
 							)}
@@ -311,7 +319,7 @@ export const Profile = () => {
 									return <Post postObj={obj.post} key={i} profiledate={obj.date} profileshared={obj.profileshared} />;
 								})}
 						</main>
-						<aside className="">
+						<aside className=''>
 							<MatesSuggestion />
 							<TopicsToFollow />
 						</aside>

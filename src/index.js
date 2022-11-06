@@ -12,19 +12,19 @@ import { UsersContextProvider } from './context/UsersContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-	<AuthContextProvider>
-		<UsersContextProvider>
-			<TopicsContextProvider>
-				<PostsContextProvider>
-					<BrowserRouter>
-						<React.StrictMode>
+	<React.StrictMode>
+		<AuthContextProvider>
+			<UsersContextProvider>
+				<TopicsContextProvider>
+					<PostsContextProvider>
+						<BrowserRouter>
 							<App />
-						</React.StrictMode>
-					</BrowserRouter>
-				</PostsContextProvider>
-			</TopicsContextProvider>
-		</UsersContextProvider>
-	</AuthContextProvider>,
+						</BrowserRouter>
+					</PostsContextProvider>
+				</TopicsContextProvider>
+			</UsersContextProvider>
+		</AuthContextProvider>
+	</React.StrictMode>,
 );
 
 // If you want your app to work offline and load faster, you can change
