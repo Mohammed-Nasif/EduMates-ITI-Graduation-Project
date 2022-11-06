@@ -37,7 +37,7 @@ const App = () => {
 					<Route path='profile'>
 						<Route path=':userName/:userId' element={<Profile />} />
 						<Route path='edit' element={<Editprofile />} />
-						<Route path='matesList' element={<Mateslist />} />
+						<Route path='matesList' element={<Mateslist/>} />
 					</Route>
 					<Route path='topics' element={<Topics />} />
 					<Route path='courses' element={<Courses />} />

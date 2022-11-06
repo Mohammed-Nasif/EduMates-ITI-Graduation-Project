@@ -1,14 +1,5 @@
 import './post.scss';
-import {
-	BsHandThumbsUp,
-	BsChatRightText,
-	BsHash,
-	BsHandThumbsUpFill,
-	BsFillCursorFill,
-	BsSuitHeart,
-	BsTrash,
-	BsThreeDots,
-} from 'react-icons/bs';
+import { BsHandThumbsUp, BsChatRightText, BsHash, BsHandThumbsUpFill, BsFillCursorFill, BsSuitHeart, BsTrash, BsThreeDots, BsArrow90DegRight } from 'react-icons/bs';
 import { FaRegShareSquare, FaShareSquare } from 'react-icons/fa';
 import { useState, useContext, useEffect, useRef } from 'react';
 import { arrayRemove, arrayUnion, doc, updateDoc, onSnapshot, deleteDoc, Timestamp } from 'firebase/firestore';
@@ -18,7 +9,7 @@ import { v4 as uuid } from 'uuid';
 import { Postcomment } from '../postcomment/Postcomment';
 import { Link } from 'react-router-dom';
 
-export function Post({ postObj }) {
+export function Post({ postObj, matesNames, shared, profileshared, profiledate}) {
 	const [dropdown, setDropDown] = useState(false);
 	const [isLiked, setIsLiked] = useState(false);
 	const [isShared, setIsShared] = useState(false);
@@ -29,14 +20,15 @@ export function Post({ postObj }) {
 	const { currentUser } = useContext(AuthContext);
 	const commentArea = useRef();
 	const post = useRef();
+
 	useEffect(() => {
 		const unsubPostOwner = onSnapshot(doc(db, 'users', postObj.createdBy), (doc) => {
 			setPostOwner(doc.data());
 		});
+    console.log(postObj,shared,matesNames);
 		const unsubPostComments = onSnapshot(doc(db, 'postComments', postObj.postId), (doc) => {
 			doc.data() && setComments(doc.data().comments);
 		});
-
 		return () => {
 			unsubPostOwner();
 			unsubPostComments();
@@ -44,10 +36,9 @@ export function Post({ postObj }) {
 	}, [postObj]);
 
 	useEffect(() => {
-		console.log('tmam');
 		if (postObj.likedBy.includes(currentUser.uid)) setIsLiked(true);
 		if (postObj.sharedBy.some((share) => share.sharedUserId === currentUser.uid)) setIsShared(true);
-	}, [currentUser, postObj.likedBy, postObj.sharedBy]);
+	}, [currentUser, postObj?.likedBy, postObj?.sharedBy]);
 
 	const handleLike = async () => {
 		setIsLiked((prev) => !prev);
@@ -95,17 +86,7 @@ export function Post({ postObj }) {
 			var days = Math.floor(diff / 86400000); // days
 			var hours = Math.floor((diff % 86400000) / 3600000); // hours
 			var mins = Math.round(((diff % 86400000) % 3600000) / 60000); // minutes
-			return days > 0
-				? days === 1
-					? `Yesterday`
-					: `${days} day ago`
-				: hours > 0
-				? hours === 1
-					? `Last hour`
-					: `${hours} hours ago`
-				: mins > 1
-				? `${mins} minutes ago`
-				: `Just Now`;
+			return days > 0 ? (days === 1 ? `Yesterday` : `${days} day ago`) : hours > 0 ? (hours === 1 ? `Last hour` : `${hours} hours ago`) : mins > 1 ? `${mins} minutes ago` : `Just Now`;
 		}
 	};
 
@@ -128,12 +109,23 @@ export function Post({ postObj }) {
 
 	return (
 		<>
-			<div ref={post} className='post w-100 border border-1 bg-white rounded-4 mb-3'>
-				<div className='header p-4 pb-3 pt-2'>
-					{/* <small className='text-muted'>user shared this post</small> */}
-					<div className='d-flex pt-2'>
-						<div className='user-photo rounded-circle overflow-hidden me-3 d-flex align-items-center'>
-							<img src={postOwner.photoURL} alt='' />
+			<div ref={post} className="post w-100 border border-1 bg-white rounded-4 mb-3">
+				<div className="header p-4 pb-3 pt-2">
+					{matesNames && (
+						<small className="text-muted">
+							<BsArrow90DegRight />
+							{isShared && ' you '}
+							{isShared && matesNames.length > 2 ? `& ${matesNames.length - 1} mates ` : ''}
+							{isShared && matesNames.length === 2 ? '& 1 mate ' : ''}
+							{!isShared && matesNames.length > 1 ? `${matesNames.length} mates` : ''}
+							{!isShared && matesNames.length === 1 ? `${matesNames[0]} ` : ''}
+							shared this post
+						</small>
+					)}
+					{profileshared && <small className="text-muted">you shared this post {profiledate.toDate().toLocaleString()}</small>}
+					<div className="d-flex pt-2">
+						<div className="user-photo rounded-circle overflow-hidden me-3 d-flex align-items-center">
+							<img src={postOwner.photoURL} alt="" />
 						</div>
 						<div className="name">
 							<Link to={`/eduMates/profile/${postOwner.displayName}/${postOwner.uid}`}>
@@ -143,33 +135,34 @@ export function Post({ postObj }) {
 								{getTimeDiff()}
 							</div>
 						</div>
-						<div className=' ms-auto position-relative'>
+						<div className=" ms-auto position-relative">
 							<div
-								className='btn p-0'
+								className="btn p-0"
 								onClick={() => {
 									setDropDown((prev) => !prev);
-								}}>
+								}}
+							>
 								<BsThreeDots />
 							</div>
 							<div className={'drop position-absolute ' + (dropdown ? ' show' : '')}>
-								<div className='p-2' onClick={handleDelete}>
+								<div className="p-2" onClick={handleDelete}>
 									<BsTrash /> {postObj.createdBy === currentUser.uid ? 'Remove my post' : 'Hide for now'}
 								</div>
 
-								<div className='p-2'>
+								<div className="p-2">
 									<BsSuitHeart /> Save the post
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<p className='px-4 mb-1 lh-sm'>{postObj.postContent}</p>
-				<div className='px-4 my-2'>
+				<p className="px-4 mb-1 lh-sm">{postObj.postContent}</p>
+				<div className="px-4 my-2">
 					{postObj.postTopics.map((topic, i) => {
 						return (
-							<span className='tag border border-2 fw-semibold p-1 me-2 rounded-1 lh-sm' key={i}>
+							<span className="tag border border-2 fw-semibold p-1 me-2 rounded-1 lh-sm" key={i}>
 								<strong>
-									<BsHash className='fs-5' />
+									<BsHash className="fs-5" />
 								</strong>
 								{topic}
 							</span>
@@ -177,64 +170,66 @@ export function Post({ postObj }) {
 					})}
 				</div>
 
-				<div className='post-image overflow-hidden d-flex justify-content-center'>
-					<img src={postObj.postImg} alt='' />
+				<div className="post-image overflow-hidden d-flex justify-content-center">
+					<img src={postObj.postImg} alt="" />
 				</div>
 
-				<div className='d-flex justify-content-around text-center border-top border-1'>
-					<div className='btn' onClick={handleLike}>
+				<div className="d-flex justify-content-around text-center border-top border-1">
+					<div className="btn" onClick={handleLike}>
 						{!isLiked ? (
 							<>
-								<BsHandThumbsUp className='icon' /> Like
+								<BsHandThumbsUp className="icon" /> Like
 							</>
 						) : (
 							<>
-								<BsHandThumbsUpFill className='icon' /> Unlike
+								<BsHandThumbsUpFill className="icon" /> Unlike
 							</>
 						)}
 					</div>
 					<div
-						className='btn'
+						className="btn"
 						onClick={() => {
 							setShowComments((prev) => !prev);
-						}}>
-						<BsChatRightText className='icon' /> comment
+						}}
+					>
+						<BsChatRightText className="icon" /> comment
 					</div>
-					<div className='btn' onClick={handleShare}>
+					<div className="btn" onClick={handleShare}>
 						{!isShared ? (
 							<>
-								<FaRegShareSquare className='icon' /> share
+								<FaRegShareSquare className="icon" /> share
 							</>
 						) : (
 							<>
-								<FaShareSquare className='icon' /> shared
+								<FaShareSquare className="icon" /> shared
 							</>
 						)}
 					</div>
 				</div>
 				{showComments && (
-					<div className='comments w-100 border-top border-1 px-4 py-2'>
+					<div className="comments w-100 border-top border-1 px-4 py-2">
 						{comments.length !== 0 &&
 							comments.map((comment) => {
 								return <Postcomment comment={comment} postId={postObj.postId} key={comment.commentId} />;
 							})}
 						{/* add Comment */}
-						<div className='d-flex'>
-							<div className='user-photo rounded-circle'>
-								<img src={currentUser.photoURL} alt='' />
+						<div className="d-flex">
+							<div className="user-photo rounded-circle">
+								<img src={currentUser.photoURL} alt="" />
 							</div>
-							<div className='comment-body'>
-								<div className='user-name fw-bold mb-1'>{currentUser.displayName}</div>
+							<div className="comment-body">
+								<div className="user-name fw-bold mb-1">{currentUser.displayName}</div>
 								<textarea
-									className='w-100'
+									className="w-100"
 									ref={commentArea}
-									rows='2'
+									rows="2"
 									onChange={(e) => {
 										setComment(e.target.value);
 									}}
-									onKeyDown={sendComment}></textarea>
+									onKeyDown={sendComment}
+								></textarea>
 							</div>
-							<div className='btn h-25 align-self-center fs-4 ms-auto' onClick={handleComment}>
+							<div className="btn h-25 align-self-center fs-4 ms-auto" onClick={handleComment}>
 								<BsFillCursorFill />
 							</div>
 						</div>
