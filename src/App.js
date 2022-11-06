@@ -9,7 +9,7 @@ import { Home } from './pages/home/Home';
 import { Profile } from './pages/profile/Profile';
 import { Editprofile } from './pages/editprofile/Editprofile';
 import { Topics } from './pages/topics/Topics';
-import { MatesList } from './pages/mateslist/MatesList';
+import { MatesList } from './pages/matesList/MatesList';
 import { Courses } from './pages/courses/Courses';
 
 const App = () => {

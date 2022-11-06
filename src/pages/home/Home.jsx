@@ -5,22 +5,28 @@ import { MatesSuggestion } from '../../components/matessuggestionssection/MatesS
 import { TopicsToFollow } from '../../components/topicsToFollow/TopicsToFollow';
 import { useContext } from 'react';
 import { PostsContext } from './../../context/PostsContext';
+import { AuthContext } from '../../context/AuthContext';
 
 export const Home = () => {
-	// const { allPosts } = useContext(PostsContext);
+	const { allPosts } = useContext(PostsContext);
+	const { currentUser } = useContext(AuthContext);
+
+	const matesList = new Set(currentUser.matesList);
 	return (
 		<>
 			<div className="home ps-3 d-flex ">
-				<main className='ms-5'>
+				<main className="ms-5">
 					<div className="my-4">
 						<AddPost />
 					</div>
-					{/* {allPosts.map((post) => {
+					{allPosts
+						.filter((post) => matesList.has(post.createdBy) || post.sharedBy.forEach((user) => matesList.has(user)))
+						.map((post) => {
 							return <Post postObj={post} key={post.postId} />;
-						})} */}
+						})}
 				</main>
-				<aside className='fixed-top'>
-					<MatesSuggestion />
+				<aside className="fixed-top">
+					{/* <MatesSuggestion /> */}
 					<TopicsToFollow />
 				</aside>
 			</div>

@@ -3,8 +3,9 @@ import Modal from 'react-bootstrap/Modal';
 import { useState } from "react";
 
 export const Editmodal = (props) => {
-    const [name, setName] = useState ("Mohamed Nasif");
-    const [description, setDescription] = useState("Intern | Information Technology Institute")
+  
+    const [name, setName] = useState (props.data.displayName);
+    const [description, setDescription] = useState(props.data.description)
     return (
         <Modal
             {...props}

@@ -6,6 +6,7 @@ import { db } from '../../firebase';
 import { AuthContext } from '../../context/AuthContext';
 import { v4 as uuid } from 'uuid';
 import { Postcomment } from '../postcomment/Postcomment';
+import { Link } from 'react-router-dom';
 
 export function Post({ postObj }) {
 	const [dropdown, setDropDown] = useState(false);
@@ -70,7 +71,7 @@ export function Post({ postObj }) {
 		}
 	};
 	const handleDelete = async () => {
-		if (postObj.createdBy !== currentUser.uid) post.current.style.display='none';
+		if (postObj.createdBy !== currentUser.uid) post.current.style.display = 'none';
 		else {
 			await deleteDoc(doc(db, 'posts', postObj.postId));
 			await deleteDoc(doc(db, 'postComments', postObj.postId));
@@ -96,7 +97,9 @@ export function Post({ postObj }) {
 						</div>
 
 						<div className="name">
-							<div className="user-name fw-bold">{postOwner.displayName}</div>
+							<Link to={`/eduMates/profile/${postOwner.displayName}/${postOwner.uid}`}>
+								<div className="user-name fw-bold">{postOwner.displayName}</div>
+							</Link>
 							<div className="date fw-light" title={postObj.createdAt && postObj.createdAt.toDate().toLocaleString()}>
 								{getTimeDiff()}
 							</div>
