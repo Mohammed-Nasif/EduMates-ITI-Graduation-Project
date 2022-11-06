@@ -9,8 +9,8 @@ import { Home } from './pages/home/Home';
 import { Profile } from './pages/profile/Profile';
 import { Editprofile } from './pages/editprofile/Editprofile';
 import { Topics } from './pages/topics/Topics';
-import { MatesList } from './pages/matesList/MatesList';
 import { Courses } from './pages/courses/Courses';
+import { Mateslist } from './pages/mateslist/Mateslist';
 
 const App = () => {
 	const { currentUser } = useContext(AuthContext);
@@ -36,7 +36,7 @@ const App = () => {
 					<Route path='profile'>
 						<Route path=':userName/:userId' element={<Profile />} />
 						<Route path='edit' element={<Editprofile />} />
-						<Route path='matesList' element={<MatesList />} />
+						<Route path='matesList' element={<Mateslist />} />
 					</Route>
 					<Route path='topics' element={<Topics />} />
 					<Route path='courses' element={<Courses />} />

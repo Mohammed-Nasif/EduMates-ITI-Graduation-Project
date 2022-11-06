@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { onSnapshot, doc, arrayRemove, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
 
-const Mate = ({ mateId, currUser }) => {
+export const Mate = ({ mateId, currUser }) => {
 	const [mate, setMate] = useState({});
 
 	useEffect(() => {
@@ -47,5 +47,3 @@ const Mate = ({ mateId, currUser }) => {
 		</div>
 	);
 };
-
-export default Mate;

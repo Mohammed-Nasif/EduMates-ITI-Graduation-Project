@@ -26,7 +26,7 @@ export const Home = () => {
 						})}
 				</main>
 				<aside className="fixed-top">
-					{/* <MatesSuggestion /> */}
+					<MatesSuggestion />
 					<TopicsToFollow />
 				</aside>
 			</div>
