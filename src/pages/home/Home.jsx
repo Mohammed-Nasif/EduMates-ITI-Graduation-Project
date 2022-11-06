@@ -10,8 +10,8 @@ import { AuthContext } from '../../context/AuthContext';
 export const Home = () => {
 	const { allPosts } = useContext(PostsContext);
 	const { currentUser } = useContext(AuthContext);
-
 	const matesList = new Set(currentUser.matesList);
+
 	return (
 		<>
 			<div className="home ps-3 d-flex ">
