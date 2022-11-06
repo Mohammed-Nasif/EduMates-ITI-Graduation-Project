@@ -12,17 +12,17 @@ export const Navdropdown = (props) => {
 
 	// handle when click outside
 	let dropdownRef = useRef();
-    useEffect(() => {
-      let handler = (e)=>{
-        if(!dropdownRef.current.contains(e.target)){
-            setToggle(false);
-        }      
-      };
-      document.addEventListener("mousedown", handler);
-      return() =>{
-        document.removeEventListener("mousedown", handler);
-      }
-    }, []);
+	useEffect(() => {
+		let handler = (e) => {
+			if (!dropdownRef.current.contains(e.target)) {
+				setToggle(false);
+			}
+		};
+		document.addEventListener('mousedown', handler);
+		return () => {
+			document.removeEventListener('mousedown', handler);
+		};
+	}, []);
 
 	return (
 		<div className='dropdown-container' ref={dropdownRef}>
@@ -47,7 +47,11 @@ export const Navdropdown = (props) => {
 							</Link>
 						);
 					})}
-					<div className='row'></div>
+					{props.dropType === 'chat' && (
+						<Link to='/eduMates/chats' className='d-flex flex-row align-items-center justify-content-center text-info link'>
+							<p className='text-center m-0'>See all in chats</p>
+						</Link>
+					)}
 				</div>
 			)}
 		</div>
