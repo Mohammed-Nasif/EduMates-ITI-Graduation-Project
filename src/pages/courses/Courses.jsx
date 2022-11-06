@@ -40,9 +40,9 @@ export const Courses = (props) => {
 				<div className='row justify-content-between'>
 					<div className='col-lg-9 col-md-6 col-sm-6  '>
 						<div className='row g-3'>
-							{courses.map((course) => {
+							{courses.map((course, i) => {
 								return (
-									<div className='col-lg-6  col-sm-12  '>
+									<div className='col-lg-6  col-sm-12' key={i}>
 										<div className='course'>
 											<Coursecard course={course} />
 										</div>
