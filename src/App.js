@@ -11,6 +11,7 @@ import { Editprofile } from './pages/editprofile/Editprofile';
 import { Topics } from './pages/topics/Topics';
 import { Courses } from './pages/courses/Courses';
 import { Mateslist } from './pages/mateslist/Mateslist';
+import { Chathome } from './pages/chat/Chathome';
 
 const App = () => {
 	const { currentUser } = useContext(AuthContext);
@@ -40,6 +41,7 @@ const App = () => {
 					</Route>
 					<Route path='topics' element={<Topics />} />
 					<Route path='courses' element={<Courses />} />
+					<Route path='chats' element={<Chathome />} />
 				</Route>
 				<Route path='/' element={<Landing />} />
 				<Route path='login' element={<Login />} />

@@ -68,7 +68,7 @@ export const NavbarComponent = () => {
 							</Link>
 						</div>
 						<div className='col-3'>
-							<Navdropdown icon={BsFillChatDotsFill} notifications={chats} />
+							<Navdropdown icon={BsFillChatDotsFill} notifications={chats} dropType={'chat'} />
 						</div>
 						<div className='col-3'>
 							<Navdropdown icon={BsBellFill} notifications={notificationsList} />
