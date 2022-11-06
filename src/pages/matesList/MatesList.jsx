@@ -1,8 +1,8 @@
+import { useContext, useMemo } from 'react';
+import './matesList.scss';
 import { Mate } from '../../components/mate/Mate';
-import './mateslist.scss';
 import { MatesSuggestion } from '../../components/matessuggestionssection/MatesSuggestion';
 import { TopicsToFollow } from '../../components/topicsToFollow/TopicsToFollow';
-import { useContext, useMemo } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
 export const Mateslist = () => {
