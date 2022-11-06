@@ -16,6 +16,7 @@ import { db } from '../../firebase';
 import { AuthContext } from '../../context/AuthContext';
 import { v4 as uuid } from 'uuid';
 import { Postcomment } from '../postcomment/Postcomment';
+import { Link } from 'react-router-dom';
 
 export function Post({ postObj }) {
 	const [dropdown, setDropDown] = useState(false);
@@ -134,14 +135,14 @@ export function Post({ postObj }) {
 						<div className='user-photo rounded-circle overflow-hidden me-3 d-flex align-items-center'>
 							<img src={postOwner.photoURL} alt='' />
 						</div>
-
-						<div className='name'>
-							<div className='user-name fw-bold'>{postOwner.displayName}</div>
-							<div className='date fw-light' title={postObj.createdAt && postObj.createdAt.toDate().toLocaleString()}>
+						<div className="name">
+							<Link to={`/eduMates/profile/${postOwner.displayName}/${postOwner.uid}`}>
+								<div className="user-name fw-bold">{postOwner.displayName}</div>
+							</Link>
+							<div className="date fw-light" title={postObj.createdAt && postObj.createdAt.toDate().toLocaleString()}>
 								{getTimeDiff()}
 							</div>
 						</div>
-
 						<div className=' ms-auto position-relative'>
 							<div
 								className='btn p-0'

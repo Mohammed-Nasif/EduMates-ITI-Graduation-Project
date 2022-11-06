@@ -42,7 +42,7 @@ export const Navavatar = (props) => {
 							<img src={currentUser.photoURL} alt='user-img' />
 						</div>
 						<p className='user-name mb-0 f-roboto fw5'>{currentUser.displayName}</p>
-						<Link to={`/eduMates/profile/${currentUser.displayName}`} className='profile-link f-roboto fw5 d-block mb-2'>
+						<Link to={`/eduMates/profile/${currentUser.displayName}/${currentUser.uid}`}  className='profile-link f-roboto fw5 d-block mb-2'>
 							View Profile
 						</Link>
 						<Link to='/' className='logout-link f-roboto fw5 d-block mb-1' onClick={() => signOut(auth)}>

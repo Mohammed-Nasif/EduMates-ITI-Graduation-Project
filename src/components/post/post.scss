@@ -8,6 +8,10 @@
 			object-fit: cover;
 		}
 	}
+  .name a{
+    text-decoration: none;
+    color: inherit;
+  }
 	.date {
 		font-size: 0.75rem;
 		cursor: pointer;
