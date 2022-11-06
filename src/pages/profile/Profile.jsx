@@ -15,6 +15,8 @@ import { PostsContext } from './../../context/PostsContext';
 import { arrayRemove, arrayUnion, doc, setDoc, updateDoc } from 'firebase/firestore';
 import { AuthContext } from '../../context/AuthContext';
 import { UsersContext } from '../../context/UsersContext';
+import { useMemo } from 'react';
+import { useCallback } from 'react';
 
 export const Profile = () => {
 	const { currentUser } = useContext(AuthContext);
@@ -39,10 +41,10 @@ export const Profile = () => {
 		window.scrollTo(0, 0);
 		if (currentUser?.matesList?.includes(param.userId)) setIsMate(true);
 
-    setIsOwner(()=>{
-      if (param.userId === currentUser?.uid) return true
-    });
-    console.log(isOwner)
+		setIsOwner(() => {
+			if (param.userId === currentUser?.uid) return true;
+		});
+		console.log(isOwner);
 		setUserName(profileOwner?.displayName);
 		setProfilePic(profileOwner?.photoURL);
 		setUserDescription(profileOwner?.description || 'No description yet!');
@@ -147,6 +149,43 @@ export const Profile = () => {
 		});
 	};
 
+	const feed = [];
+
+	let userPosts = allPosts.filter((post) => profileOwner.uid === post.createdBy);
+	for (let post of userPosts) {
+		feed.push({ date: post.createdAt, post: post, profileshared:false });
+	}
+	let sharedPosts = allPosts.filter((post) => !!post.sharedBy.find((share) => share.sharedUserId === profileOwner.uid));
+	for (let post of sharedPosts) {
+		let sharedDate;
+		post.sharedBy.forEach((share) => {
+			if (share.sharedUserId === profileOwner.uid) {
+				sharedDate = share.sharedTime;
+				feed.push({ date: sharedDate, post: post, profileshared: true });
+			}
+		});
+
+		// let shared = post.sharedBy.find((share) => share.sharedUserId === profileOwner.uid);
+	}
+
+	// useEffect(() => {
+	// 	let userPosts = allPosts.filter((post) => profileOwner.uid === post.createdBy);
+	// 	for (let post of userPosts) {
+	// 		feed.push({ date: post.createdAt, post, shared: false });
+	// 	}
+	// 	let sharedPosts = allPosts.filter((post) => !!post.sharedBy.find((share) => share.sharedUserId === profileOwner.uid));
+	// 	for (let post of userPosts) {
+	// 		let sharedDate;
+	// 		post.sharedBy.forEach((share) => {
+	// 			if (share.sharedUserId === profileOwner.uid) sharedDate = share.sharedTime;
+	// 		});
+	// 		// let shared = post.sharedBy.find((share) => share.sharedUserId === profileOwner.uid);
+
+	// 		feed.push({ date: sharedDate, post, shared: true });
+	// 	}
+	// 	console.log(feed);
+	// }, []);
+
 	return (
 		<>
 			<section className="profile ">
@@ -157,7 +196,7 @@ export const Profile = () => {
 						</div>
 						{isOwner && (
 							<div className="upload-cvr-photo ms-auto me-4">
-								<input type="file" className="w-100" onChange={updateCoverImg} />
+								<input type="file" className="w-100" accept="image/*" onChange={updateCoverImg} />
 								<button className="btn border p-0">
 									Change Cover Photo <BsUpload />
 								</button>
@@ -192,7 +231,7 @@ export const Profile = () => {
 									)}
 									{isOwner && (
 										<div className="upload-profile-photo d-flex border">
-											<input type="file" onChange={updateProfileImg} />
+											<input type="file" accept="image/*" onChange={updateProfileImg} />
 											<button className="btn pb-3 p-2">
 												<BsCameraFill className="camera" />
 											</button>
@@ -205,8 +244,26 @@ export const Profile = () => {
 								</div>
 							</div>
 
-							{!isOwner && isMAte && <button className='follow btn btn-outline-dark m-5' onClick={()=>{removeFromMatesList()}}>Unfollow</button> }
-							{!isOwner && !isMAte && <button className='follow btn btn-outline-primary m-5'onClick={()=>{addToMatesList()}}>follow</button> }
+							{!isOwner && isMAte && (
+								<button
+									className="follow btn btn-outline-dark m-5"
+									onClick={() => {
+										removeFromMatesList();
+									}}
+								>
+									Unfollow
+								</button>
+							)}
+							{!isOwner && !isMAte && (
+								<button
+									className="follow btn btn-outline-primary m-5"
+									onClick={() => {
+										addToMatesList();
+									}}
+								>
+									follow
+								</button>
+							)}
 							{isOwner && (
 								<div className="edit_and_matList my-2 pe-2">
 									<div className="edit" onClick={() => setModalShow(true)}>
@@ -238,7 +295,7 @@ export const Profile = () => {
 								</div>
 							)}
 
-							{allPosts
+							{/* {allPosts
 								.filter((post) => {
 									return !!post.sharedBy.find((share) => share.sharedUserId === profileOwner.uid) || profileOwner.uid === post.createdBy;
 								})
@@ -246,6 +303,12 @@ export const Profile = () => {
 									if (profileOwner.uid === post.createdBy) {
 										return <Post postObj={post} key={post.postId} />;
 									} else return <Post postObj={post} key={post.postId} shared={true} />;
+								})} */}
+
+							{feed
+								.sort((a, b) => b.date - a.date)
+								.map((obj, i) => {
+									return <Post postObj={obj.post} key={i} profiledate={obj.date} profileshared={obj.profileshared} />;
 								})}
 						</main>
 						<aside className="">

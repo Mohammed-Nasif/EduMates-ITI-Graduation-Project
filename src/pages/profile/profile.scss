@@ -15,7 +15,7 @@
 		.profile_img {
 			width: 9rem;
 			height: 9rem;
-      background-color: aliceblue;
+			background-color: aliceblue;
 			overflow: hidden;
 			img {
 				width: 9rem;
@@ -24,9 +24,9 @@
 			}
 		}
 	}
-  .follow{
-    height: 3rem;
-  }
+	.follow {
+		height: 3rem;
+	}
 	.edit_and_matList {
 		.edit,
 		.mates {
@@ -58,12 +58,12 @@
 			border-radius: 6px;
 			cursor: pointer;
 			background-color: rgba(255, 255, 255, 0.347);
-      border: none !important;
-      color: white;
-      &:hover{
-        background-color: rgba(255, 255, 255, 0.347);
-        color: black;
-      }
+			border: none !important;
+			color: white;
+			&:hover {
+				background-color: rgba(255, 255, 255, 0.347);
+				color: black;
+			}
 		}
 	}
 	.upload-profile-photo {
@@ -95,8 +95,8 @@
 	.cvr-img-confirm {
 		position: relative;
 		bottom: 4.5rem;
-    left: 50%;
-    width: 25%;
+		left: 50%;
+		width: 25%;
 		.btn {
 			width: 100px;
 			height: 33px;
@@ -109,22 +109,21 @@
 		}
 	}
 
-  .profile_content{
-    justify-content: space-around;
-    main {
-      width: 55%;
-    }
-    aside {
-      width: 25%;
-      
-      // top: 30rem;
-      // right: 2rem;
-      left: auto;
-      display: block;
-  
-    }
-    .fixed-top{
-      z-index: 0;
-    }
-  }
+	.profile_content {
+		justify-content: space-around;
+		main {
+			width: 55%;
+		}
+		aside {
+			width: 25%;
+
+			// top: 30rem;
+			// right: 2rem;
+			left: auto;
+			display: block;
+		}
+		.fixed-top {
+			z-index: 0;
+		}
+	}
 }

@@ -263,7 +263,7 @@ export const Register = () => {
 
 					{/*Avatar*/}
 					<Form.Group className='mb-3'>
-						<Form.Control style={{ display: 'none' }} type='file' id='file' {...register('avatarFile', { onChange: getBase64 })} />
+						<Form.Control style={{ display: 'none' }} type='file' id='file' accept="image/*" {...register('avatarFile', { onChange: getBase64 })} />
 						<Form.Label htmlFor='file'>
 							{/* <img src={AddAvatar} alt='addAvatar' /> */}
 							<span>Add an avatar</span>
