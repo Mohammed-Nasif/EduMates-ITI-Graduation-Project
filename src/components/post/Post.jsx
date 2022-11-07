@@ -9,7 +9,7 @@ import { v4 as uuid } from 'uuid';
 import { Postcomment } from '../postcomment/Postcomment';
 import { Link } from 'react-router-dom';
 
-export function Post({ postObj, matesNames, shared, profileshared, profiledate}) {
+export function Post({ postObj, matesNames, shared, profileshared, profiledate, profileName}) {
 	const [dropdown, setDropDown] = useState(false);
 	const [isLiked, setIsLiked] = useState(false);
 	const [isShared, setIsShared] = useState(false);
@@ -122,7 +122,7 @@ export function Post({ postObj, matesNames, shared, profileshared, profiledate})
 							shared this post
 						</small>
 					)}
-					{profileshared && <small className="text-muted">you shared this post {profiledate.toDate().toLocaleString()}</small>}
+					{profileshared && <small className="text-muted">{profileName===currentUser.displayName ? 'You ':profileName} shared this post {profiledate.toDate().toLocaleString()}</small>}
 					<div className="d-flex pt-2">
 						<div className="user-photo rounded-circle overflow-hidden me-3 d-flex align-items-center">
 							<img src={postOwner.photoURL} alt="" />

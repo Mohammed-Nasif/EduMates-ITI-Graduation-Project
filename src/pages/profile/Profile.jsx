@@ -316,7 +316,7 @@ export const Profile = () => {
 							{feed
 								.sort((a, b) => b.date - a.date)
 								.map((obj, i) => {
-									return <Post postObj={obj.post} key={i} profiledate={obj.date} profileshared={obj.profileshared} />;
+									return <Post postObj={obj.post} key={i} profiledate={obj.date} profileshared={obj.profileshared} profileName={profileOwner.displayName}/>;
 								})}
 						</main>
 						<aside className=''>
