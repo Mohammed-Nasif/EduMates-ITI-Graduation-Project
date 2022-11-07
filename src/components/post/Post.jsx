@@ -9,7 +9,7 @@ import { v4 as uuid } from 'uuid';
 import { Postcomment } from '../postcomment/Postcomment';
 import { Link } from 'react-router-dom';
 
-export function Post({ postObj, matesNames, shared, profileshared, profiledate, profileName}) {
+export function Post({ postObj, shared, matesShared, profileshared, profiledate, profileUser }) {
 	const [dropdown, setDropDown] = useState(false);
 	const [isLiked, setIsLiked] = useState(false);
 	const [isShared, setIsShared] = useState(false);
@@ -25,7 +25,6 @@ export function Post({ postObj, matesNames, shared, profileshared, profiledate, 
 		const unsubPostOwner = onSnapshot(doc(db, 'users', postObj.createdBy), (doc) => {
 			setPostOwner(doc.data());
 		});
-    console.log(postObj,shared,matesNames);
 		const unsubPostComments = onSnapshot(doc(db, 'postComments', postObj.postId), (doc) => {
 			doc.data() && setComments(doc.data().comments);
 		});
@@ -39,6 +38,9 @@ export function Post({ postObj, matesNames, shared, profileshared, profiledate, 
 		if (postObj.likedBy.includes(currentUser.uid)) setIsLiked(true);
 		if (postObj.sharedBy.some((share) => share.sharedUserId === currentUser.uid)) setIsShared(true);
 	}, [currentUser, postObj?.likedBy, postObj?.sharedBy]);
+
+	let sharedByUser;
+	if (postObj.sharedBy.find((share) => share.sharedUserId == currentUser.uid)) sharedByUser = true;
 
 	const handleLike = async () => {
 		setIsLiked((prev) => !prev);
@@ -111,18 +113,24 @@ export function Post({ postObj, matesNames, shared, profileshared, profiledate, 
 		<>
 			<div ref={post} className="post w-100 border border-1 bg-white rounded-4 mb-3">
 				<div className="header p-4 pb-3 pt-2">
-					{matesNames && (
-						<small className="text-muted">
+					{console.log(matesShared)}
+					{}
+					{shared && (
+						<small className="text-muted" title={sharedByUser ? matesShared?.filter((x) => x !== currentUser.displayName).join(' & ') : matesShared?.join(' & ')}>
 							<BsArrow90DegRight />
-							{isShared && ' you '}
-							{isShared && matesNames.length > 2 ? `& ${matesNames.length - 1} mates ` : ''}
-							{isShared && matesNames.length === 2 ? '& 1 mate ' : ''}
-							{!isShared && matesNames.length > 1 ? `${matesNames.length} mates` : ''}
-							{!isShared && matesNames.length === 1 ? `${matesNames[0]} ` : ''}
+							{sharedByUser && ' you '}
+							{sharedByUser && matesShared.length > 2 ? `& ${matesShared.length - 1} mates ` : ''}
+							{sharedByUser && matesShared.length === 2 ? '& 1 mate ' : ''}
+							{!sharedByUser && matesShared.length > 1 ? `${matesShared.length} mates` : ''}
+							{!sharedByUser && matesShared.length === 1 ? `${matesShared[0]} ` : ''}
 							shared this post
 						</small>
 					)}
-					{profileshared && <small className="text-muted">{profileName===currentUser.displayName ? 'You ':profileName} shared this post {profiledate.toDate().toLocaleString()}</small>}
+					{profileshared && (
+						<small className="text-muted">
+							{profileUser.uid === currentUser.uid ? 'You ' : profileUser.displayName} shared this post {profiledate.toDate().toLocaleString()}
+						</small>
+					)}
 					<div className="d-flex pt-2">
 						<div className="user-photo rounded-circle overflow-hidden me-3 d-flex align-items-center">
 							<img src={postOwner.photoURL} alt="" />
