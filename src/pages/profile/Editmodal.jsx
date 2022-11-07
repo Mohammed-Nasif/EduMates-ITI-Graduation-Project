@@ -6,6 +6,8 @@ export const Editmodal = (props) => {
   
     const [name, setName] = useState (props.data.displayName);
     const [description, setDescription] = useState(props.data.description)
+
+    console.log(name, description);
     return (
         <Modal
             {...props}
@@ -15,7 +17,7 @@ export const Editmodal = (props) => {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    General Account Settings
+                    General Account info
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
