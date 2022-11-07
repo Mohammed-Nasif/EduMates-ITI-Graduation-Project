@@ -9,7 +9,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth, db, storage } from '../../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc, Timestamp } from 'firebase/firestore';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import { TopicsContext } from '../../context/TopicsContext';
@@ -77,7 +77,11 @@ export const Register = () => {
 								uid: res.user.uid,
 								displayName,
 								email,
+								login: { isLoggedIn: true, date: Timestamp.now() },
 								photoURL: downloadURL,
+								coverURL:
+									'https://firebasestorage.googleapis.com/v0/b/edumates---graduation-project.appspot.com/o/287f5db0-c12a-4d0b-a586-92728f497052?alt=media&token=d4feb1f2-5c23-4891-8c0e-dc2fd7c0be05',
+								description: '',
 								bDate,
 								userTopics,
 								matesList: [res.user.uid],
@@ -106,9 +110,11 @@ export const Register = () => {
 					uid: res.user.uid,
 					displayName,
 					email,
+					login: { isLoggedIn: true, date: Timestamp.now() },
 					photoURL:
 						'https://firebasestorage.googleapis.com/v0/b/edumates---graduation-project.appspot.com/o/Default-avatar.jpg?alt=media&token=e466ecc4-7260-4f1a-996d-b245e89c2281',
-					coverURL: '',
+					coverURL:
+						'https://firebasestorage.googleapis.com/v0/b/edumates---graduation-project.appspot.com/o/287f5db0-c12a-4d0b-a586-92728f497052?alt=media&token=d4feb1f2-5c23-4891-8c0e-dc2fd7c0be05',
 					description: '',
 					bDate,
 					userTopics,
@@ -263,7 +269,7 @@ export const Register = () => {
 
 					{/*Avatar*/}
 					<Form.Group className='mb-3'>
-						<Form.Control style={{ display: 'none' }} type='file' id='file' accept="image/*" {...register('avatarFile', { onChange: getBase64 })} />
+						<Form.Control style={{ display: 'none' }} type='file' id='file' accept='image/*' {...register('avatarFile', { onChange: getBase64 })} />
 						<Form.Label htmlFor='file'>
 							{/* <img src={AddAvatar} alt='addAvatar' /> */}
 							<span>Add an avatar</span>

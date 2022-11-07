@@ -9,20 +9,23 @@ import { AuthContextProvider } from './context/AuthContext';
 import { TopicsContextProvider } from './context/TopicsContext';
 import { PostsContextProvider } from './context/PostsContext';
 import { UsersContextProvider } from './context/UsersContext';
+import { ChatContextProvider } from './context/ChatContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
 		<AuthContextProvider>
-			<UsersContextProvider>
-				<TopicsContextProvider>
-					<PostsContextProvider>
-						<BrowserRouter>
-							<App />
-						</BrowserRouter>
-					</PostsContextProvider>
-				</TopicsContextProvider>
-			</UsersContextProvider>
+			<ChatContextProvider>
+				<UsersContextProvider>
+					<TopicsContextProvider>
+						<PostsContextProvider>
+							<BrowserRouter>
+								<App />
+							</BrowserRouter>
+						</PostsContextProvider>
+					</TopicsContextProvider>
+				</UsersContextProvider>
+			</ChatContextProvider>
 		</AuthContextProvider>
 	</React.StrictMode>,
 );
