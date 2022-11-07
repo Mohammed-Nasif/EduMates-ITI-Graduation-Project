@@ -1,4 +1,4 @@
-import './matesList.scss';
+import './mateslist.scss';
 import { useContext, useMemo } from 'react';
 import { Mate } from '../../components/mate/Mate';
 import { MatesSuggestion } from '../../components/matessuggestionssection/MatesSuggestion';

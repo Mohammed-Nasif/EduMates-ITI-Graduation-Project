@@ -17,7 +17,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { UsersContext } from '../../context/UsersContext';
 
 export const Profile = () => {
-  const param = useParams();
+	const param = useParams();
 	const { currentUser } = useContext(AuthContext);
 	const { allPosts } = useContext(PostsContext);
 	const { allUsers } = useContext(UsersContext);
@@ -35,7 +35,6 @@ export const Profile = () => {
 
 	const profilePicture = useRef();
 	const coverPicture = useRef();
-  
 
 	if (param.userId === currentUser.uid) isOwner = true;
 	if (currentUser?.matesList?.includes(param.userId)) isMAte = true;
@@ -43,7 +42,7 @@ export const Profile = () => {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 		setProfileOwner(() => allUsers.find((user) => user.uid === param.userId));
-	}, [param.userId, profileOwner]);
+	}, [param.userId, profileOwner, allUsers]);
 
 	// function to upload profile picture
 	function updateProfileImg(e) {
@@ -105,7 +104,7 @@ export const Profile = () => {
 						coverURL: downloadURL,
 					});
 				});
-			}
+			},
 		);
 		setCvrUpdateConfirm(false);
 	};
@@ -123,7 +122,7 @@ export const Profile = () => {
 						photoURL: downloadURL,
 					});
 				});
-			}
+			},
 		);
 
 		setProfileUpdateConfirm(false);
@@ -158,119 +157,98 @@ export const Profile = () => {
 				feed.push({ date: sharedDate, post: post, profileshared: true });
 			}
 		});
-		// let shared = post.sharedBy.find((share) => share.sharedUserId === profileOwner.uid);
 	}
-
-	// useEffect(() => {
-	// 	let userPosts = allPosts.filter((post) => profileOwner.uid === post.createdBy);
-	// 	for (let post of userPosts) {
-	// 		feed.push({ date: post.createdAt, post, shared: false });
-	// 	}
-	// 	let sharedPosts = allPosts.filter((post) => !!post.sharedBy.find((share) => share.sharedUserId === profileOwner.uid));
-	// 	for (let post of userPosts) {
-	// 		let sharedDate;
-	// 		post.sharedBy.forEach((share) => {
-	// 			if (share.sharedUserId === profileOwner.uid) sharedDate = share.sharedTime;
-	// 		});
-	// 		// let shared = post.sharedBy.find((share) => share.sharedUserId === profileOwner.uid);
-
-	// 		feed.push({ date: sharedDate, post, shared: true });
-	// 	}
-	// 	console.log(feed);
-	// }, []);
 
 	return (
 		<>
-			<section className="profile ">
-				<div className="container p-0 mx-auto">
-					<div className="profile_wrapper  w-100 text-sm-center">
-						<div className="cover_photo ">
-							<img ref={coverPicture} src={profileOwner?.coverURL || 'https://firebasestorage.googleapis.com/v0/b/edumates---graduation-project.appspot.com/o/cover.gif?alt=media&token=eba8e3fd-4a82-4f69-b1d4-034f9557c5a2'} alt="profile_cover_img" />
+			<section className='profile '>
+				<div className='container p-0 mx-auto'>
+					<div className='profile_wrapper  w-100 text-sm-center'>
+						<div className='cover_photo '>
+							<img ref={coverPicture} src={profileOwner?.coverURL} alt='profile_cover_img' />
 						</div>
 						{isOwner && (
-							<div className="upload-cvr-photo ms-auto me-4">
-								<input type="file" id="cp" name="cp" className="w-100" accept="image/*" onChange={updateCoverImg} />
-								<label htmlFor="cp" className="btn border p-0">
+							<div className='upload-cvr-photo ms-auto me-4'>
+								<input type='file' id='cp' name='cp' className='w-100' accept='image/*' onChange={updateCoverImg} />
+								<label htmlFor='cp' className='btn border p-0'>
 									Change Cover Photo <BsUpload />
 								</label>
 							</div>
 						)}
 						{cvrUpdateConfirm && (
-							<div className="cvr-img-confirm">
-								<button className="btn btn-primary me-3 p-0" onClick={confirmCvrImgUpdate}>
+							<div className='cvr-img-confirm'>
+								<button className='btn btn-primary me-3 p-0' onClick={confirmCvrImgUpdate}>
 									Save
 								</button>
-								<button className="btn btn-dark pt-1" onClick={cancelCvrImgUpdate}>
+								<button className='btn btn-dark pt-1' onClick={cancelCvrImgUpdate}>
 									Cancel
 								</button>
 							</div>
 						)}
 
-						<div className="d-flex justify-content-between ">
-							<div className="person d-flex flex-start  flex-column  ">
-								<div className="d-flex flex-column align-items-baseline mb-4">
-									<div className="profile_img ">
-										<img ref={profilePicture} src={profileOwner?.photoURL} alt="profile_img" />
+						<div className='d-flex justify-content-between '>
+							<div className='person d-flex flex-start  flex-column  '>
+								<div className='d-flex flex-column align-items-baseline mb-4'>
+									<div className='profile_img '>
+										<img ref={profilePicture} src={profileOwner?.photoURL} alt='profile_img' />
 									</div>
 									{profileUpdateConfirm && (
-										<div className="prf-img-confirm mt-4">
-											<button className="btn btn-primary me-3 p-0" onClick={confirmProfileImgUpdate}>
+										<div className='prf-img-confirm mt-4'>
+											<button className='btn btn-primary me-3 p-0' onClick={confirmProfileImgUpdate}>
 												Save
 											</button>
-											<button className="btn btn-dark pt-1" onClick={cancelProfileImgUpdate}>
+											<button className='btn btn-dark pt-1' onClick={cancelProfileImgUpdate}>
 												Cancel
 											</button>
 										</div>
 									)}
 									{isOwner && (
-										<div className="upload-profile-photo d-flex border">
-											<input type="file" id="pp" name="pp" accept="image/*" onChange={updateProfileImg} />
-											<label htmlFor="pp" className="btn pb-3 p-2">
-												<BsCameraFill className="camera" />
+										<div className='upload-profile-photo d-flex border'>
+											<input type='file' id='pp' name='pp' accept='image/*' onChange={updateProfileImg} />
+											<label htmlFor='pp' className='btn pb-3 p-2'>
+												<BsCameraFill className='camera' />
 											</label>
 										</div>
 									)}
 								</div>
-								<div className="personal_info text-start">
-									<h2 className="user_name m-0">{profileOwner?.displayName}</h2>
-									<p className="user_Bio text-secondary  fs-5 my-1">{profileOwner?.description || 'No description yet!'}</p>
+								<div className='personal_info text-start'>
+									<h2 className='user_name m-0'>{profileOwner?.displayName}</h2>
+									<p className='user_Bio text-secondary  fs-5 my-1'>{profileOwner?.description || 'No description yet!'}</p>
 								</div>
 							</div>
 
 							{!isOwner && isMAte && (
 								<button
-									className="follow btn btn-outline-dark m-5"
+									className='follow btn btn-outline-dark m-5'
 									onClick={() => {
 										removeFromMatesList();
-									}}
-								>
+									}}>
 									Unfollow
 								</button>
 							)}
 							{!isOwner && !isMAte && (
 								<button
-									className="follow btn btn-outline-primary m-5"
+									className='follow btn btn-outline-primary m-5'
 									onClick={() => {
 										addToMatesList();
-									}}
-								>
+									}}>
 									follow
 								</button>
 							)}
 							{isOwner && (
-								<div className="edit_and_matList my-2 pe-2">
-									<div className="edit" onClick={() => setModalShow(true)}>
-										<div className="text-dark">
-											<h4 className="d-inline ">Edit Profile</h4>
-											<span className="px-1 text-dark">
+								<div className='edit_and_matList my-2 pe-2'>
+									<div className='edit' onClick={() => setModalShow(true)}>
+										<div className='text-dark'>
+											<h4 className='d-inline '>Edit Profile</h4>
+											<span className='px-1 text-dark'>
 												<BsPencilSquare />
 											</span>
 										</div>
 									</div>
-									<div className="mates">
-										<Link to="/eduMates/profile/matesList" className="text-dark">
-											<h4 className="d-inline">Mates List</h4>
-											<span className="px-1 mx-1">
+									<div className='mates'>
+										<Link to='/eduMates/profile/matesList' className='text-dark'>
+											<h4 className='d-inline'>Mates List</h4>
+											<span className='px-1 mx-1'>
 												<BsPeople />
 											</span>
 										</Link>
@@ -280,14 +258,13 @@ export const Profile = () => {
 						</div>
 					</div>
 
-					<div className="profile_content ps-3 d-flex">
-						<main className="">
+					<div className='profile_content ps-3 d-flex'>
+						<main className=''>
 							{isOwner && (
-								<div className="mb-4">
+								<div className='mb-4'>
 									<AddPost />
 								</div>
 							)}
-
 
 							{feed
 								.sort((a, b) => b.date - a.date)
@@ -295,7 +272,7 @@ export const Profile = () => {
 									return <Post postObj={obj.post} key={i} profiledate={obj.date} profileshared={obj.profileshared} profileUser={profileOwner} />;
 								})}
 						</main>
-						<aside className="">
+						<aside className=''>
 							<MatesSuggestion />
 							<TopicsToFollow />
 						</aside>

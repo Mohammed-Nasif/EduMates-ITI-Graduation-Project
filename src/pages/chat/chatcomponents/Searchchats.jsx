@@ -44,7 +44,7 @@ export const Searchchats = () => {
 
 			// Create User Chats [for The searched User with the Owner]
 			await updateDoc(doc(db, 'userChats', user.uid), {
-				[combinedId + '.userInfo']: user,
+				[combinedId + '.userInfo']: currentUser,
 				[combinedId + '.date']: serverTimestamp(),
 			});
 		}

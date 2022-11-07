@@ -40,7 +40,7 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 	}, [currentUser, postObj?.likedBy, postObj?.sharedBy]);
 
 	let sharedByUser;
-	if (postObj.sharedBy.find((share) => share.sharedUserId == currentUser.uid)) sharedByUser = true;
+	if (postObj.sharedBy.find((share) => share.sharedUserId === currentUser.uid)) sharedByUser = true;
 
 	const handleLike = async () => {
 		setIsLiked((prev) => !prev);

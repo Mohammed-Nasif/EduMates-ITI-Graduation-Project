@@ -12,7 +12,7 @@ import { Topics } from './pages/topics/Topics';
 import { Courses } from './pages/courses/Courses';
 import { Chathome } from './pages/chat/Chathome';
 import { Courselanding } from './pages/courselanding/Courselanding';
-import { Mateslist } from './pages/matesList/MatesList';
+import { Mateslist } from './pages/mateslist/Mateslist';
 
 const App = () => {
 	const { currentUser } = useContext(AuthContext);
