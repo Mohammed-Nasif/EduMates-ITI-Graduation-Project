@@ -59,8 +59,9 @@ $backGround: #d9d9d9;
       font-size: 0.8rem;
     }
 
-    height: 12rem;
-    // background-color: $backGround;
+    height: 10rem;
+    overflow-x: hidden;
+    background-color: $backGround;
   }
 }
 
