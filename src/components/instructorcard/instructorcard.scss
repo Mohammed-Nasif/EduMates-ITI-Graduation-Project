@@ -5,6 +5,7 @@ $backGround: #d9d9d9;
   width: 100%;
   border-radius: 1.5rem;
   position: sticky;
+  background-color: white;
   top: 80px;
 }
 
@@ -29,9 +30,10 @@ $backGround: #d9d9d9;
   .follow_btn {
     button {
       color: $mainColor;
+      background-color: transparent;
       border: 1px solid $mainColor;
       padding: 0.2rem 0.7rem;
-      font-size: 1.2rem;
+      font-size: 1rem;
       margin: 0.2rem 0.5rem 0.5rem 0rem;
       cursor: pointer;
     }
@@ -59,9 +61,8 @@ $backGround: #d9d9d9;
       font-size: 0.8rem;
     }
 
-    height: 10rem;
-    overflow-x: hidden;
-    background-color: $backGround;
+    height: 12rem;
+    // background-color: $backGround;
   }
 }
 

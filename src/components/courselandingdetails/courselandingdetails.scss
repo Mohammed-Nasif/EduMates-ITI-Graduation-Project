@@ -25,12 +25,12 @@ $mainColor: #0080ff;
       background: transparent;
     }
     ul {
-      list-style-type: none;
+      list-style-type: decimal;
       padding: 1rem;
       li {
         padding: 0.4rem 0.4rem;
         margin: 0.3rem 0rem;
-        font-size: 1.5rem;
+        font-size: 1rem;
         cursor: pointer;
         transition: all 0.9s;
         &:hover {

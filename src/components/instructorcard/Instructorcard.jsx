@@ -7,7 +7,7 @@ import { FAQ } from './FAQ'
 export const Instructorcard = () => {
   return (
     <>
-      <div className='  instractor_wrapper   shadow'>
+      <div className='  instractor_wrapper pb-4   shadow-sm'>
         <InstructorProfile />
         <Instructorabout />
         <FAQ />
