@@ -6,7 +6,7 @@ export const Instructorabout = () => {
       <div className='about_instructor py-3 text-center px-4 '>
         <h5>About instructor</h5>
         <div className='about_box  m-auto p-2 '>
-          <p className='m-0'>
+          <p>
             mohamed is a software developer, developing complex web applications
             using Top-Notch technologies. He is also a trainer for several
             software development technologies, such as JavaScript, React,

@@ -49,7 +49,7 @@ export const Coursedescription = () => {
 
 export const CourselessonsWrapper = () => {
   const lessons = [
-    'welcome',
+    'Build a Weather App in React JS | React JS beginner Tutorial',
     'introduction',
     'set up',
     'elements',
