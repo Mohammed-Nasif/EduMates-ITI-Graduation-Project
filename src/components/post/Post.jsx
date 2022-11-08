@@ -56,7 +56,7 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 	};
 
 	const sendComment = (e) => {
-		e.code === 'Enter' && handleComment();
+		e.code === 'Enter' && !e.shiftKey && handleComment();
 	};
 
 	const handleComment = async () => {
@@ -111,10 +111,10 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 
 	return (
 		<>
-			<div ref={post} className="post w-100 border border-1 bg-white rounded-4 mb-3">
+			<div ref={post} className="post w-100 border border-1 bg-white rounded-4 mb-3 position-relative">
+				{!!postObj?.likedBy.length && <div className="likes-count badge bg-secondary bg-opacity-25">{postObj?.likedBy.length}</div>}
+
 				<div className="header p-4 pb-3 pt-2">
-					{console.log(matesShared)}
-					{}
 					{shared && (
 						<small className="text-muted" title={sharedByUser ? matesShared?.filter((x) => x !== currentUser.displayName).join(' & ') : matesShared?.join(' & ')}>
 							<BsArrow90DegRight />
@@ -128,6 +128,7 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 					)}
 					{profileshared && (
 						<small className="text-muted">
+							<BsArrow90DegRight />
 							{profileUser.uid === currentUser.uid ? 'You ' : profileUser.displayName} shared this post {profiledate.toDate().toLocaleString()}
 						</small>
 					)}
