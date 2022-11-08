@@ -1,14 +1,28 @@
-.visible-section{
-    .w-13 {
-        font-size: 0.9rem;
-    }
-    .w-10{
-        font-size: 10px;
-    }
-    .follow{
-      font-size: 0.75rem;
-      color: #0080FF;
-      padding: 0.2rem 0.5rem;
-      border-color: #0080FF;
-    }
+.visible-section {
+	.w-13 {
+		font-size: 0.9rem;
+	}
+	.w-10 {
+		font-size: 10px;
+	}
+	.follow {
+		font-size: 0.75rem;
+		color: #0080ff;
+		padding: 0.2rem 0.5rem;
+		border-color: #0080ff;
+	}
+	a {
+		text-decoration: none;
+		color: inherit;
+	}
+	.user-photo {
+		width: 100%;
+
+		max-height: 3rem;
+		overflow: hidden;
+		border-radius: 50%;
+		img {
+			width: 100%;
+		}
+	}
 }

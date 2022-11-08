@@ -10,8 +10,8 @@
 	.visible-section {
 		p {
 			line-height: 0.5;
-      margin-bottom: 0.5rem;
-      margin-top: 0.5rem;
+			margin-bottom: 0.5rem;
+			margin-top: 0.5rem;
 		}
 	}
 	.show-more-section {
@@ -22,16 +22,13 @@
 			margin-bottom: 0.5rem;
 		}
 	}
-	img {
-		border-radius: 50%;
-	}
 }
 
-.seemore{
-    max-height: 500px;
-    overflow: hidden;
+.seemore {
+	max-height: 500px;
+	overflow: hidden;
 }
-.seeless{
-    max-height: 350px;
-    overflow: hidden;
+.seeless {
+	max-height: 350px;
+	overflow: hidden;
 }
