@@ -1,3 +1,5 @@
+@import '../../assets/sass/mixin';
+
 .visible-section {
 	.w-13 {
 		font-size: 0.9rem;
@@ -16,13 +18,25 @@
 		color: inherit;
 	}
 	.user-photo {
-		width: 100%;
-
-		max-height: 3rem;
+		width: 2.3rem;
+		height: 2.3rem;
 		overflow: hidden;
 		border-radius: 50%;
+		@include mediaQ(lg) {
+			width: 3rem;
+			height: 3rem;
+		}
+		@include mediaQ(xlg) {
+			width: 3.5rem;
+			height: 3.5rem;
+		}
+		@include mediaQ(xxlg) {
+			width: 4rem;
+			height: 4rem;
+		}
 		img {
 			width: 100%;
+			object-fit: contain;
 		}
 	}
 }
