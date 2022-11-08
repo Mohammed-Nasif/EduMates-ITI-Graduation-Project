@@ -7,8 +7,5 @@ export const FAQ = () => {
 		<p className='text-dark fs-6 m-1'>Have More Questions?</p>
 		<Link className='fs-6 fw-bold text-dark'>FAQ</Link>
 	</div>
-		
-
-
 	</>;
 };
