@@ -12,7 +12,6 @@ import { Link } from 'react-router-dom';
 export function Post({ postObj, shared, matesShared, profileshared, profiledate, profileUser }) {
 	const [dropdown, setDropDown] = useState(false);
 	const [isLiked, setIsLiked] = useState(false);
-	const [isShared, setIsShared] = useState(false);
 	const [showComments, setShowComments] = useState(false);
 	const [comment, setComment] = useState('');
 	const [comments, setComments] = useState([]);
@@ -36,8 +35,7 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 
 	useEffect(() => {
 		if (postObj.likedBy.includes(currentUser.uid)) setIsLiked(true);
-		if (postObj.sharedBy.some((share) => share.sharedUserId === currentUser.uid)) setIsShared(true);
-	}, [currentUser, postObj?.likedBy, postObj?.sharedBy]);
+	}, [currentUser, postObj.likedBy]);
 
 	let sharedByUser;
 	if (postObj.sharedBy.find((share) => share.sharedUserId === currentUser.uid)) sharedByUser = true;
@@ -93,8 +91,7 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 	};
 
 	const handleShare = async () => {
-		setIsShared((prev) => !prev);
-		if (isShared) {
+		if (sharedByUser) {
 			const updatedRemovedShare = postObj.sharedBy.filter((share) => share.sharedUserId !== currentUser.uid);
 			await updateDoc(doc(db, 'posts', postObj.postId), {
 				sharedBy: updatedRemovedShare,
@@ -204,7 +201,7 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 						<BsChatRightText className="icon" /> comment
 					</div>
 					<div className="btn" onClick={handleShare}>
-						{!isShared ? (
+						{!sharedByUser ? (
 							<>
 								<FaRegShareSquare className="icon" /> share
 							</>
