@@ -95,7 +95,7 @@ export const Register = () => {
 								//Object is Empty Because User Don't have any conversions yet
 							});
 
-							// Create User Classroom Collection
+							// Create User Classroom Collection      {JSON}
 							await setDoc(doc(db, 'userClassroom', res.user.uid), {
 								//Object is Empty Because User Doesn't have any Courses yet
 							});
