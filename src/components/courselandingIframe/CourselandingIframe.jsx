@@ -2,8 +2,32 @@ import './courselandingIframe.scss'
 import { BsStarFill } from 'react-icons/bs'
 import Iframe from 'react-iframe'
 import ReactPlayer from 'react-player'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 export const CourselandingIframe = () => {
+  const baseURl="https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyDahH_bXneE701zW8UoiiB_2WgVX0lAXA4&part=snippet&maxResults=10&playlistId=PLDoPjvoNmBAw8NNtJF4Bvhhbnt6MghtSq"
+//   const [playList, setPlayList] = useState([])
+//  useEffect(() => {
+//       axios.get(baseURl).then(response => {
+//       setPlayList(response.data)
+//       console.log(playList);
+    
+//     })
+//   }, [])
+axios.get(baseURl)
+  .then(function (response) {
+    // handle success
+    console.log(response);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .then(function () {
+    // always executed
+  });
+
   return (
     <>
       <Courseheading />
