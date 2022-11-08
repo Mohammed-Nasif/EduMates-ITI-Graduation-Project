@@ -3,8 +3,10 @@
 		height: 13.125rem;
 		overflow: hidden;
 		img {
-			object-fit: fill;
 			width: 100%;
+			position: relative;
+			top: 50%;
+			transform: translateY(-50%);
 		}
 	}
 
@@ -43,10 +45,7 @@
 		bottom: 2.5rem;
 		width: 200px;
 		input {
-			position: relative;
-			z-index: 2;
 			opacity: 0;
-			cursor: pointer;
 		}
 		.btn {
 			position: absolute;

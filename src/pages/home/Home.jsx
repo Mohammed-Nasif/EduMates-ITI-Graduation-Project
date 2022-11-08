@@ -14,17 +14,26 @@ export const Home = () => {
 	const { allUsers } = useContext(UsersContext);
 	const matesList = new Set(currentUser.matesList);
 
-	const posts = allPosts.filter((post) => matesList.has(post.createdBy)); // Get Posts To Home Including you and Mates
+	// const posts = allPosts.filter((post) => matesList.has(post.createdBy)); // Get Posts To Home Including you and Mates
+	let feed = [];
 
-	const feed = posts.map((post) => {
-		if (post.sharedBy.length === 0) {
-			return { post: post, feedDate: post.createdAt };
+	allPosts.forEach((post) => {
+		if (post.sharedBy.some((share) => matesList.has(share.sharedUserId))) {
+			let matesShared = [];
+			matesShared = [];
+			post.sharedBy.forEach((share) => {
+				if (matesList.has(share.sharedUserId)) {
+					let user = allUsers.find((user) => user.uid === share.sharedUserId);
+					matesShared.push(user.displayName);
+				}
+			});
+			feed.push({ post: post, feedDate: post.sharedBy[post.sharedBy.length - 1].sharedTime, shared: true, matesShared: matesShared });
 		} else {
-			return { post: post, feedDate: post.sharedBy[post.sharedBy.length - 1].sharedTime };
+			if (matesList.has(post.createdBy)) feed.push({ post: post, feedDate: post.createdAt, shared: false });
 		}
 	});
-	feed.sort((a, b) => new Date(b.feedDate) - new Date(a.feedDate));
 	console.log(feed);
+	feed.sort((a, b) => b.feedDate - a.feedDate);
 
 	// for (let post of posts) {
 	// 	feed.push({ date: post.createdAt, post: post, shared: false });
@@ -77,14 +86,14 @@ export const Home = () => {
 
 	return (
 		<>
-			<div className='home ps-3 d-flex '>
-				<main className='ms-5'>
-					<div className='my-4'>
+			<div className="home ps-3 d-flex ">
+				<main className="ms-5">
+					<div className="my-4">
 						<AddPost />
 					</div>
 
 					{feed.map((obj, i) => {
-						return <Post postObj={obj.post} key={i} shared={obj.shared} matesNames={obj.matesNames} />;
+						return <Post postObj={obj.post} key={i} shared={obj.shared} matesShared={obj.matesShared} />;
 					})}
 					{/* {allPosts
 						.filter((post) => {
@@ -94,7 +103,7 @@ export const Home = () => {
 							return <Post postObj={post} key={post.postId} />;
 						})} */}
 				</main>
-				<aside className='fixed-top'>
+				<aside className="fixed-top">
 					<MatesSuggestion />
 					<TopicsToFollow />
 				</aside>

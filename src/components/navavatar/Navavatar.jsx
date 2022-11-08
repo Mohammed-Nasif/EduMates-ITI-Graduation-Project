@@ -3,8 +3,9 @@ import { useState, useEffect, useRef, useContext } from 'react';
 import { BsPersonCircle } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
-import { auth } from '../../firebase';
+import { auth, db } from '../../firebase';
 import { AuthContext } from './../../context/AuthContext';
+import { updateDoc, doc, Timestamp } from 'firebase/firestore';
 
 export const Navavatar = (props) => {
 	const { currentUser } = useContext(AuthContext);
@@ -16,18 +17,24 @@ export const Navavatar = (props) => {
 	};
 	// handle when click outside
 	let dropdownRef = useRef();
-    useEffect(() => {
-      let handler = (e)=>{
-        if(!dropdownRef.current.contains(e.target)){
-         setToggle(false);
-        }      
-      };
-      document.addEventListener("mousedown", handler);
-      return() =>{
-        document.removeEventListener("mousedown", handler);
-      }
-    });
+	useEffect(() => {
+		let handler = (e) => {
+			if (!dropdownRef.current.contains(e.target)) {
+				setToggle(false);
+			}
+		};
+		document.addEventListener('mousedown', handler);
+		return () => {
+			document.removeEventListener('mousedown', handler);
+		};
+	});
 
+	const handleSignOut = async () => {
+		await updateDoc(doc(db, 'users', currentUser.uid), {
+			login: { isLoggedIn: false, date: Timestamp.now() },
+		});
+		signOut(auth);
+	};
 	return (
 		<div className='navavatar-container' ref={dropdownRef}>
 			{/* Avatar icon: */}
@@ -42,10 +49,10 @@ export const Navavatar = (props) => {
 							<img src={currentUser.photoURL} alt='user-img' />
 						</div>
 						<p className='user-name mb-0 f-roboto fw5'>{currentUser.displayName}</p>
-						<Link to={`/eduMates/profile/${currentUser.displayName}/${currentUser.uid}`}  className='profile-link f-roboto fw5 d-block mb-2'>
+						<Link to={`/eduMates/profile/${currentUser.displayName}/${currentUser.uid}`} className='profile-link f-roboto fw5 d-block mb-2'>
 							View Profile
 						</Link>
-						<Link to='/' className='logout-link f-roboto fw5 d-block mb-1' onClick={() => signOut(auth)}>
+						<Link to='/' className='logout-link f-roboto fw5 d-block mb-1' onClick={handleSignOut}>
 							Logout
 						</Link>
 					</div>

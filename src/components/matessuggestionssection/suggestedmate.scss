@@ -1,14 +1,42 @@
-.visible-section{
-    .w-13 {
-        font-size: 0.9rem;
-    }
-    .w-10{
-        font-size: 10px;
-    }
-    .follow{
-      font-size: 0.75rem;
-      color: #0080FF;
-      padding: 0.2rem 0.5rem;
-      border-color: #0080FF;
-    }
+@import '../../assets/sass/mixin';
+
+.visible-section {
+	.w-13 {
+		font-size: 0.9rem;
+	}
+	.w-10 {
+		font-size: 10px;
+	}
+	.follow {
+		font-size: 0.75rem;
+		color: #0080ff;
+		padding: 0.2rem 0.5rem;
+		border-color: #0080ff;
+	}
+	a {
+		text-decoration: none;
+		color: inherit;
+	}
+	.user-photo {
+		width: 2.3rem;
+		height: 2.3rem;
+		overflow: hidden;
+		border-radius: 50%;
+		@include mediaQ(lg) {
+			width: 3rem;
+			height: 3rem;
+		}
+		@include mediaQ(xlg) {
+			width: 3.5rem;
+			height: 3.5rem;
+		}
+		@include mediaQ(xxlg) {
+			width: 4rem;
+			height: 4rem;
+		}
+		img {
+			width: 100%;
+			object-fit: contain;
+		}
+	}
 }

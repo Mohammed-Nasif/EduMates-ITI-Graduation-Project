@@ -2,7 +2,8 @@ import { useContext, useEffect, useState } from 'react';
 import { onSnapshot, doc, updateDoc, arrayRemove } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { AuthContext } from '../../context/AuthContext';
-import { BsTrashFill } from 'react-icons/bs';
+import { BsXCircle } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 
 export const Postcomment = ({ comment, postId }) => {
 	const [commentOwner, setCommentOwner] = useState({});
@@ -41,7 +42,10 @@ export const Postcomment = ({ comment, postId }) => {
 			</div>
 
 			<div className="comment-body">
-				<div className="user-name fw-bold ">{commentOwner.displayName}</div>
+				<Link to={`/eduMates/profile/${commentOwner.displayName}/${commentOwner.uid}`}>
+					<div className="user-name fw-bold ">{commentOwner.displayName}</div>
+				</Link>
+
 				<div className="date fw-light mb-2" title={comment.commentedAt && comment.commentedAt.toDate().toLocaleString()}>
 					{getTimeDiff()}
 				</div>
@@ -49,7 +53,7 @@ export const Postcomment = ({ comment, postId }) => {
 			</div>
 			{comment.commentBy === currentUser.uid && (
 				<div className="remove-comment ms-auto px-2 h-2" onClick={deleteComment}>
-					<BsTrashFill/>
+					<BsXCircle />
 				</div>
 			)}
 		</div>
