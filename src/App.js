@@ -11,7 +11,7 @@ import { Editprofile } from './pages/editprofile/Editprofile';
 import { Topics } from './pages/topics/Topics';
 import { Courses } from './pages/courses/Courses';
 import { Chathome } from './pages/chat/Chathome';
-import { Mateslist } from './pages/matesList/MatesList';
+import { Mateslist } from './pages/mateslist/Mateslist';
 import { Courselanding } from './pages/courselanding/Courselanding';
 
 const App = () => {

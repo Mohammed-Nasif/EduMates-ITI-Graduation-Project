@@ -1,5 +1,5 @@
 import { useContext, useMemo } from 'react';
-import './matesList.scss';
+import './mateslist.scss';
 import { Mate } from '../../components/mate/Mate';
 import { MatesSuggestion } from '../../components/matessuggestionssection/MatesSuggestion';
 import { TopicsToFollow } from '../../components/topicsToFollow/TopicsToFollow';
