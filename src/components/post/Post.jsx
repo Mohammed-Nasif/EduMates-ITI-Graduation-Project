@@ -11,7 +11,6 @@ import { Link } from 'react-router-dom';
 
 export function Post({ postObj, shared, matesShared, profileshared, profiledate, profileUser }) {
 	const [dropdown, setDropDown] = useState(false);
-	const [isLiked, setIsLiked] = useState(false);
 	const [showComments, setShowComments] = useState(false);
 	const [comment, setComment] = useState('');
 	const [comments, setComments] = useState([]);
@@ -33,16 +32,14 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 		};
 	}, [postObj]);
 
-	useEffect(() => {
-		if (postObj.likedBy.includes(currentUser.uid)) setIsLiked(true);
-	}, [currentUser, postObj.likedBy]);
+	let likedByUser;
+	if (postObj.likedBy.includes(currentUser.uid)) likedByUser = true;
 
 	let sharedByUser;
 	if (postObj.sharedBy.find((share) => share.sharedUserId === currentUser.uid)) sharedByUser = true;
 
 	const handleLike = async () => {
-		setIsLiked((prev) => !prev);
-		if (isLiked) {
+		if (likedByUser) {
 			await updateDoc(doc(db, 'posts', postObj.postId), {
 				likedBy: arrayRemove(currentUser.uid),
 			});
@@ -109,8 +106,6 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 	return (
 		<>
 			<div ref={post} className="post w-100 border border-1 bg-white rounded-4 mb-3 position-relative">
-				{!!postObj?.likedBy.length && <div className="likes-count badge bg-secondary bg-opacity-25">{postObj?.likedBy.length}</div>}
-
 				<div className="header p-4 pb-3 pt-2">
 					{shared && (
 						<small className="text-muted" title={sharedByUser ? matesShared?.filter((x) => x !== currentUser.displayName).join(' & ') : matesShared?.join(' & ')}>
@@ -181,8 +176,10 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 				</div>
 
 				<div className="d-flex justify-content-around text-center border-top border-1">
-					<div className="btn" onClick={handleLike}>
-						{!isLiked ? (
+					<div className={`btn ${likedByUser ? 'pe-1' : ' pe-2'}`} onClick={handleLike}>
+						{!!postObj?.likedBy.length && <div className={` badge bg-opacity-50 ${likedByUser ? ' bg-primary ' : 'bg-secondary'}`}>{postObj?.likedBy.length}</div>}
+
+						{!likedByUser ? (
 							<>
 								<BsHandThumbsUp className="icon" /> Like
 							</>
@@ -192,12 +189,14 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 							</>
 						)}
 					</div>
+					{/* comment */}
 					<div
-						className="btn"
+						className="btn pe-0"
 						onClick={() => {
 							setShowComments((prev) => !prev);
 						}}
 					>
+						{!!comments.length && <div className="badge bg-opacity-50 bg-secondary">{comments.length}</div>}
 						<BsChatRightText className="icon" /> comment
 					</div>
 					<div className="btn" onClick={handleShare}>

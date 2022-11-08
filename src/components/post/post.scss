@@ -1,15 +1,4 @@
 .post {
-	.likes-count {
-		// background-color: white;
-		// height: 1.5rem;
-		// width: 1.5rem;
-
-		// font-size: 0.75rem;
-		position: absolute;
-		top: 25%;
-		left: -8%;
-		// border-radius: 3px;
-	}
 	.user-photo {
 		width: 45px;
 		height: 45px;
@@ -92,6 +81,11 @@
 			}
 		}
 		position: relative;
+		.badge {
+			position: absolute;
+			right: -30%;
+			top: 20%;
+		}
 	}
 
 	.comments {
