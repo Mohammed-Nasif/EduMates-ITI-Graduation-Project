@@ -1,0 +1,21 @@
+.topics-suggestion-layout {
+  position: absolute;
+  top: 23rem;
+  right: 11rem;
+  border: 0.5px solid rgb(196, 196, 196);
+  border-radius: 20px;
+  background-color: white;
+}
+.topics-suggestion-layout h4 {
+  font-size: 17px;
+}
+.topics-suggestion-layout .show-more-section {
+  border-top: 0.5px solid rgb(196, 196, 196);
+}
+.topics-suggestion-layout .show-more-section p {
+  color: #0dcaf2;
+  cursor: pointer;
+}
+.topics-suggestion-layout .plus-icon {
+  color: #0dcaf2;
+}/*# sourceMappingURL=TopicsToFollow.css.map */

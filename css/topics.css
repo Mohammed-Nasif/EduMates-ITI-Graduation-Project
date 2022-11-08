@@ -1,0 +1,66 @@
+/*# sourceMappingURL=topics.css.map */ aside {
+  width: 25%;
+  top: 5rem;
+  right: 2rem;
+  left: auto;
+  display: block;
+}
+.topics .fixed-top {
+  z-index: 0;
+}
+.topics .topics-comp-container {
+  width: 100%;
+}
+.topics .topics-comp-container .topics-container .title {
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1.75rem;
+}
+.topics .topics-comp-container .topics-container .topics-content {
+  border-bottom: 0.0313rem solid gray;
+}
+
+.subtopics-container .sub-title {
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.1875rem;
+}
+.subtopics-container .user-topics .topic-container {
+  cursor: default;
+}
+.subtopics-container .user-topics .topic-container .name-container {
+  display: flex;
+  align-items: center;
+}
+.subtopics-container .user-topics .topic-container .name-container .topic-name {
+  width: auto;
+  padding: 0.125rem 0.9375rem;
+  margin: 0.125rem;
+  font-weight: 400;
+  font-size: 0.9375rem;
+  line-height: 1.3125rem;
+  border: 0.125rem solid transparent;
+  border-radius: 0.25rem;
+}
+.subtopics-container .user-topics .topic-container .name-container .topic-name.active {
+  color: blue;
+  border: 0.125rem solid blue;
+  border-radius: 0.25rem;
+}
+.subtopics-container .user-topics .icon-container {
+  flex-direction: row-reverse;
+}
+.subtopics-container .user-topics .icon-container .delete-icon, .subtopics-container .user-topics .icon-container .add-icon {
+  display: block;
+  cursor: pointer;
+}
+.subtopics-container .user-topics .icon-container .delete-icon:hover {
+  color: rgb(117, 116, 116);
+}
+.subtopics-container .user-topics .icon-container .add-icon:hover {
+  color: blue;
+}
+.subtopics-container .user-topics .icon-container .prev-click {
+  pointer-events: none;
+  color: rgb(117, 116, 116);
+}/*# sourceMappingURL=topics.css.map */

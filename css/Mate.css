@@ -1,0 +1,26 @@
+.Mate .card {
+  border: 0.5px solid rgb(196, 196, 196);
+  border-radius: 20px;
+  background-color: white;
+  width: 16rem;
+}
+.Mate .card .cover-photo {
+  height: 8rem;
+}
+.Mate .card .cover-photo img {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.Mate .card .profile-photo img {
+  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
+  position: relative;
+  top: -40px;
+}
+.Mate .card .text-wrapper p {
+  line-height: 0.5;
+}
+.Mate .card .text-wrapper .description {
+  font-size: 12px;
+}/*# sourceMappingURL=Mate.css.map */

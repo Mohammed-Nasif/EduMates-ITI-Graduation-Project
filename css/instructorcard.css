@@ -1,0 +1,62 @@
+.instractor_wrapper {
+  width: 100%;
+  border-radius: 1.5rem;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 80px;
+}
+
+.instructor_profile {
+  width: 100%;
+}
+.instructor_profile .instructor_img {
+  margin-top: -35px !important;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.instructor_profile .instructor_img img {
+  width: 100%;
+  -o-object-fit: fill;
+     object-fit: fill;
+}
+.instructor_profile .instructor_info p {
+  font-size: 0.8rem;
+}
+.instructor_profile .follow_btn button {
+  color: #0080ff;
+  border: 1px solid #0080ff;
+  padding: 0.2rem 0.7rem;
+  font-size: 1.2rem;
+  margin: 0.2rem 0.5rem 0.5rem 0rem;
+  cursor: pointer;
+}
+
+.about_instructor {
+  overflow: auto;
+}
+.about_instructor .about_box {
+  overflow: scroll;
+  border-radius: 5px;
+  height: 12rem;
+}
+.about_instructor .about_box::-webkit-scrollbar {
+  width: 3px;
+}
+.about_instructor .about_box::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #0080ff;
+}
+.about_instructor .about_box::-webkit-scrollbar-track {
+  background: transparent;
+}
+.about_instructor .about_box p {
+  font-size: 0.8rem;
+}
+
+.course_heading .rating .star {
+  color: gold;
+  padding: 0 0.2rem;
+  font-size: 2rem;
+}/*# sourceMappingURL=instructorcard.css.map */

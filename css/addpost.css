@@ -1,0 +1,64 @@
+.add-new-post {
+  background-color: white;
+  color: #455a64;
+  height: auto;
+}
+.add-new-post .icon {
+  color: gray;
+}
+.add-new-post ::-webkit-scrollbar {
+  width: 5px;
+}
+.add-new-post ::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.add-new-post ::-webkit-scrollbar-thumb {
+  background: #888;
+}
+.add-new-post ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.add-new-post textarea {
+  border: 0;
+  resize: none;
+  width: 100%;
+}
+.add-new-post textarea:focus-visible {
+  outline: none;
+}
+.add-new-post #img {
+  visibility: hidden;
+  position: fixed;
+}
+.add-new-post .btn:active {
+  border-color: transparent !important;
+}
+.add-new-post .preview {
+  max-height: 200px;
+  overflow: hidden;
+}
+.add-new-post .preview img {
+  max-width: 100%;
+  transition: 0.5s all ease;
+}
+.add-new-post .preview .del {
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+  z-index: 22;
+  display: none;
+}
+.add-new-post .preview:hover img {
+  scale: 1.1;
+  opacity: 0.4;
+}
+.add-new-post .preview:hover .del {
+  display: block;
+}
+.add-new-post:has(textarea:focus) {
+  box-shadow: 0px 1px 10px lightgray;
+}
+.add-new-post .alert {
+  font-size: 0.5rem;
+  padding: 0.4rem;
+}/*# sourceMappingURL=addpost.css.map */

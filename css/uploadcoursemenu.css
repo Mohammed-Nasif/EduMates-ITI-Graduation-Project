@@ -1,0 +1,13 @@
+.upload_course {
+  border: 2px solid transparent;
+  border-radius: 20px;
+  padding: 1rem;
+}
+.upload_course .upload_btn {
+  color: #0080ff;
+  border: 1px solid #0080ff;
+  padding: 0.4rem 0.7rem;
+  font-size: 1.2rem;
+  margin: 0.5rem 0.5rem 0.5rem 0rem;
+  cursor: pointer;
+}/*# sourceMappingURL=uploadcoursemenu.css.map */

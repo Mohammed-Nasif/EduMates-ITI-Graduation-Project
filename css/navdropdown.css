@@ -1,0 +1,49 @@
+.dropdown-container .f-roboto {
+  font-family: "Roboto", sans-serif;
+}
+.dropdown-container .fw4 {
+  font-weight: 400;
+}
+.dropdown-container .fw5 {
+  font-weight: 500;
+}
+.dropdown-container a {
+  text-decoration: none !important;
+}
+.dropdown-container .dropdown-icon .nav-icon {
+  color: #FFFFFF;
+}
+.dropdown-container .dropdown-icon .nav-icon.active {
+  color: #686868;
+}
+.dropdown-container .dropdown {
+  width: 30%;
+  background-color: #1D2224;
+  border-bottom-left-radius: 0.625rem;
+  border-bottom-right-radius: 0.625rem;
+  position: absolute;
+  top: 100%;
+  right: 3%;
+  margin: 0.4375rem;
+  padding: 0.9375rem;
+}
+.dropdown-container .dropdown .user-img {
+  width: 3.4375rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  margin: 0.3125rem 0 0.3125rem 0.3125rem;
+}
+.dropdown-container .dropdown .user-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.dropdown-container .dropdown .user-name {
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: #FFFFFF;
+}
+.dropdown-container .dropdown .row:hover {
+  background-color: #686868;
+}/*# sourceMappingURL=navdropdown.css.map */

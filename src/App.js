@@ -11,7 +11,7 @@ import { Editprofile } from './pages/editprofile/Editprofile';
 import { Topics } from './pages/topics/Topics';
 import { Courses } from './pages/courses/Courses';
 import { Chathome } from './pages/chat/Chathome';
-import { Mateslist } from './pages/mateslist/MatesList';
+import { Mateslist } from './pages/matesList/MatesList';
 import { Courselanding } from './pages/courselanding/Courselanding';
 
 const App = () => {
@@ -38,7 +38,7 @@ const App = () => {
 					<Route path='profile'>
 						<Route path=':userName/:userId' element={<Profile />} />
 						<Route path='edit' element={<Editprofile />} />
-						<Route path='matesList' element={<Mateslist />} />
+						{/* <Route path='matesList' element={<Mateslist />} /> */}
 					</Route>
 					<Route path='topics' element={<Topics />} />
 					<Route path='courses'>

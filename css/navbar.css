@@ -1,0 +1,109 @@
+.navbar-container {
+  width: 84%;
+  color: #FFFFFF;
+  background-color: #1D2224;
+  left: 16%;
+  padding: 0.625rem 1.875rem;
+}
+.navbar-container .f-roboto {
+  font-family: "Roboto", sans-serif;
+}
+.navbar-container .fw4 {
+  font-weight: 400;
+}
+.navbar-container .fw5 {
+  font-weight: 500;
+}
+.navbar-container a {
+  text-decoration: none !important;
+}
+.navbar-container .nav-content .nav-search-container input {
+  width: 25%;
+  padding: 0.125rem 0.625rem;
+  border-radius: 0.3125rem;
+  border: none;
+  color: #1D2224;
+  transition: all 1s;
+}
+.navbar-container .nav-content .nav-search-container input:hover, .navbar-container .nav-content .nav-search-container input:focus {
+  width: 45%;
+  outline: none;
+}
+.navbar-container .nav-content .dropDown-menu button {
+  background-color: transparent;
+  border: none;
+}
+.navbar-container .nav-content .dropDown-menu .dropdown-menu {
+  background: #1D2224;
+  border-radius: 0px 0px 15px 15px;
+}
+.navbar-container .nav-content .dropDown-menu .dropdown-menu .dropdown-item {
+  color: #FFFFFF;
+  border-top: 0.0313rem solid #686868;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1rem;
+}
+.navbar-container .nav-content .dropDown-menu .dropdown-menu .dropdown-item .chat-user-info .user-img {
+  width: 2.8125rem;
+  height: 2.8125rem;
+  border-radius: 50%;
+  margin: 0.3125rem auto;
+}
+.navbar-container .nav-content .dropDown-menu .dropdown-menu .dropdown-item .chat-user-info .user-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.navbar-container .nav-content .dropDown-menu .dropdown-menu .dropdown-item .chat-user-info .msg-num {
+  width: 0.9375rem;
+  height: 0.9375rem;
+  border-radius: 50%;
+  background-color: #686868;
+  text-align: center;
+  font-size: 0.625rem;
+}
+.navbar-container .nav-content .dropDown-menu .dropdown-menu .dropdown-item:hover {
+  background-color: #1D2224;
+  color: #FFFFFF;
+}
+.navbar-container .nav-content .dropDown-menu .dropdown-menu .user-info {
+  width: 100%;
+  padding: 2%;
+  text-align: center;
+}
+.navbar-container .nav-content .dropDown-menu .dropdown-menu .user-info .user-img {
+  width: 2.8125rem;
+  height: 2.8125rem;
+  border-radius: 50%;
+  margin: 0.3125rem auto;
+}
+.navbar-container .nav-content .dropDown-menu .dropdown-menu .user-info .user-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.navbar-container .nav-content .dropDown-menu .dropdown-menu .user-info .user-name {
+  font-size: 1rem;
+  line-height: 1.1719rem;
+}
+.navbar-container .nav-content .dropDown-menu .dropdown-menu .user-info .user-profile {
+  font-size: 0.75rem;
+  line-height: 0.875rem;
+}
+.navbar-container .nav-content .dropDown-menu.dropdown-hover .dropdown-item:hover {
+  background-color: #686868;
+}
+.navbar-container .nav-content .dropDown-menu .dropdown-toggle::after {
+  display: none !important;
+}
+.navbar-container .nav-content .nav-icons .nav-user-img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  text-align: center;
+}
+.navbar-container .nav-content .nav-icons .nav-icon {
+  color: #FFFFFF;
+  font-size: 1.125rem;
+}/*# sourceMappingURL=navbar.css.map *//

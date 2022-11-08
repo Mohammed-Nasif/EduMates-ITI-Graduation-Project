@@ -1,0 +1,38 @@
+.filter {
+  border: 2px solid #f1f1f1;
+  border-radius: 20px;
+  padding: 1rem;
+}
+.filter .topics_wrapper {
+  -o-object-fit: fill;
+     object-fit: fill;
+}
+.filter .topics_wrapper .topic_btn {
+  color: #0080ff;
+  border: 2px solid #0080ff;
+  padding: 0.1rem 0.5rem;
+  font-size: 1.2rem;
+  margin: 0.5rem 0.5rem 0.5rem 0rem;
+  cursor: pointer;
+}
+@media only screen and (min-width: 992px) and (max-width: 1999px) {
+  .filter .topics_wrapper .topic_btn {
+    padding: 0.1rem 0.3rem;
+  }
+}
+.filter .sort_wrapper {
+  position: relative;
+}
+.filter .sort_wrapper::after {
+  position: absolute;
+  content: "";
+  width: 80%;
+  height: 1px;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #918e8e;
+}
+.filter .more_lesson .form-check-input[type=checkbox] {
+  border-radius: 50% !important;
+}/*# sourceMappingURL=coursescategories.css.map */

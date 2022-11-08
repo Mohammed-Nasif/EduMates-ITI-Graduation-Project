@@ -1,0 +1,60 @@
+.navavatar-container .f-roboto {
+  font-family: "Roboto", sans-serif;
+}
+.navavatar-container .fw4 {
+  font-weight: 400;
+}
+.navavatar-container .fw5 {
+  font-weight: 500;
+}
+.navavatar-container a {
+  text-decoration: none !important;
+}
+.navavatar-container .avatar-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  text-align: center;
+  cursor: pointer;
+}
+.navavatar-container .avatar-icon .nav-icon {
+  color: #FFFFFF;
+}
+.navavatar-container .avatar-icon .nav-icon.active {
+  color: #686868;
+}
+.navavatar-container .dropdown {
+  width: 20%;
+  background-color: #1D2224;
+  border-bottom-left-radius: 0.625rem;
+  border-bottom-right-radius: 0.625rem;
+  position: absolute;
+  top: 100%;
+  right: 3%;
+  margin: 0.4375rem;
+  padding: 0.1875rem 0.3125rem 0.3125rem;
+}
+.navavatar-container .dropdown .user-info {
+  width: 100%;
+  padding: 2%;
+  text-align: center;
+}
+.navavatar-container .dropdown .user-info .user-img {
+  width: 2.8125rem;
+  height: 2.8125rem;
+  border-radius: 50%;
+  margin: 0.3125rem auto;
+}
+.navavatar-container .dropdown .user-info .user-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.navavatar-container .dropdown .user-info .user-name {
+  font-size: 1rem;
+  line-height: 1.1719rem;
+}
+.navavatar-container .dropdown .user-info .profile-link, .navavatar-container .dropdown .user-info .logout-link {
+  font-size: 0.75rem;
+  line-height: 0.875rem;
+}/*# sourceMappingURL=navavatar.css.map */

@@ -1,0 +1,49 @@
+.popup-chat-container {
+  position: absolute;
+  bottom: 0;
+  right: 1rem;
+  border: 0.5px solid rgb(196, 196, 196);
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  background-color: white;
+  z-index: 2000;
+  height: 25rem;
+  width: 20rem;
+}
+.popup-chat-container .chat-header {
+  border-bottom: 1px solid rgb(196, 196, 196);
+}
+.popup-chat-container .chat-header img {
+  border-radius: 50%;
+}
+.popup-chat-container .chat-header .chat-toggle {
+  cursor: pointer;
+}
+.popup-chat-container .chatBody {
+  background-color: white;
+}
+.popup-chat-container .chatBody p {
+  font-size: 14px;
+  background-color: rgb(196, 196, 196);
+  border-radius: 20px;
+}
+.popup-chat-container .chatBody img {
+  border-radius: 50%;
+}
+.popup-chat-container .chatFooter {
+  background-color: white;
+  margin-top: 108px;
+}
+.popup-chat-container .chatFooter input {
+  background-color: #dfdfdf;
+  border: none;
+  border-radius: 25px;
+  height: 34px;
+}
+.popup-chat-container .chatFooter input:focus {
+  outline: none;
+}
+.popup-chat-container .chatFooter .sendMsg {
+  font-size: 25px;
+  cursor: pointer;
+}/*# sourceMappingURL=chatpopup.css.map */
