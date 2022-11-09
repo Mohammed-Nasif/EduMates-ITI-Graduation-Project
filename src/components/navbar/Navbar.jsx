@@ -65,29 +65,30 @@ export const NavbarComponent = () => {
 		}
 	};
 	return (
-		<div className='navbar-container sticky-top '>
-			<div className='nav-content d-flex align-items-center position-relative'>
-				<div className='row w-100'>
-					<div className='nav-search-container col-9'>
-						<div className='nav-search-content'>
-							<input type='search' placeholder='Search...' onKeyDown={(event) => getInputData(event)} />
+		<div className="navbar-container sticky-top ">
+			<div className="nav-content d-flex align-items-center position-relative">
+				<div className="row w-100">
+					<div className="nav-search-container col-9">
+						<div className="nav-search-content">
+							<input type="search" placeholder="Search..." onKeyDown={(event) => getInputData(event)} />
 						</div>
 					</div>
-					<div className='nav-icons col-3 d-flex align-items-center'>
-						<div className='col-3'>
+					<div className="nav-icons col-3 d-flex align-items-center">
+						<div className="col-3">
 							<Link>
-								<BsTrophyFill className='nav-icon' />
+								<BsTrophyFill className="nav-icon" />
 							</Link>
 						</div>
-						<div className='col-3'>
+						<div className="col-3">
 							<Navdropdown icon={BsFillChatDotsFill} notifications={chats} dropType={'chat'} />
 						</div>
-						<div className='col-3'>
+
+						<div className="col-3">
 							{/* <span>{notifiesCount}</span> */}
 
 							<Navdropdown icon={BsBellFill} notifications={notificationsList} dropType={'notifies'} />
 						</div>
-						<div className='col-3'>
+						<div className="col-3">
 							<Navavatar />
 						</div>
 					</div>

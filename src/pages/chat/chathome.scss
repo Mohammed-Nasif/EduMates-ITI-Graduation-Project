@@ -1,13 +1,11 @@
 .chat_main {
 	width: 638px;
-	height: 731px;
 	border-radius: 15px;
 }
 
 .chat_side {
 	border-radius: 15px;
 	width: 304px;
-	height: 545px;
 	box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.14), 0px 0px 1px rgba(0, 0, 0, 0.12);
 
 	.side_head {
@@ -44,7 +42,7 @@
 }
 
 .chat_nav {
-	padding: 25px 18px 0px 18px;
+	padding: 15px 10px 0px 10px;
 	display: flex;
 	flex-direction: row;
 	align-items: flex-start;
@@ -125,11 +123,25 @@
 	}
 }
 
+//scrolll
+::-webkit-scrollbar {
+	width: 5px;
+}
+::-webkit-scrollbar-track {
+	background: #ffff;
+}
+::-webkit-scrollbar-thumb {
+	background: #888;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}
 .messages_wrapper {
 	width: 100%;
-	height: 585px;
+	height: calc(100vh - 13rem);
 	overflow-y: scroll;
 	padding: 15px;
+	background-color: white;
 
 	.message {
 		display: flex;
@@ -150,12 +162,17 @@
 			align-items: flex-start;
 			justify-content: flex-start;
 			p {
-				max-width: max-content;
+				max-width: 75%;
 				padding: 10px 20px;
 				background: #ebebeb;
 				border-radius: 6.25px;
 				margin: 0;
-				line-break: anywhere;
+
+				word-wrap: break-word;
+				white-space: pre-wrap;
+				word-break: break-word;
+
+				// line-break: anywhere;
 			}
 			img {
 				width: 70%;
@@ -190,7 +207,7 @@
 	align-items: center;
 	justify-content: center;
 	gap: 15px;
-	padding: 20px 40px 20px 40px;
+	// padding: 20px 40px 20px 40px;
 	border-radius: 15px;
 	.msg_input {
 		box-sizing: border-box;
@@ -212,12 +229,36 @@
 			color: #455a64;
 		}
 	}
-	.icons {
-		display: flex;
-		gap: 5px;
-		.icon {
-			font-size: 22px;
-			cursor: pointer;
+	.toggler {
+		font-size: 1.8rem;
+		cursor: pointer;
+	}
+	.pop-up {
+		bottom: 3rem;
+		left: 0.5rem;
+		overflow: hidden;
+		.icons {
+			display: flex;
+			flex-direction: column;
+			gap: 15px;
+			top: 10rem;
+			padding: 3px;
+			transition: 0.5s all cubic-bezier(0.47, 0.84, 0.37, 1.15);
+			&.toggle {
+				top: 0rem;
+			}
+			.icon {
+				font-size: 2rem;
+				cursor: pointer;
+				padding: 7px;
+				border-radius: 20%;
+				background-color: #f1f1f1;
+				box-shadow: 1px 1px 2px 0px rgb(217, 217, 217);
+				&:hover {
+					scale: 1.1;
+					box-shadow: 1px 1px 5px 0px rgb(217, 217, 217);
+				}
+			}
 		}
 	}
 	img {
@@ -225,5 +266,9 @@
 		height: 30px;
 		border-radius: 50%;
 		object-fit: contain;
+	}
+	.preview {
+		background-color: #0080ff;
+		bottom: 100%;
 	}
 }
