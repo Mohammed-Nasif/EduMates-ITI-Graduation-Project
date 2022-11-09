@@ -5,10 +5,27 @@ import { useState, useContext } from 'react';
 import { Navavatar } from '../navavatar/Navavatar';
 import { Navdropdown } from '../navdropdown/Navdropdown';
 import { NotifiesContext } from './../../context/NotifiesContext';
+import { onSnapshot, doc } from 'firebase/firestore';
+import { db } from '../../firebase';
+import { AuthContext } from './../../context/AuthContext';
+import { useEffect } from 'react';
 
 export const NavbarComponent = () => {
 	let [searchValue, setSearchValue] = useState('');
-	const { notifiesCount } = useContext(NotifiesContext);
+	const [notifiesCount, setNotifiesCount] = useState(0);
+	const { currentUser } = useContext(AuthContext);
+
+	// useEffect(() => {
+	// 	const getNotifies = () => {
+	// 		onSnapshot(doc(db, 'users', currentUser.uid), (doc) => {
+	// 			console.log(doc.data().userNotifies.length);
+	// 			setNotifiesCount(doc.data().userNotifies.length);
+	// 		});
+	// 	};
+	// 	return () => {
+	// 		getNotifies();
+	// 	};
+	// }, [currentUser]);
 
 	// notifications:
 	let notificationsList = [
@@ -73,7 +90,8 @@ export const NavbarComponent = () => {
 							<Navdropdown icon={BsFillChatDotsFill} notifications={chats} dropType={'chat'} />
 						</div>
 						<div className='col-3'>
-							<span>{notifiesCount}</span>
+							{/* <span>{notifiesCount}</span> */}
+							<span>{currentUser?.userNotifies?.length}</span>
 							<Navdropdown icon={BsBellFill} notifications={notificationsList} />
 						</div>
 						<div className='col-3'>
