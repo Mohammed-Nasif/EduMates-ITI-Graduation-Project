@@ -14,5 +14,9 @@
         .submit-icon{
             cursor: pointer;
         }
+        .prev-click{
+            pointer-events: none;
+            color: rgb(117, 116, 116);
+        }
     }
 }

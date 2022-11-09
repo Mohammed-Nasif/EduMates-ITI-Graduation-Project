@@ -1,31 +1,76 @@
 import {BsPencil, BsCursorFill} from "react-icons/bs";
 import {AiOutlineSend} from "react-icons/ai";
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import './coursediscussion.scss';
-import { Discussionpost } from './../discussionpost/Discussionpost'
+import { Discussionpost } from './../discussionpost/Discussionpost';
+import { v4 as uuid } from 'uuid';
+import { db } from '../../firebase';
+import { arrayRemove, arrayUnion, doc, updateDoc, onSnapshot, deleteDoc, Timestamp, setDoc } from 'firebase/firestore';
+import { AuthContext } from '../../context/AuthContext';
 
-
-export const Coursediscussion = () => {
+export const Coursediscussion = (props) => {
     const [isActive, setIsActive] = useState(false);
+    const [validInput, setValidInput] = useState(false);
     const [submitFlag, setSubmitFlag] = useState(false);
     const [posts, setPosts] = useState([]);
     const postInputRef = useRef();
+    const { currentUser } = useContext(AuthContext); 
+
+    // firebase functions:
+    const handlePostSubmit = async () => {
+        const discussionPostId = uuid();
+        try {
+            if (postInputRef.current.value.trim() !== ''){
+                let inputvalue = postInputRef.current.value.trim();
+                console.log(currentUser.uid);
+                await updateDoc(doc(db,'courseDiscussion', props.courseId),{
+                   "discussions":arrayUnion(
+                    {        // post
+                        discussionId : discussionPostId,
+                        discussionContent: inputvalue,
+                        createdBy: currentUser.uid,
+                        createdAt: Timestamp.now(),
+                        likedBy: []
+                    }
+                   )
+                });
+
+                await setDoc(doc(db,'discussionComments', discussionPostId),{
+                    comments: []
+                });
+                clean();
+            }
+        } catch(error){
+            console.error(error);
+        }
+    }
+
+    // function: clear all flags and values
+    const clean = ()=>{
+        postInputRef.current.value = "";
+    };
 
     // function: set the input value 
     const handleInputValue = (e)=>{
         setIsActive(true);
+        if(postInputRef.current.value.trim() !== ""){
+            setValidInput(true);
+        }
+        else{
+            setValidInput(false);
+        }
     }
     // function: add post
     const handleAddPost = ()=>{
         let postsArr = posts;
         // console.log(postInputRef.current.value.length);
-        if(postInputRef.current.value.length){
+        if(postInputRef.current.value.trim() !== ""){
             postsArr.push(postInputRef.current.value);
             setPosts([...postsArr]);
         }
         setSubmitFlag(true);
         setIsActive(false);
-        postInputRef.current.value = "";
+        handlePostSubmit();
     }
   return (
     <div className="coursediscussion">
@@ -47,7 +92,7 @@ export const Coursediscussion = () => {
             </div>
             { isActive &&
                 <div className="col-1 text-end d-flex flex-column-reverse pb-1">
-                <AiOutlineSend className="fs-5 submit-icon" onClick={handleAddPost}/>
+                <AiOutlineSend className={validInput?"fs-5 submit-icon": "fs-5 prev-click"} onClick={handleAddPost}/>
             </div>
             }
         </div>
