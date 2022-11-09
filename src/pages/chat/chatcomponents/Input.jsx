@@ -236,9 +236,10 @@ export const Input = () => {
 			<input className="msg_input" type="text" value={text} placeholder="Type Message..." onChange={(e) => setText(e.target.value)} onKeyDown={handleSend} />
 			<img src={currentUser.photoURL} alt="curUserImg" />
 
-			<div className="preview position-absolute">
-				Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam deleniti animi perspiciatis! Iusto ea atque delectus aspernatur non excepturi, eum doloribus incidunt corporis dolorum sunt soluta blanditiis iste debitis quis?
-			</div>
+			{/* <div className="preview w-100 position-absolute d-flex justify-content-between">
+				<p>LLLLL</p>
+				<button>X</button>
+			</div> */}
 		</div>
 	);
 };
