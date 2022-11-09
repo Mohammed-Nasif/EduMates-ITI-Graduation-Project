@@ -9,7 +9,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth, db, storage } from '../../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc, Timestamp } from 'firebase/firestore';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import { TopicsContext } from '../../context/TopicsContext';
@@ -18,7 +18,7 @@ export const Register = () => {
 	const animatedComponents = makeAnimated();
 
 	const [avatarSrc, setAvatarSrc] = useState(DefaultAvatar);
-	
+
 	const { topicsOptions } = useContext(TopicsContext);
 
 	const {
@@ -77,10 +77,17 @@ export const Register = () => {
 								uid: res.user.uid,
 								displayName,
 								email,
+								login: { isLoggedIn: true, date: Timestamp.now() },
+								specialFlags: { isAdmin: false, isVerified: false, isInstructor: false },
 								photoURL: downloadURL,
+								coverURL:
+									'https://firebasestorage.googleapis.com/v0/b/edumates---graduation-project.appspot.com/o/287f5db0-c12a-4d0b-a586-92728f497052?alt=media&token=d4feb1f2-5c23-4891-8c0e-dc2fd7c0be05',
+								description: '',
 								bDate,
 								userTopics,
-								matesList: [],
+								matesList: [res.user.uid],
+								userNotifies: [],
+								mgsNotifies: [],
 							});
 
 							// Create User Chat Collection
@@ -88,7 +95,7 @@ export const Register = () => {
 								//Object is Empty Because User Don't have any conversions yet
 							});
 
-							// Create User Classroom Collection
+							// Create User Classroom Collection      {JSON}
 							await setDoc(doc(db, 'userClassroom', res.user.uid), {
 								//Object is Empty Because User Doesn't have any Courses yet
 							});
@@ -105,13 +112,18 @@ export const Register = () => {
 					uid: res.user.uid,
 					displayName,
 					email,
+					login: { isLoggedIn: true, date: Timestamp.now() },
+					specialFlags: { isAdmin: false, isVerified: false, isInstructor: false },
 					photoURL:
 						'https://firebasestorage.googleapis.com/v0/b/edumates---graduation-project.appspot.com/o/Default-avatar.jpg?alt=media&token=e466ecc4-7260-4f1a-996d-b245e89c2281',
-					coverURL: '',
+					coverURL:
+						'https://firebasestorage.googleapis.com/v0/b/edumates---graduation-project.appspot.com/o/287f5db0-c12a-4d0b-a586-92728f497052?alt=media&token=d4feb1f2-5c23-4891-8c0e-dc2fd7c0be05',
 					description: '',
 					bDate,
 					userTopics,
-					matesList: [],
+					matesList: [res.user.uid],
+					userNotifies: [],
+					mgsNotifies: [],
 				});
 
 				// Create User Chat Collection
@@ -125,7 +137,7 @@ export const Register = () => {
 				});
 
 				// After All Operations Go To Home Page
-				navigate('/');
+				navigate('/eduMates/home');
 			}
 		} catch (error) {
 			console.error(error);
@@ -261,7 +273,7 @@ export const Register = () => {
 
 					{/*Avatar*/}
 					<Form.Group className='mb-3'>
-						<Form.Control style={{ display: 'none' }} type='file' id='file' {...register('avatarFile', { onChange: getBase64 })} />
+						<Form.Control style={{ display: 'none' }} type='file' id='file' accept='image/*' {...register('avatarFile', { onChange: getBase64 })} />
 						<Form.Label htmlFor='file'>
 							{/* <img src={AddAvatar} alt='addAvatar' /> */}
 							<span>Add an avatar</span>

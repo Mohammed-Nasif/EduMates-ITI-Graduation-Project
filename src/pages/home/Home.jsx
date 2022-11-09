@@ -5,21 +5,48 @@ import { MatesSuggestion } from '../../components/matessuggestionssection/MatesS
 import { TopicsToFollow } from '../../components/topicsToFollow/TopicsToFollow';
 import { useContext } from 'react';
 import { PostsContext } from './../../context/PostsContext';
+import { AuthContext } from '../../context/AuthContext';
+import { UsersContext } from '../../context/UsersContext';
 
 export const Home = () => {
 	const { allPosts } = useContext(PostsContext);
+	const { currentUser } = useContext(AuthContext);
+	const { allUsers } = useContext(UsersContext);
+	const matesList = new Set(currentUser.matesList);
+
+	let feed = [];
+
+	allPosts.forEach((post) => {
+		if (matesList.has(post.createdBy)) feed.push({ post: post, feedDate: post.createdAt, shared: false });
+
+		if (post.sharedBy.some((share) => matesList.has(share.sharedUserId))) {
+			let matesShared = [];
+			matesShared = [];
+			post.sharedBy.forEach((share) => {
+				if (matesList.has(share.sharedUserId)) {
+					let user = allUsers.find((user) => user.uid === share.sharedUserId);
+					matesShared.push(user.displayName);
+				}
+			});
+			feed.push({ post: post, feedDate: post.sharedBy[post.sharedBy.length - 1].sharedTime, shared: true, matesShared: matesShared });
+		}
+	});
+	console.log(feed);
+	feed.sort((a, b) => b.feedDate - a.feedDate);
+
 	return (
 		<>
-			<div className='home container-fluid ps-3 d-flex justify-content-around'>
-				<main>
-					<div className='mb-5'>
+			<div className="home ps-3 d-flex ">
+				<main className="ms-5">
+					<div className="my-4">
 						<AddPost />
 					</div>
-					{allPosts.map((post) => {
-						return <Post postObj={post} key={post.postId} />;
+
+					{feed.map((obj, i) => {
+						return <Post postObj={obj.post} key={i} shared={obj.shared} matesShared={obj.matesShared} />;
 					})}
 				</main>
-				<aside>
+				<aside className="fixed-top">
 					<MatesSuggestion />
 					<TopicsToFollow />
 				</aside>

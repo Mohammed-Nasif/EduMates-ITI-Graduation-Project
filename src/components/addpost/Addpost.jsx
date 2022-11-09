@@ -18,7 +18,7 @@ export function AddPost() {
 	const [isActive, setisACtive] = useState(false);
 	const { topicsOptions } = useContext(TopicsContext);
 	const { currentUser } = useContext(AuthContext);
-
+	const [isError, setIsError] = useState(false);
 	useEffect(() => {
 		if (!postImg) return;
 		const src = URL.createObjectURL(postImg);
@@ -34,16 +34,27 @@ export function AddPost() {
 		txtarea.current.focus();
 	};
 	const clean = () => {
+    console.log('C L E A N');
+		txtarea.current.value = '';
 		setisACtive(false);
 		setPreview();
-		txtarea.current.value = '';
+		setPostImg();
+		setPostText('');
+		setPostTopics([]);
+		setIsError(false);
+	};
+	const removeImg = () => {
+		setPostImg();
+		setPreview();
 	};
 	const handleSubmit = async () => {
-		// console.log(postText);
-		// console.log(postImg);
-		// console.log(postTopics);
 		const postId = uuid();
 		try {
+			if (!postTopics.length) {
+				setIsError(true);
+				console.log('ok');
+				return;
+			}
 			if (postImg) {
 				const storageRef = ref(storage, postId);
 				const uploadTask = uploadBytesResumable(storageRef, postImg);
@@ -70,9 +81,10 @@ export function AddPost() {
 								comments: [],
 							});
 						});
-					},
+						clean();
+					}
 				);
-			} else if (postText.trim()) {
+			} else if (postText.trim() !== '') {
 				await setDoc(doc(db, 'posts', postId), {
 					//Properties Stored In Post
 					postId: postId,
@@ -90,8 +102,8 @@ export function AddPost() {
 					//Properties Stored In Post
 					comments: [],
 				});
+				clean();
 			}
-			
 		} catch (error) {
 			console.error(error);
 		}
@@ -99,62 +111,66 @@ export function AddPost() {
 
 	return (
 		<>
-			<div className='add-new-post border border-1 rounded-4 w-100 py-2'>
-				<div className='row px-3'>
-					<div className='col-1'>
-						<BsPencil className='icon border-1' />
+			<div className="add-new-post border border-1 rounded-4 w-100 py-2">
+				<div className="row px-3">
+					<div className="col-1">
+						<BsPencil className="icon border-1" />
 					</div>
-					<div className='col-10'>
+					<div className="col-10">
 						<textarea
 							ref={txtarea}
 							onChange={(e) => {
 								if (e.target.value) setisACtive(true);
 								setPostText(e.target.value);
 							}}
-							id='newpost'
+							id="newpost"
 							rows={isActive ? 3 : 1}
-							placeholder='write something'
+							placeholder="write something..."
 							maxLength={150}
 							className={postText.length === 150 ? 'text-muted' : ''}
 						/>
 						{isActive && (
 							<>
+								{isError && postTopics < 1 && <p className="alert alert-danger">Choose 1 topic</p>}
 								<Select
-									className='m-2 '
+									className="m-2 "
 									options={topicsOptions}
 									isMulti
 									onChange={(v) => {
 										setPostTopics(v.map((topic) => topic.label));
 									}}
 								/>
-								<div className='preview w-100 d-flex align-items-center justify-content-center'>
-									<img src={preview} alt='' />
+								<div className="preview w-100 d-flex align-items-center justify-content-center position-relative">
+									<div className="del position-absolute" onClick={removeImg}>
+										X
+									</div>
+									<img src={preview} alt="" />
 								</div>
 							</>
 						)}
 					</div>
 					{isActive && (
-						<div className='col-1'>
-							<div className='btn text-muted p-0' onClick={clean}>
+						<div className="col-1">
+							<div className="btn text-muted p-0" onClick={clean}>
 								x
 							</div>
 						</div>
 					)}
 				</div>
-				<hr className='my-1' />
-				<div className='buttons-wrapper px-3 text-center d-flex justify-content-around'>
+				<hr className="my-1" />
+				<div className="buttons-wrapper px-3 text-center d-flex justify-content-around">
 					{!isActive ? (
-						<div className='btn py-0' onClick={createPost}>
+						<div className="btn py-0" onClick={createPost}>
 							Create new post <BsPencilSquare />
 						</div>
 					) : (
 						<>
-							<input type='file' id='img' name='img' accept='image/*' onChange={getImage} />
-							<label htmlFor='img' className='btn py-0'>
+							<input type="file" id="img" name="img" accept="image/*" onChange={getImage} />
+							<label htmlFor="img" className="btn py-0">
 								<BsCardImage /> Photo
 							</label>
-							<div className='btn py-0' onClick={handleSubmit}>
-								<BsFillCursorFill /> Share
+							<div className="btn py-0" onClick={handleSubmit}>
+								<BsFillCursorFill /> Post
 							</div>
 						</>
 					)}

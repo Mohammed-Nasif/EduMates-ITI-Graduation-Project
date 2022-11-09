@@ -5,10 +5,14 @@ import Form from 'react-bootstrap/Form';
 import { useForm } from 'react-hook-form';
 import { useNavigate, Link } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase';
+import { auth, db } from '../../firebase';
+import { updateDoc, doc, Timestamp } from 'firebase/firestore';
+import { AuthContext } from '../../context/AuthContext';
+import { useContext } from 'react';
 
 export const Login = () => {
 	const navigate = useNavigate();
+	const { currentUser } = useContext(AuthContext);
 	const {
 		register,
 		handleSubmit,
@@ -21,6 +25,9 @@ export const Login = () => {
 
 		try {
 			await signInWithEmailAndPassword(auth, email, password);
+			await updateDoc(doc(db, 'users', currentUser.uid), {
+				login: { isLoggedIn: true, date: Timestamp.now() },
+			});
 			navigate('/eduMates/home');
 		} catch (err) {
 			console.log(err);

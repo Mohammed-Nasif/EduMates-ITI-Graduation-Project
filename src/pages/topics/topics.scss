@@ -1,0 +1,85 @@
+.topics {
+  
+	main {
+		width: 55%;
+	}
+	aside {
+		width: 25%;
+  
+    top: 5rem;
+    right: 2rem;
+    left: auto;
+    display: block;
+
+	}
+	.fixed-top{
+		z-index: 0;
+	}
+    .topics-comp-container{
+        width: 100%;
+        .topics-container{
+            .title{
+                font-weight: 700;
+                font-size: 1.5rem;
+                line-height: 1.75rem;
+            }
+            .topics-content{
+                border-bottom: .0313rem  solid gray;
+            }
+        }
+    }
+}
+
+
+
+.subtopics-container{
+    .sub-title{
+        font-weight: 700;
+        font-size: 1rem;
+        line-height: 1.1875rem;
+    }
+    .user-topics{
+        .topic-container{
+            cursor: default;
+            .name-container{
+                display: flex;
+                align-items: center;
+                .topic-name{
+                    width: auto;
+                    padding: .125rem .9375rem;
+                    margin: .125rem;
+                    font-weight: 400;
+                    font-size: .9375rem;
+                    line-height: 1.3125rem;
+                    border: .125rem solid transparent;
+                    border-radius: .25rem;
+                }
+                .topic-name.active{
+                    color: blue;
+                    border: .125rem solid blue;
+                    border-radius: .25rem;
+                }
+            }
+       
+        }
+        .icon-container {
+            flex-direction: row-reverse;
+            .delete-icon, .add-icon{
+                display: block;
+                cursor: pointer;
+            }
+            .delete-icon:hover{
+                color: rgb(117, 116, 116);
+            }
+            .add-icon:hover{
+                color: blue;
+            }
+            .prev-click{
+                pointer-events: none;
+                color: rgb(117, 116, 116);
+            }
+        }
+    }
+    
+}
+

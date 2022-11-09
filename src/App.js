@@ -8,6 +8,13 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { Home } from './pages/home/Home';
 import { Profile } from './pages/profile/Profile';
 import { Editprofile } from './pages/editprofile/Editprofile';
+import { Topics } from './pages/topics/Topics';
+import { Courses } from './pages/courses/Courses';
+import { Chathome } from './pages/chat/Chathome';
+import { Courselanding } from './pages/courselanding/Courselanding';
+import { Mateslist } from './pages/mateslist/Mateslist';
+import { Classroom } from './pages/classroom/Classroom';
+import { Coursecontent } from './pages/coursecontent/Coursecontent'
 
 const App = () => {
 	const { currentUser } = useContext(AuthContext);
@@ -20,25 +27,37 @@ const App = () => {
 	};
 
 	return (
-		<Routes>
-			<Route
-				path='/eduMates'
-				element={
-					<ProtectedRoute>
-						<Main />
-					</ProtectedRoute>
-				}>
-				<Route path='home' element={<Home />} />
-				<Route path='profile'>
-					<Route path=':userData' element={<Profile />} />
-					<Route path='edit' element={<Editprofile />} />
-					<Route path='matesList' element={<Profile />} />
+		<>
+			<Routes>
+				<Route
+					path='eduMates'
+					element={
+						<ProtectedRoute>
+							<Main />
+						</ProtectedRoute>
+					}>
+					<Route path='home' element={<Home />} />
+					<Route path='profile'>
+						<Route path=':userName/:userId' element={<Profile />} />
+						<Route path='edit' element={<Editprofile />} />
+						<Route path='matesList' element={<Mateslist/>} />
+					</Route>
+					<Route path='topics' element={<Topics />} />
+					<Route path='courses'>
+						<Route index element={<Courses />} />
+						<Route path=':courseName/:courseId' element={<Courselanding />} />
+					</Route>
+					<Route path='classroom' > 
+						<Route index element={<Classroom/>}/>
+                     	<Route path=':courseName/:courseId' element={<Coursecontent/>}/>
+                	</Route>
+					<Route path='chats' element={<Chathome />} />
 				</Route>
-			</Route>
-			<Route path='/' element={<Landing />} />
-			<Route path='login' element={<Login />} />
-			<Route path='register' element={<Register />} />
-		</Routes>
+				<Route path='/' element={<Landing />} />
+				<Route path='login' element={<Login />} />
+				<Route path='register' element={<Register />} />
+			</Routes>
+		</>
 	);
 };
 

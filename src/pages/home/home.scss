@@ -5,6 +5,14 @@
 	}
 	aside {
 		width: 25%;
-    // position: fixed;
+  
+    top: 5rem;
+    right: 2rem;
+    left: auto;
+    display: block;
+
+	}
+	.fixed-top{
+		z-index: 0;
 	}
 }

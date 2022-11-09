@@ -8,20 +8,26 @@ import { BrowserRouter } from 'react-router-dom';
 import { AuthContextProvider } from './context/AuthContext';
 import { TopicsContextProvider } from './context/TopicsContext';
 import { PostsContextProvider } from './context/PostsContext';
+import { UsersContextProvider } from './context/UsersContext';
+import { ChatContextProvider } from './context/ChatContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-	<AuthContextProvider>
-		<TopicsContextProvider>
-			<PostsContextProvider>
-				<BrowserRouter>
-					<React.StrictMode>
-						<App />
-					</React.StrictMode>
-				</BrowserRouter>
-			</PostsContextProvider>
-		</TopicsContextProvider>
-	</AuthContextProvider>,
+	<React.StrictMode>
+		<AuthContextProvider>
+			<ChatContextProvider>
+				<UsersContextProvider>
+					<TopicsContextProvider>
+						<PostsContextProvider>
+							<BrowserRouter>
+								<App />
+							</BrowserRouter>
+						</PostsContextProvider>
+					</TopicsContextProvider>
+				</UsersContextProvider>
+			</ChatContextProvider>
+		</AuthContextProvider>
+	</React.StrictMode>,
 );
 
 // If you want your app to work offline and load faster, you can change
