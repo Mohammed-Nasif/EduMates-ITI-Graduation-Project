@@ -9,7 +9,7 @@ export const Coursecard = (props) => {
 	};
 	return (
 		<>
-			<div className='course  shadow '>
+			<div className='course  shadow-sm '>
 				<div className='course_img'>
 					<img src={props.course.courseImg} alt='course_img' />
 				</div>

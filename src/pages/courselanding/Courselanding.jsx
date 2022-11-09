@@ -12,7 +12,7 @@ export const Courselanding = () => {
             <CourselandingIframe/>
             <Courselandingdetails/>
           </div>
-          <div className='col-3'>
+          <div className='col-3 pt-4'>
             <Instructorcard />
           </div>
         </div>

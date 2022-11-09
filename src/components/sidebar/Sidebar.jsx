@@ -43,7 +43,7 @@ export const Sidebar = () => {
   ]
   return (
     <div className='sidebar-container m-0  position-fixed'>
-      <div className='mb-3 w-100 mx-auto text-center logo'>
+      <div className='mb-3 w-100 mx-auto text-center logo '>
         <Link to='/eduMates/home'>
           <img src={logo} alt='EduMates' className='pt-3' />
         </Link>

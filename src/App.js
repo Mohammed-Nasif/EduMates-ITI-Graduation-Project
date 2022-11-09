@@ -13,6 +13,7 @@ import { Courses } from './pages/courses/Courses';
 import { Chathome } from './pages/chat/Chathome';
 import { Courselanding } from './pages/courselanding/Courselanding';
 import { Mateslist } from './pages/mateslist/Mateslist';
+import { Classroom } from './pages/classroom/Classroom';
 
 const App = () => {
 	const { currentUser } = useContext(AuthContext);
@@ -46,6 +47,7 @@ const App = () => {
 						<Route path=':courseName/:courseId' element={<Courselanding />} />
 					</Route>
 					<Route path='chats' element={<Chathome />} />
+					<Route path='classroom' element={<Classroom/>}/>
 				</Route>
 				<Route path='/' element={<Landing />} />
 				<Route path='login' element={<Login />} />
