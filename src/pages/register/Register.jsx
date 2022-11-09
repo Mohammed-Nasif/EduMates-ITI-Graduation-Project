@@ -83,7 +83,8 @@ export const Register = () => {
 								bDate,
 								userTopics,
 								matesList: [res.user.uid],
-								userNotifies: [],
+								unseenNotifies: [],
+								seenNotifies: [],
 								mgsNotifies: [],
 							});
 
@@ -119,7 +120,8 @@ export const Register = () => {
 					bDate,
 					userTopics,
 					matesList: [res.user.uid],
-					userNotifies: [],
+					unseenNotifies: [],
+					seenNotifies: [],
 					mgsNotifies: [],
 				});
 

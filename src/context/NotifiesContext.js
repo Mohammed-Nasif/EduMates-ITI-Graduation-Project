@@ -59,7 +59,7 @@ export const NotifiesContextProvider = ({ children }) => {
 	const updateNotifies = async (s) => {
 		if (s.userId !== s.actionUser.actionUserId) {
 			await updateDoc(doc(db, 'users', s.userId), {
-				userNotifies: arrayUnion(s),
+				unseenNotifies: arrayUnion(s),
 			});
 		}
 	};

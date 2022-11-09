@@ -4,9 +4,8 @@ import { useState, useEffect, useRef, useContext } from 'react';
 import { AuthContext } from './../../context/AuthContext';
 
 export const Navdropdown = (props) => {
-	//Nasif
 	const { currentUser } = useContext(AuthContext);
-	const [notifiesCount, setNotifiesCount] = useState(currentUser?.userNotifies?.length);
+	const [notifiesCount, setNotifiesCount] = useState(currentUser?.unseenNotifies?.length);
 
 	// toggle flag to control the dropdown menu
 	let [toggle, setToggle] = useState(false);
@@ -14,7 +13,7 @@ export const Navdropdown = (props) => {
 	const handleClick = () => {
 		if (toggle) {
 			setToggle(false);
-			setNotifiesCount(currentUser?.userNotifies?.length);
+			setNotifiesCount(currentUser?.unseenNotifies?.length);
 		} else {
 			setToggle(true);
 			setNotifiesCount(0);
