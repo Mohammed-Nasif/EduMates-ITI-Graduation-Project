@@ -1,13 +1,24 @@
 import './navdropdown.scss';
 import { Link } from 'react-router-dom';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
+import { AuthContext } from './../../context/AuthContext';
 
 export const Navdropdown = (props) => {
+	//Nasif
+	const { currentUser } = useContext(AuthContext);
+	const [notifiesCount, setNotifiesCount] = useState(currentUser?.userNotifies?.length);
+
 	// toggle flag to control the dropdown menu
 	let [toggle, setToggle] = useState(false);
 	// function to change the state of toggle flag
 	const handleClick = () => {
-		toggle ? setToggle(false) : setToggle(true);
+		if (toggle) {
+			setToggle(false);
+			setNotifiesCount(currentUser?.userNotifies?.length);
+		} else {
+			setToggle(true);
+			setNotifiesCount(0);
+		}
 	};
 
 	// handle when click outside
@@ -26,6 +37,7 @@ export const Navdropdown = (props) => {
 
 	return (
 		<div className='dropdown-container' ref={dropdownRef}>
+			{props.dropType === 'notifies' && <span>{notifiesCount}</span>}
 			<div className='dropdown-icon'>
 				<Link>
 					<props.icon className={toggle ? 'nav-icon active' : 'nav-icon'} onClick={handleClick} />

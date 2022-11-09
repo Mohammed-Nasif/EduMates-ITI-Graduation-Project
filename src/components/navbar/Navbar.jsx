@@ -1,19 +1,12 @@
 import './navbar.scss';
 import { Link } from 'react-router-dom';
 import { BsTrophyFill, BsFillChatDotsFill, BsBellFill } from 'react-icons/bs';
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { Navavatar } from '../navavatar/Navavatar';
 import { Navdropdown } from '../navdropdown/Navdropdown';
-import { NotifiesContext } from './../../context/NotifiesContext';
-import { onSnapshot, doc } from 'firebase/firestore';
-import { db } from '../../firebase';
-import { AuthContext } from './../../context/AuthContext';
-import { useEffect } from 'react';
 
 export const NavbarComponent = () => {
 	let [searchValue, setSearchValue] = useState('');
-	const [notifiesCount, setNotifiesCount] = useState(0);
-	const { currentUser } = useContext(AuthContext);
 
 	// useEffect(() => {
 	// 	const getNotifies = () => {
@@ -29,41 +22,41 @@ export const NavbarComponent = () => {
 
 	// notifications:
 	let notificationsList = [
-		{
-			userName: 'Mohamed Nasif',
-			userImg: '',
-			notifTitle: 'Mohamed Nasif , Liked your post!',
-		},
-		{
-			userName: 'Mohamed Nasif',
-			userImg: '',
-			notifTitle: 'Mohamed Nasif , sent you connect request!',
-		},
-		{
-			userName: 'Mohamed Nasif',
-			userImg: '',
-			notifTitle: 'Mohamed Nasif , shared your post!',
-		},
-		{
-			userName: 'Mohamed Nasif',
-			userImg: '',
-			notifTitle: 'Mohamed Nasif , commented on your post!',
-		},
+		// {
+		// 	userName: 'Mohamed Nasif',
+		// 	userImg: '',
+		// 	notifTitle: 'Mohamed Nasif , Liked your post!',
+		// },
+		// {
+		// 	userName: 'Mohamed Nasif',
+		// 	userImg: '',
+		// 	notifTitle: 'Mohamed Nasif , sent you connect request!',
+		// },
+		// {
+		// 	userName: 'Mohamed Nasif',
+		// 	userImg: '',
+		// 	notifTitle: 'Mohamed Nasif , shared your post!',
+		// },
+		// {
+		// 	userName: 'Mohamed Nasif',
+		// 	userImg: '',
+		// 	notifTitle: 'Mohamed Nasif , commented on your post!',
+		// },
 	];
 	// chats:
 	let chats = [
-		{
-			notifTitle: 'Mohamed Nasif',
-			userImg: '',
-		},
-		{
-			notifTitle: 'Mohamed Nasif',
-			userImg: '',
-		},
-		{
-			notifTitle: 'Mohamed Nasif',
-			userImg: '',
-		},
+		// {
+		// 	notifTitle: 'Mohamed Nasif',
+		// 	userImg: '',
+		// },
+		// {
+		// 	notifTitle: 'Mohamed Nasif',
+		// 	userImg: '',
+		// },
+		// {
+		// 	notifTitle: 'Mohamed Nasif',
+		// 	userImg: '',
+		// },
 	];
 	const getInputData = (e) => {
 		if (e.keyCode === 13) {
@@ -91,8 +84,8 @@ export const NavbarComponent = () => {
 						</div>
 						<div className='col-3'>
 							{/* <span>{notifiesCount}</span> */}
-							<span>{currentUser?.userNotifies?.length}</span>
-							<Navdropdown icon={BsBellFill} notifications={notificationsList} />
+
+							<Navdropdown icon={BsBellFill} notifications={notificationsList} dropType={'notifies'} />
 						</div>
 						<div className='col-3'>
 							<Navavatar />

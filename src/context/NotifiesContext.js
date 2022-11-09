@@ -1,13 +1,10 @@
 import { createContext, useReducer } from 'react';
 import { useEffect } from 'react';
-import { updateDoc, doc, arrayUnion, onSnapshot } from 'firebase/firestore';
+import { updateDoc, doc, arrayUnion } from 'firebase/firestore';
 import { db } from '../firebase';
-import { useState } from 'react';
 export const NotifiesContext = createContext();
 
 export const NotifiesContextProvider = ({ children }) => {
-	// const [notifiesCount, setNotifiesCount] = useState(0);
-
 	const INITIAL_STATE = {
 		postId: null,
 		commentId: null,
