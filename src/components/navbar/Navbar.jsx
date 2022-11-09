@@ -20,29 +20,7 @@ export const NavbarComponent = () => {
 	// 	};
 	// }, [currentUser]);
 
-	// notifications:
-	let notificationsList = [
-		// {
-		// 	userName: 'Mohamed Nasif',
-		// 	userImg: '',
-		// 	notifTitle: 'Mohamed Nasif , Liked your post!',
-		// },
-		// {
-		// 	userName: 'Mohamed Nasif',
-		// 	userImg: '',
-		// 	notifTitle: 'Mohamed Nasif , sent you connect request!',
-		// },
-		// {
-		// 	userName: 'Mohamed Nasif',
-		// 	userImg: '',
-		// 	notifTitle: 'Mohamed Nasif , shared your post!',
-		// },
-		// {
-		// 	userName: 'Mohamed Nasif',
-		// 	userImg: '',
-		// 	notifTitle: 'Mohamed Nasif , commented on your post!',
-		// },
-	];
+
 	// chats:
 	let chats = [
 		// {
@@ -86,7 +64,7 @@ export const NavbarComponent = () => {
 						<div className="col-3">
 							{/* <span>{notifiesCount}</span> */}
 
-							<Navdropdown icon={BsBellFill} notifications={notificationsList} dropType={'notifies'} />
+							<Navdropdown icon={BsBellFill} dropType={'notifies'} />
 						</div>
 						<div className="col-3">
 							<Navavatar />
