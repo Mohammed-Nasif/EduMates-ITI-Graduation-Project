@@ -26,7 +26,7 @@ export const Coursecontent = () => {
                     <LessonDisplay  lessoncontent={course.lessonsList[lessonIndex]}></LessonDisplay>
                 </div>
                 <div>
-                    <Coursediscussion/>
+                    <Coursediscussion courseId = {courseId}/>
                 </div>
             </div>
             <div className="col-lg-4 col-sm-12 normal-content-list">
