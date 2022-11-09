@@ -35,8 +35,9 @@
 			height: 4rem;
 		}
 		img {
-			width: 100%;
-			object-fit: contain;
+			width: inherit;
+			height: inherit;
+			object-fit: cover;
 		}
 	}
 }

@@ -14,18 +14,21 @@ export const Chatnav = () => {
 		}
 	}, [data.user, allUsers]);
 
-	return (
-		<div className='chat_nav'>
-			<div className='nav_img'>
-				<img src={chatUser?.photoURL} alt='User Pic' />
+	if (Object.keys(data.user).length === 0) {
+		return <h2 className="text-muted text-center pt-4">Select a Mate to chat with</h2>;
+	} else {
+		return (
+			<div className="chat_nav">
+				<div className="nav_img">
+					<img src={chatUser?.photoURL} alt="User Pic" />
+				</div>
+				<div className="nav_data">
+					<h2>{chatUser?.displayName}</h2>
+					<p className="d-flex flex-row align-items-center gap-1 pb-0">
+						{chatUser?.login?.isLoggedIn ? 'Active Now' : 'Not'} <div className={chatUser?.login?.isLoggedIn ? 'active_now_icon' : 'not_active_now_icon'}></div>
+					</p>
+				</div>
 			</div>
-			<div className='nav_data'>
-				<h2>{chatUser?.displayName}</h2>
-				<p className='d-flex flex-row align-items-center gap-1'>
-					{chatUser?.login?.isLoggedIn ? 'Active Now' : 'Not'}{' '}
-					<div className={chatUser?.login?.isLoggedIn ? 'active_now_icon' : 'not_active_now_icon'}></div>
-				</p>
-			</div>
-		</div>
-	);
+		);
+	}
 };

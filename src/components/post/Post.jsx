@@ -59,7 +59,14 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 			await updateDoc(doc(db, 'posts', postObj.postId), {
 				likedBy: arrayUnion(currentUser.uid),
 			});
-			dispatch({ type: 'LIKE_POST', payload: { postId: postObj.postId, userId: postOwner.uid, actionUser: currentUser } });
+			dispatch({
+				type: 'LIKE_POST',
+				payload: {
+					postId: postObj.postId,
+					userId: postOwner.uid,
+					actionUser: { actionUserId: currentUser.uid, actionUserName: currentUser.displayName, actionUserPhoto: currentUser.photoURL },
+				},
+			});
 		}
 	};
 
@@ -78,6 +85,15 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 					commentId: commentId,
 					commentedAt: Timestamp.now(),
 				}),
+			});
+			dispatch({
+				type: 'COMMENT_ON_POST',
+				payload: {
+					postId: postObj.postId,
+					userId: postOwner.uid,
+					commentId: commentId,
+					actionUser: { actionUserId: currentUser.uid, actionUserName: currentUser.displayName, actionUserPhoto: currentUser.photoURL },
+				},
 			});
 			setComment();
 			commentArea.current.value = '';
@@ -122,6 +138,14 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 					sharedUserId: currentUser.uid,
 					sharedTime: Timestamp.now(),
 				}),
+			});
+			dispatch({
+				type: 'SHARE_POST',
+				payload: {
+					postId: postObj.postId,
+					userId: postOwner.uid,
+					actionUser: { actionUserId: currentUser.uid, actionUserName: currentUser.displayName, actionUserPhoto: currentUser.photoURL },
+				},
 			});
 		}
 	};
