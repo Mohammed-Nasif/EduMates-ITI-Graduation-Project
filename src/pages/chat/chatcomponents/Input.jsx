@@ -57,9 +57,7 @@ export const Input = () => {
 						console.log('stopped');
 						const blob = new Blob(chunks, { type: 'audio/ogg; codecs=opus' });
 						chunks = [];
-						const audioURL = window.URL.createObjectURL(blob);
-						audio.current.src = audioURL;
-						console.log(blob);
+						// const audioURL = window.URL.createObjectURL(blob);
 						setVoice(blob);
 					};
 				})
@@ -71,8 +69,35 @@ export const Input = () => {
 		}
 	};
 
+	// sending to firebase
 	const handleSend = async (e) => {
 		if (e.code === 'Enter' || e.code === 'NumpadEnter') {
+			if (voice) {
+				const storageRef = ref(storage, `/voices/${uuid()}`);
+				const uploadTask = uploadBytesResumable(storageRef, voice);
+				uploadTask.on(
+					'state_changed',
+					(snapshot) => {
+						const percent = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+						// setProgress(percent);
+					},
+					(err) => {},
+					() => {
+						getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+							const chatsRef = doc(db, 'chats', data.chatId);
+							await updateDoc(chatsRef, {
+								messages: arrayUnion({
+									id: uuid(),
+									text,
+									senderId: currentUser.uid,
+									date: Timestamp.now(),
+									voice: downloadURL,
+								}),
+							});
+						});
+					}
+				);
+			}
 			if (video) {
 				const storageRef = ref(storage, `/videos/${video.name}`);
 				const uploadTask = uploadBytesResumable(storageRef, video);
@@ -208,8 +233,12 @@ export const Input = () => {
 			</div>
 			{/* <audio src="" ref={audio} controls></audio> */}
 
-			<textarea className="msg_input" type="text" value={text} placeholder="Type Message..." onChange={(e) => setText(e.target.value)} onKeyDown={handleSend} />
+			<input className="msg_input" type="text" value={text} placeholder="Type Message..." onChange={(e) => setText(e.target.value)} onKeyDown={handleSend} />
 			<img src={currentUser.photoURL} alt="curUserImg" />
+
+			<div className="preview position-absolute">
+				Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam deleniti animi perspiciatis! Iusto ea atque delectus aspernatur non excepturi, eum doloribus incidunt corporis dolorum sunt soluta blanditiis iste debitis quis?
+			</div>
 		</div>
 	);
 };

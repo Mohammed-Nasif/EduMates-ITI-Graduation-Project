@@ -44,6 +44,11 @@ export const Message = ({ message }) => {
 						Your browser does not support HTML video.
 					</video>
 				)}
+				{message.voice && (
+					<audio controls>
+						<source src={message.voice} type="audio/ogg" />
+					</audio>
+				)}
 				<span className="d-block text-muted">{getTimeDiff()}</span>
 			</div>
 		</div>
