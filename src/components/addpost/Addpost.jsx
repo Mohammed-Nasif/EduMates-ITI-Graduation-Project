@@ -34,7 +34,6 @@ export function AddPost() {
 		txtarea.current.focus();
 	};
 	const clean = () => {
-    console.log('C L E A N');
 		txtarea.current.value = '';
 		setisACtive(false);
 		setPreview();
@@ -52,7 +51,6 @@ export function AddPost() {
 		try {
 			if (!postTopics.length) {
 				setIsError(true);
-				console.log('ok');
 				return;
 			}
 			if (postImg) {

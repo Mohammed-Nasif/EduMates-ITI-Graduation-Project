@@ -31,7 +31,6 @@ export const Home = () => {
 			feed.push({ post: post, feedDate: post.sharedBy[post.sharedBy.length - 1].sharedTime, shared: true, matesShared: matesShared });
 		}
 	});
-	console.log(feed);
 	feed.sort((a, b) => b.feedDate - a.feedDate);
 
 	return (

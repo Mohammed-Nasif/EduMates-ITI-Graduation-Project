@@ -10,22 +10,25 @@ import { TopicsContextProvider } from './context/TopicsContext';
 import { PostsContextProvider } from './context/PostsContext';
 import { UsersContextProvider } from './context/UsersContext';
 import { ChatContextProvider } from './context/ChatContext';
+import { NotifiesContextProvider } from './context/NotifiesContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
 		<AuthContextProvider>
-			<ChatContextProvider>
-				<UsersContextProvider>
-					<TopicsContextProvider>
-						<PostsContextProvider>
-							<BrowserRouter>
-								<App />
-							</BrowserRouter>
-						</PostsContextProvider>
-					</TopicsContextProvider>
-				</UsersContextProvider>
-			</ChatContextProvider>
+			<NotifiesContextProvider>
+				<ChatContextProvider>
+					<UsersContextProvider>
+						<TopicsContextProvider>
+							<PostsContextProvider>
+								<BrowserRouter>
+									<App />
+								</BrowserRouter>
+							</PostsContextProvider>
+						</TopicsContextProvider>
+					</UsersContextProvider>
+				</ChatContextProvider>
+			</NotifiesContextProvider>
 		</AuthContextProvider>
 	</React.StrictMode>,
 );

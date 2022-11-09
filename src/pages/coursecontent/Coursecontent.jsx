@@ -11,7 +11,7 @@ export const Coursecontent = () => {
     const [lessonIndex, setlessonIndex] = useState(0);
     const {courseId} = useParams();
     const course = coursesDB.courses[courseId];
-    console.log("coursecontent");
+
 
     // function to render lesson on selecting it
     const onSelectLesson = (lessonNum)=> {

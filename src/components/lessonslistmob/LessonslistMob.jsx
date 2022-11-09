@@ -28,15 +28,11 @@ export const LessonslistMob = (props) => {
     
     // function to get next lesson on clicking next right arrow 
     const handleNextLesson = (e)=>{
-        console.log(e);
         if(lessonNumState < props.lessonsList.length-1){
             setLessonNumState(lessonNumState +1);
             setFLag(true);
             props.selectedLesson(lessonNumState+1);
         }
-        console.log(lessonNumState);
-       
-
     }
 
     // function to get prev lesson on clicking  left arrow 
@@ -48,13 +44,11 @@ export const LessonslistMob = (props) => {
         }
     }
 
-    // console.log(props.lessonNum);
     return (
         <div className='row d-flex align-items-baseline mt-5 w-75 mx-auto'>
             <p className='col-2' onClick={handlePrevLesson}> {`< prev`} </p>
             <div className='col-7'>
                 <Select className='mx-5 select' options={options} onChange={(e)=>handleSelectOptions(e)}/>
-                {/* {console.log(options)} */}
             </div>
             <p className='col-2' onClick={handleNextLesson}> {` next >`} </p>
             {lessonNumState}

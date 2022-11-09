@@ -3,7 +3,7 @@ import coursesDB from './../../database/db.json';
 
 export const Classroom = () => {
     let coursesID = Object.keys(coursesDB.courses);
-    // console.log(coursesDB.courses[coursesID[0]].courseName);
+
   return (
     <div>
         <Link to={`/eduMates/classroom/${coursesDB.courses[coursesID[0]].courseName}/${coursesID[0]}`} className="p-3">Course 1</Link>
