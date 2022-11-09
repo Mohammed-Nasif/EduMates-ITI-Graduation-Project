@@ -72,6 +72,8 @@ export const Input = () => {
 
 	// sending to firebase
 	const handleSend = async (e) => {
+		console.log('sent');
+
 		if (voice) {
 			const storageRef = ref(storage, `/voices/${uuid()}`);
 			const uploadTask = uploadBytesResumable(storageRef, voice);
@@ -194,7 +196,7 @@ export const Input = () => {
 			},
 			[data.chatId + '.data']: serverTimestamp(),
 		});
-
+		console.log('sent');
 		setSendBtn(false);
 		setVoice(null);
 		setVideo(null);
@@ -266,10 +268,12 @@ export const Input = () => {
 							accept="image/*"
 							style={{ display: 'none' }}
 							id="imgAttach"
+							value=""
 							onChange={(e) => {
 								console.log('input');
 								setImg(e.target.files[0]);
 								setSendBtn(true);
+								e.target.value = '';
 							}}
 						/>
 						<label htmlFor="imgAttach">
