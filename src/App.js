@@ -53,7 +53,6 @@ const App = () => {
                      	<Route path=':courseName/:courseId' element={<Coursecontent/>}/>
                 	</Route>
 					<Route path='chats' element={<Chathome />} />
-					<Route path='classroom' element={<Classroom/>}/>
 				</Route>
 				<Route path='/' element={<Landing />} />
 				<Route path='login' element={<Login />} />
