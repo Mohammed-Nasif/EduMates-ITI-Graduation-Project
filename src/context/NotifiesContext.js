@@ -60,9 +60,11 @@ export const NotifiesContextProvider = ({ children }) => {
 	}, [state]);
 
 	const updateNotifies = async (s) => {
-		await updateDoc(doc(db, 'users', s.userId), {
-			userNotifies: arrayUnion(s),
-		});
+		if (s.userId !== s.actionUser.actionUserId) {
+			await updateDoc(doc(db, 'users', s.userId), {
+				userNotifies: arrayUnion(s),
+			});
+		}
 	};
 
 	return <NotifiesContext.Provider value={{ data: state, dispatch }}>{children}</NotifiesContext.Provider>;

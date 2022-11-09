@@ -92,7 +92,7 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 					postId: postObj.postId,
 					userId: postOwner.uid,
 					commentId: commentId,
-					actionUser: { actionUserId: currentUser.uid, actionUserName: currentUser.displayName, actionUserPhoto: currentUser.PhotoURL },
+					actionUser: { actionUserId: currentUser.uid, actionUserName: currentUser.displayName, actionUserPhoto: currentUser.photoURL },
 				},
 			});
 			setComment();
@@ -144,7 +144,7 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 				payload: {
 					postId: postObj.postId,
 					userId: postOwner.uid,
-					actionUser: { actionUserId: currentUser.uid, actionUserName: currentUser.displayName, actionUserPhoto: currentUser.PhotoURL },
+					actionUser: { actionUserId: currentUser.uid, actionUserName: currentUser.displayName, actionUserPhoto: currentUser.photoURL },
 				},
 			});
 		}
