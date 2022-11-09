@@ -8,7 +8,6 @@ import { db } from '../../firebase';
 export const Navdropdown = (props) => {
 	const { currentUser } = useContext(AuthContext);
 	const [notifiesCount, setNotifiesCount] = useState(currentUser?.unseenNotifies?.length);
-	const [notificationsList, setNotificationsList] = useState(currentUser?.unseenNotifies);
 
 	// toggle flag to control the dropdown menu
 	let [toggle, setToggle] = useState(false);
@@ -19,10 +18,9 @@ export const Navdropdown = (props) => {
 			console.log('Closed');
 			setToggle(false);
 			if (!!currentUser?.unseenNotifies?.length) {
+				setNotifiesCount(0);
 				await updateDoc(doc(db, 'users', currentUser?.uid), {
 					seenNotifies: arrayUnion(...currentUser.unseenNotifies),
-				});
-				await updateDoc(doc(db, 'users', currentUser?.uid), {
 					unseenNotifies: [],
 				});
 			}
@@ -49,47 +47,54 @@ export const Navdropdown = (props) => {
 
 	return (
 		<div className='dropdown-container' ref={dropdownRef}>
-			{props.dropType === 'notifies' && <span>{notifiesCount}</span>}
-			<div className='dropdown-icon'>
+			<div className='dropdown-icon position-relative'>
 				<Link>
+					{props.dropType === 'notifies' && !!notifiesCount && (
+						<span className='notifiesCount position-absolute'>{notifiesCount}</span>
+					)}
 					<props.icon className={toggle ? 'nav-icon active' : 'nav-icon'} onClick={handleClick} />
 				</Link>
 			</div>
-			{toggle && props.dropType === 'notifies' && (
+			{toggle && (
 				<div className='dropdown'>
-					{!!notificationsList.length
-						? notificationsList.map((item, index) => {
-								return (
-									<Link key={index + 1}>
-										<div className='row mb-1'>
-											<div className='col-2 user-img'>
-												<img src={item.actionUser.actionUserPhoto} alt={item.actionUser.actionUserName} />
-											</div>
-											<div className='col-8 px-0'>
-												<p className='pt-2 user-name'>
-													<span className='fw-bolder text-info'>{item.actionUser.actionUserName}</span> {item.msgText}
-												</p>
-											</div>
-										</div>
-									</Link>
-								);
-						  })
-						: currentUser.seenNotifies.map((item, index) => {
-								return (
-									<Link key={index + 1}>
-										<div className='row mb-1'>
-											<div className='col-2 user-img'>
-												<img src={item.actionUser.actionUserPhoto} alt={item.actionUser.actionUserName} />
-											</div>
-											<div className='col-8 px-0'>
-												<p className='pt-2 user-name'>
-													<span className='fw-bolder text-info'>{item.actionUser.actionUserName}</span> {item.msgText}
-												</p>
-											</div>
-										</div>
-									</Link>
-								);
-						  })}
+					{props.dropType === 'notifies' &&
+						(!!currentUser?.unseenNotifies.length
+							? currentUser.unseenNotifies
+									.sort((a, b) => b.notifiedAt - a.notifiedAt)
+									.map((item, index) => {
+										return (
+											<Link key={index + 1}>
+												<div className='row mb-1'>
+													<div className='col-2 user-img'>
+														<img src={item.actionUser.actionUserPhoto} alt={item.actionUser.actionUserName} />
+													</div>
+													<div className='col-8 px-0'>
+														<p className='pt-2 user-name'>
+															<span className='fw-bolder text-info'>{item.actionUser.actionUserName}</span> {item.msgText}
+														</p>
+													</div>
+												</div>
+											</Link>
+										);
+									})
+							: currentUser.seenNotifies
+									.sort((a, b) => b.notifiedAt - a.notifiedAt)
+									.map((item, index) => {
+										return (
+											<Link key={index + 1}>
+												<div className='row mb-1'>
+													<div className='col-2 user-img'>
+														<img src={item.actionUser.actionUserPhoto} alt={item.actionUser.actionUserName} />
+													</div>
+													<div className='col-8 px-0'>
+														<p className='pt-2 user-name'>
+															<span className='fw-bolder text-info'>{item.actionUser.actionUserName}</span> {item.msgText}
+														</p>
+													</div>
+												</div>
+											</Link>
+										);
+									}))}
 					{props.dropType === 'chat' && (
 						<Link to='/eduMates/chats' className='d-flex flex-row align-items-center justify-content-center text-info link'>
 							<p className='text-center m-0'>See all in chats</p>
