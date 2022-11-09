@@ -29,9 +29,7 @@ export const Login = () => {
 				login: { isLoggedIn: true, date: Timestamp.now() },
 			});
 			navigate('/eduMates/home');
-		} catch (err) {
-			console.log(err);
-		}
+		} catch (err) {}
 	};
 
 	return (

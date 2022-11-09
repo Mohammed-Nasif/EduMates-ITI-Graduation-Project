@@ -1,6 +1,6 @@
 import './courselandingIframe.scss'
 import { BsStarFill } from 'react-icons/bs'
-import Iframe from 'react-iframe'
+// import Iframe from 'react-iframe'
 import ReactPlayer from 'react-player'
 import { useState, useEffect } from 'react'
 import axios from 'axios'

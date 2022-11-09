@@ -1,0 +1,30 @@
+.lessonslist {
+    border: 1px solid #DFDFDF;
+    background-color: white;
+    border-radius: 20px;
+    .list {
+        &.scorll{
+            max-height: 19.6875rem;  // 515
+            overflow-y: scroll;
+        }
+        & p {
+            cursor: pointer;
+            font-weight: 500;
+            font-size: .875rem;
+            color: black;
+            &:hover {
+                background-color: #DFDFDF;
+            }
+            &.active {
+                font-weight: 600;
+                color: blue;
+            }
+        }
+        .circle-icon{
+            font-size: .75rem;
+        }
+    }
+    .lesson-name{
+        margin-right: 0;
+    }
+}

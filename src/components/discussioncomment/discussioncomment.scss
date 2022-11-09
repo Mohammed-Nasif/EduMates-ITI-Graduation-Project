@@ -1,0 +1,17 @@
+.discussion-comment{
+    width: 80%;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 1.25rem;
+    img {
+        border-radius: 50%;
+        width: 1.875rem;
+        height: 1.875rem;
+    }
+    .user-name{
+        font-size: .875rem;
+    }
+    .comment-content{
+        font-size: .8125rem;
+    }
+}

@@ -43,14 +43,12 @@ export const Register = () => {
 
 	const onRegistSubmit = async (userData) => {
 		// User Data
-		console.log(userData);
 		const displayName = userData.name.toLowerCase();
 		const email = userData.email;
 		const password = userData.password;
 		const avatarImg = userData.avatarFile[0];
 		const bDate = userData.brithdate;
 		const userTopics = userData.select?.map((topic) => topic.label);
-		console.log(avatarImg);
 		try {
 			const res = await createUserWithEmailAndPassword(auth, email, password);
 
@@ -65,7 +63,6 @@ export const Register = () => {
 					() => {
 						// EveryThing is Okay and Avatar File Uploaded
 						getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-							console.log(downloadURL);
 							await updateProfile(res.user, {
 								displayName,
 								photoURL: downloadURL,
@@ -78,6 +75,7 @@ export const Register = () => {
 								displayName,
 								email,
 								login: { isLoggedIn: true, date: Timestamp.now() },
+								specialFlags: { isAdmin: false, isVerified: false, isInstructor: false },
 								photoURL: downloadURL,
 								coverURL:
 									'https://firebasestorage.googleapis.com/v0/b/edumates---graduation-project.appspot.com/o/287f5db0-c12a-4d0b-a586-92728f497052?alt=media&token=d4feb1f2-5c23-4891-8c0e-dc2fd7c0be05',
@@ -85,7 +83,9 @@ export const Register = () => {
 								bDate,
 								userTopics,
 								matesList: [res.user.uid],
-								userNotifies: [],
+								unseenNotifies: [],
+								seenNotifies: [],
+								mgsNotifies: [],
 							});
 
 							// Create User Chat Collection
@@ -93,7 +93,7 @@ export const Register = () => {
 								//Object is Empty Because User Don't have any conversions yet
 							});
 
-							// Create User Classroom Collection
+							// Create User Classroom Collection      {JSON}
 							await setDoc(doc(db, 'userClassroom', res.user.uid), {
 								//Object is Empty Because User Doesn't have any Courses yet
 							});
@@ -111,6 +111,7 @@ export const Register = () => {
 					displayName,
 					email,
 					login: { isLoggedIn: true, date: Timestamp.now() },
+					specialFlags: { isAdmin: false, isVerified: false, isInstructor: false },
 					photoURL:
 						'https://firebasestorage.googleapis.com/v0/b/edumates---graduation-project.appspot.com/o/Default-avatar.jpg?alt=media&token=e466ecc4-7260-4f1a-996d-b245e89c2281',
 					coverURL:
@@ -119,7 +120,9 @@ export const Register = () => {
 					bDate,
 					userTopics,
 					matesList: [res.user.uid],
-					userNotifies: [],
+					unseenNotifies: [],
+					seenNotifies: [],
+					mgsNotifies: [],
 				});
 
 				// Create User Chat Collection
@@ -139,7 +142,6 @@ export const Register = () => {
 			console.error(error);
 		}
 	};
-	// console.log(errors);
 
 	return (
 		<div className='form_container'>

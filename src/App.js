@@ -14,6 +14,8 @@ import { Chathome } from './pages/chat/Chathome';
 import { Courselanding } from './pages/courselanding/Courselanding';
 import { Mateslist } from './pages/mateslist/Mateslist';
 import { Classroom } from './pages/classroom/Classroom';
+import { Coursecontent } from './pages/coursecontent/Coursecontent'
+
 
 const App = () => {
 	const { currentUser } = useContext(AuthContext);
@@ -46,6 +48,10 @@ const App = () => {
 						<Route index element={<Courses />} />
 						<Route path=':courseName/:courseId' element={<Courselanding />} />
 					</Route>
+					<Route path='classroom' > 
+						<Route index element={<Classroom/>}/>
+                     	<Route path=':courseName/:courseId' element={<Coursecontent/>}/>
+                	</Route>
 					<Route path='chats' element={<Chathome />} />
 					<Route path='classroom' element={<Classroom/>}/>
 				</Route>
