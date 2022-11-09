@@ -1,0 +1,38 @@
+.discussion-post {
+    width: 80%;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 1.25rem;
+    img {
+        border-radius: 50%;
+        width: 3.125rem;
+        height: 3.125rem;
+    }
+    .interact-icon{
+        cursor: pointer;
+    }
+
+    .reply{
+        width: 100%;
+        .reply-arrow{
+            font-size: 42px;
+            color: #C5C9CC;
+        }
+        .reply-input{
+            width: 80%;
+            .input-text{
+                border: .0625rem solid #C5C9CC;
+                border-radius: .625rem;
+                background: white;
+                resize: none;
+                height: 3.125rem;
+                &:focus{
+                    outline: none;
+                }
+            }
+            .submit-icon{
+                cursor: pointer;
+            }
+        }
+    }
+}
