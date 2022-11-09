@@ -43,14 +43,12 @@ export const Register = () => {
 
 	const onRegistSubmit = async (userData) => {
 		// User Data
-		console.log(userData);
 		const displayName = userData.name.toLowerCase();
 		const email = userData.email;
 		const password = userData.password;
 		const avatarImg = userData.avatarFile[0];
 		const bDate = userData.brithdate;
 		const userTopics = userData.select?.map((topic) => topic.label);
-		console.log(avatarImg);
 		try {
 			const res = await createUserWithEmailAndPassword(auth, email, password);
 
@@ -65,7 +63,6 @@ export const Register = () => {
 					() => {
 						// EveryThing is Okay and Avatar File Uploaded
 						getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-							console.log(downloadURL);
 							await updateProfile(res.user, {
 								displayName,
 								photoURL: downloadURL,
@@ -143,7 +140,6 @@ export const Register = () => {
 			console.error(error);
 		}
 	};
-	// console.log(errors);
 
 	return (
 		<div className='form_container'>

@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 export const Suggestedmate = ({ sugUser }) => {
 	const { currentUser } = useContext(AuthContext);
 	const addToMatesList = async () => {
-		console.log(sugUser.uid);
 		await updateDoc(doc(db, 'users', currentUser.uid), {
 			matesList: arrayUnion(sugUser.uid),
 		});

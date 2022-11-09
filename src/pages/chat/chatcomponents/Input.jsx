@@ -30,11 +30,8 @@ export const Input = () => {
 					(snapshot) => {
 						const percent = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
 						// setProgress(percent);
-						console.log(percent);
 					},
-					(err) => {
-						console.error('error, sorry');
-					},
+					(err) => {},
 					() => {
 						getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
 							const chatsRef = doc(db, 'chats', data.chatId);
@@ -48,7 +45,7 @@ export const Input = () => {
 								}),
 							});
 						});
-					}
+					},
 				);
 			} else if (file) {
 				const storageRef = ref(storage, `/files/${file.name}`);
@@ -58,11 +55,8 @@ export const Input = () => {
 					(snapshot) => {
 						const percent = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
 						// setProgress(percent);
-						console.log(percent);
 					},
-					(err) => {
-						console.error('error, sorry');
-					},
+					(err) => {},
 					() => {
 						getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
 							const chatsRef = doc(db, 'chats', data.chatId);
@@ -76,7 +70,7 @@ export const Input = () => {
 								}),
 							});
 						});
-					}
+					},
 				);
 			} else if (img) {
 				const storageRef = ref(storage, uuid());
@@ -97,7 +91,7 @@ export const Input = () => {
 								}),
 							});
 						});
-					}
+					},
 				);
 			} else if (text.trim() !== '') {
 				const chatsRef = doc(db, 'chats', data.chatId);
@@ -130,25 +124,32 @@ export const Input = () => {
 		}
 	};
 	return (
-		<div className="input_wrapper">
-			<div className="icons">
-				<input type="file" accept="video/*" style={{ display: 'none' }} id="videoUpload" onChange={(e) => setVideo(e.target.files[0])} />
-				<label htmlFor="videoUpload">
-					<BsFileEarmarkPlay className="icon" />
+		<div className='input_wrapper'>
+			<div className='icons'>
+				<input type='file' accept='video/*' style={{ display: 'none' }} id='videoUpload' onChange={(e) => setVideo(e.target.files[0])} />
+				<label htmlFor='videoUpload'>
+					<BsFileEarmarkPlay className='icon' />
 				</label>
 
-				<input type="file" accept=".pdf*" style={{ display: 'none' }} id="fileUpload" onChange={(e) => setFile(e.target.files[0])} />
-				<label htmlFor="fileUpload">
-					<BsFileEarmarkText className="icon" />
+				<input type='file' accept='.pdf*' style={{ display: 'none' }} id='fileUpload' onChange={(e) => setFile(e.target.files[0])} />
+				<label htmlFor='fileUpload'>
+					<BsFileEarmarkText className='icon' />
 				</label>
 
-				<input type="file" accept="image/*" style={{ display: 'none' }} id="imgAttach" onChange={(e) => setImg(e.target.files[0])} />
-				<label htmlFor="imgAttach">
-					<TiImage className="icon" />
+				<input type='file' accept='image/*' style={{ display: 'none' }} id='imgAttach' onChange={(e) => setImg(e.target.files[0])} />
+				<label htmlFor='imgAttach'>
+					<TiImage className='icon' />
 				</label>
 			</div>
-			<input className="msg_input" type="text" value={text} placeholder="Type Message..." onChange={(e) => setText(e.target.value)} onKeyDown={handleSend} />
-			<img src={currentUser.photoURL} alt="curUserImg" />
+			<input
+				className='msg_input'
+				type='text'
+				value={text}
+				placeholder='Type Message...'
+				onChange={(e) => setText(e.target.value)}
+				onKeyDown={handleSend}
+			/>
+			<img src={currentUser.photoURL} alt='curUserImg' />
 		</div>
 	);
 };

@@ -12,15 +12,12 @@ export const Mate = ({ mateId, currUser }) => {
 		const getMateData = onSnapshot(doc(db, 'users', mateId), (doc) => {
 			setMate(doc.data());
 		});
-		console.log(mateId);
 		return () => {
 			getMateData();
 		};
 	}, [mateId]);
 
 	const removeFromMatesList = async () => {
-		console.log(currUser);
-		console.log(mateId);
 		await updateDoc(doc(db, 'users', currUser.uid), {
 			matesList: arrayRemove(mateId),
 		});

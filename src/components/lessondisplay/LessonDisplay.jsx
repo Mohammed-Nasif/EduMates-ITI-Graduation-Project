@@ -1,7 +1,6 @@
 import './lessondisplay.scss'
 
 export const LessonDisplay = (props) => {
-    // {console.log(props)}
     return (
         <div>
             <div className='lesson-display'>

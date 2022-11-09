@@ -3,7 +3,6 @@ import './lessonslist.scss';
 import {BsFillCircleFill, BsCheckLg} from "react-icons/bs";
 
 export const Lessonslist = (props) => {
-    // console.log(props);
     const [lessonState, setLessonState] = useState(undefined);
     const [flag, setFLag] = useState(false);
     let [activeLessons, setActiveLessons] = useState([]);  // get the initial value from firebase (array of finished lessons)
@@ -29,7 +28,6 @@ export const Lessonslist = (props) => {
             actLessons.push(i);
             setActiveLessons([...actLessons]);
         }
-        console.log(activeLessons);
     }
     return (
         <div className='lessonslist p-4'>
