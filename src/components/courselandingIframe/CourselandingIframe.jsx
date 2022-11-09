@@ -3,7 +3,7 @@ import { BsStarFill } from 'react-icons/bs'
 // import Iframe from 'react-iframe'
 import ReactPlayer from 'react-player'
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 
 export const CourselandingIframe = () => {
   const baseURl =
@@ -16,19 +16,19 @@ export const CourselandingIframe = () => {
 
   //     })
   //   }, [])
-  axios
-    .get(baseURl)
-    .then(function (response) {
-      // handle success
-      console.log(response)
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error)
-    })
-    .then(function () {
-      // always executed
-    })
+  // axios
+  //   .get(baseURl)
+  //   .then(function (response) {
+  //     // handle success
+  //     console.log(response)
+  //   })
+  //   .catch(function (error) {
+  //     // handle error
+  //     console.log(error)
+  //   })
+  //   .then(function () {
+  //     // always executed
+  //   })
 
   return (
     <>
