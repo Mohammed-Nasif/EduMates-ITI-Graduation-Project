@@ -8,6 +8,7 @@
                     "userId": 123, 
                     "info": "This instructor has good experience"
                 },
+                "progress": 70,
                 "lessonsList": [
                     {
                         "lessonID": "8N1ow1l0NBg",
@@ -74,6 +75,7 @@
                 "userId": 123, 
                 "info": "This instructor has good experience"
             },
+            "progress": 30,
             "lessonsList": [
                 {
                     "lessonID": "ptHGYO6JYy4",
@@ -176,6 +178,7 @@
                 "userId": 123, 
                 "info": "This instructor has good experience"
             },
+            "progress": 90,
             "lessonsList": [
                 {
                     "lessonID": "Di_RlcpkpN4",
