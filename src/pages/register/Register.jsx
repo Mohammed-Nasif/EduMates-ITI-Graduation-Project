@@ -14,6 +14,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import { TopicsContext } from '../../context/TopicsContext';
 import { RiImageAddFill } from 'react-icons/ri';
+import coursesapi from './../../coursesAPI/coursesapi';
+
 
 export const Register = () => {
 	const animatedComponents = makeAnimated();
