@@ -100,6 +100,12 @@ export const Register = () => {
 								//Object is Empty Because User Doesn't have any Courses yet
 							});
 
+							// Create users object in json server
+							await coursesapi.post('/users', {
+								id: res.user.uid,
+								courses: [],
+							});
+
 							// After All Operations Go To Home Page
 							navigate('/eduMates/home');
 						});
@@ -136,6 +142,12 @@ export const Register = () => {
 				// Create User Classroom Collection
 				await setDoc(doc(db, 'userClassroom', res.user.uid), {
 					//Object is Empty Because User Doesn't have any Courses yet
+				});
+
+				// Create users object in json server
+				await coursesapi.post('/users', {
+					id: res.user.uid,
+					courses: [],
 				});
 
 				// After All Operations Go To Home Page
