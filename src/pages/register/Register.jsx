@@ -13,6 +13,8 @@ import { doc, setDoc, Timestamp } from 'firebase/firestore';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import { TopicsContext } from '../../context/TopicsContext';
+import coursesapi from "./../../coursesAPI/coursesapi";
+
 
 export const Register = () => {
 	const animatedComponents = makeAnimated();
@@ -98,6 +100,14 @@ export const Register = () => {
 								//Object is Empty Because User Doesn't have any Courses yet
 							});
 
+							// Create users object in json server
+							await coursesapi.post('/users',
+							 {
+								"id": res.user.uid,
+								"courses":[]
+							 });
+							 
+							 
 							// After All Operations Go To Home Page
 							navigate('/eduMates/home');
 						});
@@ -135,6 +145,13 @@ export const Register = () => {
 					//Object is Empty Because User Doesn't have any Courses yet
 				});
 
+				// Create users object in json server
+				await coursesapi.post('/users',
+				{
+				   "id": res.user.uid,
+				   "courses":[]
+				});
+				
 				// After All Operations Go To Home Page
 				navigate('/eduMates/home');
 			}
