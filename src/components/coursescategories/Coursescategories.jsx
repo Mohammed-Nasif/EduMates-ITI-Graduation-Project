@@ -4,13 +4,13 @@ export const Coursescategories = () => {
 
 	return (
 		<>
-			<div className='filter shadow mb-4 py-2'>
+			<div className='filter shadow mb-4 py-2 bg-white'>
 				<h3>Filter by</h3>
 				<div className='topics_wrapper'>
 					<h6 className='py-1'>Topics:</h6>
 					{topics.map((topic) => {
 						return (
-							<button className='topic_btn' key={topic}>
+							<button className='topic_btn btn' key={topic}>
 								# {topic}
 							</button>
 						);
@@ -34,18 +34,18 @@ export const Coursescategories = () => {
 					</div>
 				</div>
 				<div className='more_lesson py-3'>
-					<div className='form-check  '>
-						<input className='form-check-input' type='checkbox' value='' id='flexCheckDefault' />
-						<label className='form-check-label' htmlFor='flexCheckDefault'>
-							More lessons
-						</label>
-					</div>
-					<div className='form-check py-1'>
-						<input className='form-check-input' type='checkbox' value='' id='flexCheckChecked' />
-						<label className='form-check-label' htmlFor='flexCheckChecked'>
-							Less lessons
-						</label>
-					</div>
+				<div className='form-check'>
+							<input className='form-check-input' type='radio' name='flexRadioDefault' id='flexRadioDefault1' />
+							<label className='form-check-label' htmlFor='flexRadioDefault1'>
+								More Lessons
+							</label>
+						</div>
+						<div className='form-check py-2'>
+							<input className='form-check-input' type='radio' name='flexRadioDefault' id='flexRadioDefault2' />
+							<label className='form-check-label' htmlFor='flexRadioDefault2'>
+								Less Lessonsgi
+							</label>
+						</div>
 				</div>
 			</div>
 		</>
