@@ -9,10 +9,15 @@ import { auth, db } from '../../firebase';
 import { updateDoc, doc, Timestamp } from 'firebase/firestore';
 import { AuthContext } from '../../context/AuthContext';
 import { useContext } from 'react';
+import { useState } from 'react';
+import { ForgetPassModal } from './Forgetpassmodal';
+import { useCallback } from 'react';
 
 export const Login = () => {
 	const navigate = useNavigate();
 	const { currentUser } = useContext(AuthContext);
+	const [showModal, setShowModal] = useState();
+
 	const {
 		register,
 		handleSubmit,
@@ -31,6 +36,10 @@ export const Login = () => {
 			navigate('/eduMates/home');
 		} catch (err) {}
 	};
+
+	const handelShowState = useCallback((flag) => {
+		setShowModal(flag);
+	}, []);
 
 	return (
 		<div className='form_container'>
@@ -78,7 +87,11 @@ export const Login = () => {
 					</Form.Group>
 
 					{/*Forget Password */}
-					<p className='text-center my-3'>
+					<p
+						className='text-center my-3'
+						onClick={() => {
+							setShowModal(true);
+						}}>
 						<Link to='' className='text-decoration-none text-muted'>
 							Forget Your Password ?
 						</Link>
@@ -97,6 +110,7 @@ export const Login = () => {
 				</Link>{' '}
 				<span className='fw-bold'>Now!</span>
 			</p>
+			<ForgetPassModal show={showModal} handelShowState={handelShowState} />
 		</div>
 	);
 };
