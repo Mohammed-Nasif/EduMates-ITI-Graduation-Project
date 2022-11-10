@@ -31,17 +31,57 @@ $quatColor: #686868;
 			width: 16px;
 			height: 16px;
 			border-radius: 50%;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 14px;
-            top: -6px;
-            left: 6px;
+			color: white;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 14px;
+			top: -6px;
+			left: 6px;
+		}
+		.ping-wrapper {
+			position: absolute;
+			top: -6px;
+			left: 3px;
+			.ring {
+				width: 25px;
+				height: 25px;
+				border-radius: 50%;
+				position: absolute;
+				animation-name: ani;
+				animation-iteration-count: infinite;
+				animation-timing-function: ease-in-out;
+				animation-direction: normal;
+				animation-duration: 2.5s;
+			}
+			@keyframes ani {
+				0% {
+					transform: scale(0);
+				}
+				99% {
+					transform: scale(1);
+				}
+				100% {
+					transform: scale(1);
+					opacity: 0;
+				}
+			}
+			#r1 {
+				animation-delay: -1s;
+				background-color: #f94f4f;
+			}
+			#r2 {
+				animation-delay: -2s;
+				background-color: #ff0000;
+			}
+			#r3 {
+				animation-delay: -3s;
+				background-color: #ff0000;
+			}
 		}
 	}
 	.dropdown {
-		width: 25%;
+		width: 28%;
 		background-color: $PrimaryColor;
 		border-bottom-left-radius: 0.625rem;
 		border-bottom-right-radius: 0.625rem;

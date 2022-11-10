@@ -17,7 +17,6 @@ export const Input = () => {
 	const [voice, setVoice] = useState(null);
 	const [toggle, setToggle] = useState(false);
 	const [progress, setProgress] = useState(0);
-
 	const start = useRef();
 	const stop = useRef();
 	const audio = useRef();
@@ -72,6 +71,12 @@ export const Input = () => {
 	// sending to firebase
 	const handleSend = async (e) => {
 		if (e.code === 'Enter' || e.code === 'NumpadEnter') {
+		
+			// Msg Notify Flag
+			await updateDoc(doc(db, 'users', data.user.uid), {
+				msgNotifies: true,
+			});
+
 			if (voice) {
 				const storageRef = ref(storage, `/voices/${uuid()}`);
 				const uploadTask = uploadBytesResumable(storageRef, voice);
@@ -95,7 +100,7 @@ export const Input = () => {
 								}),
 							});
 						});
-					}
+					},
 				);
 			}
 			if (video) {
@@ -121,7 +126,7 @@ export const Input = () => {
 								}),
 							});
 						});
-					}
+					},
 				);
 			} else if (file) {
 				const storageRef = ref(storage, `/files/${file.name}`);
@@ -146,7 +151,7 @@ export const Input = () => {
 								}),
 							});
 						});
-					}
+					},
 				);
 			} else if (img) {
 				const storageRef = ref(storage, uuid());
@@ -167,7 +172,7 @@ export const Input = () => {
 								}),
 							});
 						});
-					}
+					},
 				);
 			} else if (text.trim() !== '') {
 				const chatsRef = doc(db, 'chats', data.chatId);
@@ -200,41 +205,48 @@ export const Input = () => {
 		}
 	};
 	return (
-		<div className="input_wrapper position-relative px-3 py-2">
+		<div className='input_wrapper position-relative px-3 py-2'>
 			<TiAttachment
-				className="toggler"
+				className='toggler'
 				onClick={() => {
 					setToggle((prev) => !prev);
 				}}
 			/>
 			<span ref={start} onClick={openRecord}>
-				<BsMic className="fs-4" />
+				<BsMic className='fs-4' />
 			</span>
 
 			<span ref={stop} style={{ display: 'none' }}>
-				<BsMicMute className="fs-4" />
+				<BsMicMute className='fs-4' />
 			</span>
-			<div className="pop-up position-absolute p-1">
+			<div className='pop-up position-absolute p-1'>
 				<div className={`icons position-relative ${toggle ? 'toggle' : ''}`}>
-					<input type="file" accept="video/*" style={{ display: 'none' }} id="videoUpload" onChange={(e) => setVideo(e.target.files[0])} />
-					<label htmlFor="videoUpload">
-						<BsFileEarmarkPlay className="icon" title="Video upload" />
+					<input type='file' accept='video/*' style={{ display: 'none' }} id='videoUpload' onChange={(e) => setVideo(e.target.files[0])} />
+					<label htmlFor='videoUpload'>
+						<BsFileEarmarkPlay className='icon' title='Video upload' />
 					</label>
-					<input type="file" accept=".pdf*" style={{ display: 'none' }} id="fileUpload" onChange={(e) => setFile(e.target.files[0])} />
-					<label htmlFor="fileUpload">
-						<BsFileEarmarkText className="icon" title="PDF upload" />
+					<input type='file' accept='.pdf*' style={{ display: 'none' }} id='fileUpload' onChange={(e) => setFile(e.target.files[0])} />
+					<label htmlFor='fileUpload'>
+						<BsFileEarmarkText className='icon' title='PDF upload' />
 					</label>
 
-					<input type="file" accept="image/*" style={{ display: 'none' }} id="imgAttach" onChange={(e) => setImg(e.target.files[0])} />
-					<label htmlFor="imgAttach">
-						<TiImage className="icon" title="Image upload" />
+					<input type='file' accept='image/*' style={{ display: 'none' }} id='imgAttach' onChange={(e) => setImg(e.target.files[0])} />
+					<label htmlFor='imgAttach'>
+						<TiImage className='icon' title='Image upload' />
 					</label>
 				</div>
 			</div>
 			{/* <audio src="" ref={audio} controls></audio> */}
 
-			<input className="msg_input" type="text" value={text} placeholder="Type Message..." onChange={(e) => setText(e.target.value)} onKeyDown={handleSend} />
-			<img src={currentUser.photoURL} alt="curUserImg" />
+			<input
+				className='msg_input'
+				type='text'
+				value={text}
+				placeholder='Type Message...'
+				onChange={(e) => setText(e.target.value)}
+				onKeyDown={handleSend}
+			/>
+			<img src={currentUser.photoURL} alt='curUserImg' />
 
 			{/* <div className="preview w-100 position-absolute d-flex justify-content-between">
 				<p>LLLLL</p>
