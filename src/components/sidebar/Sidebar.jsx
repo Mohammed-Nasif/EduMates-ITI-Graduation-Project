@@ -52,7 +52,7 @@ export const Sidebar = () => {
         <div className='user-img mb-2'>
           <img src={currentUser.photoURL} alt='user-img' />
         </div>
-        <p className='user-name mb-0 f-roboto fw5 text-truncate'>
+        <p className='user-name mb-0 f-roboto fw5 text-truncate text-capitalize'>
           {currentUser.displayName}
         </p>
         <Link

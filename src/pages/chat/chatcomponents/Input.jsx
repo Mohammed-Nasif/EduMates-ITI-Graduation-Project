@@ -69,6 +69,7 @@ export const Input = () => {
 
 	// sending to firebase
 	const handleSend = async (e) => {
+
 		console.log('sent');
 
 		if (voice) {
@@ -206,6 +207,7 @@ export const Input = () => {
 		setImg(null);
 		setText('');
 	};
+
 	const removeInput = () => {
 		setSendBtn(false);
 		setVoice(null);
@@ -284,6 +286,7 @@ export const Input = () => {
 					</div>
 				</div>
 
+
 				<input
 					className="msg_input"
 					type="text"
@@ -293,10 +296,9 @@ export const Input = () => {
 					onKeyDown={(e) => {
 						if (e.code === 'Enter' || e.code === 'NumpadEnter') handleSend();
 					}}
-					// onFocus={() => setSendBtn(true)}
-					// onBlur={() => setSendBtn(false)}
 				/>
 				<img src={currentUser.photoURL} alt="curUserImg" />
+
 
 				{(img || file || video || voice) && (
 					<div className="preview  position-absolute text-center shadow">

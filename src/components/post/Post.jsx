@@ -1,4 +1,7 @@
 import './post.scss';
+import SystemProfile from '../../assets/profileicons/SystemBadge.png';
+import Instructor from '../../assets/profileicons/instructor.png';
+
 import {
 	BsHandThumbsUp,
 	BsChatRightText,
@@ -71,7 +74,7 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 	};
 
 	const sendComment = (e) => {
-		e.code === 'Enter' && !e.shiftKey && handleComment();
+		(e.code === 'Enter' || e.code === 'NumpadEnter') && !e.shiftKey && handleComment();
 	};
 
 	const handleComment = async () => {
@@ -156,7 +159,7 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 				<div className='header p-4 pb-3 pt-2'>
 					{shared && (
 						<small
-							className='text-muted'
+							className='text-muted text-capitalize'
 							title={sharedByUser ? matesShared?.filter((x) => x !== currentUser.displayName).join(' & ') : matesShared?.join(' & ')}>
 							<BsArrow90DegRight />
 							{sharedByUser && ' you '}
@@ -168,7 +171,7 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 						</small>
 					)}
 					{profileshared && (
-						<small className='text-muted'>
+						<small className='text-muted text-capitalize'>
 							<BsArrow90DegRight />
 							{profileUser.uid === currentUser.uid ? 'You ' : profileUser.displayName} shared this post {profiledate.toDate().toLocaleString()}
 						</small>
@@ -177,10 +180,16 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 						<div className='user-photo rounded-circle overflow-hidden me-3 d-flex align-items-center'>
 							<img src={postOwner.photoURL} alt='' />
 						</div>
-						<div className='name'>
-							<Link to={`/eduMates/profile/${postOwner.displayName}/${postOwner.uid}`}>
-								<div className='user-name fw-bold'>{postOwner.displayName}</div>
-							</Link>
+						<div className='name w-100'>
+							<div className=' d-flex align-items-center gap-2'>
+								<Link to={`/eduMates/profile/${postOwner.displayName}/${postOwner.uid}`}>
+									<div className='user-name fw-bold text-capitalize'>{postOwner.displayName}</div>
+								</Link>
+								<div>
+									{postOwner?.systemFlags?.isSystemProfile && <img className='sys-badge' src={SystemProfile} alt='EduMates' title='EduMates' />}
+									{postOwner?.specialFlags?.isInstructor && <img className='inst-badge' src={Instructor} alt='Instructor' title='Instructor' />}
+								</div>
+							</div>
 							<div className='date fw-light' title={postObj.createdAt && postObj.createdAt.toDate().toLocaleString()}>
 								{getTimeDiff()}
 							</div>
@@ -246,16 +255,16 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 							setShowComments((prev) => !prev);
 						}}>
 						{!!comments.length && <div className='badge bg-opacity-50 bg-secondary'>{comments.length}</div>}
-						<BsChatRightText className='icon' /> comment
+						<BsChatRightText className='icon' /> Comment
 					</div>
 					<div className='btn' onClick={handleShare}>
 						{!sharedByUser ? (
 							<>
-								<FaRegShareSquare className='icon' /> share
+								<FaRegShareSquare className='icon' /> Share
 							</>
 						) : (
 							<>
-								<FaShareSquare className='icon' /> shared
+								<FaShareSquare className='icon' /> Shared
 							</>
 						)}
 					</div>
@@ -272,7 +281,7 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 								<img src={currentUser.photoURL} alt='' />
 							</div>
 							<div className='comment-body'>
-								<div className='user-name fw-bold mb-1'>{currentUser.displayName}</div>
+								<div className='user-name fw-bold mb-1 text-capitalize'>{currentUser.displayName}</div>
 								<textarea
 									className='w-100'
 									ref={commentArea}
