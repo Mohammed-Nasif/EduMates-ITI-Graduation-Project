@@ -13,6 +13,7 @@ import { doc, setDoc, Timestamp } from 'firebase/firestore';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import { TopicsContext } from '../../context/TopicsContext';
+import { RiImageAddFill } from 'react-icons/ri';
 
 export const Register = () => {
 	const animatedComponents = makeAnimated();
@@ -276,7 +277,9 @@ export const Register = () => {
 						<Form.Control style={{ display: 'none' }} type='file' id='file' accept='image/*' {...register('avatarFile', { onChange: getBase64 })} />
 						<Form.Label htmlFor='file'>
 							{/* <img src={AddAvatar} alt='addAvatar' /> */}
-							<span>Add an avatar</span>
+							<span className='fs-6 d-flex justify-content-center align-items-center pointer'>
+								<RiImageAddFill className='fs-4 me-2' /> Select your avatar
+							</span>
 						</Form.Label>
 					</Form.Group>
 

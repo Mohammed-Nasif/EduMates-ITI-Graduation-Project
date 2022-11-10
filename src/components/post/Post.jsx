@@ -181,16 +181,15 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 							<img src={postOwner.photoURL} alt='' />
 						</div>
 						<div className='name w-100'>
-							<Link to={`/eduMates/profile/${postOwner.displayName}/${postOwner.uid}`}>
-								<div className=' d-flex align-items-center gap-2'>
+							<div className=' d-flex align-items-center gap-2'>
+								<Link to={`/eduMates/profile/${postOwner.displayName}/${postOwner.uid}`}>
 									<div className='user-name fw-bold text-capitalize'>{postOwner.displayName}</div>
-
-									<div>
-										{postOwner?.systemFlags?.isSystemProfile && <img className='sys-badge' src={SystemProfile} alt='EduMates' title='EduMates' />}
-										{postOwner?.specialFlags?.isInstructor && <img className='inst-badge' src={Instructor} alt='Instructor' title='Instructor' />}
-									</div>
+								</Link>
+								<div>
+									{postOwner?.systemFlags?.isSystemProfile && <img className='sys-badge' src={SystemProfile} alt='EduMates' title='EduMates' />}
+									{postOwner?.specialFlags?.isInstructor && <img className='inst-badge' src={Instructor} alt='Instructor' title='Instructor' />}
 								</div>
-							</Link>
+							</div>
 							<div className='date fw-light' title={postObj.createdAt && postObj.createdAt.toDate().toLocaleString()}>
 								{getTimeDiff()}
 							</div>
