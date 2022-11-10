@@ -14,8 +14,6 @@ export const Editmodal = (props) => {
 			<Modal.Body>
 				<div className='d-flex justify-content-around'>
 					<p>Name</p>
-					{/* to be changed to dynamically changeable variable */}
-					{/* <p className="fw-bold">Mohamed Nasif</p>  */}
 					<input
 						type='text'
 						value={name}
@@ -27,8 +25,6 @@ export const Editmodal = (props) => {
 				<hr />
 				<div className='d-flex justify-content-around'>
 					<p>Description</p>
-					{/* to be changed to dynamically changeable variable */}
-					{/* <p className="fw-bold">Intern | Information Technology Institute</p>  */}
 					<input
 						type='text'
 						value={description}

@@ -12,7 +12,8 @@
 	}
 	.date {
 		font-size: 0.75rem;
-		cursor: pointer;
+		width: 16%;
+		cursor: default;
 	}
 	.drop {
 		width: 10rem;
@@ -127,4 +128,12 @@
 	p {
 		line-break: anywhere;
 	}
+}
+
+.sys-badge {
+	width: 45px;
+	height: 16px;
+}
+.inst-badge {
+	width: 20px;
 }

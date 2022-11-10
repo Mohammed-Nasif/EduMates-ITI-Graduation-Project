@@ -16,6 +16,7 @@ import { TopicsContext } from '../../context/TopicsContext';
 import { RiImageAddFill } from 'react-icons/ri';
 import coursesapi from './../../coursesAPI/coursesapi';
 
+
 export const Register = () => {
 	const animatedComponents = makeAnimated();
 

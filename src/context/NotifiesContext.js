@@ -1,6 +1,6 @@
 import { createContext, useReducer } from 'react';
 import { useEffect } from 'react';
-import { updateDoc, doc, arrayUnion } from 'firebase/firestore';
+import { updateDoc, doc, arrayUnion, Timestamp } from 'firebase/firestore';
 import { db } from '../firebase';
 export const NotifiesContext = createContext();
 
@@ -59,7 +59,7 @@ export const NotifiesContextProvider = ({ children }) => {
 	const updateNotifies = async (s) => {
 		if (s.userId !== s.actionUser.actionUserId) {
 			await updateDoc(doc(db, 'users', s.userId), {
-				unseenNotifies: arrayUnion(s),
+				unseenNotifies: arrayUnion({ ...s, notifiedAt: Timestamp.now() }),
 			});
 		}
 	};

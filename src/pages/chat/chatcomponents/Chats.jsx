@@ -26,11 +26,13 @@ export const Chats = () => {
 	}, [currentUser.uid]);
 
 	const handleSelect = (user) => {
+		console.log(user);
 		dispatch({ type: 'CHANGE_USER', payload: user });
 	};
 
 	return (
 		<div className="chats">
+			<p>Your chats</p>
 			{chats &&
 				Object.entries(chats)
 					?.sort((a, b) => b[1].date - a[1].date)
