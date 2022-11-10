@@ -6,8 +6,9 @@ import Premium from '../../assets/profileicons/premiumMember.png';
 import Verified from '../../assets/profileicons/verified.png';
 import WebOwner from '../../assets/profileicons/webOwner.png';
 import WebDev from '../../assets/profileicons/wesiteDeveloper.png';
-
+import SystemProfile from '../../assets/profileicons/SystemBadge.png';
 // Profile Badges
+
 import { Link, useParams } from 'react-router-dom';
 import { BsPeople, BsPencilSquare, BsCameraFill } from 'react-icons/bs';
 import { useState, useEffect, useRef } from 'react';
@@ -233,6 +234,9 @@ export const Profile = () => {
 											{profileOwner?.specialFlags?.isBugHunter && <img src={BugHunter} alt='Bug Hunter' title='Bug Hunter' />}
 											{profileOwner?.specialFlags?.isInstructor && <img src={Instructor} alt='Instructor' title='Instructor' />}
 											{profileOwner?.specialFlags?.isPremium && <img className='prem' src={Premium} alt='Premium Member' title='Premium Member' />}
+											{profileOwner?.systemFlags?.isSystemProfile && (
+												<img className='sys' src={SystemProfile} alt='EduMates' title='EduMates' />
+											)}
 										</div>
 									</div>
 									<p className='user_Bio text-secondary  fs-5 my-1'>{profileOwner?.description || 'No description yet!'}</p>

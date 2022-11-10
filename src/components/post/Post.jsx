@@ -1,5 +1,7 @@
 import './post.scss';
 import SystemProfile from '../../assets/profileicons/SystemBadge.png';
+import Instructor from '../../assets/profileicons/instructor.png';
+
 import {
 	BsHandThumbsUp,
 	BsChatRightText,
@@ -182,11 +184,11 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 							<Link to={`/eduMates/profile/${postOwner.displayName}/${postOwner.uid}`}>
 								<div className=' d-flex align-items-center gap-2'>
 									<div className='user-name fw-bold text-capitalize'>{postOwner.displayName}</div>
-									{postOwner?.systemFlags?.isSystemProfile && (
-										<div className='sys-badge'>
-											<img src={SystemProfile} alt='' />
-										</div>
-									)}
+
+									<div>
+										{postOwner?.systemFlags?.isSystemProfile && <img className='sys-badge' src={SystemProfile} alt='EduMates' title='EduMates' />}
+										{postOwner?.specialFlags?.isInstructor && <img className='inst-badge' src={Instructor} alt='Instructor' title='Instructor' />}
+									</div>
 								</div>
 							</Link>
 							<div className='date fw-light' title={postObj.createdAt && postObj.createdAt.toDate().toLocaleString()}>
