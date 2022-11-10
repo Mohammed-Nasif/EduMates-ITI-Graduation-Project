@@ -304,10 +304,10 @@ export const Register = () => {
 			</div>
 
 			<p className='text-center'>
-				Already on EduMates?{' '}
+				Already on EduMates?
 				<Link to='/login' className='fw-bolder'>
 					Login
-				</Link>{' '}
+				</Link>
 			</p>
 		</div>
 	);
