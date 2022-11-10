@@ -46,11 +46,11 @@ const App = () => {
 					<Route path='topics' element={<Topics />} />
 					<Route path='courses'>
 						<Route index element={<Courses />} />
-						<Route path=':courseName/:courseId' element={<Courselanding />} />
+						<Route path=':courseName/:id' element={<Courselanding />} />
 					</Route>
 					<Route path='classroom' > 
 						<Route index element={<Classroom/>}/>
-                     	<Route path=':courseName/:courseId' element={<Coursecontent/>}/>
+                     	<Route path=':courseName/:id' element={<Coursecontent/>}/>
                 	</Route>
 					<Route path='chats' element={<Chathome />} />
 				</Route>
