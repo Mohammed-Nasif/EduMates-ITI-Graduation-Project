@@ -169,8 +169,13 @@ export const Profile = () => {
 						{isOwner && (
 							<div className='upload-cvr-photo ms-auto me-4'>
 								<input type='file' id='cp' name='cp' className='w-100' accept='image/*' onChange={updateCoverImg} />
-								<label htmlFor='cp' className='btn border p-0'>
-									Change Cover Photo <BsUpload />
+								<label
+									htmlFor='cp'
+									className='bg-white border rounded-1 gap-1 g-0 p-0 px-2 text-black d-flex justify-content-center align-content-center'>
+									<span>
+										<BsCameraFill className='camera' />
+									</span>
+									<span>Change Cover Photo</span>
 								</label>
 							</div>
 						)}
@@ -188,7 +193,7 @@ export const Profile = () => {
 						<div className='d-flex justify-content-between '>
 							<div className='person d-flex flex-start  flex-column  '>
 								<div className='d-flex flex-column align-items-baseline mb-4'>
-									<div className='profile_img '>
+									<div className='profile_img'>
 										<img ref={profilePicture} src={profileOwner?.photoURL} alt='profile_img' />
 									</div>
 									{profileUpdateConfirm && (
@@ -202,16 +207,16 @@ export const Profile = () => {
 										</div>
 									)}
 									{isOwner && (
-										<div className='upload-profile-photo d-flex border'>
+										<div className='upload-profile-photo'>
 											<input type='file' id='pp' name='pp' accept='image/*' onChange={updateProfileImg} />
-											<label htmlFor='pp' className='btn pb-3 p-2'>
+											<label htmlFor='pp' className='btn-custom'>
 												<BsCameraFill className='camera' />
 											</label>
 										</div>
 									)}
 								</div>
 								<div className='personal_info text-start'>
-									<h2 className='user_name m-0'>{profileOwner?.displayName}</h2>
+									<h2 className='user_name m-0 text-capitalize'>{profileOwner?.displayName}</h2>
 									<p className='user_Bio text-secondary  fs-5 my-1'>{profileOwner?.description || 'No description yet!'}</p>
 								</div>
 							</div>
@@ -238,7 +243,7 @@ export const Profile = () => {
 								<div className='edit_and_matList my-2 pe-2'>
 									<div className='edit' onClick={() => setModalShow(true)}>
 										<div className='text-dark'>
-											<h4 className='d-inline '>Edit Profile</h4>
+											<h4 className='d-inline pointer'>Edit Profile</h4>
 											<span className='px-1 text-dark'>
 												<BsPencilSquare />
 											</span>

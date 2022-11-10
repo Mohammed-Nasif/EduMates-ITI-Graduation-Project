@@ -71,7 +71,7 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 	};
 
 	const sendComment = (e) => {
-		e.code === 'Enter' && !e.shiftKey && handleComment();
+		(e.code === 'Enter' || e.code === 'NumpadEnter') && !e.shiftKey && handleComment();
 	};
 
 	const handleComment = async () => {
@@ -168,7 +168,7 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 						</small>
 					)}
 					{profileshared && (
-						<small className='text-muted'>
+						<small className='text-muted text-capitalize'>
 							<BsArrow90DegRight />
 							{profileUser.uid === currentUser.uid ? 'You ' : profileUser.displayName} shared this post {profiledate.toDate().toLocaleString()}
 						</small>
@@ -179,7 +179,7 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 						</div>
 						<div className='name'>
 							<Link to={`/eduMates/profile/${postOwner.displayName}/${postOwner.uid}`}>
-								<div className='user-name fw-bold'>{postOwner.displayName}</div>
+								<div className='user-name fw-bold text-capitalize'>{postOwner.displayName}</div>
 							</Link>
 							<div className='date fw-light' title={postObj.createdAt && postObj.createdAt.toDate().toLocaleString()}>
 								{getTimeDiff()}
@@ -272,7 +272,7 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 								<img src={currentUser.photoURL} alt='' />
 							</div>
 							<div className='comment-body'>
-								<div className='user-name fw-bold mb-1'>{currentUser.displayName}</div>
+								<div className='user-name fw-bold mb-1 text-capitalize'>{currentUser.displayName}</div>
 								<textarea
 									className='w-100'
 									ref={commentArea}

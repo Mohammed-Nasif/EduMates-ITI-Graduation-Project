@@ -36,23 +36,23 @@ export const Postcomment = ({ comment, postId }) => {
 	};
 
 	return (
-		<div className="d-flex border-bottom border-1 mb-1" key={comment.commentId}>
-			<div className="user-photo rounded-circle">
-				<img src={commentOwner.photoURL} alt="" />
+		<div className='d-flex border-bottom border-1 mb-1' key={comment.commentId}>
+			<div className='user-photo rounded-circle'>
+				<img src={commentOwner.photoURL} alt='' />
 			</div>
 
-			<div className="comment-body">
+			<div className='comment-body'>
 				<Link to={`/eduMates/profile/${commentOwner.displayName}/${commentOwner.uid}`}>
-					<div className="user-name fw-bold ">{commentOwner.displayName}</div>
+					<div className='user-name fw-bold text-capitalize'>{commentOwner.displayName}</div>
 				</Link>
 
-				<div className="date fw-light mb-2" title={comment.commentedAt && comment.commentedAt.toDate().toLocaleString()}>
+				<div className='date fw-light mb-2' title={comment.commentedAt && comment.commentedAt.toDate().toLocaleString()}>
 					{getTimeDiff()}
 				</div>
-				<p className="comment-txt lh-sm mb-2">{comment.commentContent}</p>
+				<p className='comment-txt lh-sm mb-2'>{comment.commentContent}</p>
 			</div>
 			{comment.commentBy === currentUser.uid && (
-				<div className="remove-comment ms-auto px-2 h-2" onClick={deleteComment}>
+				<div className='remove-comment ms-auto px-2 h-2' onClick={deleteComment}>
 					<BsXCircle />
 				</div>
 			)}

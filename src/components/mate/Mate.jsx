@@ -37,7 +37,7 @@ export const Mate = ({ mateId, currUser }) => {
 						</div>
 						<div className='text-wrapper text-center'>
 							<Link to={`/eduMates/profile/${mate.displayName}/${mate.uid}`}>
-								<p className='fw-bold'>{mate.displayName}</p>
+								<p className='fw-bold text-capitalize'>{mate.displayName}</p>
 							</Link>
 
 							<p className='description'>{mate.description}</p>

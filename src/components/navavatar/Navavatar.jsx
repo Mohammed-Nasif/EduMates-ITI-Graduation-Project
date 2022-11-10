@@ -48,7 +48,7 @@ export const Navavatar = (props) => {
 						<div className='user-img mb-2'>
 							<img src={currentUser.photoURL} alt='user-img' />
 						</div>
-						<p className='user-name mb-0 f-roboto fw5'>{currentUser.displayName}</p>
+						<p className='user-name mb-0 f-roboto fw5 text-capitalize'>{currentUser.displayName}</p>
 						<Link to={`/eduMates/profile/${currentUser.displayName}/${currentUser.uid}`} className='profile-link f-roboto fw5 d-block mb-2'>
 							View Profile
 						</Link>
