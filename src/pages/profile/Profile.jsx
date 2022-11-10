@@ -1,7 +1,15 @@
 import './profile.scss';
+// Profile Badges
+import BugHunter from '../../assets/profileicons/bugHunter.png';
+import Instructor from '../../assets/profileicons/instructor.png';
+import Premium from '../../assets/profileicons/premiumMember.png';
+import Verified from '../../assets/profileicons/verified.png';
+import WebOwner from '../../assets/profileicons/webOwner.png';
+import WebDev from '../../assets/profileicons/wesiteDeveloper.png';
+
+// Profile Badges
 import { Link, useParams } from 'react-router-dom';
-import { BsPeople, BsPencilSquare, BsUpload, BsCameraFill } from 'react-icons/bs';
-// import { AiOutlineCheck } from 'react-icons/ai';
+import { BsPeople, BsPencilSquare, BsCameraFill } from 'react-icons/bs';
 import { useState, useEffect, useRef } from 'react';
 import { useContext } from 'react';
 import { Editmodal } from './Editmodal';
@@ -216,7 +224,17 @@ export const Profile = () => {
 									)}
 								</div>
 								<div className='personal_info text-start'>
-									<h2 className='user_name m-0 text-capitalize'>{profileOwner?.displayName}</h2>
+									<div className='d-flex justify-content-center align-items-center gap-2'>
+										<h2 className='user_name m-0 text-capitalize'>{profileOwner?.displayName}</h2>
+										<div className='icons'>
+											{profileOwner?.specialFlags?.isOwner && <img src={WebOwner} alt='Website Owners' title='Website Owners' />}
+											{profileOwner?.specialFlags?.isDeveloper && <img src={WebDev} alt='Website Developers' title='Website Developers' />}
+											{profileOwner?.specialFlags?.isVerified && <img src={Verified} alt='Verified Member' title='Verified Member' />}
+											{profileOwner?.specialFlags?.isBugHunter && <img src={BugHunter} alt='Bug Hunter' title='Bug Hunter' />}
+											{profileOwner?.specialFlags?.isInstructor && <img src={Instructor} alt='Instructor' title='Instructor' />}
+											{profileOwner?.specialFlags?.isPremium && <img className='prem' src={Premium} alt='Premium Member' title='Premium Member' />}
+										</div>
+									</div>
 									<p className='user_Bio text-secondary  fs-5 my-1'>{profileOwner?.description || 'No description yet!'}</p>
 								</div>
 							</div>

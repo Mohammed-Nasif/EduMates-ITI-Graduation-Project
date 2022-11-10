@@ -127,6 +127,19 @@
 	}
 }
 
-.pointer{
+.pointer {
 	cursor: pointer;
+}
+
+.icons {
+	display: flex;
+	gap: 10px;
+	img {
+		width: 30px;
+		height: 25px;
+	}
+	.prem {
+		width: 28px;
+		height: 28px;
+	}
 }
