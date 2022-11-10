@@ -11,6 +11,7 @@ import SystemProfile from '../../assets/profileicons/SystemBadge.png';
 
 import { Link, useParams } from 'react-router-dom';
 import { BsPeople, BsPencilSquare, BsCameraFill } from 'react-icons/bs';
+import { GrCheckmark, GrClose } from 'react-icons/gr';
 import { useState, useEffect, useRef } from 'react';
 import { useContext } from 'react';
 import { Editmodal } from './Editmodal';
@@ -37,6 +38,7 @@ export const Profile = () => {
 		isMAte = false;
 
 	const [uploadedPP, setUploadedPP] = useState('');
+	const [imgUploaded, setImgUploaded] = useState(false);
 	const [uploadedCover, setUploadedCover] = useState('');
 	const [cvrUpdateConfirm, setCvrUpdateConfirm] = useState(false); /**variable to show save/cancel changes div after choosing the photo */
 	const [profileUpdateConfirm, setProfileUpdateConfirm] = useState(false);
@@ -63,6 +65,7 @@ export const Profile = () => {
 			profilePicture.current.src = base64URL;
 		};
 		setProfileUpdateConfirm(true);
+		setImgUploaded(true);
 	}
 
 	// function to upload profile cover
@@ -96,6 +99,7 @@ export const Profile = () => {
 	function cancelProfileImgUpdate() {
 		profilePicture.current.src = currentUser.photoURL; /* on cancelling changes old profile image is recovered */
 		setProfileUpdateConfirm(false);
+		setImgUploaded(false);
 	}
 
 	// approving changes on cover picture
@@ -134,6 +138,7 @@ export const Profile = () => {
 		);
 
 		setProfileUpdateConfirm(false);
+		setImgUploaded(false);
 	};
 
 	// Follow
@@ -190,11 +195,11 @@ export const Profile = () => {
 						)}
 						{cvrUpdateConfirm && (
 							<div className='cvr-img-confirm'>
-								<button className='btn btn-primary me-3 p-0' onClick={confirmCvrImgUpdate}>
-									Save
+								<button className='btn btn-primary' onClick={confirmCvrImgUpdate}>
+									<GrCheckmark className='p-0 m-0' />
 								</button>
-								<button className='btn btn-dark pt-1' onClick={cancelCvrImgUpdate}>
-									Cancel
+								<button className='btn btn-secondary' onClick={cancelCvrImgUpdate}>
+									<GrClose className='p-0 m-0' />
 								</button>
 							</div>
 						)}
@@ -206,16 +211,16 @@ export const Profile = () => {
 										<img ref={profilePicture} src={profileOwner?.photoURL} alt='profile_img' />
 									</div>
 									{profileUpdateConfirm && (
-										<div className='prf-img-confirm mt-4'>
-											<button className='btn btn-primary me-3 p-0' onClick={confirmProfileImgUpdate}>
-												Save
+										<div className='prf-img-confirm'>
+											<button className='btn btn-primary' onClick={confirmProfileImgUpdate}>
+												<GrCheckmark className='icon' />
 											</button>
-											<button className='btn btn-dark pt-1' onClick={cancelProfileImgUpdate}>
-												Cancel
+											<button className='btn btn-secondary' onClick={cancelProfileImgUpdate}>
+												<GrClose className='icon' />
 											</button>
 										</div>
 									)}
-									{isOwner && (
+									{isOwner && !imgUploaded && (
 										<div className='upload-profile-photo'>
 											<input type='file' id='pp' name='pp' accept='image/*' onChange={updateProfileImg} />
 											<label htmlFor='pp' className='btn-custom'>
@@ -234,9 +239,7 @@ export const Profile = () => {
 											{profileOwner?.specialFlags?.isBugHunter && <img src={BugHunter} alt='Bug Hunter' title='Bug Hunter' />}
 											{profileOwner?.specialFlags?.isInstructor && <img src={Instructor} alt='Instructor' title='Instructor' />}
 											{profileOwner?.specialFlags?.isPremium && <img className='prem' src={Premium} alt='Premium Member' title='Premium Member' />}
-											{profileOwner?.systemFlags?.isSystemProfile && (
-												<img className='sys' src={SystemProfile} alt='EduMates' title='EduMates' />
-											)}
+											{profileOwner?.systemFlags?.isSystemProfile && <img className='sys' src={SystemProfile} alt='EduMates' title='EduMates' />}
 										</div>
 									</div>
 									<p className='user_Bio text-secondary  fs-5 my-1'>{profileOwner?.description || 'No description yet!'}</p>
@@ -262,10 +265,10 @@ export const Profile = () => {
 								</button>
 							)}
 							{isOwner && (
-								<div className='edit_and_matList my-2 pe-2'>
+								<div className='edit_and_matList my-2 pe-2 d-flex flex-column align-items-start m-0 '>
 									<div className='edit' onClick={() => setModalShow(true)}>
 										<div className='text-dark'>
-											<h4 className='d-inline pointer'>Edit Profile</h4>
+											<h4 className='d-inline pointer fs-5'>Edit Profile</h4>
 											<span className='px-1 text-dark'>
 												<BsPencilSquare />
 											</span>
@@ -273,7 +276,7 @@ export const Profile = () => {
 									</div>
 									<div className='mates'>
 										<Link to='/eduMates/profile/matesList' className='text-dark'>
-											<h4 className='d-inline'>Mates List</h4>
+											<h4 className='d-inline fs-5'>Mates List</h4>
 											<span className='px-1 mx-1'>
 												<BsPeople />
 											</span>

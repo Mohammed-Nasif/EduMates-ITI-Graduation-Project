@@ -159,7 +159,7 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 				<div className='header p-4 pb-3 pt-2'>
 					{shared && (
 						<small
-							className='text-muted'
+							className='text-muted text-capitalize'
 							title={sharedByUser ? matesShared?.filter((x) => x !== currentUser.displayName).join(' & ') : matesShared?.join(' & ')}>
 							<BsArrow90DegRight />
 							{sharedByUser && ' you '}
@@ -256,16 +256,16 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 							setShowComments((prev) => !prev);
 						}}>
 						{!!comments.length && <div className='badge bg-opacity-50 bg-secondary'>{comments.length}</div>}
-						<BsChatRightText className='icon' /> comment
+						<BsChatRightText className='icon' /> Comment
 					</div>
 					<div className='btn' onClick={handleShare}>
 						{!sharedByUser ? (
 							<>
-								<FaRegShareSquare className='icon' /> share
+								<FaRegShareSquare className='icon' /> Share
 							</>
 						) : (
 							<>
-								<FaShareSquare className='icon' /> shared
+								<FaShareSquare className='icon' /> Shared
 							</>
 						)}
 					</div>
