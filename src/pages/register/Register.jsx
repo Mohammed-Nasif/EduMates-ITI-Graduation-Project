@@ -75,6 +75,7 @@ export const Register = () => {
 								displayName,
 								email,
 								login: { isLoggedIn: true, date: Timestamp.now() },
+								systemFlags: { isSystemProfile: false, isSystemBot: false },
 								specialFlags: { isOwner: false, isVerified: false, isInstructor: false, isDeveloper: false, isBugHunter: false, isPremium: false },
 								photoURL: downloadURL,
 								coverURL:
@@ -111,6 +112,7 @@ export const Register = () => {
 					displayName,
 					email,
 					login: { isLoggedIn: true, date: Timestamp.now() },
+					systemFlags: { isSystemProfile: false, isSystemBot: false },
 					specialFlags: { isOwner: false, isVerified: false, isInstructor: false, isDeveloper: false, isBugHunter: false, isPremium: false },
 					photoURL:
 						'https://firebasestorage.googleapis.com/v0/b/edumates---graduation-project.appspot.com/o/Default-avatar.jpg?alt=media&token=e466ecc4-7260-4f1a-996d-b245e89c2281',

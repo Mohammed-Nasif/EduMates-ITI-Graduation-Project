@@ -1,4 +1,5 @@
 import './post.scss';
+import SystemProfile from '../../assets/profileicons/SystemBadge.png';
 import {
 	BsHandThumbsUp,
 	BsChatRightText,
@@ -177,9 +178,16 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 						<div className='user-photo rounded-circle overflow-hidden me-3 d-flex align-items-center'>
 							<img src={postOwner.photoURL} alt='' />
 						</div>
-						<div className='name'>
+						<div className='name w-100'>
 							<Link to={`/eduMates/profile/${postOwner.displayName}/${postOwner.uid}`}>
-								<div className='user-name fw-bold text-capitalize'>{postOwner.displayName}</div>
+								<div className=' d-flex align-items-center gap-2'>
+									<div className='user-name fw-bold text-capitalize'>{postOwner.displayName}</div>
+									{postOwner?.systemFlags?.isSystemProfile && (
+										<div className='sys-badge'>
+											<img src={SystemProfile} alt='' />
+										</div>
+									)}
+								</div>
 							</Link>
 							<div className='date fw-light' title={postObj.createdAt && postObj.createdAt.toDate().toLocaleString()}>
 								{getTimeDiff()}
