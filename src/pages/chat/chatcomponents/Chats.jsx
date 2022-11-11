@@ -32,7 +32,7 @@ export const Chats = () => {
 
 	return (
 		<div className="chats">
-			<p>Your chats</p>
+			<p className=" ms-4 mt-1">Your chats</p>
 			{chats &&
 				Object.entries(chats)
 					?.sort((a, b) => b[1].date - a[1].date)
@@ -51,7 +51,7 @@ export const Chats = () => {
 									</div>
 								</div>
 								<div className="col-3 p-0 mb-2">
-									<button className="btn btn-outline-info follow rounded-1" onClick={() => handleSelect(chat[1].userInfo)}>
+									<button className="btn btn-outline-primary follow rounded-1" onClick={() => handleSelect(chat[1].userInfo)}>
 										Chat
 									</button>
 								</div>

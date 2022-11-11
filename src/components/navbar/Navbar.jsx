@@ -17,11 +17,11 @@ export const NavbarComponent = () => {
 	};
 	return (
 		<div className="navbar-container sticky-top ">
-			<div className="nav-content d-flex align-items-center position-relative">
+			<div className="nav-content d-flex align-items-center  position-relative">
 				<div className="row w-100">
 					<div className="nav-search-container col-9">
 						<div className="nav-search-content">
-							<input type="search" placeholder="Search..." onKeyDown={(event) => getInputData(event)} />
+							<input className="ms-3" type="search" placeholder="Search..." onKeyDown={(event) => getInputData(event)} />
 						</div>
 					</div>
 					<div className="nav-icons col-3 d-flex align-items-center">
