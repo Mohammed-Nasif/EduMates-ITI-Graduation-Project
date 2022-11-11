@@ -93,7 +93,7 @@ export const Navdropdown = (props) => {
 													</div>
 													<div className='col-8 px-0'>
 														<p className='pt-2 user-name'>
-															<span className='fw-bolder text-info'>{item.actionUser.actionUserName}</span> {item.msgText}
+															<span className='fw-bolder text-info text-capitalize'>{item.actionUser.actionUserName}</span> {item.msgText}
 														</p>
 													</div>
 												</div>
@@ -104,18 +104,21 @@ export const Navdropdown = (props) => {
 									.sort((a, b) => b.notifiedAt - a.notifiedAt)
 									.map((item, index) => {
 										return (
-											<Link key={index + 1}>
-												<div className='row mb-1'>
-													<div className='col-2 user-img'>
-														<img src={item.actionUser.actionUserPhoto} alt={item.actionUser.actionUserName} />
+											<div className='notify' key={index + 1}>
+												<Link>
+													<div className='row d-flex align-items-center justify-content-center p-0 gap-2'>
+														<div className='col-2 user-img'>
+															<img src={item.actionUser.actionUserPhoto} alt={item.actionUser.actionUserName} />
+														</div>
+														<div className='col-8 px-0'>
+															<p className='pt-2 user-name m-0 mb-1'>
+																<span className='fw-bolder text-info text-capitalize'>{item.actionUser.actionUserName}</span>
+																<span>{' ' + item.msgText}</span>
+															</p>
+														</div>
 													</div>
-													<div className='col-8 px-0'>
-														<p className='pt-2 user-name'>
-															<span className='fw-bolder text-info'>{item.actionUser.actionUserName}</span> {item.msgText}
-														</p>
-													</div>
-												</div>
-											</Link>
+												</Link>
+											</div>
 										);
 									}))}
 					{props.dropType === 'chat' && (
