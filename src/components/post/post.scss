@@ -1,8 +1,9 @@
 .post {
 	.user-photo {
 		img {
-			width: 45px;
-			height: 45px;
+			border-radius: 50%;
+			width: 2.8125rem;
+			height: 2.8125rem;
 			object-fit: cover;
 		}
 	}
@@ -12,7 +13,7 @@
 	}
 	.date {
 		font-size: 0.75rem;
-		width: 16%;
+		width: 40%;
 		cursor: default;
 	}
 	.drop {
@@ -80,8 +81,10 @@
 		}
 		position: relative;
 		.badge {
+			font-size: 0.65rem;
+			line-height: 0.7rem;
 			position: absolute;
-			right: -30%;
+			right: -25%;
 			top: 20%;
 		}
 	}
