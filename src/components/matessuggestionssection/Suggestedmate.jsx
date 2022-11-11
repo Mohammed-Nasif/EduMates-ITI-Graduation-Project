@@ -15,7 +15,7 @@ export const Suggestedmate = ({ sugUser }) => {
 
 	return (
 		<>
-			{!currentUser.matesList.includes(sugUser.uid) && (
+			{!currentUser?.matesList?.includes(sugUser.uid) && (
 				<div className='visible-section px-3 px-lg-4 '>
 					<div className='row py-2 g-3 d-flex align-items-center align-items-center '>
 						<div className='col-8 col-lg-9 col-xxl-10 '>

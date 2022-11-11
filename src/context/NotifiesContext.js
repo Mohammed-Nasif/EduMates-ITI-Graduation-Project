@@ -52,8 +52,8 @@ export const NotifiesContextProvider = ({ children }) => {
 
 	useEffect(() => {
 		state.userId && updateNotifies(state);
-		console.log(state);
-		console.log('notification sent');
+		// console.log(state);
+		// console.log('notification sent');
 	}, [state]);
 
 	const updateNotifies = async (s) => {

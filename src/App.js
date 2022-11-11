@@ -14,14 +14,13 @@ import { Chathome } from './pages/chat/Chathome';
 import { Courselanding } from './pages/courselanding/Courselanding';
 import { Mateslist } from './pages/mateslist/Mateslist';
 import { Classroom } from './pages/classroom/Classroom';
-import { Coursecontent } from './pages/coursecontent/Coursecontent'
-
+import { Coursecontent } from './pages/coursecontent/Coursecontent';
 
 const App = () => {
 	const { currentUser } = useContext(AuthContext);
 
 	const ProtectedRoute = () => {
-		if (!currentUser) {
+		if (currentUser === null) {
 			return <Navigate to='/' />;
 		}
 		return <Main />;
@@ -41,17 +40,17 @@ const App = () => {
 					<Route path='profile'>
 						<Route path=':userName/:userId' element={<Profile />} />
 						<Route path='edit' element={<Editprofile />} />
-						<Route path='matesList' element={<Mateslist/>} />
+						<Route path='matesList' element={<Mateslist />} />
 					</Route>
 					<Route path='topics' element={<Topics />} />
 					<Route path='courses'>
 						<Route index element={<Courses />} />
 						<Route path=':courseName/:id' element={<Courselanding />} />
 					</Route>
-					<Route path='classroom' > 
-						<Route index element={<Classroom/>}/>
-                     	<Route path=':courseName/:id' element={<Coursecontent/>}/>
-                	</Route>
+					<Route path='classroom'>
+						<Route index element={<Classroom />} />
+						<Route path=':courseName/:id' element={<Coursecontent />} />
+					</Route>
 					<Route path='chats' element={<Chathome />} />
 				</Route>
 				<Route path='/' element={<Landing />} />

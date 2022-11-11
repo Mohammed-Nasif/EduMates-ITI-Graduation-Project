@@ -51,12 +51,12 @@ export const Navavatar = (props) => {
 							</div>
 							<p className='user-name text-capitalize f-roboto fw5 d-block my-4 text-info fs-5'>{currentUser.displayName}</p>
 						</Link>
-						{/* <Link to={`/eduMates/profile/${currentUser.displayName}/${currentUser.uid}`} className='profile-link f-roboto fw5 d-block my-3 text-info'>
-							View Profile
-						</Link> */}
 						<Link to='/' className='logout-link f-roboto fw5 d-block mb-3 text-danger' onClick={handleSignOut}>
 							Logout
 						</Link>
+						{/* <Link to='/' className='logout-link f-roboto fw5 d-block mb-3 text-danger' onClick={()=>{signOut(auth);}}>
+							Logout
+						</Link> */}
 					</div>
 				</div>
 			)}
