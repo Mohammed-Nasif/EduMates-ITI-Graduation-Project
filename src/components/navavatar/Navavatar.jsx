@@ -54,9 +54,6 @@ export const Navavatar = (props) => {
 						<Link to='/' className='logout-link f-roboto fw5 d-block mb-3 text-danger' onClick={handleSignOut}>
 							Logout
 						</Link>
-						{/* <Link to='/' className='logout-link f-roboto fw5 d-block mb-3 text-danger' onClick={()=>{signOut(auth);}}>
-							Logout
-						</Link> */}
 					</div>
 				</div>
 			)}
