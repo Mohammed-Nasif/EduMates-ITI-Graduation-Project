@@ -30,11 +30,15 @@ export const Login = () => {
 
 		try {
 			await signInWithEmailAndPassword(auth, email, password);
-			await updateDoc(doc(db, 'users', currentUser.uid), {
-				login: { isLoggedIn: true, date: Timestamp.now() },
-			});
+			if (currentUser) {
+				await updateDoc(doc(db, 'users', currentUser.uid), {
+					login: { isLoggedIn: true, date: Timestamp.now() },
+				});
+			}
 			navigate('/eduMates/home');
-		} catch (err) {}
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	const handelShowState = useCallback((flag) => {

@@ -11,6 +11,7 @@ export const AuthContextProvider = ({ children }) => {
 		const unSub = onAuthStateChanged(auth, (user) => {
 			setCurrentUser(user);
 			onSnapshot(doc(db, 'users', user.uid), (doc) => {
+				console.log(doc);
 				setCurrentUser(doc.data());
 			});
 		});
