@@ -1,6 +1,6 @@
 import axiox from 'axios';
 
 export default axiox.create({
-  baseURL:"http://localhost:3000/",
+  baseURL:"http://localhost:4200/",
 
 })

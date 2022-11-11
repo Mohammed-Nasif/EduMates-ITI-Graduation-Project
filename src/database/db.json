@@ -397,5 +397,10 @@
       ]
     }
   ],
-  "users": []
+  "users": [
+    {
+      "id": "AfdSKewjRtfYL5bZVNToFkwMOQG2",
+      "courses": []
+    }
+  ]
 }

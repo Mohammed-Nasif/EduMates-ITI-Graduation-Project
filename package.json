@@ -40,11 +40,12 @@
 		"workbox-streams": "^6.5.4"
 	},
 	"scripts": {
-		"start": "react-scripts start",
+		"start": "set HTTPS=true && react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"serve-json": "json-server --watch ./src/database/db.json"
+		"serve-json": "json-server --watch ./src/database/db.json --port=4200 --delay 800",
+		"startdev": "concurrently --kill-others \"npm start\" \"npm run serve-json\""
 	},
 	"eslintConfig": {
 		"extends": [
