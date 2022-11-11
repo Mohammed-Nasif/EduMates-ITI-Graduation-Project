@@ -25,28 +25,64 @@ export const Coursedescription = (props) => {
   const [enrolledCourses, setEnrolledCourses] = useState([]);
   const [isEnrolled, setIsEnrolled] = useState(false);
   let enrolledCoursesArr = useRef(); 
+  const combID = `${currentUser?.uid}-${props.course.id}`;
+
 
   // console.log(enrolledCourses);
   const [userData, setUserData] = useState({});
 
+  // const getDataFromApi = async (endpoint, path) => {
+  //   const response = await coursesapi.get(`/${endpoint}/${path}`);
   const getDataFromApi = async (endpoint, path) => {
-    const response = await coursesapi.get(`/${endpoint}/${path}`);
-    console.log(response.data);
-    return response.data;
+    try{
+      const response = await coursesapi.get(`/${endpoint}/${path}`);
+      console.log(response.data);
+      return response;
+    }
+    catch (error) {
+      console.log(error.response.status) 
+      return error.response.status;
+  }
   };
+
+  // post new element in seenlessons entity
+  const add = async(endpoint, request)=>{
+    const response = await coursesapi.post(endpoint, request);
+      console.log(response);
+    console.log(response.data);
+  }
+
+  // delete
+  const deleteLessosn = async(endpoint, path)=>{
+    const response = await coursesapi.delete(`/${endpoint}/${path}`);
+      console.log(response);
+    console.log(response.data);
+  }
 
   useEffect(() => {
     const getUserData = async () => {
-      const data = await getDataFromApi('users', currentUser.uid);
-      if (data) {
-        setIsEnrolled(checkCourseEnrollment(data.courses));
-        setUserData(data);
-        setEnrolledCourses(data.courses);
-        enrolledCoursesArr.current = data.courses;
-        // console.log(enrolledCoursesArr.current);
+      const response = await getDataFromApi('users', currentUser.uid);
+      if (response.data) {
+        enrolledCoursesArr.current = response.data.courses;
+        console.log(enrolledCoursesArr.current);
       }
     };
     getUserData();
+  }, []);
+
+  useEffect(() => {
+    const checkenrollment = async () => {
+      const data = await getDataFromApi('usercourses', combID);
+      if (data === 404) {
+          console.log(false);
+          setIsEnrolled(false);
+      }
+      else{
+        console.log(true);
+        setIsEnrolled(true);
+      }
+    };
+    checkenrollment();
   }, []);
 
   const updateEnrolled = async (endPoint, path, request)=>{
@@ -73,31 +109,24 @@ export const Coursedescription = (props) => {
         }
       }
 
-      console.log("userData: ", userData.courses);
 
 	const enroll = () => {
-    // checkCourseEnrollment(userData.courses);
     // endpoint: courses
     let enrolledUsersArr = [];
-
-    // endpoint: users
-    // let enrolledCoursesArr = [];
-    const newCourse = [{
-      "id": props.course.id,
-      "isenrolled": true,
-      "userRating": 0,
-      "lastLesson": 0,
-      "seenlessons":[]
-    }]
-    // const enrollUserRequest = {
-    //   "courses": {enrolledCoursesArr}
-    // }
     if(!isEnrolled){
-        // add
-        enrolledUsersArr = [...enrolledUsers, currentUser.uid];
-        enrolledCoursesArr.current = [...enrolledCoursesArr.current, ...newCourse];
-        // enrolledCoursesArr.current.push(newCourse);
-        // console.log("newArr: ", enrolledCoursesArr.current);
+        // add      
+        if(enrolledCoursesArr.current){
+          if(!enrolledCoursesArr.current.includes(props.course.id)){
+            enrolledCoursesArr.current.push(props.course.id);
+          }
+        }
+        add('usercourses', {
+          "id": combID,
+          "courseId": props.course.id,
+          "seenlessons":[0],
+          "progress": 0,
+          "userRating": 0
+        });
         setIsEnrolled(true);
     }
     else{
@@ -106,32 +135,24 @@ export const Coursedescription = (props) => {
       const idIndex = enrolledUsersArr.indexOf(currentUser.uid);
       enrolledUsersArr.splice(idIndex, 1);
 
-      console.log("before", enrolledUsersArr);
-      enrolledCoursesArr.current = enrolledCoursesArr.current.filter((course)=>{
-          return course.id !== props.course.id;
+      console.log("before", enrolledCoursesArr.current);
+      enrolledCoursesArr.current = enrolledCoursesArr.current.filter((courseId)=>{
+          return courseId !== props.course.id;
       })
-      console.log("after",enrolledUsersArr);
+      console.log("after",enrolledCoursesArr.current);
+      deleteLessosn('usercourses', combID);
       setIsEnrolled(false);
     }
 
-    const enrollCourseRequest = {
-      "enrollment": enrolledUsersArr
-    }
-    updateEnrolled('course', props.course.id, enrollCourseRequest);
+   
     setEnrolledUsers([...enrolledUsersArr]);
 
-    // console.log(enrolledCoursesArr.current)
     const enrollUserRequest = {
       "courses": enrolledCoursesArr.current
     }
     updateEnrolled('users', currentUser.uid, enrollUserRequest);
-    setEnrolledCourses([...enrolledCoursesArr.current]);
-		// setIsEnrolled((prev) => !prev);
 	  }
 
-
-
-    // checkCourseEnrollment(enrolledCourses);
   return (
     <>
       <div className='course_Description '>

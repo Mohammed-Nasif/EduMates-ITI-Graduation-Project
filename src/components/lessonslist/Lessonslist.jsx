@@ -3,6 +3,7 @@ import { useState, useEffect, useContext, useRef } from 'react';
 import {BsFillCircleFill, BsCheckLg} from "react-icons/bs";
 import coursesapi from "./../../coursesAPI/coursesapi";
 import { AuthContext } from '../../context/AuthContext';
+import {Rating} from './../rating/Rating';
 
 
 export const Lessonslist = (props) => {
@@ -11,7 +12,7 @@ export const Lessonslist = (props) => {
     const [flag, setFLag] = useState(false);
     const [activeLessons, setActiveLessons] = useState([]);  // get the initial value from firebase (array of finished lessons)
     const apiSeenLessons = useRef();
-    const allUserCourses = useRef();
+    const combId = `${currentUser.uid}-${props.courseId}`;
 
     // get data from api
     const getDataFromApi = async (endpoint, path) => {
@@ -29,13 +30,10 @@ export const Lessonslist = (props) => {
 
     useEffect(()=>{
         const getSeenLessons = async () => {
-            const data = await getDataFromApi('users', currentUser.uid);
-            if (data) {
-                allUserCourses.current = data.courses;
-                const userCourse = data.courses.filter((course)=>{
-                    return course.id === props.courseId;
-                }) 
-                apiSeenLessons.current = userCourse[0].seenlessons;
+            const data = await getDataFromApi('usercourses',combId );
+            if (data) { 
+                console.log(data.seenlessons)
+                apiSeenLessons.current = data.seenlessons;
             }
             else{
                 console.log("ERROR");
@@ -51,13 +49,9 @@ export const Lessonslist = (props) => {
         // when select lessons from lessonslistMob component:
         if(flag === false){
             setLessonState(props.lessonNum);
-            // let actLessons = apiSeenLessons.current;
             let actLessons = [];
             if(!actLessons.includes(props.lessonNum)){
                 actLessons.push(props.lessonNum);
-                // setActiveLessons([...actLessons]);
-                // apiSeenLessons.current.push(props.lessonNum);
-                // activeLessons.current = actLessons;
             }
         }
         else{    // selected lesson from this component (lessonslist)
@@ -68,16 +62,17 @@ export const Lessonslist = (props) => {
             if (apiSeenLessons.current.length === 0){
                 apiSeenLessons.current.push(0);
                 setActiveLessons([...apiSeenLessons.current]);
-                // const testRequest = {
-                //     ???
-                // }
-                
-                // updateSeenLessonslist('users', currentUser.uid, testRequest); // path ??
             }
         }
         console.log("mobile: ", apiSeenLessons.current)
 
     },[props.lessonNum, apiSeenLessons.current])
+
+    // Get the progress of the course  inputs: array of allLessons, array of active lessons   output: number
+    const CalculateProgress = (actLessonsArr, allLessonsArr)=>{
+        return (actLessonsArr.length/allLessonsArr.length) * 100;
+    }
+
 
     const handleSelectLesson = (i)=>{
         props.selectedLesson(i);          // send the lessonNum to parent (communication between components)
@@ -86,15 +81,18 @@ export const Lessonslist = (props) => {
         let actLessons = apiSeenLessons.current;
         if(!actLessons.includes(i)){
             actLessons.push(i);
-            // setActiveLessons([...actLessons]);
             apiSeenLessons.current = actLessons;
-            // apiSeenLessons.current.push(props.lessonNum);
             setActiveLessons(apiSeenLessons.current);
+            const progress = Math.floor(CalculateProgress(activeLessons, props.lessonsList));
+            const lessonsRequest = {
+                "seenlessons": apiSeenLessons.current,
+                "progress": progress
+            }
+            updateSeenLessonslist('usercourses',combId, lessonsRequest);
         }
         console.log("list: ", activeLessons)
     }
 
-    // console.log(apiSeenLessons.current);
     return (
         <div className='lessonslist p-4'>
             <div>{props.courseTitle}</div>
@@ -120,6 +118,7 @@ export const Lessonslist = (props) => {
                     )
                 })}
             </div>
+            <Rating/>
         </div>
     )
 }
