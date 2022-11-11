@@ -35,8 +35,8 @@ export const Home = () => {
 
 	return (
 		<>
-			<div className="home ps-3 d-flex ">
-				<main className="ms-5">
+			<div className="home ps-lg-3 d-flex ">
+				<main className="ms-md-5">
 					<div className="my-4">
 						<AddPost />
 					</div>

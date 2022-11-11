@@ -13,6 +13,9 @@ import { doc, setDoc, Timestamp } from 'firebase/firestore';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import { TopicsContext } from '../../context/TopicsContext';
+import { RiImageAddFill } from 'react-icons/ri';
+import coursesapi from './../../coursesAPI/coursesapi';
+
 
 export const Register = () => {
 	const animatedComponents = makeAnimated();
@@ -75,7 +78,8 @@ export const Register = () => {
 								displayName,
 								email,
 								login: { isLoggedIn: true, date: Timestamp.now() },
-								specialFlags: { isAdmin: false, isVerified: false, isInstructor: false },
+								systemFlags: { isSystemProfile: false, isSystemBot: false },
+								specialFlags: { isOwner: false, isVerified: false, isInstructor: false, isDeveloper: false, isBugHunter: false, isPremium: false },
 								photoURL: downloadURL,
 								coverURL:
 									'https://firebasestorage.googleapis.com/v0/b/edumates---graduation-project.appspot.com/o/287f5db0-c12a-4d0b-a586-92728f497052?alt=media&token=d4feb1f2-5c23-4891-8c0e-dc2fd7c0be05',
@@ -85,7 +89,7 @@ export const Register = () => {
 								matesList: [res.user.uid],
 								unseenNotifies: [],
 								seenNotifies: [],
-								mgsNotifies: [],
+								mgsNotifies: false,
 							});
 
 							// Create User Chat Collection
@@ -96,6 +100,12 @@ export const Register = () => {
 							// Create User Classroom Collection      {JSON}
 							await setDoc(doc(db, 'userClassroom', res.user.uid), {
 								//Object is Empty Because User Doesn't have any Courses yet
+							});
+
+							// Create users object in json server
+							await coursesapi.post('/users', {
+								id: res.user.uid,
+								courses: [],
 							});
 
 							// After All Operations Go To Home Page
@@ -111,7 +121,8 @@ export const Register = () => {
 					displayName,
 					email,
 					login: { isLoggedIn: true, date: Timestamp.now() },
-					specialFlags: { isAdmin: false, isVerified: false, isInstructor: false },
+					systemFlags: { isSystemProfile: false, isSystemBot: false },
+					specialFlags: { isOwner: false, isVerified: false, isInstructor: false, isDeveloper: false, isBugHunter: false, isPremium: false },
 					photoURL:
 						'https://firebasestorage.googleapis.com/v0/b/edumates---graduation-project.appspot.com/o/Default-avatar.jpg?alt=media&token=e466ecc4-7260-4f1a-996d-b245e89c2281',
 					coverURL:
@@ -122,7 +133,7 @@ export const Register = () => {
 					matesList: [res.user.uid],
 					unseenNotifies: [],
 					seenNotifies: [],
-					mgsNotifies: [],
+					mgsNotifies: false,
 				});
 
 				// Create User Chat Collection
@@ -133,6 +144,12 @@ export const Register = () => {
 				// Create User Classroom Collection
 				await setDoc(doc(db, 'userClassroom', res.user.uid), {
 					//Object is Empty Because User Doesn't have any Courses yet
+				});
+
+				// Create users object in json server
+				await coursesapi.post('/users', {
+					id: res.user.uid,
+					courses: [],
 				});
 
 				// After All Operations Go To Home Page
@@ -274,7 +291,9 @@ export const Register = () => {
 						<Form.Control style={{ display: 'none' }} type='file' id='file' accept='image/*' {...register('avatarFile', { onChange: getBase64 })} />
 						<Form.Label htmlFor='file'>
 							{/* <img src={AddAvatar} alt='addAvatar' /> */}
-							<span>Add an avatar</span>
+							<span className='fs-6 d-flex justify-content-center align-items-center pointer'>
+								<RiImageAddFill className='fs-4 me-2' /> Select your avatar
+							</span>
 						</Form.Label>
 					</Form.Group>
 
@@ -286,10 +305,10 @@ export const Register = () => {
 			</div>
 
 			<p className='text-center'>
-				Already on EduMates?{' '}
+				Already on EduMates?
 				<Link to='/login' className='fw-bolder'>
 					Login
-				</Link>{' '}
+				</Link>
 			</p>
 		</div>
 	);

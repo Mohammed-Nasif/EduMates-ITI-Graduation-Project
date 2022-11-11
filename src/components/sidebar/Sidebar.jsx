@@ -1,6 +1,6 @@
 import './sidebar.scss'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
-import logo from './../../assets/images/Mates.svg'
+import logo from './../../assets/images/EduMatesLight.svg'
 import {
   BsFillHouseFill,
   BsHash,
@@ -45,14 +45,14 @@ export const Sidebar = () => {
     <div className='sidebar-container m-0  position-fixed'>
       <div className='mb-3 w-100 mx-auto text-center logo '>
         <Link to='/eduMates/home'>
-          <img src={logo} alt='EduMates' className='pt-3' />
+          <img src={logo} alt='EduMates' className='pt-4 pb-3 w-75' />
         </Link>
       </div>
-      <div className='user-info mb-2'>
+      <div className='user-info mb-3'>
         <div className='user-img mb-2'>
           <img src={currentUser.photoURL} alt='user-img' />
         </div>
-        <p className='user-name mb-0 f-roboto fw5 text-truncate'>
+        <p className='user-name mb-1 f-roboto fw5 text-truncate text-capitalize'>
           {currentUser.displayName}
         </p>
         <Link

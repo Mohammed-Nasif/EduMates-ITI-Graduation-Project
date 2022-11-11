@@ -10,11 +10,11 @@ export const Coursecard = (props) => {
 	return (
 		<>
 			<div className='course  shadow-sm '>
-				<div className='course_img'>
-					<img src={props.course.courseImg} alt='course_img' />
+				<div className='course_img w-75 mx-auto pt-3'>
+					<img src={props.course.lessonsList[0].lessonThumbnail.url} alt='course_img' />
 				</div>
 				<div className='course_title  '>
-					<h5 className=''>{props.course.courseTitle}</h5>
+					<h5 className=''>{props.course.courseName}</h5>
 				</div>
 				<div className='course_body d-flex justify-content-between align-items-center '>
 					<div className='rating'>
@@ -31,7 +31,7 @@ export const Coursecard = (props) => {
 							})}
 					</div>
 
-					<Link to={`/eduMates/courses/nasif/1`} className='text-dark'>
+					<Link to={`/eduMates/courses/${props.course.courseName}/${props.course.id}`} className='text-dark'>
 						<div className='start_course_icon'>
 							<BsBoxArrowInRight size={35} />
 						</div>

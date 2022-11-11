@@ -1,21 +1,27 @@
+//
+
 .topics-suggestion-layout {
-	width: 100%;
-  // width: 15rem;
-	border: 0.5px solid rgb(196, 196, 196);
-	border-radius: 20px;
-	background-color: white;
-	h4 {
-		font-size: 1rem;
+	overflow: hidden;
+
+	button {
+		font-size: 0.85rem;
 	}
-	.show-more-section {
-		border-top: 0.5px solid rgb(196, 196, 196);
-		p {
-			color: #0080ff;
-			cursor: pointer;
-			margin-bottom: 0.5rem;
+	.course_img {
+		position: relative;
+		transition: all 0.7s;
+		.overlay {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-color: #0080ff;
+			color: white;
+			inset: 0;
+			opacity: 0;
+			text-align: center;
+			transition: all 0.7s;
 		}
-	}
-	.plus-icon {
-		color: #0080ff;
+		&:hover .overlay {
+			opacity: 0.9;
+		}
 	}
 }

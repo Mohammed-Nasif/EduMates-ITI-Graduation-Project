@@ -1,13 +1,13 @@
 import './courselandingIframe.scss'
-import { BsStarFill } from 'react-icons/bs'
+import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
 // import Iframe from 'react-iframe'
 import ReactPlayer from 'react-player'
 import { useState, useEffect } from 'react'
 // import axios from 'axios'
 
-export const CourselandingIframe = () => {
-  const baseURl =
-    'https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyDahH_bXneE701zW8UoiiB_2WgVX0lAXA4&part=snippet&maxResults=10&playlistId=PLDoPjvoNmBAw8NNtJF4Bvhhbnt6MghtSq'
+export const CourselandingIframe = (props) => {
+  // const baseURl =
+  //   'https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyDahH_bXneE701zW8UoiiB_2WgVX0lAXA4&part=snippet&maxResults=10&playlistId=PLDoPjvoNmBAw8NNtJF4Bvhhbnt6MghtSq'
   //   const [playList, setPlayList] = useState([])
   //  useEffect(() => {
   //       axios.get(baseURl).then(response => {
@@ -32,13 +32,11 @@ export const CourselandingIframe = () => {
 
   return (
     <>
-      <Courseheading />
+      <Courseheading courseName={props.courseName} courseRating={props.courseRating}/>
       <>
         <div className='iframe_wrapper'>
           <ReactPlayer
-            url='https://www.youtube-nocookie.com/embed/https://
-            www.youtube.com/watch?v=Ml7ovL69uFQ&list=PLqUX34SwGks
-            RZHcVE2eGtxW8C0xcwEtkA&index=10'
+            url={`https://www.youtube-nocookie.com/embed/${props.courseVideo}`}
             width='100%'
             controls={true}
           />
@@ -49,17 +47,32 @@ export const CourselandingIframe = () => {
   )
 }
 
-export const Courseheading = () => {
+export const Courseheading = (props) => {
+  const rating = (value) => {
+		let rate = (value / 100) * 5;
+		return Math.round(rate * 2) / 2;
+	};
   return (
     <>
       <div className='course_heading'>
-        <h4 className='course_name'>Front-End Developer Roadmap</h4>
+        <h4 className='course_name'>{props.courseName}</h4>
         <div className='rating '>
+          {/* <BsStarFill className='star' />
           <BsStarFill className='star' />
           <BsStarFill className='star' />
           <BsStarFill className='star' />
-          <BsStarFill className='star' />
-          <BsStarFill className='star' />
+          <BsStarFill className='star' /> */}
+          	{Array(5)
+							.fill(0)
+							.map((_, index) => {
+								if (rating(props.courseRating) >= index + 1) {
+									return <BsStarFill className='gold' size={20} key={index} />;
+								} else if (rating(props.courseRating) - index === 0.5) {
+									return <BsStarHalf className='gold' size={20} key={index} />;
+								} else {
+									return <BsStar className='gold' size={20} key={index} />;
+								}
+							})}
         </div>
       </div>
     </>

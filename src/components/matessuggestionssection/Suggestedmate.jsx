@@ -8,15 +8,15 @@ import { Link } from 'react-router-dom';
 export const Suggestedmate = ({ sugUser }) => {
 	const { currentUser } = useContext(AuthContext);
 	const addToMatesList = async () => {
-		await updateDoc(doc(db, 'users', currentUser.uid), {
+		await updateDoc(doc(db, 'users', currentUser?.uid), {
 			matesList: arrayUnion(sugUser.uid),
 		});
 	};
 
 	return (
 		<>
-			{!currentUser.matesList.includes(sugUser.uid) && (
-				<div className="visible-section px-3 px-lg-4 ">
+			{!currentUser?.matesList?.includes(sugUser.uid) && (
+				<div className="visible-section px-md-2 px-xlg-3 ">
 					<div className="row py-2 g-3 d-flex align-items-center align-items-center ">
 						<div className="col-8 col-lg-9 col-xxl-10 ">
 							<div className="row g-2">
@@ -27,10 +27,9 @@ export const Suggestedmate = ({ sugUser }) => {
 								</div>
 								<div className="col-7 col-lg-7 col-xl-8 mt-0 py-2 ">
 									<Link to={`/eduMates/profile/${sugUser.displayName}/${sugUser.uid}`}>
-										<p className="fw-bold w-13">{sugUser.displayName}</p>
+										<p className="fw-bold w-13 text-capitalize text-truncate lh-1">{sugUser.displayName}</p>
 									</Link>
-
-									<p className="w-10">{sugUser.description}</p>
+									<p className="w-10 text-truncate">{sugUser.description}</p>
 								</div>
 							</div>
 						</div>

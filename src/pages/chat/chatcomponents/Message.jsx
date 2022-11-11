@@ -41,7 +41,6 @@ export const Message = ({ message }) => {
 				{message.video && (
 					<video className="w-75" controls>
 						<source src={message.video} type="" />
-						Your browser does not support HTML video.
 					</video>
 				)}
 				{message.voice && (
