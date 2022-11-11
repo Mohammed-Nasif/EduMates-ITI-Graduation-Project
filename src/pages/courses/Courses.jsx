@@ -46,20 +46,40 @@ export const Courses = ({ props, Children }) => {
 //   console.log(courses)
 
 let [allCourses, setAllCourses] = useState([]);
+let [userRatingMap,setuserRatingMap] = useState({});
 
-const getCoursesFromApi = async ()=>{
-  const response = await coursesapi.get(`/courses`);
-  // console.log(response.data);
+const getDataFromApi = async (endpoint)=>{
+  const response = await coursesapi.get(`/${endpoint}`);
+  console.log(response.data);
   return response.data;
 }
+
 useEffect(()=>{
+  let ratingMap = {}
   const getCourses = async ()=>{
-    const allcoursesData = await getCoursesFromApi();
-    if(allcoursesData) setAllCourses(allcoursesData);
+    const allcoursesData = await getDataFromApi("courses");
+    const usercoursesData = await getDataFromApi("usercourses");
+    
+
+    if(allcoursesData && usercoursesData) {
+      setAllCourses(allcoursesData);
+
+      allcoursesData.forEach(el => {
+          ratingMap[el.id] = [];
+      })
+
+      usercoursesData.forEach(el => {
+          ratingMap[el.courseId].push(el.userRating);
+      });
+
+      setuserRatingMap(ratingMap);
+    }
   }
   getCourses();
+
 }, []);
 console.log(allCourses);
+console.log(userRatingMap);
 
 
   return (
@@ -73,7 +93,7 @@ console.log(allCourses);
                 return (
                   <div className='col-lg-6  col-sm-12 ' key={i}>
                     <div className='course'>
-                      <Coursecard course={course} />
+                      <Coursecard course={course} courseRating={userRatingMap[course.id]} />
                     </div>
                   </div>
                 )
@@ -92,3 +112,9 @@ console.log(allCourses);
     </>
   )
 }
+
+
+
+//get req to usercourses endpoint
+// map key courseId  => array of nums || sum of nums 
+// loop on resulted data 
