@@ -10,6 +10,7 @@
     }
     .interact-icon{
         cursor: pointer;
+        font-size: 13px;
     }
 
     .reply{
@@ -34,5 +35,8 @@
                 cursor: pointer;
             }
         }
+    }
+    .post-body {
+        margin-left: 5rem;
     }
 }

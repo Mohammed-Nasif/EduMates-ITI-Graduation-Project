@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Lessonslist } from "./../../components/lessonslist/Lessonslist";
 import { LessonDisplay } from "./../../components/lessondisplay/LessonDisplay";
 import { LessonslistMob } from "../../components/lessonslistmob/LessonslistMob";
-import { Coursediscussion } from "./../../components/coursediscussion/Coursediscussion";
+import { Coursediscussion } from "../../components/coursediscussion/Coursediscussion";
 import "./coursecontent.scss";
 import { useParams } from "react-router-dom";
 import coursesapi from "./../../coursesAPI/coursesapi";

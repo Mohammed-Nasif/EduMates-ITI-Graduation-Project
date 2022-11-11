@@ -1,7 +1,7 @@
 .discussion-comment{
     width: 80%;
     padding: 2rem;
-    background-color: white;
+    background-color: #fafafa;
     border-radius: 1.25rem;
     img {
         border-radius: 50%;
@@ -14,4 +14,7 @@
     .comment-content{
         font-size: .8125rem;
     }
+}
+.comment {
+    margin-left: 5rem;
 }
