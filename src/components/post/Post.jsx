@@ -141,10 +141,10 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 						<small className="text-muted text-capitalize" title={sharedByUser ? matesShared?.filter((x) => x !== currentUser.displayName).join(' & ') : matesShared?.join(' & ')}>
 							<BsArrow90DegRight />
 							{sharedByUser && '  you '}
-							{sharedByUser && matesShared.length > 2 ? `& ${matesShared.length - 1} mates ` : ''}
+							{sharedByUser && matesShared.length > 2 ? `& ${matesShared.length - 1} mates ` : ' '}
 							{sharedByUser && matesShared.length === 2 ? '& 1 mate ' : ''}
-							{!sharedByUser && matesShared.length > 1 ? ` ${matesShared.length} mates` : ''}
-							{!sharedByUser && matesShared.length === 1 ? ` ${matesShared[0]} ` : ''}
+							{!sharedByUser && matesShared.length > 1 ? ` ${matesShared.length} mates` : ' '}
+							{!sharedByUser && matesShared.length === 1 ? ` ${matesShared[0]} ` : ' '}
 							shared this post
 						</small>
 					)}

@@ -25,12 +25,14 @@ import { PostsContext } from './../../context/PostsContext';
 import { arrayRemove, arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import { AuthContext } from '../../context/AuthContext';
 import { UsersContext } from '../../context/UsersContext';
+import { NotifiesContext } from '../../context/NotifiesContext';
 
 export const Profile = () => {
 	const param = useParams();
 	const { currentUser } = useContext(AuthContext);
 	const { allPosts } = useContext(PostsContext);
 	const { allUsers } = useContext(UsersContext);
+	const { dispatch } = useContext(NotifiesContext);
 
 	const [profileOwner, setProfileOwner] = useState({});
 
@@ -145,6 +147,13 @@ export const Profile = () => {
 	const addToMatesList = async () => {
 		await updateDoc(doc(db, 'users', currentUser.uid), {
 			matesList: arrayUnion(profileOwner.uid),
+		});
+		dispatch({
+			type: 'FOLLOW_USER',
+			payload: {
+				userId: profileOwner.uid,
+				actionUser: { actionUserId: currentUser.uid, actionUserName: currentUser.displayName, actionUserPhoto: currentUser.photoURL },
+			},
 		});
 	};
 

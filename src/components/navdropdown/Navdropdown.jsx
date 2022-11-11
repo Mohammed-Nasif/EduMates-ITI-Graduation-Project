@@ -87,7 +87,10 @@ export const Navdropdown = (props) => {
 									.map((item, index) => {
 										return (
 											<div className='notify' key={index + 1}>
-												<Link>
+												<Link
+													to={
+														item.notifyType === 'follow' ? `/eduMates/profile/${item.actionUser.actionUserName}/${item.actionUser.actionUserId}` : ''
+													}>
 													<div className='row d-flex align-items-center justify-content-center p-0 gap-2'>
 														<div className='col-2 user-img'>
 															<img src={item.actionUser.actionUserPhoto} alt={item.actionUser.actionUserName} />
@@ -108,7 +111,10 @@ export const Navdropdown = (props) => {
 									.map((item, index) => {
 										return (
 											<div className='notify' key={index + 1}>
-												<Link>
+												<Link
+													to={
+														item.notifyType === 'follow' ? `/eduMates/profile/${item.actionUser.actionUserName}/${item.actionUser.actionUserId}` : ''
+													}>
 													<div className='row d-flex align-items-center justify-content-center p-0 gap-2'>
 														<div className='col-2 user-img'>
 															<img src={item.actionUser.actionUserPhoto} alt={item.actionUser.actionUserName} />

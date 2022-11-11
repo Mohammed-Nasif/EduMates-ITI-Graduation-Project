@@ -403,6 +403,12 @@
       "courses": [
         "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ"
       ]
+    },
+    {
+      "id": "MMVu45v7xwOrViW4EmtNbif1tDA2",
+      "courses": [
+        "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ"
+      ]
     }
   ],
   "usercourses": [
@@ -413,6 +419,17 @@
         0
       ],
       "progress": 0,
+      "userRating": 0
+    },
+    {
+      "id": "MMVu45v7xwOrViW4EmtNbif1tDA2-PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
+      "courseId": "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
+      "seenlessons": [
+        0,
+        1,
+        2
+      ],
+      "progress": 60,
       "userRating": 0
     }
   ]
