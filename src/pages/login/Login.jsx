@@ -17,17 +17,22 @@ export const Login = () => {
 	const navigate = useNavigate();
 	const { currentUser } = useContext(AuthContext);
 	const [showModal, setShowModal] = useState();
-
+	const [loginError, setLoginError] = useState();
+	const [emailValue, setEmailValue] = useState('');
+	const [emailTouched, setEmailTouched] = useState(false);
 	const {
 		register,
 		handleSubmit,
-		// formState: { errors },
-	} = useForm();
+		formState: { errors },
+	} = useForm({
+		mode: 'onSubmit',
+		reValidateMode: 'onChange',
+		shouldFocusError: true,
+	});
 
 	const onLoginSubmit = async (userData) => {
 		const email = userData.email;
 		const password = userData.password;
-
 		try {
 			await signInWithEmailAndPassword(auth, email, password);
 			if (currentUser) {
@@ -38,6 +43,7 @@ export const Login = () => {
 			navigate('/eduMates/home');
 		} catch (err) {
 			console.log(err);
+			setLoginError(err.message);
 		}
 	};
 
@@ -60,14 +66,32 @@ export const Login = () => {
 							type='email'
 							placeholder='Email address'
 							{...register('email', {
-								// required: true,
-								// pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$/,
+								required: true,
+								pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$/,
+								onChange: (e) => {
+									setEmailValue(e.target.value);
+									if (e.target.value.trim() === '') {
+										setLoginError('');
+									}
+								},
+								onBlur: (e) => {
+									if (e.target.value.trim() === '') {
+										setEmailTouched(true);
+									}
+								},
 							})}
 						/>
-
-						{/* {errors?.email?.type === 'required' && <p className='font-weight text-danger mt-2'>Email is required</p>}
-					{errors?.email?.type === 'pattern' && <p className='font-weight text-danger mt-2'>Email enter a valid email</p>} */}
-						<Form.Text className='text-muted'>We'll never share your email with anyone else.</Form.Text>
+						{errors?.hasOwnProperty('email') === false && (
+							<Form.Text className='text-muted'>We'll never share your email with anyone else.</Form.Text>
+						)}
+						{emailTouched && emailValue.trim() === '' && errors?.email?.type !== 'required' && (
+							<p className='font-weight text-danger mt-2'>Email is required</p>
+						)}
+						{errors?.email?.type === 'required' && <p className='font-weight text-danger mt-2'>Email is required</p>}
+						{errors?.email?.type === 'pattern' && <p className='font-weight text-danger mt-2'>Email enter a valid email</p>}
+						{errors?.email?.type !== 'pattern' && loginError === 'Firebase: Error (auth/user-not-found).' && emailValue.trim() !== '' && (
+							<p className='font-weight text-danger mt-2'>This email not in EduMates</p>
+						)}
 					</Form.Group>
 
 					{/*Password*/}
@@ -77,17 +101,14 @@ export const Login = () => {
 							type='password'
 							placeholder='Password'
 							{...register('password', {
-								// required: true,
-								// pattern: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+								required: true,
 							})}
 						/>
 
-						{/* {errors?.password?.type === 'required' && <p className='font-weight text-danger mt-2'>Password is required</p>}
-					{errors?.password?.type === 'pattern' && (
-						<p className='font-weight text-danger mt-2'>
-							Password must contains Minimum 8 characters, at least one letter, one number and one special character.
-						</p>
-					)} */}
+						{errors?.password?.type === 'required' && <p className='font-weight text-danger mt-2'>Password is required</p>}
+						{loginError === 'Firebase: Error (auth/wrong-password).' && (
+							<p className='font-weight text-danger mt-2'>Please check your password again</p>
+						)}
 					</Form.Group>
 
 					{/*Forget Password */}
@@ -108,7 +129,7 @@ export const Login = () => {
 				</Form>
 			</div>
 			<p className='text-center'>
-				Not on EduMates?{' '}
+				Not in EduMates?{' '}
 				<Link to='/register' className='fw-bolder'>
 					Signup
 				</Link>{' '}
