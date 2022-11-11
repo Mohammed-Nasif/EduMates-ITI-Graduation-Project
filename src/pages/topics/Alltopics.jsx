@@ -2,6 +2,8 @@ import './topics.scss';
 import { BsCheckCircleFill } from 'react-icons/bs';
 import React, { useState } from 'react';
 import Select from 'react-select';
+import { AuthContext } from './../../context/AuthContext';
+import { useContext } from 'react';
 
 export const Alltopics = (props) => {
 	let topicsToFollow = props.topicsToFollow;
@@ -11,6 +13,7 @@ export const Alltopics = (props) => {
 	let [selectedTopic, setSelectedTopic] = useState('');
 	let [hoverAdd, setHoverAdd] = useState(undefined);
 	let [selectOpt, setSelectOpt] = useState(false);
+	const { currentUser } = useContext(AuthContext);
 
 	const handleHoverAdd = (index) => {
 		setHoverAdd(index);
@@ -70,7 +73,7 @@ export const Alltopics = (props) => {
 				</div>
 				<div className='mb-3'>
 					<Select
-						options={options}
+						options={currentUser.systemFlags.isSystemProfile ? [...options, { value: 'bot', label: 'bot' }] : options}
 						value={options.filter(function (option) {
 							if (selectOpt) {
 								return option.value === selectedTopic;
