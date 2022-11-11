@@ -89,7 +89,6 @@ export const Register = () => {
 								matesList: [res.user.uid],
 								unseenNotifies: [],
 								seenNotifies: [],
-								mgsNotifies: false,
 							});
 
 							// Create User Chat Collection
@@ -133,7 +132,6 @@ export const Register = () => {
 					matesList: [res.user.uid],
 					unseenNotifies: [],
 					seenNotifies: [],
-					mgsNotifies: false,
 				});
 
 				// Create User Chat Collection
