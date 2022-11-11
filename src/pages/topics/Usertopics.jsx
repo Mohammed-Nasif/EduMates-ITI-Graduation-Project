@@ -31,11 +31,11 @@ export const Usertopics = (props)=>{
         <div className='subtopics-container w-100'>
 			<p className='sub-title'>Your Topics: </p>
             <div className='user-topics'>
-                <div className="row position-relative px-3">
+                <div className="row position-relative px-1 border border-2 shadow-sm rounded-3 bg-white mb-2 py-1 ">
                     {
                         followedTopics?.map((topic, index)=>{
                         return (
-                            <div className="col-3 topic-container mb-2" key={index}>
+                            <div className="col-3 topic-container mb-2 " key={index}>
                                 <div className='name-container'>
                                     <p onClick={()=> handleSelectTopic(topic,index)} onMouseOver = {()=> handleHoverDelete(topic, index)} 
                                     onMouseLeave={handleMouseLeave}
