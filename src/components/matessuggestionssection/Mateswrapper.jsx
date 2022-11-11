@@ -11,13 +11,11 @@ import { Autoplay, Navigation } from 'swiper';
 import './matessuggestion.scss';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
-import { UsersContext } from './../../context/UsersContext';
 
-export const MatesWrapper = () => {
-	const { allUsers } = useContext(UsersContext);
-
+export const MatesWrapper = ({ allUsers }) => {
 	const { currentUser } = useContext(AuthContext);
-	const sugList = allUsers.filter((user) => !currentUser.matesList.includes(user.uid));
+	const sugList = allUsers.filter((user) => !currentUser?.matesList?.includes(user.uid));
+
 	return (
 		<>
 			<Swiper
@@ -31,8 +29,7 @@ export const MatesWrapper = () => {
 				}}
 				// navigation={true}
 				modules={[Autoplay, Navigation]}
-				className="mySwiper"
-			>
+				className='mySwiper'>
 				{sugList.map((sugUser) => {
 					return (
 						<SwiperSlide key={sugUser.uid}>
@@ -42,10 +39,5 @@ export const MatesWrapper = () => {
 				})}
 			</Swiper>
 		</>
-		// <>
-		// 	{allUsers.map((sugUser) => {
-		// 		return <Suggestedmate key={sugUser.uid} sugUser={sugUser}></Suggestedmate>;
-		// 	})}
-		// </>
 	);
 };

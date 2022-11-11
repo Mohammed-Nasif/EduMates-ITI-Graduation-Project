@@ -8,14 +8,14 @@ import { Link } from 'react-router-dom';
 export const Suggestedmate = ({ sugUser }) => {
 	const { currentUser } = useContext(AuthContext);
 	const addToMatesList = async () => {
-		await updateDoc(doc(db, 'users', currentUser.uid), {
+		await updateDoc(doc(db, 'users', currentUser?.uid), {
 			matesList: arrayUnion(sugUser.uid),
 		});
 	};
 
 	return (
 		<>
-			{!currentUser.matesList.includes(sugUser.uid) && (
+			{!currentUser?.matesList?.includes(sugUser.uid) && (
 				<div className="visible-section px-md-2 px-xlg-3 ">
 					<div className="row py-2 g-3 d-flex align-items-center align-items-center ">
 						<div className="col-8 col-lg-9 col-xxl-10 ">
