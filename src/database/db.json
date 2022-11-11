@@ -400,7 +400,15 @@
   "users": [
     {
       "id": "AfdSKewjRtfYL5bZVNToFkwMOQG2",
-      "courses": []
+      "courses": [
+        {
+          "id": "PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
+          "isenrolled": true,
+          "userRating": 0,
+          "lastLesson": 0,
+          "seenlessons": []
+        }
+      ]
     }
   ]
 }
