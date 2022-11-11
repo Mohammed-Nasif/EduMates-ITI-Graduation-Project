@@ -52,9 +52,9 @@ export const Alltopics = (props) => {
 
 	return (
 		<div className='subtopics-container w-100'>
-			<p className='sub-title'>Explore New Topics:</p>
+			<p className='sub-title'>Explore more</p>
 			<div className='user-topics'>
-				<div className='row position-relative px-3 mb-3'>
+				<div className='row position-relative px-1 mb-3 border border-1  shadow-sm rounded-3 pt-2 bg-white'>
 					{topicsToFollowShow.map((topic, index) => {
 						return (
 							<div className='col-3 topic-container mb-2' key={index}>
@@ -71,7 +71,7 @@ export const Alltopics = (props) => {
 						);
 					})}
 				</div>
-				<div className='mb-3'>
+				<div className='mb-3 '>
 					<Select
 						options={currentUser.systemFlags.isSystemProfile ? [...options, { value: 'bot', label: 'bot' }] : options}
 						value={options.filter(function (option) {
