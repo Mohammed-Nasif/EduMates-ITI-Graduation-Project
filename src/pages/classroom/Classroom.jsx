@@ -2,10 +2,8 @@ import { useContext } from 'react'
 import { Coursescategories } from '../../components/coursescategories/Coursescategories'
 import logo from './Classroom.svg'
 import ProgressBar from 'react-bootstrap/ProgressBar'
-import { TopicsContext } from '../../context/TopicsContext'
 import { Link } from "react-router-dom"
 import { useState, useEffect, useRef } from 'react'
-// import coursesDB from './../../database/db.json'
 import coursesapi from './../../coursesAPI/coursesapi';
 import { AuthContext } from '../../context/AuthContext';
 
@@ -14,53 +12,55 @@ export const Classroom = () => {
   const { currentUser } = useContext(AuthContext); 
   const [allCoursesId, setAllCoursesId] = useState([]);
   const [userCourses, setUserCourses] = useState([]);
+  const [progressMap, setProgressMap] = useState({});
   const allUserCourses = useRef();
-
   
 
+  
+  // GET REQUEST WITH END POINT AND PATH
   const getDataFromApi = async (endpoint, path)=>{
     const response = await coursesapi.get(`/${endpoint}/${path}`);
-    // console.log(response.data);
     return response.data;
   }
 
-  
+  // GET REQUEST WITH END POINT 
+  const getEntityDataFromApi = async (endpoint)=>{
+    const response = await coursesapi.get(`/${endpoint}`);
+    return response.data;
+  }
+   
 
   useEffect(()=>{
-    const getCoursesId = async ()=>{
-      const coursesIdFromApi = await getDataFromApi('users', currentUser.uid);
-      if(coursesIdFromApi) {
-        const coursesId = [];
-        coursesIdFromApi.courses.forEach((obj)=>{
-          coursesId.push(obj.id);
+    let allcourses = [];
+    let courses = [];
+    let courseProgress = {};
+
+    const getCourses = async ()=>{
+      const allcoursesData = await getEntityDataFromApi('courses');
+      const userCoursesData = await getEntityDataFromApi('usercourses');
+      const coursesIdFromApi = await getDataFromApi('users', currentUser?.uid);
+      if(allcoursesData && coursesIdFromApi.courses && userCoursesData) {
+        // console.log(coursesIdFromApi)
+        allcourses = allcoursesData;
+        courses = allcourses.filter((course)=>{
+          return coursesIdFromApi.courses.includes(course.id) ;
         })
-        setAllCoursesId(coursesId);
+
+        userCoursesData.forEach((course)=>{
+          courseProgress[course.courseId] = course.progress;
+        })
+        // console.log(courseProgress);  
+        setProgressMap(courseProgress);      
+        setUserCourses(courses);
       }
     }
-    getCoursesId();
-  }, []);
-  console.log("ID: ", allCoursesId);
 
+  
+    getCourses();
+   
+  }, [])
+  console.log("courses", userCourses);
 
-  useEffect(()=>{
-    let courses = [];
-    allCoursesId.forEach((courseId)=>{
-      const getCourse = async ()=>{
-        const courseData = await getDataFromApi('courses', courseId);
-        if(courseData) {
-          courses.push(courseData);
-          setUserCourses(courses);
-        }
-      }
-      getCourse();
-    })
-    allUserCourses.current = courses;
-  }, [allCoursesId])
-  console.log("courses", allUserCourses.current);
-
-  // let coursesID = Object.keys(coursesDB.courses);
-  // const { courses } = useContext(TopicsContext)
-  //   console.log(courses)
   return (
     <>
       <div className='container-fluid py-3 '>
@@ -70,15 +70,23 @@ export const Classroom = () => {
         <div className='row justify-content-around'>
           <div className='col-8'>
             <div className='row g-5 justify-content-around '>
-              {allUserCourses.current && 
-                allUserCourses.current.map((course, i) => {
+              {userCourses.length>0 && 
+                userCourses.map((course, i) => {
                 return (
                   <div className='col-lg-6  col-sm-12' key={i}>
-                    {console.log(course)}
-                    <CurrentCourse course={course} />
+                    {console.log(allUserCourses.current)}
+                    <CurrentCourse course={course} progress = {progressMap} />
                   </div>
                 )
-              })}
+              })
+              // <div>
+              //   {console.log(userCourses[0])}
+              //   {console.log(userCourses[1])}
+              //   <CurrentCourse course={userCourses[0]} />
+              // <CurrentCourse course={userCourses[1]} />
+              // </div>
+              }
+              
             </div>
           </div>
           <div className='col-3'>
@@ -112,8 +120,8 @@ export const CurrentCourse = props => {
 
         <div className='course_body progressBar py-3 '>
           <ProgressBar
-            now={props.course.progress}
-            label={`${props.course.progress}%`}
+            now={props.progress[props.course.id]}
+            label={`${props.progress[props.course.id]}%`}
             visuallyHidden
           />
         </div>

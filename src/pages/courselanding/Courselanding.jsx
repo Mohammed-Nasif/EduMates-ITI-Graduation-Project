@@ -18,7 +18,7 @@ export const Courselanding = () => {
 
   const getDataFromApi = async (endpoint, path) => {
     const response = await coursesapi.get(`/${endpoint}/${path}`);
-    console.log(response.data);
+    // console.log(response.data);
     return response.data;
   };
   // const getUserCoursesFromApi = async () => {
@@ -43,7 +43,7 @@ export const Courselanding = () => {
     getCourse();
     // getUserData();
   }, []);
-  console.log(courseData);
+  // console.log(courseData);
 
   return (
     <>

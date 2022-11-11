@@ -397,6 +397,7 @@
       ]
     }
   ],
+<<<<<<< Updated upstream
   "users": [
     {
       "id": "AfdSKewjRtfYL5bZVNToFkwMOQG2",
@@ -411,4 +412,8 @@
       ]
     }
   ]
+=======
+  "users": [],
+  "usercourses": []
+>>>>>>> Stashed changes
 }
