@@ -1,11 +1,11 @@
 import {BsPencil, BsCursorFill} from "react-icons/bs";
 import {AiOutlineSend} from "react-icons/ai";
-import { useState, useRef, useContext } from "react";
+import { useState, useRef, useContext, useEffect } from "react";
 import './coursediscussion.scss';
 import { Discussionpost } from './../discussionpost/Discussionpost';
 import { v4 as uuid } from 'uuid';
 import { db } from '../../firebase';
-import { arrayRemove, arrayUnion, doc, updateDoc, onSnapshot, deleteDoc, Timestamp, setDoc } from 'firebase/firestore';
+import { arrayRemove, arrayUnion, doc, updateDoc, onSnapshot, deleteDoc, Timestamp, setDoc,query,collection,orderBy } from 'firebase/firestore';
 import { AuthContext } from '../../context/AuthContext';
 
 export const Coursediscussion = (props) => {
@@ -24,7 +24,7 @@ export const Coursediscussion = (props) => {
                 let inputvalue = postInputRef.current.value.trim();
                 console.log(currentUser.uid);
                 await updateDoc(doc(db,'courseDiscussion', props.courseId),{
-                   "discussions":arrayUnion(
+                    [discussionPostId]:
                     {        // post
                         discussionId : discussionPostId,
                         discussionContent: inputvalue,
@@ -32,7 +32,6 @@ export const Coursediscussion = (props) => {
                         createdAt: Timestamp.now(),
                         likedBy: []
                     }
-                   )
                 });
 
                 await setDoc(doc(db,'discussionComments', discussionPostId),{
@@ -44,6 +43,25 @@ export const Coursediscussion = (props) => {
             console.error(error);
         }
     }
+    // function to show all discussion posts
+    const [allPosts, setAllPosts] = useState([]);
+	useEffect(() => {
+		const discPostsData = onSnapshot(doc(db,'courseDiscussion',props.courseId),(doc) => {
+            console.log(doc.data())
+            let postsArr = [];
+            Object.keys(doc.data()).forEach(element => {
+                console.log(doc.data()[element])
+                postsArr.push(doc.data()[element]); 
+            });
+            setAllPosts(postsArr);
+			
+		});
+		return () => {
+			discPostsData();
+		};
+	}, []);
+
+    console.log(allPosts)
 
     // function: clear all flags and values
     const clean = ()=>{
@@ -96,20 +114,18 @@ export const Coursediscussion = (props) => {
             </div>
             }
         </div>
-        {
-            submitFlag && 
+         
             <div>
-                {
-                    posts.map((post,i)=>{
+                { allPosts.length > 0 &&
+                    allPosts.map((post,i)=>{
                         return(
                             <div key={i}>
-                                <Discussionpost postContent={post}/>
+                                <Discussionpost post={post} courseID={props.courseID}/>
                             </div>
                         )
                     })
                 }
             </div>
-        }
     </div>
   )
 }
