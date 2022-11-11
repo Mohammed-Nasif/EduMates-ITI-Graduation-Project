@@ -397,18 +397,5 @@
       ]
     }
   ],
-  "users": [
-    {
-      "id": "6ROjWzPCY4aZrco1jOn71ITi0ZH2",
-      "courses": [
-        {
-          "id": "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
-          "isenrolled": true,
-          "userRating": 0,
-          "lastLesson": 0,
-          "seenlessons": []
-        }
-      ]
-    }
-  ]
+  "users": []
 }
