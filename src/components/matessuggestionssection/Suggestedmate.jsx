@@ -4,6 +4,7 @@ import { AuthContext } from './../../context/AuthContext';
 import { db } from '../../firebase';
 import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
+import { BsPersonPlus } from 'react-icons/bs';
 
 export const Suggestedmate = ({ sugUser }) => {
 	const { currentUser } = useContext(AuthContext);
@@ -18,7 +19,7 @@ export const Suggestedmate = ({ sugUser }) => {
 			{!currentUser?.matesList?.includes(sugUser.uid) && (
 				<div className="visible-section px-md-2 px-xlg-3 ">
 					<div className="row py-2 g-3 d-flex align-items-center align-items-center ">
-						<div className="col-8 col-lg-9 col-xxl-10 ">
+						<div className="col-8 col-lg-9 col-xxl-9 ">
 							<div className="row g-2">
 								<div className="col-5 col-lg-5 col-xl-4 p-1">
 									<div className="user-photo">
@@ -29,15 +30,15 @@ export const Suggestedmate = ({ sugUser }) => {
 									<Link to={`/eduMates/profile/${sugUser.displayName}/${sugUser.uid}`}>
 										<p className="fw-bold w-13 text-capitalize text-truncate lh-1">{sugUser.displayName}</p>
 									</Link>
-									<p className="w-10 text-truncate">{sugUser.description}</p>
+									<p className="w-10 text-truncate lh-base ">{sugUser.description || 'No description yet'}</p>
 								</div>
 							</div>
 						</div>
 
-						<div className="col-4 col-lg-3 col-xxl-2 p-0 mb-2 ">
-							<button className="btn btn-outline-primary  follow rounded-1" onClick={addToMatesList}>
-								Follow
-							</button>
+						<div className="col-4 col-lg-3 col-xxl-3 p-0 mb-2 ">
+							<div className="follow text-center " onClick={addToMatesList}>
+								<BsPersonPlus />
+							</div>
 						</div>
 					</div>
 				</div>
