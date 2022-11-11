@@ -36,22 +36,22 @@ export const Navavatar = (props) => {
 		signOut(auth);
 	};
 	return (
-		<div className='navavatar-container' ref={dropdownRef}>
+		<div className="navavatar-container" ref={dropdownRef}>
 			{/* Avatar icon: */}
-			<div className='avatar-icon'>
+			<div className="avatar-icon text-center">
 				<BsPersonCircle className={toggle ? 'nav-icon active fs-5' : 'nav-icon fs-5'} onClick={handleClick} />
 			</div>
 			{/* Dropdown menu: */}
 			{toggle && (
-				<div className='dropdown'>
-					<div className='user-info'>
-						<Link to={`/eduMates/profile/${currentUser.displayName}/${currentUser.uid}`} className='profile-link'>
-							<div className='user-img mb-2 bg-white'>
-								<img src={currentUser.photoURL} alt='user-img' />
+				<div className="dropdown">
+					<div className="user-info">
+						<Link to={`/eduMates/profile/${currentUser.displayName}/${currentUser.uid}`} className="profile-link">
+							<div className="user-img mb-2 bg-white">
+								<img src={currentUser.photoURL} alt="user-img" />
 							</div>
-							<p className='user-name text-capitalize f-roboto fw5 d-block my-4 text-info fs-5'>{currentUser.displayName}</p>
+							<p className="user-name text-capitalize f-roboto fw5 d-block my-4 text-info fs-5">{currentUser.displayName}</p>
 						</Link>
-						<Link to='/' className='logout-link f-roboto fw5 d-block mb-3 text-danger' onClick={handleSignOut}>
+						<Link to="/" className="logout-link f-roboto fw5 d-block mb-3 text-danger" onClick={handleSignOut}>
 							Logout
 						</Link>
 					</div>
