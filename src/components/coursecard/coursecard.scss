@@ -28,4 +28,10 @@
 	.gold {
 		color: gold;
 	}
+	&.classroomCard{
+		height: 21rem;
+		.last-lesson{
+			font-size: .875rem;
+		}
+	}
 }

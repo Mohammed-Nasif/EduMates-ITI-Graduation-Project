@@ -64,21 +64,21 @@ export const Discussionpost = (props) => {
 			setComments([...commentsArr]);
 			setReplyFlag(false);
 			setCommentFlag(true);
-			console.log(comments);
+			// console.log(comments);
 		}
 		handleCommentSubmit();
 	};
 
 	useEffect(() => {
 		const getOwnerData = onSnapshot(doc(db, 'users', props.post.createdBy), (doc) => {
-			console.log(doc.data());
+			// console.log(doc.data());
 			setpostOwner(doc.data());
 		});
 		return () => {
 			getOwnerData();
 		};
 	}, [props.post]);
-	console.log(postOwner);
+	// console.log(postOwner);
 
 	const clean = () => {
 		CommentInputRef.current.value = '';
@@ -90,7 +90,7 @@ export const Discussionpost = (props) => {
 		try {
 			if (CommentInputRef.current.value.trim() !== '') {
 				let inputvalue = CommentInputRef.current.value.trim();
-				console.log(currentUser.uid);
+				// console.log(currentUser.uid);
 				await updateDoc(doc(db, 'discussionComments', props.post.discussionId), {
 					comments: arrayUnion({
 						// comment
@@ -125,7 +125,7 @@ export const Discussionpost = (props) => {
 		};
 	}, []);
 
-	console.log(props.post.discussionId);
+	// console.log(props.post.discussionId);
 
 	return (
 		<div className="discussion-post mb-3 py-3 mx-auto ">

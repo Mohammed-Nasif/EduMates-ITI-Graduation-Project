@@ -2,7 +2,9 @@ import { Link } from 'react-router-dom';
 import './coursecard.scss';
 import { BsBoxArrowInRight, BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
 
+
 export const Coursecard = (props) => {
+
 	const rating = (ratingArr) => {
 		let rate = calculateRatingValue(ratingArr);
 		return Math.round(rate * 2) / 2;

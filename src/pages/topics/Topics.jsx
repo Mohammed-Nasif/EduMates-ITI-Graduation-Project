@@ -48,10 +48,16 @@ export const Topics = () => {
 		return flag;
 	};
 
-	allPosts.forEach((post) => {
-		if (includeTopics(selectedTopic, post.postTopics)) {
+	allPosts.forEach((post)=>{
+		if(selectedTopic[0] === "All"){
+			if(includeTopics(userTopics, post.postTopics)){
+				specificPosts.push(post);
+			}
+		}
+		else if(includeTopics(selectedTopic, post.postTopics)){
 			specificPosts.push(post);
 		}
+		// console.log(selectedTopic);
 	});
 
 	const onDeleteTopic = async (topic, topics) => {

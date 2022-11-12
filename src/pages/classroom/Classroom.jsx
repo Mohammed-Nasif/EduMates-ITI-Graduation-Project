@@ -13,6 +13,7 @@ export const Classroom = () => {
   const [allCoursesId, setAllCoursesId] = useState([]);
   const [userCourses, setUserCourses] = useState([]);
   const [progressMap, setProgressMap] = useState({});
+  const [lastLessonMap, setLastLessonMap] = useState({});
   const allUserCourses = useRef();
   
 
@@ -34,6 +35,7 @@ export const Classroom = () => {
     let allcourses = [];
     let courses = [];
     let courseProgress = {};
+    let courseLastLesson = {};
 
     const getCourses = async ()=>{
       const allcoursesData = await getEntityDataFromApi('courses');
@@ -48,9 +50,11 @@ export const Classroom = () => {
 
         userCoursesData.forEach((course)=>{
           courseProgress[course.courseId] = course.progress;
+          courseLastLesson[course.courseId] = course.lastLesson;
         })
         // console.log(courseProgress);  
         setProgressMap(courseProgress);      
+        setLastLessonMap(courseLastLesson);
         setUserCourses(courses);
       }
     }
@@ -59,7 +63,7 @@ export const Classroom = () => {
     getCourses();
    
   }, [])
-  console.log("courses", userCourses);
+  // console.log("courses", userCourses);
 
   return (
     <>
@@ -74,17 +78,11 @@ export const Classroom = () => {
                 userCourses.map((course, i) => {
                 return (
                   <div className='col-lg-6  col-sm-12' key={i}>
-                    {console.log(allUserCourses.current)}
-                    <CurrentCourse course={course} progress = {progressMap} />
+                    {/* {console.log(allUserCourses.current)} */}
+                    <CurrentCourse course={course} progress = {progressMap} lastLesson={lastLessonMap} />
                   </div>
                 )
               })
-              // <div>
-              //   {console.log(userCourses[0])}
-              //   {console.log(userCourses[1])}
-              //   <CurrentCourse course={userCourses[0]} />
-              // <CurrentCourse course={userCourses[1]} />
-              // </div>
               }
               
             </div>
@@ -101,9 +99,9 @@ export const Classroom = () => {
 export const CurrentCourse = props => {
   return (
     <>
-      <div className='course  shadow-sm '>
+      <div className='course classroomCard shadow-sm '>
         <div className='course_img w-75 mx-auto pt-3'>
-          <img src={props.course.lessonsList[0].lessonThumbnail.url} alt='course_img' />
+          <img src={props.course.lessonsList[props.lastLesson[props.course.id]].lessonThumbnail.url} alt='course_img' />
         </div>
         <div className='course_title  '>
         <Link to= {`/eduMates/classroom/${props.course.courseName}/${props.course.id}`}
@@ -117,14 +115,16 @@ export const CurrentCourse = props => {
             {props.course.currentLessonName}
           </span>
         </div> */}
-
-        <div className='course_body progressBar py-3 '>
-          <ProgressBar
-            now={props.progress[props.course.id]}
-            label={`${props.progress[props.course.id]}%`}
-            visuallyHidden
-          />
-        </div>
+        <div className='course_body '>
+              <p className='mb-0 last-lesson'>Last Lesson: <span>Lesson {props.lastLesson[props.course.id]+1}</span></p>
+            <div className='progressBar py-3 '>
+              <ProgressBar
+                now={props.progress[props.course.id]}
+                label={`${props.progress[props.course.id]}%`}
+                visuallyHidden
+              />
+            </div>
+          </div>
       </div>
     </>
   )

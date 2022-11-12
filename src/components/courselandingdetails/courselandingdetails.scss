@@ -33,10 +33,19 @@ $mainColor: #0080ff;
         margin: 0.3rem 0rem;
         font-size: 1rem;
         cursor: pointer;
+        color: black;
         transition: all 0.9s;
         &:hover {
           color: $mainColor;
           border-radius: 10px;
+        }
+        a{
+          color: black;
+          text-decoration: none;
+          &:hover {
+            color: $mainColor;
+            border-radius: 10px;
+          }
         }
       }
     }

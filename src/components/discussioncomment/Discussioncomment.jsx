@@ -9,7 +9,7 @@ export const Discussioncomment = (props) => {
 	const [commentOwner, setcommentOwner] = useState({});
 	useEffect(() => {
 		const getOwnerData = onSnapshot(doc(db, 'users', props.comment.createdBy), (doc) => {
-			console.log(doc.data());
+			// console.log(doc.data());
 			setcommentOwner(doc.data());
 		});
 		return () => {

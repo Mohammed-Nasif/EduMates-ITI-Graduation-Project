@@ -3,10 +3,10 @@
     {
       "id": "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
       "courseName": "Data & Things",
-      "courseDescription": "This course gives you a good introduction to Data Structures",
+      "courseDescription": " Welcome to Data Structures & Algorithms, Level up Course the only course that provides you an ultimate practice on problem solving process and helping you to take your data structures & algorithms to the next level.",
       "courseInstructor": {
         "userId": 123,
-        "info": "This instructor has good experience"
+        "info": "Having over 20 years of experience in the computer science and information technology fields. Taught many courses at the University level to thousands of students."
       },
       "progress": 70,
       "courseRating": 50,
@@ -81,7 +81,7 @@
         "info": "This instructor has good experience"
       },
       "progress": 30,
-      "courseRating": 80,
+      "courseRating": 10,
       "courseThumbnail": "https://firebasestorage.googleapis.com/v0/b/edumates---graduation-project.appspot.com/o/Courses%20Thumbnail%2FDataStructurTumbnail_Nasif.png?alt=media&token=a40c0602-a956-4f58-b9e5-1ddb640d18ac",
       "enrollment": [],
       "lessonsList": [
@@ -178,13 +178,13 @@
     {
       "id": "PLDoPjvoNmBAzlpyFHOaB3b-eubmF0TAV2",
       "courseName": "Learn SASS In Arabic 2021",
-      "courseDescription": "After this course, You'll be able to use Sass variables, mixin,  if condition, and loops and create a grid system for your project.",
+      "courseDescription": "Welcome to 'Advanced CSS and Sass', the most advanced, the most modern, and the most complete CSS course on the internet. It's everything you want in an advanced CSS course, and more. You will learn complex CSS animations, advanced responsive design techniques, flexbox layouts, Sass, CSS architecture, fundamental CSS concepts, and so much more.",
       "courseInstructor": {
         "userId": 123,
         "info": "This instructor has good experience"
       },
       "progress": 90,
-      "courseRating": 70,
+      "courseRating": 100,
       "courseThumbnail": "https://i.ytimg.com/vi/Di_RlcpkpN4/hqdefault.jpg",
       "enrollment": [],
       "lessonsList": [
@@ -431,9 +431,24 @@
       "courses": []
     },
     {
+<<<<<<< Updated upstream
       "id": "la9CZKDMrQWhGO18yikB5cJGuR12",
       "courses": [
         "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ"
+=======
+      "id": "lq8zQHa7wMY0uaOhmRbVCmFnw1F2",
+      "courses": [
+        "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
+        "PLDoPjvoNmBAzlpyFHOaB3b-eubmF0TAV2",
+        "PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU"
+      ]
+    },
+    {
+      "id": "f1OPi0CQ6EXtESxnQYtpWkqVsmi2",
+      "courses": [
+        "PLDoPjvoNmBAzlpyFHOaB3b-eubmF0TAV2",
+        "PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU"
+>>>>>>> Stashed changes
       ]
     }
   ],
@@ -444,6 +459,7 @@
       "seenlessons": [
         0
       ],
+      "lastLesson": 0,
       "progress": 0,
       "userRating": 3
     },
@@ -454,6 +470,7 @@
         0,
         1
       ],
+      "lastLesson": 0,
       "progress": 40,
       "userRating": 5
     },
@@ -463,6 +480,7 @@
       "seenlessons": [
         0
       ],
+      "lastLesson": 0,
       "progress": 0,
       "userRating": 2
     },
@@ -474,8 +492,9 @@
         1,
         2
       ],
+      "lastLesson": 0,
       "progress": 60,
-      "userRating": 0
+      "userRating": 3
     },
     {
       "id": "3WIv2yHry1b8LjKIrsEoytPF6m12-PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
@@ -483,17 +502,90 @@
       "seenlessons": [
         0
       ],
+      "lastLesson": 0,
       "progress": 0,
       "userRating": 0
     },
     {
+<<<<<<< Updated upstream
       "id": "la9CZKDMrQWhGO18yikB5cJGuR12-PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
+=======
+      "id": "6CDJrcxcg0TJTdPQuEjq9VJiwAI2-PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
+>>>>>>> Stashed changes
       "courseId": "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
       "seenlessons": [
         0
       ],
+<<<<<<< Updated upstream
       "progress": 0,
       "userRating": 0
+=======
+      "lastLesson": 0,
+      "progress": 0,
+      "userRating": 0
+    },
+    {
+      "id": "lq8zQHa7wMY0uaOhmRbVCmFnw1F2-PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
+      "courseId": "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
+      "seenlessons": [
+        0,
+        1,
+        2
+      ],
+      "lastLesson": 0,
+      "progress": 60,
+      "userRating": 5
+    },
+    {
+      "id": "lq8zQHa7wMY0uaOhmRbVCmFnw1F2-PLDoPjvoNmBAzlpyFHOaB3b-eubmF0TAV2",
+      "courseId": "PLDoPjvoNmBAzlpyFHOaB3b-eubmF0TAV2",
+      "seenlessons": [
+        0,
+        2,
+        1,
+        3,
+        4,
+        8,
+        10,
+        13,
+        7
+      ],
+      "lastLesson": 7,
+      "progress": 47,
+      "userRating": 0
+    },
+    {
+      "id": "lq8zQHa7wMY0uaOhmRbVCmFnw1F2-PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
+      "courseId": "PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
+      "seenlessons": [
+        0
+      ],
+      "lastLesson": 0,
+      "progress": 0,
+      "userRating": 0
+    },
+    {
+      "id": "f1OPi0CQ6EXtESxnQYtpWkqVsmi2-PLDoPjvoNmBAzlpyFHOaB3b-eubmF0TAV2",
+      "courseId": "PLDoPjvoNmBAzlpyFHOaB3b-eubmF0TAV2",
+      "seenlessons": [
+        0,
+        5,
+        4
+      ],
+      "lastLesson": 4,
+      "progress": 15,
+      "userRating": 2
+    },
+    {
+      "id": "f1OPi0CQ6EXtESxnQYtpWkqVsmi2-PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
+      "courseId": "PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
+      "seenlessons": [
+        0
+      ],
+      "lastLesson": 0,
+      "progress": 0,
+      "userRating": 4
+>>>>>>> Stashed changes
     }
   ]
 }
