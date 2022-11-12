@@ -441,9 +441,10 @@
       "id": "3WIv2yHry1b8LjKIrsEoytPF6m12-PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
       "courseId": "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
       "seenlessons": [
-        0
+        0,
+        1
       ],
-      "progress": 0,
+      "progress": 40,
       "userRating": 5
     },
     {
