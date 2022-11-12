@@ -30,7 +30,7 @@ export const TopicsToFollow = () => {
 						modules={[Autoplay, Navigation]}
 						className="mySwiper"
 					>
-						{courses.map((course, i) => {
+						{/* {courses.map((course, i) => {
 							return (
 								<SwiperSlide className="" key={i}>
 									<div className="preview-course p-0 m-0">
@@ -49,7 +49,7 @@ export const TopicsToFollow = () => {
 									</div>
 								</SwiperSlide>
 							);
-						})}
+						})} */}
 					</Swiper>
 				</div>
 			</div>

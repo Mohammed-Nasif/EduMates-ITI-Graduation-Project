@@ -4,34 +4,27 @@ import { BsBoxArrowInRight, BsStarFill, BsStarHalf, BsStar } from 'react-icons/b
 
 export const Coursecard = (props) => {
 	const rating = (ratingArr) => {
-		let rate = calculateRatingValue(ratingArr)
-		// let rate = (value / 100) * 5;
-		console.log(rate)
+		let rate = calculateRatingValue(ratingArr);
 		return Math.round(rate * 2) / 2;
 	};
-	const calculateRatingValue = (ratingArr)=>{
-		let rateValue = 0; 
-		if(ratingArr.length === 0){
+	const calculateRatingValue = (ratingArr) => {
+		let rateValue = 0;
+		if (ratingArr.length === 0) {
 			rateValue = 0;
-		}else {
-			console.log(ratingArr)
-			ratingArr.forEach(el => {
-				console.log(el)
+		} else {
+			ratingArr.forEach((el) => {
 				rateValue += el;
-				console.log(rateValue)
 			});
-			console.log(ratingArr)
 			rateValue = rateValue / ratingArr.length;
 		}
 		return Math.round(rateValue);
-
-	}
+	};
+	
 	return (
 		<>
-			{console.log(props.courseRating)}
 			<div className='course  shadow-sm '>
-				<div className='course_img w-75 mx-auto pt-3'>
-					<img src={props.course.lessonsList[0].lessonThumbnail.url} alt='course_img' />
+				<div className='course_img w-100'>
+					<img src={props.course.courseThumbnail} alt='course_img' />
 				</div>
 				<div className='course_title  '>
 					<h5 className=''>{props.course.courseName}</h5>

@@ -37,7 +37,7 @@ const App = () => {
 							<Main />
 						</ProtectedRoute>
 					}>
-					<Route index element={<Home />} />
+					<Route index exact element={<Home />} />
 					<Route path=':userName/:userId/:postId' element={<Postnotification />} />
 					<Route path='profile'>
 						<Route path=':userName/:userId' element={<Profile />} />

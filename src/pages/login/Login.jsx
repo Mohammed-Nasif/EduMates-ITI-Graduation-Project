@@ -40,7 +40,7 @@ export const Login = () => {
 					login: { isLoggedIn: true, date: Timestamp.now() },
 				});
 			}
-			navigate('/eduMates/home');
+			navigate('/eduMates');
 		} catch (err) {
 			console.log(err);
 			setLoginError(err.message);
