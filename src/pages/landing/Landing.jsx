@@ -104,7 +104,7 @@ export const Landing = () => {
 						</div>
 						<div className='col-md-5'>
 							<div className='preview_text  text-sm-center '>
-								<h2 className='py-3'>Bla Bla Bla Bla Bla</h2>
+								<h2 className='py-3'>vision</h2>
 								<p className='fs-5'>
 									In the age of Epidemics, the importance of remote communication has significantly aroused. Getting people closer despite of physical
 									distancing. Business, Marketing , Education, even health consultations are done over the internet
@@ -116,11 +116,15 @@ export const Landing = () => {
 			</div>
 			{/* end previews */}
 			{/* start  footer */}
-			<footer className=' py-5 vh-100'>
+			<footer className=' py-5 '>
 				<div className='container'>
-					<div className='row'>
+					<div className='row  d-flex justify-content-between'>
 						<div className='col-md-1'>
 							<img src={footerLogo} alt='logo' />
+						</div>
+						<div className="col-md-3">
+							<h3 className='text-white'>Contact us</h3>
+							<p><Link className='text-decoration-none text-white'>info@edumates.com</Link></p>
 						</div>
 					</div>
 				</div>
