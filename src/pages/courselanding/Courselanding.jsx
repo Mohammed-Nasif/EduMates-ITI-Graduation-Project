@@ -23,7 +23,10 @@ export const Courselanding = () => {
 	useEffect(() => {
 		const getCourse = async () => {
 			const course = await getDataFromApi('courses', id);
-			if (course) setCourseData(course);
+			if (course){
+				setCourseData(course);
+				// console.log(course.courseRating);
+			} 
 		};
 		return () => {
 			getCourse();
@@ -41,6 +44,7 @@ export const Courselanding = () => {
 									courseVideo={courseData.lessonsList[0].lessonID}
 									courseName={courseData.courseName}
 									courseRating={courseData.courseRating}
+									courseId = {courseData.id}
 								/>
 								<Courselandingdetails course={courseData} userData={userData} />
 							</div>

@@ -15,6 +15,16 @@ export const Alltopics = (props) => {
 	let [selectOpt, setSelectOpt] = useState(false);
 	const { currentUser } = useContext(AuthContext);
 
+	const options = [];
+	options.push({ value: 'defaultValue', label: 'Select...', isDisabled: true });
+	props.allTopics.forEach((item) => {
+		if (props.userTopics?.includes(item)) {
+			options.push({ value: item, label: item, isDisabled: true });
+		} else {
+			options.push({ value: item, label: item });
+		}
+	});
+
 	const handleHoverAdd = (index) => {
 		setHoverAdd(index);
 	};
@@ -35,15 +45,6 @@ export const Alltopics = (props) => {
 		}
 		setSelectOpt(false);
 	};
-	const options = [];
-	options.push({ value: 'defaultValue', label: 'Select...', isDisabled: true });
-	props.allTopics.forEach((item) => {
-		if (props.userTopics?.includes(item)) {
-			options.push({ value: item, label: item, isDisabled: true });
-		} else {
-			options.push({ value: item, label: item });
-		}
-	});
 
 	const handleSelectOption = (e) => {
 		setSelectedTopic(e.value);
@@ -67,9 +68,11 @@ export const Alltopics = (props) => {
 						);
 					})}
 				</div>
-				<div className="mb-3 ">
-					<Select
-						options={currentUser?.systemFlags?.isSystemProfile ? [...options, { value: 'bot', label: 'bot' }] : options}
+				<div className='mb-3 '>
+	{/* options={currentUser.systemFlags.isSystemProfile ? [...options, { value: 'bot', label: 'bot' }] : options} */}
+	                  
+					  <Select
+						options={options}
 						value={options.filter(function (option) {
 							if (selectOpt) {
 								return option.value === selectedTopic;
@@ -80,8 +83,11 @@ export const Alltopics = (props) => {
 						onChange={(event) => handleSelectOption(event)}
 					/>
 				</div>
-				<div className="icon-container d-flex align-items-center">
-					<BsCheckCircleFill className={isSelect || selectOpt ? 'add-icon fs-2 mb-3' : 'add-icon fs-2 mb-3 prev-click'} onClick={() => handleAddTopic(selectedTopic)} />
+				<div className='icon-container d-flex align-items-center'>
+					<BsCheckCircleFill
+						className={isSelect || selectOpt ? 'add-icon fs-2 mb-3' : 'add-icon fs-2 mb-3 prev-click'}
+						onClick={() => handleAddTopic(selectedTopic)}
+					/>
 				</div>
 			</div>
 		</div>

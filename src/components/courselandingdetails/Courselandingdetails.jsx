@@ -5,14 +5,19 @@ import coursesapi from './../../coursesAPI/coursesapi';
 import { AuthContext } from '../../context/AuthContext';
 import { useRef } from 'react';
 import { FaLock, FaLockOpen } from 'react-icons/fa';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 export const Courselandingdetails = (props) => {
+	const [isEnrolled, setIsEnrolled] = useState(false);
+	const updateIsEnrolled = (value)=>{
+		setIsEnrolled(value);
+		// console.log("enrolled in parent: ", value);
+	}
 	return (
 		<>
 			<div className='course_landing_details py-4 w-100 shadow px-4'>
-				<Coursedescription course={props.course} userData={props.userData} />
-				<CourselessonsWrapper courseLessons={props.course.lessonsList} />
+				<Coursedescription course={props.course} userData={props.userData} updateIsEnrolled={updateIsEnrolled} />
+				<CourselessonsWrapper course={props.course} courseLessons={props.course.lessonsList} isEnrolled ={isEnrolled} />
 			</div>
 		</>
 	);
@@ -20,7 +25,6 @@ export const Courselandingdetails = (props) => {
 
 export const Coursedescription = (props) => {
 	const { currentUser } = useContext(AuthContext);
-	// const [isEnrolled, setIsEnrolled] = useState(false);
 	const [enrolledUsers, setEnrolledUsers] = useState(props.course.enrollment);
 	const [enrolledCourses, setEnrolledCourses] = useState([]);
 	const [isEnrolled, setIsEnrolled] = useState(false);
@@ -31,10 +35,10 @@ export const Coursedescription = (props) => {
 	const getDataFromApi = async (endpoint, path) => {
 		try {
 			const response = await coursesapi.get(`/${endpoint}/${path}`);
-			console.log(response.data);
+			// console.log(response.data);
 			return response;
 		} catch (error) {
-			console.log(error.response.status);
+			// console.log(error.response.status);
 			return error.response.status;
 		}
 	};
@@ -42,15 +46,15 @@ export const Coursedescription = (props) => {
 	// post new element in seenlessons entity
 	const add = async (endpoint, request) => {
 		const response = await coursesapi.post(endpoint, request);
-		console.log(response);
-		console.log(response.data);
+		// console.log(response);
+		// console.log(response.data);
 	};
 
 	// delete
 	const deleteLessosn = async (endpoint, path) => {
 		const response = await coursesapi.delete(`/${endpoint}/${path}`);
-		console.log(response);
-		console.log(response.data);
+		// console.log(response);
+		// console.log(response.data);
 	};
 
 	useEffect(() => {
@@ -58,7 +62,7 @@ export const Coursedescription = (props) => {
 			const response = await getDataFromApi('users', currentUser.uid);
 			if (response.data) {
 				enrolledCoursesArr.current = response.data.courses;
-				console.log(enrolledCoursesArr.current);
+				// console.log(enrolledCoursesArr.current);
 			}
 		};
 		return () => {
@@ -70,10 +74,10 @@ export const Coursedescription = (props) => {
 		const checkenrollment = async () => {
 			const data = await getDataFromApi('usercourses', combID);
 			if (data === 404) {
-				console.log(false);
+				// console.log(false);
 				setIsEnrolled(false);
 			} else {
-				console.log(true);
+				// console.log(true);
 				setIsEnrolled(true);
 			}
 		};
@@ -82,11 +86,15 @@ export const Coursedescription = (props) => {
 		};
 	}, [combID]);
 
+	useEffect(()=>{
+		props.updateIsEnrolled(isEnrolled);
+	}, [isEnrolled])
+
 	const updateEnrolled = async (endPoint, path, request) => {
 		const response = await coursesapi.patch(`/${endPoint}/${path}`, request);
 		if (response && response.data) {
-			console.log(response);
-			console.log(response.data);
+			// console.log(response);
+			// console.log(response.data);
 		}
 	};
 
@@ -118,6 +126,7 @@ export const Coursedescription = (props) => {
 				id: combID,
 				courseId: props.course.id,
 				seenlessons: [0],
+				lastLesson: 0,
 				progress: 0,
 				userRating: 0,
 			});
@@ -128,11 +137,11 @@ export const Coursedescription = (props) => {
 			const idIndex = enrolledUsersArr.indexOf(currentUser.uid);
 			enrolledUsersArr.splice(idIndex, 1);
 
-			console.log('before', enrolledCoursesArr.current);
+			// console.log('before', enrolledCoursesArr.current);
 			enrolledCoursesArr.current = enrolledCoursesArr.current.filter((courseId) => {
 				return courseId !== props.course.id;
 			});
-			console.log('after', enrolledCoursesArr.current);
+			// console.log('after', enrolledCoursesArr.current);
 			deleteLessosn('usercourses', combID);
 			setIsEnrolled(false);
 		}
@@ -169,25 +178,25 @@ export const Coursedescription = (props) => {
 };
 
 export const CourselessonsWrapper = (props) => {
-	const { currentUser } = useContext(AuthContext);
-	const [userEnrolled, setUserEnrolled] = useState(false);
-	let combId = currentUser.uid + '-' + useParams().id;
+	// const { currentUser } = useContext(AuthContext);
+	// const [userEnrolled, setUserEnrolled] = useState(false);
+	// let combId = currentUser.uid + '-' + useParams().id;
 
-	const getDataFromApi = async () => {
-		try {
-			const response = await coursesapi.get('/usercourses');
-			response.data.forEach((res) => {
-				if (res.id === combId) setUserEnrolled(true);
-			});
-			return response;
-		} catch (error) {
-			return error.response.status;
-		}
-	};
+	// const getDataFromApi = async () => {
+	// 	try {
+	// 		const response = await coursesapi.get('/usercourses');
+	// 		response.data.forEach((res) => {
+	// 			if (res.id === combId) setUserEnrolled(true);
+	// 		});
+	// 		return response;
+	// 	} catch (error) {
+	// 		return error.response.status;
+	// 	}
+	// };
 
-	useEffect(() => {
-		getDataFromApi();
-	}, []);
+	// useEffect(() => {
+	// 	getDataFromApi();
+	// }, []);
 
 	return (
 		<>
@@ -195,7 +204,7 @@ export const CourselessonsWrapper = (props) => {
 			<div className='course_lessons'>
 				<ul className=''>
 					{props.courseLessons.map((lesson, i) => {
-						return <Courselesson lesson={lesson} key={i} lessonNum={i} userEnrolled={userEnrolled} />;
+						return <Courselesson lesson={lesson} key={i} lessonNum={i} userEnrolled={props.isEnrolled} course={props.course}/>;
 					})}
 				</ul>
 			</div>
@@ -203,7 +212,8 @@ export const CourselessonsWrapper = (props) => {
 	);
 };
 
-export const Courselesson = ({ lesson, lessonNum, userEnrolled }) => {
+export const Courselesson = ({ lesson, lessonNum, userEnrolled, course }) => {
+	// console.log(userEnrolled)
 	if (lessonNum === 0) {
 		return userEnrolled ? (
 			<li className='d-flex '>
@@ -217,7 +227,9 @@ export const Courselesson = ({ lesson, lessonNum, userEnrolled }) => {
 	} else {
 		return userEnrolled ? (
 			<li className='d-flex align-items-center justify-content-between'>
-				Lesson {lessonNum + 1 + ' | '} {lesson.lessonTitle} <FaLockOpen />
+				<Link to={`/eduMates/classroom/${course.courseName}/${course.id}`}
+				className="d-flex align-items-center justify-content-between w-100">
+					Lesson {lessonNum + 1 + ' | '} {lesson.lessonTitle} <FaLockOpen /></Link>
 			</li>
 		) : (
 			<li className='text-muted d-flex align-items-center justify-content-between' style={{ cursor: 'not-allowed' }}>
