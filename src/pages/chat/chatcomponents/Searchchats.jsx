@@ -78,13 +78,13 @@ export const Searchchats = () => {
 	};
 
 	return (
-		<div className="position-relative">
-			<div className="searchForm">
+		<div className='position-relative'>
+			<div className='searchForm'>
 				<input
-					className="side_search w-75 p-2 "
-					type="text"
+					className='side_search w-75 p-2 '
+					type='text'
 					value={username}
-					placeholder="Search For Mates"
+					placeholder='Search For Mates'
 					onKeyDown={dropDownSearch}
 					onFocus={() => {
 						setDrop('drop');
@@ -118,19 +118,18 @@ export const Searchchats = () => {
 				{dropList.map((mate) => (
 					<div
 						key={mate.uid}
-						className="pop-down-mate p-2 d-flex  justify-content-between align-items-center"
+						className='pop-down-mate p-2 d-flex  justify-content-between align-items-center'
 						onClick={() => {
 							handleSelect(mate);
 							setDrop('');
-						}}
-					>
-						<div className="mate-pic w-25 rounded-circle">
-							<img className="w-100" src={mate.photoURL} alt={mate.displayName} />
+						}}>
+						<div className='mate-pic w-25 rounded-circle'>
+							<img src={mate.photoURL} alt={mate.displayName} />
 						</div>
-						<div className="mate-name w-50">
-							<small className="text-truncate">{mate.displayName}</small>
+						<div className='mate-name w-50'>
+							<small className='text-truncate'>{mate.displayName}</small>
 						</div>
-						<BsChatDots className="icon" />
+						<BsChatDots className='icon' />
 					</div>
 				))}
 			</div>

@@ -56,7 +56,13 @@
 				cursor: pointer;
 				border-bottom: 1px solid #9a9a9a;
 				.mate-pic {
-					overflow: hidden;
+					border-radius: 50%;
+					img {
+						width: 3rem;
+						height: 3rem;
+						border-radius: 50%;
+						object-fit: cover;
+					}
 				}
 				.icon {
 				}
@@ -84,7 +90,7 @@
 			width: 45px;
 			height: 45px;
 			border-radius: 50%;
-			object-fit: contain;
+			object-fit: fill;
 		}
 	}
 
@@ -146,7 +152,7 @@
 		width: 40px;
 		height: 40px;
 		border-radius: 50%;
-		object-fit: contain;
+		object-fit: fill;
 	}
 }
 
@@ -190,7 +196,7 @@
 			justify-content: flex-start;
 			p {
 				max-width: 75%;
-				padding: 10px 20px;
+				padding: 5px 10px;
 				background: #ebebeb;
 				border-radius: 6.25px;
 				margin: 0;
