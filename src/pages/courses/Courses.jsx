@@ -8,14 +8,15 @@ import coursesapi from './../../coursesAPI/coursesapi';
 export const Courses = () => {
 	let [allCourses, setAllCourses] = useState([]);
 	let [userRatingMap, setuserRatingMap] = useState({});
+	const [sortFlag, setSortFlag] = useState('');
 
 	const getDataFromApi = async (endpoint) => {
 		const response = await coursesapi.get(`/${endpoint}`);
 		return response.data;
 	};
 
-	const handelSortCourses = useCallback((sortedCourses) => {
-		setAllCourses(sortedCourses);
+	const handelSortCourses = useCallback((flag) => {
+		setSortFlag(flag);
 	}, []);
 
 	useEffect(() => {

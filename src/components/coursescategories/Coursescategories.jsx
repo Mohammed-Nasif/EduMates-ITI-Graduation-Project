@@ -2,17 +2,17 @@ import './coursescategories.scss';
 export const Coursescategories = ({ allCourses, handelSortCourses }) => {
 	let topics = ['java script', 'css', 'problem solving', 'html', 'react js', 'git'];
 
-	const handelsentSortedCourses = (sortedCourses) => {
-		handelSortCourses(sortedCourses);
+	const handelsentSortedCourses = (flag) => {
+		handelSortCourses(flag);
 	};
 
 	function sorting(e) {
 		if (e.target.id === 'moreLessons') {
 			allCourses.sort((a, b) => b.lessonsList.length - a.lessonsList.length);
-			handelsentSortedCourses(allCourses);
+			handelsentSortedCourses('more');
 		} else if (e.target.id === 'lessLessons') {
 			allCourses.sort((a, b) => a.lessonsList.length - b.lessonsList.length);
-			handelsentSortedCourses(allCourses);
+			handelsentSortedCourses('less');
 		}
 	}
 
