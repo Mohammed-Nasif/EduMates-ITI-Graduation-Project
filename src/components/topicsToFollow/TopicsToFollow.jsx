@@ -10,12 +10,13 @@ import { Link } from 'react-router-dom';
 import './TopicsToFollow.scss';
 import coursesapi from './../../coursesAPI/coursesapi';
 
-
 import { TopicsContext } from '../../context/TopicsContext';
+import { Loader } from '../loader/Loader';
 
 export const TopicsToFollow = () => {
 	const { courses } = useContext(TopicsContext);
 	let [allCourses, setAllCourses] = useState([]);
+	const [loading, setLoading] = useState(true);
 
 	// get courses data from api
 	const getDataFromApi = async (endpoint) => {
@@ -26,6 +27,7 @@ export const TopicsToFollow = () => {
 	useEffect(() => {
 		const getCourses = async () => {
 			const allcoursesData = await getDataFromApi('courses');
+			setLoading(false);
 
 			if (allcoursesData) {
 				setAllCourses(allcoursesData);
@@ -51,26 +53,29 @@ export const TopicsToFollow = () => {
 						modules={[Autoplay, Navigation]}
 						className="mySwiper"
 					>
-						{allCourses.length > 0 && allCourses.map((course, i) => {
-							return (
-								<SwiperSlide className="" key={i}>
-									<div className="preview-course p-0 m-0">
-										<div className="course_img">
-											<img src={course.lessonsList[0].lessonThumbnail.url} alt="" className="w-100" />
-											<div className="overlay d-flex justify-content-center align-items-center p-0 m-0">
-												<h4>{course.courseName}</h4>
+						{loading && <Loader />}
+
+						{allCourses.length > 0 &&
+							allCourses.map((course, i) => {
+								return (
+									<SwiperSlide className="" key={i}>
+										<div className="preview-course p-0 m-0">
+											<div className="course_img">
+												<img src={course.lessonsList[0].lessonThumbnail.url} alt="" className="w-100" />
+												<div className="overlay d-flex justify-content-center align-items-center p-0 m-0">
+													<h4>{course.courseName}</h4>
+												</div>
+											</div>
+											<div className="course_details text-center p-1">
+												<p className="fw-bold mb-1">{course.courseName}</p>
+												<Link to="/courses">
+													<button className="btn btn-outline-primary px-4 py-1 mb-2">Join Now</button>
+												</Link>
 											</div>
 										</div>
-										<div className="course_details text-center p-1">
-											<p className="fw-bold mb-1">{course.courseName}</p>
-											<Link to="/courses">
-												<button className="btn btn-outline-primary px-4 py-1 mb-2">Join Now</button>
-											</Link>
-										</div>
-									</div>
-								</SwiperSlide>
-							);
-						})}
+									</SwiperSlide>
+								);
+							})}
 					</Swiper>
 				</div>
 			</div>
