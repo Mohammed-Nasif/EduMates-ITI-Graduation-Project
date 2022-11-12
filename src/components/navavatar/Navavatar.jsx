@@ -49,7 +49,7 @@ export const Navavatar = (props) => {
 							<div className="user-img mb-2 bg-white">
 								<img src={currentUser.photoURL} alt="user-img" />
 							</div>
-							<p className="user-name text-capitalize f-roboto fw5 d-block my-4 text-info fs-5">{currentUser.displayName}</p>
+							<p className="user-name text-capitalize f-roboto fw5 d-block my-4  fs-5">{currentUser.displayName}</p>
 						</Link>
 						<Link to="/" className="logout-link f-roboto fw5 d-block mb-3 text-danger" onClick={handleSignOut}>
 							Logout

@@ -1,12 +1,13 @@
+@import '../../assets/sass/mixin';
+
 .profile {
 	.cover_photo {
-		height: 13.125rem;
+		height: 14.125rem;
 		overflow: hidden;
 		img {
 			width: 100%;
-			position: relative;
-			top: 50%;
-			transform: translateY(-50%);
+			height: 14.125rem;
+			object-fit: cover;
 		}
 	}
 
@@ -61,8 +62,8 @@
 		position: absolute;
 		top: 7.5rem;
 		left: 8rem;
-		width: 30px;
-		height: 30px;
+		width: 2rem;
+		height: 2rem;
 		background-color: rgba(133, 133, 133, 0.456);
 		border-radius: 50%;
 		display: flex;
@@ -76,14 +77,13 @@
 		}
 		.btn-custom {
 			border-radius: 50%;
-			height: 48px;
 			position: absolute;
 			z-index: 1;
-			top: 1px;
+			top: 2px;
 			color: white;
 			cursor: pointer;
 			.camera {
-				font-size: 20px;
+				font-size: 1.25rem;
 			}
 		}
 		&:hover {
@@ -94,7 +94,7 @@
 	.cvr-img-confirm {
 		position: relative;
 		bottom: 4.5rem;
-		right: 18%;
+		right: 21%;
 		width: 100%;
 		display: flex;
 		align-items: center;
@@ -132,12 +132,22 @@
 	.profile_content {
 		justify-content: space-around;
 		main {
-			width: 55%;
+			width: 90%;
+			// margin: 0 auto;
+			@include mediaQ(sm) {
+				width: 80%;
+			}
+			@include mediaQ(md) {
+				width: 60%;
+			}
 		}
 		aside {
 			width: 25%;
 			left: auto;
-			display: block;
+			display: none;
+			@include mediaQ(md) {
+				display: block;
+			}
 		}
 		.fixed-top {
 			z-index: 0;

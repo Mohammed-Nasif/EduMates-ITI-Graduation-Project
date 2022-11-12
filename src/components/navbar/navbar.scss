@@ -28,7 +28,10 @@ $quatColor: #686868;
 	.nav-content {
 		.nav-search-container {
 			input {
-				width: 30%;
+				width: 45%;
+				@include mediaQ(md) {
+					width: 30%;
+				}
 				padding: 0.125rem 0.625rem;
 				border-radius: 0.3125rem;
 				border: none;
@@ -37,7 +40,10 @@ $quatColor: #686868;
 			}
 			input:hover,
 			input:focus {
-				width: 45%;
+				width: 70%;
+				@include mediaQ(md) {
+					width: 40%;
+				}
 				outline: none;
 			}
 		}
