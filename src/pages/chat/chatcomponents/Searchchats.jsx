@@ -81,7 +81,7 @@ export const Searchchats = () => {
 		<div className="position-relative">
 			<div className="searchForm">
 				<input
-					className="side_search w-75"
+					className="side_search w-75 p-2 "
 					type="text"
 					value={username}
 					placeholder="Search For Mates"
