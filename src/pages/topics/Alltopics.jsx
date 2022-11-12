@@ -85,7 +85,7 @@ export const Alltopics = (props) => {
 				</div>
 				<div className='icon-container d-flex align-items-center'>
 					<BsCheckCircleFill
-						className={isSelect || selectOpt ? 'add-icon fs-2 mb-3' : 'add-icon fs-2 mb-3 prev-click'}
+						className={(isSelect >= 0) || selectOpt ? 'add-icon fs-2 mb-3' : 'add-icon fs-2 mb-3 prev-click'}
 						onClick={() => handleAddTopic(selectedTopic)}
 					/>
 				</div>
