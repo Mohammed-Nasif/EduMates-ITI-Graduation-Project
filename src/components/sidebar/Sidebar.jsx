@@ -55,15 +55,7 @@ export const Sidebar = () => {
 				<ul className="ps-0">
 					{list.map((item, i) => {
 						return (
-							<NavLink
-								to={item.path}
-								end
-								key={i}
-								className={(state) => {
-									console.log(this);
-									return state.isActive ? 'active' : '';
-								}}
-							>
+							<NavLink to={item.path} end key={i} className={(state) => (state.isActive ? 'active' : '')}>
 								<li className={'sidebar-item'}>
 									<item.icon className="sidebar-icon text-center" />
 									<p className="mb-0 f-roboto fw4">{item.name}</p>
