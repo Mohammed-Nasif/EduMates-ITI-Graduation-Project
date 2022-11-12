@@ -38,7 +38,10 @@ export const Courses = () => {
 				setuserRatingMap(ratingMap);
 			}
 		};
-		getCourses();
+
+		return () => {
+			getCourses();
+		};
 	}, []);
 
 	return (
