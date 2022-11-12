@@ -427,5 +427,15 @@
     }
   ],
   "usercourses": [
+    {
+      "id": "3WIv2yHry1b8LjKIrsEoytPF6m12-PLDoPjvoNmBAzlpyFHOaB3b-eubmF0TAV2",
+      "courseId": "PLDoPjvoNmBAzlpyFHOaB3b-eubmF0TAV2",
+      "seenlessons": [
+        0
+      ],
+      "lastLesson": 0,
+      "progress": 0,
+      "userRating": 0
+    }
   ]
 }

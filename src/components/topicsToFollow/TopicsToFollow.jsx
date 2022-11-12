@@ -58,18 +58,18 @@ export const TopicsToFollow = () => {
 						{allCourses.length > 0 &&
 							allCourses.map((course, i) => {
 								return (
-									<SwiperSlide className="" key={i}>
-										<div className="preview-course p-0 m-0">
-											<div className="course_img">
-												<img src={course.lessonsList[0].lessonThumbnail.url} alt="" className="w-100" />
-												<div className="overlay d-flex justify-content-center align-items-center p-0 m-0">
+									<SwiperSlide className='' key={i}>
+										<div className='preview-course p-0 m-0'>
+											<div className='course_img'>
+												<img src={course.lessonsList[0].lessonThumbnail.url} alt='' className='w-100' />
+												<div className='overlay d-flex justify-content-center align-items-center p-0 m-0'>
 													<h4>{course.courseName}</h4>
 												</div>
 											</div>
-											<div className="course_details text-center p-1">
-												<p className="fw-bold mb-1">{course.courseName}</p>
-												<Link to="/courses">
-													<button className="btn btn-outline-primary px-4 py-1 mb-2">Join Now</button>
+											<div className='course_details text-center p-1'>
+												<p className='fw-bold mb-1'>{course.courseName}</p>
+												<Link to={`/eduMates/courses/${course.courseName}/${course.id}`}>
+													<button className='btn btn-outline-primary px-4 py-1 mb-2'>Join Now</button>
 												</Link>
 											</div>
 										</div>
