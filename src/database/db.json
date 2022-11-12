@@ -427,59 +427,5 @@
     }
   ],
   "usercourses": [
-    {
-      "id": "HtXMKuYq9Oc37Fh802bArWTkqHz1-PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
-      "courseId": "PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
-      "seenlessons": [
-        0,
-        1
-      ],
-      "lastLesson": 1,
-      "progress": 25,
-      "userRating": 5
-    },
-    {
-      "id": "HtXMKuYq9Oc37Fh802bArWTkqHz1-PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
-      "courseId": "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
-      "seenlessons": [
-        0
-      ],
-      "lastLesson": 0,
-      "progress": 0,
-      "userRating": 0
-    },
-    {
-      "id": "S2CUnX7iHQgpvlHEAuvz47kxJFH3-PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
-      "courseId": "PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
-      "seenlessons": [
-        0,
-        3
-      ],
-      "lastLesson": 3,
-      "progress": 25,
-      "userRating": 0
-    },
-    {
-      "id": "S2CUnX7iHQgpvlHEAuvz47kxJFH3-PLDoPjvoNmBAzlpyFHOaB3b-eubmF0TAV2",
-      "courseId": "PLDoPjvoNmBAzlpyFHOaB3b-eubmF0TAV2",
-      "seenlessons": [
-        0,
-        7,
-        10
-      ],
-      "lastLesson": 10,
-      "progress": 15,
-      "userRating": 0
-    },
-    {
-      "id": "la9CZKDMrQWhGO18yikB5cJGuR12-PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
-      "courseId": "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
-      "seenlessons": [
-        0
-      ],
-      "lastLesson": 0,
-      "progress": 0,
-      "userRating": 0
-    },
   ]
 }

@@ -29,11 +29,11 @@ export const Sidebar = () => {
 			name: 'Classroom',
 			icon: BsTrophyFill,
 		},
-		{
-			path: '/eduMates/setting',
-			name: 'Setting',
-			icon: BsGearFill,
-		},
+		// {
+		// 	path: '/eduMates/setting',
+		// 	name: 'Setting',
+		// 	icon: BsGearFill,
+		// },
 	];
 	return (
 		<div className="sidebar-container m-0  position-fixed">
