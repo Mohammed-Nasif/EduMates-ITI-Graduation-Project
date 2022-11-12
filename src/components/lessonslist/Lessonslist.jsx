@@ -12,19 +12,19 @@ export const Lessonslist = (props) => {
     const [flag, setFLag] = useState(false);
     const [activeLessons, setActiveLessons] = useState([]);  // get the initial value from firebase (array of finished lessons)
     const apiSeenLessons = useRef();
-    const combId = `${currentUser.uid}-${props.courseId}`;
+    const combId = `${currentUser?.uid}-${props.courseId}`;
 
     // get data from api
     const getDataFromApi = async (endpoint, path) => {
         const response = await coursesapi.get(`/${endpoint}/${path}`);
-        console.log(response.data);
+        // console.log(response.data);
         return response.data;
     };
     // update seenlessonslist
     const updateSeenLessonslist = async (endPoint, path, request)=>{
         const response = await coursesapi.patch(`/${endPoint}/${path}`, request);
         if(response && response.data){
-          console.log(response.data);
+        //   console.log(response.data);
         }
       }
 
@@ -32,15 +32,17 @@ export const Lessonslist = (props) => {
         const getSeenLessons = async () => {
             const data = await getDataFromApi('usercourses',combId );
             if (data) { 
-                console.log(data.seenlessons)
+                // console.log(data.seenlessons);
                 apiSeenLessons.current = data.seenlessons;
+                // setLessonState(data.lastLesson);
+                // console.log("lastlesson from api: ", data.lastLesson);
             }
             else{
                 console.log("ERROR");
                 apiSeenLessons.current = [];  // set prev-value
             }
             setActiveLessons(apiSeenLessons.current);
-            console.log(apiSeenLessons.current);
+            // console.log(apiSeenLessons.current);
         };
           getSeenLessons();
     }, [])
@@ -49,10 +51,12 @@ export const Lessonslist = (props) => {
         // when select lessons from lessonslistMob component:
         if(flag === false){
             setLessonState(props.lessonNum);
+            // console.log(props.lessonNum);
             let actLessons = [];
             if(!actLessons.includes(props.lessonNum)){
                 actLessons.push(props.lessonNum);
             }
+            document.getElementById(`${props.lessonNum}`).scrollIntoView();
         }
         else{    // selected lesson from this component (lessonslist)
             setFLag(false);
@@ -64,7 +68,7 @@ export const Lessonslist = (props) => {
                 setActiveLessons([...apiSeenLessons.current]);
             }
         }
-        console.log("mobile: ", apiSeenLessons.current)
+        // console.log("mobile: ", apiSeenLessons.current);
 
     },[props.lessonNum, apiSeenLessons.current])
 
@@ -83,14 +87,16 @@ export const Lessonslist = (props) => {
             actLessons.push(i);
             apiSeenLessons.current = actLessons;
             setActiveLessons(apiSeenLessons.current);
+            // console.log("lastlesson: ", i);
             const progress = Math.floor(CalculateProgress(activeLessons, props.lessonsList));
             const lessonsRequest = {
                 "seenlessons": apiSeenLessons.current,
-                "progress": progress
+                "progress": progress,
+                "lastLesson": i
             }
             updateSeenLessonslist('usercourses',combId, lessonsRequest);
         }
-        console.log("list: ", activeLessons)
+        // console.log("list: ", activeLessons)
     }
 
     return (
@@ -109,7 +115,7 @@ export const Lessonslist = (props) => {
                                } 
                             </div>
                             <div className="col-10 ">
-                            <p key={i} className={ lessonState === i ? 'active py-3 mb-0' : 'py-3 mb-0' } onClick={()=>handleSelectLesson(i)}>
+                            <p key={i}  id={i} className={ lessonState === i ? 'active py-3 mb-0' : 'py-3 mb-0' } onClick={()=>handleSelectLesson(i)}>
                                 {`lesson ${lesson.lessonNum}: `}
                                 {lesson.lessonTitle}
                             </p>
@@ -118,7 +124,7 @@ export const Lessonslist = (props) => {
                     )
                 })}
             </div>
-            <Rating/>
+            <Rating courseId = {props.courseId}/>
         </div>
     )
 }

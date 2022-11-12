@@ -155,12 +155,11 @@ export const Register = () => {
 				navigate('/eduMates');
 			}
 		} catch (error) {
-			console.error(error.message);
+			// console.error(error.message);
 			setRegistError(error.message);
 		}
 	};
 
-	console.log(errors);
 	//Validation Flags
 	const [nameTouched, setNameTouched] = useState(false);
 	const [registError, setRegistError] = useState();

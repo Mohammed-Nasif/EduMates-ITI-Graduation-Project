@@ -42,7 +42,7 @@ export const Login = () => {
 			}
 			navigate('/eduMates');
 		} catch (err) {
-			console.log(err);
+			// console.log(err);
 			setLoginError(err.message);
 		}
 	};

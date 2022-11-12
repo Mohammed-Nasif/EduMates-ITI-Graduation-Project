@@ -32,7 +32,7 @@ export const Chats = () => {
 
 	return (
 		<div className="chats">
-			<p className=" ms-4 mt-1">Your chats</p>
+			<p className=" ms-4 mt-1 fw-bold">Your chats</p>
 			{chats &&
 				Object.entries(chats)
 					?.sort((a, b) => b[1].date - a[1].date)
