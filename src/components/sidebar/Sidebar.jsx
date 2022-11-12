@@ -36,29 +36,37 @@ export const Sidebar = () => {
 		},
 	];
 	return (
-		<div className='sidebar-container m-0  position-fixed'>
-			<div className='mb-3 w-100 mx-auto text-center logo '>
-				<Link to='/eduMates'>
-					<img src={logo} alt='EduMates' className='pt-4 pb-3 w-75' />
+		<div className="sidebar-container m-0  position-fixed">
+			<div className="mb-3 w-100 mx-auto text-center logo ">
+				<Link to="/eduMates">
+					<img src={logo} alt="EduMates" className="pt-4 pb-3 w-75" />
 				</Link>
 			</div>
-			<div className='user-info mb-3'>
-				<div className='user-img mb-2'>
-					<img src={currentUser.photoURL} alt='user-img' />
+			<div className="user-info mb-3">
+				<div className="user-img mb-2">
+					<img src={currentUser.photoURL} alt="user-img" />
 				</div>
-				<p className='user-name mb-1 f-roboto fw5 text-truncate text-capitalize'>{currentUser.displayName}</p>
-				<Link to={`/eduMates/profile/${currentUser.displayName}/${currentUser.uid}`} className='user-profile f-roboto fw5'>
+				<p className="user-name mb-1 f-roboto fw5 text-truncate text-capitalize">{currentUser.displayName}</p>
+				<Link to={`/eduMates/profile/${currentUser.displayName}/${currentUser.uid}`} className="user-profile f-roboto fw5">
 					View Profile
 				</Link>
 			</div>
-			<div className='sidebar-list'>
-				<ul className='ps-0'>
+			<div className="sidebar-list">
+				<ul className="ps-0">
 					{list.map((item, i) => {
 						return (
-							<NavLink to={item.path} key={i} className={(state) => (state.isActive ? 'active' : '')}>
+							<NavLink
+								to={item.path}
+								end
+								key={i}
+								className={(state) => {
+									console.log(this);
+									return state.isActive ? 'active' : '';
+								}}
+							>
 								<li className={'sidebar-item'}>
-									<item.icon className='sidebar-icon text-center' />
-									<p className='mb-0 f-roboto fw4'>{item.name}</p>
+									<item.icon className="sidebar-icon text-center" />
+									<p className="mb-0 f-roboto fw4">{item.name}</p>
 								</li>
 							</NavLink>
 						);

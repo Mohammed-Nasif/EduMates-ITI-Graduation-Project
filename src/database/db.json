@@ -429,6 +429,12 @@
     {
       "id": "ZJDwAM7wb9btwFY15qN9jo4ObMl2",
       "courses": []
+    },
+    {
+      "id": "la9CZKDMrQWhGO18yikB5cJGuR12",
+      "courses": [
+        "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ"
+      ]
     }
   ],
   "usercourses": [
@@ -474,6 +480,15 @@
     {
       "id": "3WIv2yHry1b8LjKIrsEoytPF6m12-PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
       "courseId": "PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
+      "seenlessons": [
+        0
+      ],
+      "progress": 0,
+      "userRating": 0
+    },
+    {
+      "id": "la9CZKDMrQWhGO18yikB5cJGuR12-PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
+      "courseId": "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
       "seenlessons": [
         0
       ],
