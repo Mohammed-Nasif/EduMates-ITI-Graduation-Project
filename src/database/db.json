@@ -420,6 +420,10 @@
       "courses": [
         "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ"
       ]
+    },
+    {
+      "id": "RNrQejAon2fygCw7UQufA7BXM1O2",
+      "courses": []
     }
   ],
   "usercourses": [
@@ -477,17 +481,5 @@
       "progress": 0,
       "userRating": 0
     },
-    {
-      "id": "R733ZaQ8mQg8eZz4ECJnVk609eA3-PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
-      "courseId": "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
-      "seenlessons": [
-        0,
-        1,
-        2
-      ],
-      "lastLesson": 2,
-      "progress": 60,
-      "userRating": 0
-    }
   ]
 }
