@@ -135,6 +135,7 @@ export const Discussionpost = (props) => {
 				</div>
 				<div className='col-5 d-flex align-items-center flex-column ms-0'>
 					<p className='mb-1 w-100 fw-bold'>{postOwner.displayName}</p>
+					{postOwner?.specialFlags?.isInstructor && <img className='inst-badge' src={Instructor} alt='Instructor' title='Instructor' />}
 				</div>
 			</div>
 			<div className='mb-3 post-body'>
@@ -167,7 +168,6 @@ export const Discussionpost = (props) => {
 								</div>
 								<div className='col-8 d-flex align-items-center flex-column'>
 									<p className='mb-1 w-100 fw-bold'>{currentUser?.displayName}</p>
-									{currentUser?.specialFlags.isInstructor && <img className='inst-badge' src={Instructor} alt='Instructor' title='Instructor' />}
 									<div className='w-100'>
 										<textarea type='text' className='input-text w-100 py-1 px-2' maxLength={100} ref={CommentInputRef} />
 									</div>
