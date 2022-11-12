@@ -20,9 +20,9 @@ export const NavbarComponent = () => {
 			<div className="nav-content d-flex align-items-center  position-relative">
 				<div className="row w-100">
 					<div className="nav-search-container col-6 col-md-9">
-						<div className="nav-search-content">
+						{/* <div className="nav-search-content">
 							<input className=" ms-md-3" type="search" placeholder="Search..." onKeyDown={(event) => getInputData(event)} />
-						</div>
+						</div> */}
 					</div>
 					<div className="nav-icons col-6 col-md-3 d-flex align-items-center">
 						<div className="col-3 text-center">
