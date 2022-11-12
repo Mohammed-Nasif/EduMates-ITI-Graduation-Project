@@ -128,52 +128,56 @@ export const Discussionpost = (props) => {
 	console.log(props.post.discussionId);
 
 	return (
-		<div className='discussion-post mb-3 py-3 mx-auto '>
-			<div className='row mb-2 d-flex align-items-center gx-0'>
-				<div className='col-2 text-center'>
-					<img src={postOwner.photoURL} alt='' />
+		<div className="discussion-post mb-3 py-3 mx-auto ">
+			<div className="row mb-2 d-flex align-items-start gx-0">
+				<div className="col-2 text-center mt-1">
+					<img src={postOwner.photoURL} alt="" />
 				</div>
-				<div className='col-5 d-flex align-items-center flex-column ms-0'>
-					<p className='mb-1 w-100 fw-bold'>{postOwner.displayName}</p>
-					{postOwner?.specialFlags?.isInstructor && <img className='inst-badge' src={Instructor} alt='Instructor' title='Instructor' />}
+				<div className="col-10 ">
+					<div className="d-flex align-items-center ms-0">
+						<p className="mb-0 me-2 fw-bold">{postOwner.displayName}</p>
+						{postOwner?.specialFlags?.isInstructor && <img className="inst-badge" src={Instructor} alt="Instructor" title="Instructor" />}
+					</div>
+					<p className="text-muted m-0 description">{postOwner.description || 'No description yet'}</p>
 				</div>
 			</div>
-			<div className='mb-3 post-body'>
-				<p className='w-100'>{props.post.discussionContent}</p>
-				<div className='d-flex align-items-center w-100'>
+			<div className="mb-1 post-body">
+				<p className="w-100 mb-2">{props.post.discussionContent}</p>
+				<div className="d-flex align-items-center w-100">
 					{isLiked ? (
-						<p className='pe-4 mb-0 interact-icon text-primary' onClick={handleLike}>
+						<p className="pe-4 mb-0 interact-icon text-primary" onClick={handleLike}>
 							Liked
 						</p>
 					) : (
-						<p className='pe-4 mb-0 interact-icon' onClick={handleLike}>
+						<p className="pe-4 mb-0 interact-icon" onClick={handleLike}>
 							Like
 						</p>
 					)}
-					<p className='pe-2 mb-0 interact-icon' onClick={handleReply}>
+					<p className="pe-2 mb-0 interact-icon" onClick={handleReply}>
 						Reply
 					</p>
 				</div>
 			</div>
+			<hr className="m-0" />
 			{replyFlag && (
-				<div className='reply mx-auto py-2 px-3'>
-					<div className='row'>
-						<div className='col-2'>
-							<BsArrowReturnRight className='reply-arrow' />
+				<div className="reply mx-auto py-2 px-3">
+					<div className="row">
+						<div className="col-2">
+							<BsArrowReturnRight className="reply-arrow" />
 						</div>
-						<div className='col-9 reply-input pt-2'>
-							<div className='row'>
-								<div className='col-2 text-center px-1'>
-									<img src={currentUser?.photoURL} alt='' />
+						<div className="col-9 reply-input pt-2">
+							<div className="row">
+								<div className="col-2 text-center px-1">
+									<img src={currentUser?.photoURL} alt="" />
 								</div>
-								<div className='col-8 d-flex align-items-center flex-column'>
-									<p className='mb-1 w-100 fw-bold'>{currentUser?.displayName}</p>
-									<div className='w-100'>
-										<textarea type='text' className='input-text w-100 py-1 px-2' maxLength={100} ref={CommentInputRef} />
+								<div className="col-8 d-flex align-items-center flex-column">
+									<p className="mb-1 w-100 fw-bold">{currentUser?.displayName}</p>
+									<div className="w-100">
+										<textarea type="text" className="input-text w-100 py-1 px-2" maxLength={100} ref={CommentInputRef} />
 									</div>
 								</div>
-								<div className='col-1 text-end d-flex flex-column-reverse pb-4'>
-									<AiOutlineSend className='fs-5 submit-icon' onClick={addCommnetValue} />
+								<div className="col-1 text-end d-flex flex-column-reverse pb-4">
+									<AiOutlineSend className="fs-5 submit-icon" onClick={addCommnetValue} />
 								</div>
 							</div>
 						</div>
@@ -181,7 +185,7 @@ export const Discussionpost = (props) => {
 				</div>
 			)}
 
-			<div className='comments'>
+			<div className="comments">
 				{allComments.map((comment, i) => {
 					return (
 						<div key={i}>

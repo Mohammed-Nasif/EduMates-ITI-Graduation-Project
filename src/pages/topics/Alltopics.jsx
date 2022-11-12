@@ -51,19 +51,15 @@ export const Alltopics = (props) => {
 	};
 
 	return (
-		<div className='subtopics-container w-100'>
-			<p className='sub-title'>Explore more</p>
-			<div className='user-topics'>
-				<div className='row position-relative px-1 mb-3 border border-1  shadow-sm rounded-3 pt-2 bg-white'>
+		<div className="subtopics-container w-100">
+			<p className="sub-title">Explore more</p>
+			<div className="user-topics">
+				<div className="row position-relative px-1 mb-3 border border-1  shadow-sm rounded-3 pt-2 bg-white">
 					{topicsToFollowShow.map((topic, index) => {
 						return (
-							<div className='col-3 topic-container mb-2' key={index}>
-								<div className='name-container'>
-									<p
-										onClick={() => handleSelectTopic(topic, index)}
-										onMouseOver={() => handleHoverAdd(index)}
-										onMouseLeave={handleMouseLeave}
-										className={isSelect === index || hoverAdd === index ? 'topic-name active' : 'topic-name'}>
+							<div className="col-3 topic-container mb-2" key={index}>
+								<div className="name-container">
+									<p onClick={() => handleSelectTopic(topic, index)} onMouseOver={() => handleHoverAdd(index)} onMouseLeave={handleMouseLeave} className={isSelect === index || hoverAdd === index ? 'topic-name active' : 'topic-name'}>
 										# {topic}
 									</p>
 								</div>
@@ -71,9 +67,9 @@ export const Alltopics = (props) => {
 						);
 					})}
 				</div>
-				<div className='mb-3 '>
+				<div className="mb-3 ">
 					<Select
-						options={currentUser.systemFlags.isSystemProfile ? [...options, { value: 'bot', label: 'bot' }] : options}
+						options={currentUser?.systemFlags?.isSystemProfile ? [...options, { value: 'bot', label: 'bot' }] : options}
 						value={options.filter(function (option) {
 							if (selectOpt) {
 								return option.value === selectedTopic;
@@ -84,11 +80,8 @@ export const Alltopics = (props) => {
 						onChange={(event) => handleSelectOption(event)}
 					/>
 				</div>
-				<div className='icon-container d-flex align-items-center'>
-					<BsCheckCircleFill
-						className={isSelect || selectOpt ? 'add-icon fs-2 mb-3' : 'add-icon fs-2 mb-3 prev-click'}
-						onClick={() => handleAddTopic(selectedTopic)}
-					/>
+				<div className="icon-container d-flex align-items-center">
+					<BsCheckCircleFill className={isSelect || selectOpt ? 'add-icon fs-2 mb-3' : 'add-icon fs-2 mb-3 prev-click'} onClick={() => handleAddTopic(selectedTopic)} />
 				</div>
 			</div>
 		</div>
