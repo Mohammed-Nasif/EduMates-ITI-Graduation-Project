@@ -15,6 +15,7 @@ import { Courselanding } from './pages/courselanding/Courselanding';
 import { Mateslist } from './pages/mateslist/Mateslist';
 import { Classroom } from './pages/classroom/Classroom';
 import { Coursecontent } from './pages/coursecontent/Coursecontent';
+import { Postnotification } from './pages/postnotification/Postnotification';
 
 const App = () => {
 	const { currentUser } = useContext(AuthContext);
@@ -36,7 +37,8 @@ const App = () => {
 							<Main />
 						</ProtectedRoute>
 					}>
-					<Route path='home' element={<Home />} />
+					<Route index exact element={<Home />} />
+					<Route path=':userName/:userId/:postId' element={<Postnotification />} />
 					<Route path='profile'>
 						<Route path=':userName/:userId' element={<Profile />} />
 						<Route path='edit' element={<Editprofile />} />

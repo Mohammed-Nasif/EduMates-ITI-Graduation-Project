@@ -11,7 +11,7 @@ $mainColor: #0080ff;
     font-size: 0.9rem;
   }
   .course_lessons {
-    overflow: scroll;
+    overflow: auto;
     width: 100%;
     max-height: 17rem;
     &::-webkit-scrollbar {
@@ -26,7 +26,8 @@ $mainColor: #0080ff;
     }
     ul {
       list-style-type: decimal;
-      padding: 1rem;
+      padding: 0 1rem 0 0;
+      margin: 0;
       li {
         padding: 0.4rem 0.4rem;
         margin: 0.3rem 0rem;

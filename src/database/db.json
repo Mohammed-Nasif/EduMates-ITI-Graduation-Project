@@ -10,6 +10,7 @@
       },
       "progress": 70,
       "courseRating": 50,
+      "courseThumbnail": "https://i.ytimg.com/vi/8N1ow1l0NBg/hqdefault.jpg",
       "enrollment": [
         "ed3qLQYI7cSgfbpgzhwHO2quDOe2"
       ],
@@ -81,6 +82,7 @@
       },
       "progress": 30,
       "courseRating": 80,
+      "courseThumbnail": "https://firebasestorage.googleapis.com/v0/b/edumates---graduation-project.appspot.com/o/Courses%20Thumbnail%2FDataStructurTumbnail_Nasif.png?alt=media&token=a40c0602-a956-4f58-b9e5-1ddb640d18ac",
       "enrollment": [],
       "lessonsList": [
         {
@@ -183,6 +185,7 @@
       },
       "progress": 90,
       "courseRating": 70,
+      "courseThumbnail": "https://i.ytimg.com/vi/Di_RlcpkpN4/hqdefault.jpg",
       "enrollment": [],
       "lessonsList": [
         {
@@ -399,7 +402,36 @@
   ],
   "users": [
     {
+      "id": "hPuoM3fD3ud4wYAvtKiRo1CVGTK2",
+      "courses": [
+        "PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU"
+      ]
+    },
+    {
       "id": "3WIv2yHry1b8LjKIrsEoytPF6m12",
+      "courses": [
+        "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
+        "PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU"
+      ]
+    },
+    {
+      "id": "vPCkzDKQVPeHkpaMKh1IazTBBP43",
+      "courses": [
+        "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ"
+      ]
+    },
+    {
+      "id": "MMVu45v7xwOrViW4EmtNbif1tDA2",
+      "courses": [
+        "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ"
+      ]
+    },
+    {
+      "id": "ZJDwAM7wb9btwFY15qN9jo4ObMl2",
+      "courses": []
+    },
+    {
+      "id": "la9CZKDMrQWhGO18yikB5cJGuR12",
       "courses": [
         "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ"
       ]
@@ -407,7 +439,55 @@
   ],
   "usercourses": [
     {
+      "id": "hPuoM3fD3ud4wYAvtKiRo1CVGTK2-PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
+      "courseId": "PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
+      "seenlessons": [
+        0
+      ],
+      "progress": 0,
+      "userRating": 3
+    },
+    {
       "id": "3WIv2yHry1b8LjKIrsEoytPF6m12-PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
+      "courseId": "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
+      "seenlessons": [
+        0,
+        1
+      ],
+      "progress": 40,
+      "userRating": 5
+    },
+    {
+      "id": "vPCkzDKQVPeHkpaMKh1IazTBBP43-PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
+      "courseId": "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
+      "seenlessons": [
+        0
+      ],
+      "progress": 0,
+      "userRating": 2
+    },
+    {
+      "id": "MMVu45v7xwOrViW4EmtNbif1tDA2-PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
+      "courseId": "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
+      "seenlessons": [
+        0,
+        1,
+        2
+      ],
+      "progress": 60,
+      "userRating": 0
+    },
+    {
+      "id": "3WIv2yHry1b8LjKIrsEoytPF6m12-PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
+      "courseId": "PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
+      "seenlessons": [
+        0
+      ],
+      "progress": 0,
+      "userRating": 0
+    },
+    {
+      "id": "la9CZKDMrQWhGO18yikB5cJGuR12-PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
       "courseId": "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
       "seenlessons": [
         0

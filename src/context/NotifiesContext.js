@@ -44,6 +44,14 @@ export const NotifiesContextProvider = ({ children }) => {
 					msgText: 'Shared your post',
 					notifyType: 'share',
 				};
+			case 'FOLLOW_USER':
+				return {
+					...state,
+					actionUser: action.payload.actionUser,
+					userId: action.payload.userId,
+					msgText: 'Followed you',
+					notifyType: 'follow',
+				};
 			default:
 				return state;
 		}
@@ -52,8 +60,6 @@ export const NotifiesContextProvider = ({ children }) => {
 
 	useEffect(() => {
 		state.userId && updateNotifies(state);
-		// console.log(state);
-		// console.log('notification sent');
 	}, [state]);
 
 	const updateNotifies = async (s) => {

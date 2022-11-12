@@ -29,21 +29,22 @@ $quatColor: #686868;
 		}
 		.notifiesCount {
 			background-color: red;
-			width: 16px;
-			height: 16px;
+			width: 12px;
+			height: 12px;
 			border-radius: 50%;
 			color: white;
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			font-size: 14px;
-			top: -6px;
-			left: 6px;
+			text-align: center;
+			font-size: 12px;
+			top: -0.2rem;
+			left: 1.30rem;
 		}
 		.ping-wrapper {
 			position: absolute;
-			top: -6px;
-			left: 3px;
+			top: -0.5rem;
+			left: 0.85rem;
 			.ring {
 				width: 25px;
 				height: 25px;
@@ -82,7 +83,7 @@ $quatColor: #686868;
 		}
 	}
 	.dropdown {
-		width: 15rem;
+		width: 17rem;
 		background-color: $PrimaryColor;
 		border-bottom-left-radius: 0.625rem;
 		border-bottom-right-radius: 0.625rem;
