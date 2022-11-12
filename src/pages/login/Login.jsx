@@ -8,10 +8,8 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../../firebase';
 import { updateDoc, doc, Timestamp } from 'firebase/firestore';
 import { AuthContext } from '../../context/AuthContext';
-import { useContext } from 'react';
-import { useState } from 'react';
 import { ForgetPassModal } from './Forgetpassmodal';
-import { useCallback } from 'react';
+import { useCallback, useState, useContext } from 'react';
 
 export const Login = () => {
 	const navigate = useNavigate();
@@ -20,6 +18,8 @@ export const Login = () => {
 	const [loginError, setLoginError] = useState();
 	const [emailValue, setEmailValue] = useState('');
 	const [emailTouched, setEmailTouched] = useState(false);
+	const [passTouched, setPassTouched] = useState(false);
+
 	const {
 		register,
 		handleSubmit,
@@ -72,25 +72,27 @@ export const Login = () => {
 									setEmailValue(e.target.value);
 									if (e.target.value.trim() === '') {
 										setLoginError('');
+									} else {
+										setEmailTouched(false);
 									}
 								},
 								onBlur: (e) => {
 									if (e.target.value.trim() === '') {
 										setEmailTouched(true);
+									} else {
+										setEmailTouched(false);
 									}
 								},
 							})}
 						/>
-						{errors?.hasOwnProperty('email') === false && (
-							<Form.Text className='text-muted'>We'll never share your email with anyone else.</Form.Text>
-						)}
+						<Form.Text className='text-muted'>We'll never share your email with anyone else.</Form.Text>
 						{emailTouched && emailValue.trim() === '' && errors?.email?.type !== 'required' && (
-							<p className='font-weight text-danger mt-2'>Email is required</p>
+							<p className='font-weight text-danger mt-1 mb-0'>Email is required</p>
 						)}
-						{errors?.email?.type === 'required' && <p className='font-weight text-danger mt-2'>Email is required</p>}
-						{errors?.email?.type === 'pattern' && <p className='font-weight text-danger mt-2'>Email enter a valid email</p>}
+						{errors?.email?.type === 'required' && <p className='font-weight text-danger mt-1 mb-0'>Email is required</p>}
+						{errors?.email?.type === 'pattern' && <p className='font-weight text-danger mt-1 mb-0'>Email enter a valid email</p>}
 						{errors?.email?.type !== 'pattern' && loginError === 'Firebase: Error (auth/user-not-found).' && emailValue.trim() !== '' && (
-							<p className='font-weight text-danger mt-2'>This email not in EduMates</p>
+							<p className='font-weight text-danger mt-1 mb-0'>This email not in EduMates</p>
 						)}
 					</Form.Group>
 
@@ -102,12 +104,24 @@ export const Login = () => {
 							placeholder='Password'
 							{...register('password', {
 								required: true,
+								onChange: (e) => {
+									if (e.target.value.trim() !== '') {
+										setPassTouched(false);
+									}
+								},
+								onBlur: (e) => {
+									if (e.target.value.trim() === '') {
+										setPassTouched(true);
+									} else {
+										setPassTouched(false);
+									}
+								},
 							})}
 						/>
-
-						{errors?.password?.type === 'required' && <p className='font-weight text-danger mt-2'>Password is required</p>}
+						{passTouched && errors?.password?.type !== 'required' && <p className='font-weight text-danger mt-1 mb-0'>Password is required</p>}
+						{errors?.password?.type === 'required' && <p className='font-weight text-danger mt-1 mb-0'>Password is required</p>}
 						{loginError === 'Firebase: Error (auth/wrong-password).' && (
-							<p className='font-weight text-danger mt-2'>Please check your password again</p>
+							<p className='font-weight text-danger mt-1 mb-0'>Please check your password again</p>
 						)}
 					</Form.Group>
 

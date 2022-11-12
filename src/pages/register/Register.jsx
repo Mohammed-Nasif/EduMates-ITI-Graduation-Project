@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller, set } from 'react-hook-form';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth, db, storage } from '../../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
@@ -16,21 +16,22 @@ import { TopicsContext } from '../../context/TopicsContext';
 import { RiImageAddFill } from 'react-icons/ri';
 import coursesapi from './../../coursesAPI/coursesapi';
 
-
 export const Register = () => {
 	const animatedComponents = makeAnimated();
-
 	const [avatarSrc, setAvatarSrc] = useState(DefaultAvatar);
-
 	const { topicsOptions } = useContext(TopicsContext);
 
 	const {
 		register,
 		handleSubmit,
-		// formState: { errors },
+		formState: { errors },
 		control,
-		// watch,
-	} = useForm();
+		watch,
+	} = useForm({
+		mode: 'onSubmit',
+		reValidateMode: 'onChange',
+		shouldFocusError: true,
+	});
 
 	const navigate = useNavigate();
 
@@ -51,7 +52,7 @@ export const Register = () => {
 		const password = userData.password;
 		const avatarImg = userData.avatarFile[0];
 		const bDate = userData.brithdate;
-		const userTopics = userData.select?.map((topic) => topic.label);
+		const userTopics = userData.select?.map((topic) => topic.label) || [topicsOptions[0].label, topicsOptions[1].label];
 		try {
 			const res = await createUserWithEmailAndPassword(auth, email, password);
 
@@ -154,10 +155,21 @@ export const Register = () => {
 				navigate('/eduMates/home');
 			}
 		} catch (error) {
-			console.error(error);
+			console.error(error.message);
+			setRegistError(error.message);
 		}
 	};
 
+	console.log(errors);
+	//Validation Flags
+	const [nameTouched, setNameTouched] = useState(false);
+	const [registError, setRegistError] = useState();
+	const [emailValue, setEmailValue] = useState('');
+	const [emailTouched, setEmailTouched] = useState(false);
+	const [passTouched, setPassTouched] = useState(false);
+	const [confPassTouched, setConfPassTouched] = useState(false);
+	const [topicsIsEmpty, setTopicsIsEmpty] = useState(false);
+	const [brithDateValidation, setBrithDateValidation] = useState(false);
 	return (
 		<div className='form_container'>
 			<div className='text-center'>
@@ -175,13 +187,25 @@ export const Register = () => {
 							type='text'
 							placeholder='Full Name'
 							{...register('name', {
-								// required: true,
-								// maxLength: 20,
+								required: true,
+								maxLength: 20,
+								onChange: (e) => {
+									if (e.target.value.trim() !== '') {
+										setNameTouched(false);
+									}
+								},
+								onBlur: (e) => {
+									if (e.target.value.trim() === '') {
+										setNameTouched(true);
+									} else {
+										setNameTouched(false);
+									}
+								},
 							})}
 						/>
-
-						{/* {errors?.name?.type === 'required' && <p className='font-weight text-danger mt-2'>Name is required</p>}
-					{errors?.name?.type === 'maxLength' && <p className='font-weight text-danger mt-2'>Name must contain maximum 20 letters</p>} */}
+						{nameTouched && errors?.name?.type !== 'required' && <p className='font-weight text-danger mt-1 mb-0'>Name is required</p>}
+						{errors?.name?.type === 'required' && <p className='font-weight text-danger mt-1 mb-0'>Name is required</p>}
+						{errors?.name?.type === 'maxLength' && <p className='font-weight text-danger mt-1 mb-0'>Name must contain maximum 20 letters</p>}
 					</Form.Group>
 
 					{/*Email Address*/}
@@ -190,17 +214,40 @@ export const Register = () => {
 							type='email'
 							placeholder='Email address'
 							{...register('email', {
-								// required: true,
-								// pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$/,
+								required: true,
+								pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$/,
+								onChange: (e) => {
+									setEmailValue(e.target.value);
+									setRegistError('');
+									if (e.target.value.trim() === '') {
+										setRegistError('');
+									} else {
+										setEmailTouched(false);
+									}
+								},
+								onBlur: (e) => {
+									if (e.target.value.trim() === '') {
+										setEmailTouched(true);
+									} else {
+										setEmailTouched(false);
+									}
+								},
 							})}
 						/>
 
-						{/* {errors?.email?.type === 'required' && <p className='font-weight text-danger mt-2'>Email is required</p>}
-					{errors?.email?.type === 'pattern' && <p className='font-weight text-danger mt-2'>Email enter a valid email</p>} */}
 						<Form.Text className='text-muted'>We'll never share your email with anyone else.</Form.Text>
+						{emailTouched && emailValue.trim() === '' && errors?.email?.type !== 'required' && (
+							<p className='font-weight text-danger mt-1 mb-0'>Email is required</p>
+						)}
+						{errors?.email?.type === 'required' && <p className='font-weight text-danger mt-1 mb-0'>Email is required</p>}
+						{errors?.email?.type === 'pattern' && <p className='font-weight text-danger mt-1 mb-0'>Email enter a valid email</p>}
+						{errors?.email?.type !== 'pattern' && registError === 'Firebase: Error (auth/email-already-in-use).' && emailValue.trim() !== '' && (
+							<p className='font-weight text-danger mt-1 mb-0'>This email already in EduMates</p>
+						)}
 					</Form.Group>
 
 					{/*Brith date*/}
+					{/*"2022-11-04" */}
 					<Form.Group className='mb-3' controlId='formBasicDate'>
 						<Form.Control
 							className='brith_date'
@@ -210,9 +257,15 @@ export const Register = () => {
 							name='brithdate'
 							placeholder='Select Brith Date                                     📅'
 							{...register('brithdate', {
-								// required: true,
+								required: true,
+								validate: (value) => new Date(value).getFullYear() <= 2003 && new Date(value).getFullYear() >= 1930,
+								onChange: (e) => {
+									setBrithDateValidation(new Date(e.target.value).getFullYear() >= 2005 || new Date(e.target.value).getFullYear() <= 1930);
+								},
 							})}
 						/>
+						{brithDateValidation && <p className='font-weight text-danger mt-1 mb-0'>Select valid brith date [13 years and above] </p>}
+						{errors?.brithdate?.type === 'required' && <p className='font-weight text-danger mt-1 mb-0'>Select your brith date</p>}
 					</Form.Group>
 
 					{/*Password*/}
@@ -221,17 +274,30 @@ export const Register = () => {
 							type='password'
 							placeholder='Password'
 							{...register('password', {
-								// required: true,
-								// pattern: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+								required: true,
+								pattern: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+								onChange: (e) => {
+									if (e.target.value.trim() !== '') {
+										setPassTouched(false);
+									}
+								},
+								onBlur: (e) => {
+									if (e.target.value.trim() === '') {
+										setPassTouched(true);
+									} else {
+										setPassTouched(false);
+									}
+								},
 							})}
 						/>
-
-						{/* {errors?.password?.type === 'required' && <p className='font-weight text-danger mt-2'>Password is required</p>}
-					{errors?.password?.type === 'pattern' && (
-						<p className='font-weight text-danger mt-2'>
-							Password must contains Minimum 8 characters, at least one letter, one number and one special character.
-						</p>
-					)} */}
+						{passTouched && errors?.password?.type !== 'required' && <p className='font-weight text-danger mt-1 mb-0'>Password is required</p>}
+						{errors?.password?.type === 'required' && <p className='font-weight text-danger mt-1 mb-0'>Password is required</p>}
+						{errors?.password?.type === 'pattern' && (
+							<p className='font-weight text-danger mt-1 mb-0'>
+								Password must contains Min. 8 characters <br />
+								including [a_zA_Z0_9] and special characters.
+							</p>
+						)}
 					</Form.Group>
 
 					{/*Confirm Password*/}
@@ -240,13 +306,27 @@ export const Register = () => {
 							type='password'
 							placeholder='Confirm Password'
 							{...register('confirmPassword', {
-								// required: true,
-								// validate: (value) => value === watch('password'),
+								required: true,
+								validate: (value) => value === watch('password'),
+								onChange: (e) => {
+									if (e.target.value.trim() !== '') {
+										setConfPassTouched(false);
+									}
+								},
+								onBlur: (e) => {
+									if (e.target.value.trim() === '') {
+										setConfPassTouched(true);
+									} else {
+										setConfPassTouched(false);
+									}
+								},
 							})}
 						/>
-
-						{/* {errors?.confirmPassword?.type === 'required' && <p className='font-weight text-danger mt-2'>Confirm Password is required</p>}
-					{errors?.confirmPassword?.type === 'validate' && <p className='font-weight text-danger mt-2'>Password Not Matched !</p>} */}
+						{confPassTouched && errors?.confirmPassword?.type !== 'required' && (
+							<p className='font-weight text-danger mt-1 mb-0'>Confirm Password is required</p>
+						)}
+						{errors?.confirmPassword?.type === 'required' && <p className='font-weight text-danger mt-1 mb-0'>Confirm Password is required</p>}
+						{errors?.confirmPassword?.type === 'validate' && <p className='font-weight text-danger mt-1 mb-0'>Password Not Matched !</p>}
 					</Form.Group>
 
 					{/*Select Topics*/}
@@ -261,27 +341,37 @@ export const Register = () => {
 									options={topicsOptions}
 									closeMenuOnSelect={false}
 									components={animatedComponents}
-									// defaultValue={[topicsOptions[0], topicsOptions[1]]}
+									defaultValue={[topicsOptions[0], topicsOptions[1]]}
 									isMulti
 								/>
 							)}
-							// rules={{ required: true }}
+							rules={{
+								required: topicsIsEmpty,
+								onChange: (e) => {
+									if (Object.keys(e.target.value).length === 0) {
+										setTopicsIsEmpty(true);
+									} else {
+										setTopicsIsEmpty(false);
+									}
+								},
+							}}
 						/>
-
-						{/* {errors?.select?.type === 'required' && <p className='font-weight text-danger mt-2'>Please select your title</p>} */}
+						{topicsIsEmpty && errors?.select?.type === 'required' && (
+							<p className='font-weight text-danger mt-1 mb-0'>Please pick your favorite topics</p>
+						)}
 					</Form.Group>
 
 					{/*Agree To Terms And Conditions CheckBox*/}
-					<Form.Group className='mb-3' controlId='formBasicCheckbox'>
+					<Form.Group className='my-3 d-flex flex-column align-items-center' controlId='formBasicCheckbox'>
 						<Form.Check
 							type='checkbox'
 							label='Agree To Terms And Conditions'
 							{...register('agreeTerms', {
-								// required: true,
+								required: true,
 							})}
 						/>
 
-						{/* {errors?.agreeTerms?.type === 'required' && <p className='font-weight text-danger mt-2'>You must agree on Terms and Conditions</p>} */}
+						{errors?.agreeTerms?.type === 'required' && <p className='font-weight text-danger mt-2'>You must agree on our Terms and Conditions</p>}
 					</Form.Group>
 
 					{/*Avatar*/}
@@ -290,7 +380,7 @@ export const Register = () => {
 						<Form.Label htmlFor='file'>
 							{/* <img src={AddAvatar} alt='addAvatar' /> */}
 							<span className='fs-6 d-flex justify-content-center align-items-center pointer'>
-								<RiImageAddFill className='fs-4 me-2' /> Select your avatar
+								<RiImageAddFill className='fs-4 me-2' /> Select your avatar <p className='text-danger mt-4 p-0 ps-2 badge'>Optional</p>
 							</span>
 						</Form.Label>
 					</Form.Group>
@@ -303,7 +393,7 @@ export const Register = () => {
 			</div>
 
 			<p className='text-center'>
-				Already on EduMates?
+				Already in EduMates?{' '}
 				<Link to='/login' className='fw-bolder'>
 					Login
 				</Link>
