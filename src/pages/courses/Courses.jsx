@@ -2,7 +2,7 @@ import './courses.scss';
 import { Coursecard } from '../../components/coursecard/Coursecard';
 import { Coursescategories } from '../../components/coursescategories/Coursescategories';
 import { Uploadcoursemenu } from '../../components/uploadYourCourse/Uploadcoursemenu';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import coursesapi from './../../coursesAPI/coursesapi';
 
 export const Courses = () => {
@@ -13,6 +13,10 @@ export const Courses = () => {
 		const response = await coursesapi.get(`/${endpoint}`);
 		return response.data;
 	};
+
+	const handelSortCourses = useCallback((sortedCourses) => {
+		setAllCourses(sortedCourses);
+	}, []);
 
 	useEffect(() => {
 		let ratingMap = {};
@@ -57,7 +61,7 @@ export const Courses = () => {
 						</div>
 					</div>
 					<div className='col-lg-3 col-md-6    col-sm-5   m-md-0 '>
-						<Coursescategories />
+						<Coursescategories allCourses={allCourses} handelSortCourses={handelSortCourses} />
 						<Uploadcoursemenu />
 					</div>
 				</div>
