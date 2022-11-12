@@ -57,7 +57,7 @@ export const Courses = () => {
 						</div>
 					</div>
 					<div className='col-lg-3 col-md-6    col-sm-5   m-md-0 '>
-						<Coursescategories />
+						<Coursescategories allCourses={allCourses}  setAllCourses={setAllCourses}  />
 						<Uploadcoursemenu />
 					</div>
 				</div>
