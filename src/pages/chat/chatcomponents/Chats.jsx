@@ -45,8 +45,8 @@ export const Chats = () => {
 											<img className="userChat_pic" src={chat[1].userInfo.photoURL} alt="UserPic" />
 										</div>
 										<div className="col-9 mt-0 py-2 ">
-											<p className="fw-bold w-13">{chat[1].userInfo.displayName}</p>
-											<p className="w-10 text-truncate">{chat[1].lastMessage?.text}</p>
+											<p className="fw-bold w-13 text-truncate lh-1">{chat[1].userInfo.displayName}</p>
+											<p className="w-10 text-truncate lh-1">{chat[1].lastMessage?.text}</p>
 										</div>
 									</div>
 								</div>

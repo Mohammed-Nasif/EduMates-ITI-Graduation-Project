@@ -7,6 +7,7 @@ import { useState, useEffect, useRef } from 'react';
 import coursesapi from './../../coursesAPI/coursesapi';
 import { AuthContext } from '../../context/AuthContext';
 import { Loader } from '../../components/loader/Loader';
+import empty from '../../assets/images/classroom-empty.svg';
 
 export const Classroom = () => {
 	const { currentUser } = useContext(AuthContext);
@@ -73,6 +74,12 @@ export const Classroom = () => {
 					<div className="col-8">
 						<div className="row g-5 justify-content-around ">
 							{loading && <Loader />}
+							{!loading && userCourses.length === 0 && (
+								<div>
+									{' '}
+									<h2 className="text-center text-muted mt-3">Nothing here</h2> <img src={empty} alt="" />{' '}
+								</div>
+							)}
 							{userCourses.length > 0 &&
 								userCourses.map((course, i) => {
 									return (

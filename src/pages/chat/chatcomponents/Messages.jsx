@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { ChatContext } from '../../../context/ChatContext';
 import { onSnapshot, doc } from 'firebase/firestore';
 import { db } from '../../../firebase';
-import chatPh from './chat.svg';
+import chatPh from '../../../assets/images/chat-empty.svg';
 
 export const Messages = () => {
 	const [messages, setMessages] = useState([]);
@@ -21,7 +21,7 @@ export const Messages = () => {
 
 	return (
 		<div className="messages_wrapper">
-			{data.chatId === 'null' && <img src={chatPh} alt="" className="d-block mx-auto w-50 opacity-75 mt-5" />}
+			{data.chatId === 'null' && <img src={chatPh} alt="" className="d-block mx-auto w-75  mt-5" />}
 
 			{messages.map((msg) => (
 				<Message message={msg} key={msg.id} />

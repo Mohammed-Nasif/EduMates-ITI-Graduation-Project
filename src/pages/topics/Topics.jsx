@@ -1,5 +1,5 @@
 import './topics.scss';
-import noResult from './not_found_posts.svg';
+import noResult from '../../assets/images/topics-empty.svg';
 import React, { useMemo, useState, useContext } from 'react';
 import { Usertopics } from './Usertopics';
 import { Alltopics } from './Alltopics';
@@ -48,13 +48,12 @@ export const Topics = () => {
 		return flag;
 	};
 
-	allPosts.forEach((post)=>{
-		if(selectedTopic[0] === "All"){
-			if(includeTopics(userTopics, post.postTopics)){
+	allPosts.forEach((post) => {
+		if (selectedTopic[0] === 'All') {
+			if (includeTopics(userTopics, post.postTopics)) {
 				specificPosts.push(post);
 			}
-		}
-		else if(includeTopics(selectedTopic, post.postTopics)){
+		} else if (includeTopics(selectedTopic, post.postTopics)) {
 			specificPosts.push(post);
 		}
 		// console.log(selectedTopic);
