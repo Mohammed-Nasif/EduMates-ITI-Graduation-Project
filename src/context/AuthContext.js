@@ -9,8 +9,10 @@ export const AuthContextProvider = ({ children }) => {
 
 	useEffect(() => {
 		const unSub = onAuthStateChanged(auth, (user) => {
+			console.log(user);
 			setCurrentUser(user);
 			onSnapshot(doc(db, 'users', user.uid), (doc) => {
+				console.log(doc.data());
 				setCurrentUser(doc.data());
 			});
 		});

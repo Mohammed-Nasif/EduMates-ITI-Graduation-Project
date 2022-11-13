@@ -39,8 +39,8 @@ export const Login = () => {
 				await updateDoc(doc(db, 'users', currentUser.uid), {
 					login: { isLoggedIn: true, date: Timestamp.now() },
 				});
-				navigate('/eduMates');
 			}
+			navigate('/eduMates');
 		} catch (err) {
 			// console.log(err);
 			setLoginError(err.message);

@@ -1,18 +1,19 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
- 
 
 export const Editmodal = (props) => {
 	const [name, setName] = useState(props.data.displayName);
 	const [description, setDescription] = useState(props.data.description);
 
 	return (
-		<Modal {...props} size='lg'    aria-labelledby='contained-modal-title-vcenter' centered >
-			<Modal.Header closeButton >
-				<Modal.Title id='contained-modal-title-vcenter' className='modal_head '>General Account info</Modal.Title>
+		<Modal {...props} size='lg' aria-labelledby='contained-modal-title-vcenter' centered>
+			<Modal.Header closeButton>
+				<Modal.Title id='contained-modal-title-vcenter' className='modal_head '>
+					General Account info
+				</Modal.Title>
 			</Modal.Header>
-			<Modal.Body  className='d-flex flex-column' > 
+			<Modal.Body className='d-flex flex-column'>
 				<div className='d-flex justify-content-around align-items-center'>
 					<p className='m-0 p-0 fw-bold '>Name</p>
 					<input
@@ -39,10 +40,10 @@ export const Editmodal = (props) => {
 				</div>
 			</Modal.Body>
 			<Modal.Footer>
-				<Button onClick={props.onHide}   >Close</Button>
+				<Button onClick={props.onHide}>Close</Button>
 				<Button
 					onClick={() => {
-						props.onConfirm(name, description);
+						props.onConfirm(name.toLowerCase(), description);
 					}}>
 					Confirm
 				</Button>

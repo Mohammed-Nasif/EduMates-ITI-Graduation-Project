@@ -122,10 +122,10 @@ export function AddPost() {
 								setPostText(e.target.value);
 							}}
 							id="newpost"
-							rows={isActive ? 3 : 1}
+							rows={isActive ? 5 : 1}
 							placeholder="write something..."
-							maxLength={150}
-							className={postText.length === 150 ? 'text-muted' : ''}
+							maxLength={350}
+							className={postText.length === 350 ? 'text-muted' : ''}
 						/>
 						{isActive && (
 							<>
