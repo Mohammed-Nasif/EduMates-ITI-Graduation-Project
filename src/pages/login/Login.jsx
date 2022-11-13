@@ -41,6 +41,7 @@ export const Login = () => {
 				});
 			}
 			navigate('/eduMates');
+			window.location.reload(false);
 		} catch (err) {
 			// console.log(err);
 			setLoginError(err.message);

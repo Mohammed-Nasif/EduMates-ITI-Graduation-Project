@@ -110,6 +110,7 @@ export const Register = () => {
 
 							// After All Operations Go To Home Page
 							navigate('/eduMates');
+							window.location.reload(false);
 						});
 					},
 				);
@@ -153,6 +154,7 @@ export const Register = () => {
 
 				// After All Operations Go To Home Page
 				navigate('/eduMates');
+				window.location.reload(false);
 			}
 		} catch (error) {
 			// console.error(error.message);
