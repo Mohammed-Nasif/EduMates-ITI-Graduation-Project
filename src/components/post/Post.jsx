@@ -1,6 +1,7 @@
 import './post.scss';
 import SystemProfile from '../../assets/profileicons/SystemBadge.png';
-import Instructor from '../../assets/profileicons/instructor.png';
+import WebOwner from '../../assets/profileicons/webOwner.png';
+import Verified from '../../assets/profileicons/verified.png';
 
 import {
 	BsHandThumbsUp,
@@ -182,13 +183,16 @@ export function Post({ postObj, shared, matesShared, profileshared, profiledate,
 							<img src={postOwner.photoURL} alt='' />
 						</div>
 						<div className='name w-100'>
-							<div className=' d-flex align-items-center gap-2'>
+							<div className=' d-flex align-items-center gap-1'>
 								<Link to={`/eduMates/profile/${postOwner.displayName}/${postOwner.uid}`}>
 									<div className='user-name fw-bold text-capitalize'>{postOwner.displayName}</div>
 								</Link>
-								<div>
+								<div className='m-0 p-0 mb-1'>
 									{postOwner?.systemFlags?.isSystemProfile && <img className='sys-badge' src={SystemProfile} alt='EduMates' title='EduMates' />}
-									{postOwner?.specialFlags?.isInstructor && <img className='inst-badge' src={Instructor} alt='Instructor' title='Instructor' />}
+									{postOwner?.specialFlags?.isOwner && <img className='special_badge' src={WebOwner} alt='Website Owners' title='Website Owners' />}
+									{postOwner?.specialFlags?.isVerified && (
+										<img className='special_badge' src={Verified} alt='Verified Member' title='Verified Member' />
+									)}
 								</div>
 							</div>
 							<div className='date fw-light' title={postObj.createdAt && postObj.createdAt.toDate().toLocaleString()}>

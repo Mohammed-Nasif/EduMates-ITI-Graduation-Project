@@ -237,7 +237,7 @@ export const Profile = () => {
 									)}
 								</div>
 								<div className="personal_info text-start">
-									<div className="d-flex justify-content-center align-items-center gap-2">
+									<div className="d-flex justify-content-start align-items-center gap-2">
 										<h2 className="user_name m-0 text-capitalize">{profileOwner?.displayName}</h2>
 										<div className="icons">
 											{profileOwner?.specialFlags?.isOwner && <img src={WebOwner} alt="Website Owners" title="Website Owners" />}

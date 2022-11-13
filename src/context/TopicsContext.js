@@ -53,6 +53,9 @@ export const TopicsContextProvider = ({ children }) => {
 		{ value: 48, label: 'unit-testing' },
 		{ value: 49, label: 'oop' },
 		{ value: 50, label: 'validation' },
+		{ value: 51, label: 'Announcements' },
+		{ value: 52, label: 'EduMates' },
+		{ value: 52, label: 'Quotes' },
 	];
 
 	return <TopicsContext.Provider value={{ topicsOptions }}>{children}</TopicsContext.Provider>;

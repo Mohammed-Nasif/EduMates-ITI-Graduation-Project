@@ -12,7 +12,7 @@ export const Suggestedmate = ({ sugUser }) => {
 	const { dispatch } = useContext(NotifiesContext);
 
 	const addToMatesList = async () => {
-		await updateDoc(doc(db, 'users', currentUser?.uid), {
+		await updateDoc(doc(db, 'users', currentUser.uid), {
 			matesList: arrayUnion(sugUser.uid),
 		});
 		dispatch({
