@@ -6,6 +6,9 @@ import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 import { BsPersonPlus } from 'react-icons/bs';
 import { NotifiesContext } from '../../context/NotifiesContext';
+import SystemProfile from '../../assets/profileicons/SystemBadge.png';
+import WebOwner from '../../assets/profileicons/webOwner.png';
+import Verified from '../../assets/profileicons/verified.png';
 
 export const Suggestedmate = ({ sugUser }) => {
 	const { currentUser } = useContext(AuthContext);
@@ -37,9 +40,18 @@ export const Suggestedmate = ({ sugUser }) => {
 									</div>
 								</div>
 								<div className='col-7 col-lg-7 col-xl-8 mt-0 py-2 '>
-									<Link to={`/eduMates/profile/${sugUser.displayName}/${sugUser.uid}`}>
+									<Link
+										to={`/eduMates/profile/${sugUser.displayName}/${sugUser.uid}`}
+										className='d-flex justify-content-start align-items-center gap-2'>
 										<p className='fw-bold w-13 text-capitalize text-truncate lh-1'>{sugUser.displayName}</p>
+										<div className='m-0 p-0 mb-1'>
+											{sugUser?.specialFlags?.isOwner && <img className='special_badge' src={Verified} alt='Website Owners' title='Website Owners' />}
+											{sugUser?.specialFlags?.isVerified && (
+												<img className='special_badge' src={Verified} alt='Verified Member' title='Verified Member' />
+											)}
+										</div>
 									</Link>
+
 									<p className='w-10 text-truncate lh-base '>{sugUser.description || 'No description yet'}</p>
 								</div>
 							</div>
