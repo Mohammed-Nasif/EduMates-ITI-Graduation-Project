@@ -417,24 +417,149 @@
     },
     {
       "id": "SRSr0Xjop2fKiLTzPqM0dmm1tIN2",
-      "courses": []
+      "courses": [
+        "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
+        "PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU"
+      ]
     },
     {
       "id": "Od4Cw6seu5dgKU0RLHnjoR1EJZE2",
-      "courses": []
+      "courses": [
+        "PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
+        "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
+        "PLDoPjvoNmBAzlpyFHOaB3b-eubmF0TAV2"
+      ]
     },
     {
       "id": "uK2F385FUdbnocimxceY0XH5fgp1",
+      "courses": [
+        "PLDoPjvoNmBAzlpyFHOaB3b-eubmF0TAV2",
+        "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
+        "PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU"
+      ]
+    },
+    {
+      "id": "ZTQuPd32TmhAuQ8xxljr22oCxOU2",
       "courses": []
     },
     {
-      "id": "nIIK6qAFl0eAf6qbXGuvgmrEnmj1",
+      "id": "CeGQSX4zVIevLrJKYz9yl6JlgpO2",
       "courses": []
     }
   ],
   "usercourses": [
     {
       "id": "dYnNBzr1g0PUSYe1VRAw4FC3om02-PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
+      "courseId": "PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
+      "seenlessons": [
+        0
+      ],
+      "lastLesson": 0,
+      "progress": 0,
+      "userRating": 5
+    },
+    {
+      "id": "nIIK6qAFl0eAf6qbXGuvgmrEnmj1-PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
+      "courseId": "PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
+      "seenlessons": [
+        0
+      ],
+      "lastLesson": 0,
+      "progress": 0,
+      "userRating": 5
+    },
+    {
+      "id": "nIIK6qAFl0eAf6qbXGuvgmrEnmj1-PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
+      "courseId": "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
+      "seenlessons": [
+        0
+      ],
+      "lastLesson": 0,
+      "progress": 0,
+      "userRating": 4
+    },
+    {
+      "id": "nIIK6qAFl0eAf6qbXGuvgmrEnmj1-PLDoPjvoNmBAzlpyFHOaB3b-eubmF0TAV2",
+      "courseId": "PLDoPjvoNmBAzlpyFHOaB3b-eubmF0TAV2",
+      "seenlessons": [
+        0
+      ],
+      "lastLesson": 0,
+      "progress": 0,
+      "userRating": 5
+    },
+    {
+      "id": "Od4Cw6seu5dgKU0RLHnjoR1EJZE2-PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
+      "courseId": "PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
+      "seenlessons": [
+        0
+      ],
+      "lastLesson": 0,
+      "progress": 0,
+      "userRating": 4
+    },
+    {
+      "id": "Od4Cw6seu5dgKU0RLHnjoR1EJZE2-PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
+      "courseId": "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
+      "seenlessons": [
+        0
+      ],
+      "lastLesson": 0,
+      "progress": 0,
+      "userRating": 5
+    },
+    {
+      "id": "Od4Cw6seu5dgKU0RLHnjoR1EJZE2-PLDoPjvoNmBAzlpyFHOaB3b-eubmF0TAV2",
+      "courseId": "PLDoPjvoNmBAzlpyFHOaB3b-eubmF0TAV2",
+      "seenlessons": [
+        0
+      ],
+      "lastLesson": 0,
+      "progress": 0,
+      "userRating": 3
+    },
+    {
+      "id": "uK2F385FUdbnocimxceY0XH5fgp1-PLDoPjvoNmBAzlpyFHOaB3b-eubmF0TAV2",
+      "courseId": "PLDoPjvoNmBAzlpyFHOaB3b-eubmF0TAV2",
+      "seenlessons": [
+        0
+      ],
+      "lastLesson": 0,
+      "progress": 0,
+      "userRating": 5
+    },
+    {
+      "id": "uK2F385FUdbnocimxceY0XH5fgp1-PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
+      "courseId": "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
+      "seenlessons": [
+        0
+      ],
+      "lastLesson": 0,
+      "progress": 0,
+      "userRating": 5
+    },
+    {
+      "id": "uK2F385FUdbnocimxceY0XH5fgp1-PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
+      "courseId": "PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
+      "seenlessons": [
+        0
+      ],
+      "lastLesson": 0,
+      "progress": 0,
+      "userRating": 5
+    },
+    {
+      "id": "SRSr0Xjop2fKiLTzPqM0dmm1tIN2-PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
+      "courseId": "PLueqWd9Qy25hZRMLsa5YV74kaXzpVW8TJ",
+      "seenlessons": [
+        0
+      ],
+      "lastLesson": 0,
+      "progress": 0,
+      "userRating": 2
+    },
+    {
+      "id": "SRSr0Xjop2fKiLTzPqM0dmm1tIN2-PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
       "courseId": "PLU4SWgUPZq-6OEG43FHKVhWUPxEaOOkJU",
       "seenlessons": [
         0
