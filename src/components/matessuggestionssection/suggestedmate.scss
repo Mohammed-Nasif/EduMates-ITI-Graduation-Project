@@ -6,33 +6,43 @@
 			font-size: 0.9rem;
 		}
 		.w-10 {
-			font-size: 10px;
+			font-size: 0.55rem;
+		}
+		p {
+			margin-top: 5px;
 		}
 		.follow {
-			font-size: 0.6rem;
+			font-size: 1.25rem;
 			padding: 0.2rem 0.5rem;
-			border-color: #0080ff;
+			color: hsl(0, 0%, 26%);
+			cursor: pointer;
+			&:hover {
+				color: hsl(210, 100%, 50%);
+
+				scale: 1.2;
+			}
 		}
+
 		a {
 			text-decoration: none;
 			color: inherit;
 		}
 		.user-photo {
-			width: 2.3rem;
-			height: 2.3rem;
+			width: 2rem;
+			height: 2rem;
 			overflow: hidden;
 			border-radius: 50%;
 			@include mediaQ(lg) {
-				width: 3rem;
-				height: 3rem;
+				width: 2.5rem;
+				height: 2.5rem;
 			}
 			@include mediaQ(xlg) {
-				width: 3rem;
-				height: 3rem;
+				width: 2.7rem;
+				height: 2.7rem;
 			}
 			@include mediaQ(xxlg) {
-				width: 3.5rem;
-				height: 3.5rem;
+				width: 3rem;
+				height: 3rem;
 			}
 			img {
 				width: inherit;

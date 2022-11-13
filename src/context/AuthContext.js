@@ -9,13 +9,13 @@ export const AuthContextProvider = ({ children }) => {
 
 	useEffect(() => {
 		const unSub = onAuthStateChanged(auth, (user) => {
+			console.log(user);
 			setCurrentUser(user);
 			onSnapshot(doc(db, 'users', user.uid), (doc) => {
-				console.log(doc);
+				console.log(doc.data());
 				setCurrentUser(doc.data());
 			});
 		});
-		console.log('الحقوني');
 		// Clean Up Fn When Leave
 		return () => {
 			unSub();

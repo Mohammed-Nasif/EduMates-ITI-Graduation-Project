@@ -9,13 +9,16 @@ export const Editmodal = (props) => {
 	return (
 		<Modal {...props} size='lg' aria-labelledby='contained-modal-title-vcenter' centered>
 			<Modal.Header closeButton>
-				<Modal.Title id='contained-modal-title-vcenter'>General Account info</Modal.Title>
+				<Modal.Title id='contained-modal-title-vcenter' className='modal_head '>
+					General Account info
+				</Modal.Title>
 			</Modal.Header>
-			<Modal.Body>
-				<div className='d-flex justify-content-around'>
-					<p>Name</p>
+			<Modal.Body className='d-flex flex-column'>
+				<div className='d-flex justify-content-around align-items-center'>
+					<p className='m-0 p-0 fw-bold '>Name</p>
 					<input
 						type='text'
+						className='form-control w-25'
 						value={name}
 						onChange={(e) => {
 							setName(e.target.value);
@@ -23,10 +26,12 @@ export const Editmodal = (props) => {
 					/>
 				</div>
 				<hr />
-				<div className='d-flex justify-content-around'>
-					<p>Description</p>
+				<div className='d-flex justify-content-around  align-items-center'>
+					{/* <p>Description</p> */}
+					<p className='p-0 m-0 fw-bold'>Description</p>
 					<input
 						type='text'
+						className='form-control w-25 me-3'
 						value={description}
 						onChange={(e) => {
 							setDescription(e.target.value);
@@ -38,7 +43,7 @@ export const Editmodal = (props) => {
 				<Button onClick={props.onHide}>Close</Button>
 				<Button
 					onClick={() => {
-						props.onConfirm(name, description);
+						props.onConfirm(name.toLowerCase(), description);
 					}}>
 					Confirm
 				</Button>

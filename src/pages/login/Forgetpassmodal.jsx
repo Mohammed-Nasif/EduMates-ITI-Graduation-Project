@@ -48,10 +48,10 @@ export const ForgetPassModal = ({ show, handelShowState }) => {
 					</div>
 					<div className={sent ? 'd-block' : 'd-none'}>
 						<p className='text-primary'>
-							A reset password email has been sent successfully to your email <p className='text-danger fw-bolder pt-1 text-center'>{email}</p>
-							<div className='d-flex justify-content-center align-items-center mb-0 pb-0'>
+							A reset password email has been sent successfully to your email <span className='d-block text-danger fw-bolder py-3 text-center'>{email}</span>
+							<span className='d-flex justify-content-center align-items-center mb-0 pb-0'>
 								<span className='badge bg-warning'>Please Check your inbox and your spam messages</span>
-							</div>
+							</span>
 						</p>
 					</div>
 				</Modal.Body>

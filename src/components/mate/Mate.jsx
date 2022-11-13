@@ -30,17 +30,17 @@ export const Mate = ({ mateId, currUser }) => {
 				<div className='Mate'>
 					<div className='card'>
 						<div className='cover-photo'>
-							<img className='w-100 h-100' src={mate.coverURL} alt='coverPhoto' />
+							<img className='w-100 h-100' src={mate?.coverURL} alt='coverPhoto' />
 						</div>
 						<div className='profile-photo text-center'>
-							<img src={mate.photoURL} alt='profilePhoto' />
+							<img src={mate?.photoURL} alt='profilePhoto' />
 						</div>
 						<div className='text-wrapper text-center'>
 							<Link to={`/eduMates/profile/${mate.displayName}/${mate.uid}`}>
-								<p className='fw-bold text-capitalize'>{mate.displayName}</p>
+								<p className='fw-bold text-capitalize'>{mate?.displayName}</p>
 							</Link>
 
-							<p className='description'>{mate.description}</p>
+							<p className='description'>{mate?.description}</p>
 						</div>
 						<div className='text-center mb-4 mt-3'>
 							<button className='btn btn-outline-danger' onClick={removeFromMatesList}>

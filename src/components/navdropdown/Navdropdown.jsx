@@ -66,7 +66,7 @@ export const Navdropdown = (props) => {
 	return (
 		<div className='dropdown-container' ref={dropdownRef}>
 			<div className='dropdown-icon position-relative'>
-				<Link>
+				<Link onClick={handleClick}>
 					{props.dropType === 'notifies' && !!notifiesCount && <span className='notifiesCount position-absolute'>{notifiesCount}</span>}
 					{props.dropType === 'chat' && msgPing && (
 						<div className='ping-wrapper'>
@@ -75,7 +75,7 @@ export const Navdropdown = (props) => {
 							<div id='r3' className='ring'></div>
 						</div>
 					)}
-					<props.icon className={toggle ? 'nav-icon active' : 'nav-icon'} onClick={handleClick} />
+					<props.icon className={toggle ? 'nav-icon active' : 'nav-icon'} />
 				</Link>
 			</div>
 			{toggle && (
@@ -86,36 +86,52 @@ export const Navdropdown = (props) => {
 									.sort((a, b) => b.notifiedAt - a.notifiedAt)
 									.map((item, index) => {
 										return (
-											<Link key={index + 1}>
-												<div className='row mb-1'>
-													<div className='col-2 user-img'>
-														<img src={item.actionUser.actionUserPhoto} alt={item.actionUser.actionUserName} />
+											<div className='notify' key={index + 1}>
+												<Link
+													to={
+														item.notifyType === 'follow'
+															? `/eduMates/profile/${item.actionUser.actionUserName}/${item.actionUser.actionUserId}`
+															: `/eduMates/${currentUser.displayName}/${currentUser.uid}/${item.postId}`
+													}>
+													<div className='row d-flex align-items-center justify-content-center p-0 gap-2'>
+														<div className='col-2 user-img'>
+															<img src={item.actionUser.actionUserPhoto} alt={item.actionUser.actionUserName} />
+														</div>
+														<div className='col-8 px-0'>
+															<p className='pt-2 user-name m-0 mb-1'>
+																<span className='fw-bolder text-info text-capitalize'>{item.actionUser.actionUserName}</span>
+																<span>{' ' + item.msgText}</span>
+															</p>
+														</div>
 													</div>
-													<div className='col-8 px-0'>
-														<p className='pt-2 user-name'>
-															<span className='fw-bolder text-info'>{item.actionUser.actionUserName}</span> {item.msgText}
-														</p>
-													</div>
-												</div>
-											</Link>
+												</Link>
+											</div>
 										);
 									})
 							: currentUser.seenNotifies
 									.sort((a, b) => b.notifiedAt - a.notifiedAt)
 									.map((item, index) => {
 										return (
-											<Link key={index + 1}>
-												<div className='row mb-1'>
-													<div className='col-2 user-img'>
-														<img src={item.actionUser.actionUserPhoto} alt={item.actionUser.actionUserName} />
+											<div className='notify' key={index + 1}>
+												<Link
+													to={
+														item.notifyType === 'follow'
+															? `/eduMates/profile/${item.actionUser.actionUserName}/${item.actionUser.actionUserId}`
+															: `/eduMates/${currentUser.displayName}/${currentUser.uid}/${item.postId}`
+													}>
+													<div className='row d-flex align-items-center justify-content-center p-0 gap-2'>
+														<div className='col-2 user-img'>
+															<img src={item.actionUser.actionUserPhoto} alt={item.actionUser.actionUserName} />
+														</div>
+														<div className='col-8 px-0'>
+															<p className='pt-2 user-name m-0 mb-1'>
+																<span className='fw-bolder text-info text-capitalize'>{item.actionUser.actionUserName}</span>
+																<span>{' ' + item.msgText}</span>
+															</p>
+														</div>
 													</div>
-													<div className='col-8 px-0'>
-														<p className='pt-2 user-name'>
-															<span className='fw-bolder text-info'>{item.actionUser.actionUserName}</span> {item.msgText}
-														</p>
-													</div>
-												</div>
-											</Link>
+												</Link>
+											</div>
 										);
 									}))}
 					{props.dropType === 'chat' && (

@@ -69,8 +69,10 @@ export const Input = () => {
 
 	// sending to firebase
 	const handleSend = async (e) => {
-
-		console.log('sent');
+		// Msg Notify Flag
+		await updateDoc(doc(db, 'users', data.user.uid), {
+			msgNotifies: true,
+		});
 
 		if (voice) {
 			const storageRef = ref(storage, `/voices/${uuid()}`);
@@ -95,7 +97,7 @@ export const Input = () => {
 							}),
 						});
 					});
-				}
+				},
 			);
 		}
 		if (video) {
@@ -121,7 +123,7 @@ export const Input = () => {
 							}),
 						});
 					});
-				}
+				},
 			);
 		} else if (file) {
 			const storageRef = ref(storage, `/files/${file.name}`);
@@ -146,7 +148,7 @@ export const Input = () => {
 							}),
 						});
 					});
-				}
+				},
 			);
 		} else if (img) {
 			const storageRef = ref(storage, `/photos/${uuid()}`);
@@ -172,7 +174,7 @@ export const Input = () => {
 							}),
 						});
 					});
-				}
+				},
 			);
 		} else if (text.trim() !== '') {
 			const chatsRef = doc(db, 'chats', data.chatId);
@@ -218,113 +220,111 @@ export const Input = () => {
 
 	if (data.chatId !== 'null')
 		return (
-			<div className="input_wrapper position-relative px-3 py-2">
+			<div className='input_wrapper position-relative px-3 py-2'>
 				<TiAttachment
-					className="toggler icon"
+					className='toggler icon'
 					onClick={() => {
 						setToggle((prev) => !prev);
 					}}
 				/>
 				{sendBtn ? (
-					<BsCursor className="fs-4 icon" onClick={handleSend} />
+					<BsCursor className='fs-4 icon' onClick={handleSend} />
 				) : (
 					<span ref={start} onClick={openRecord}>
-						<BsMic className="fs-4 icon" />
+						<BsMic className='fs-4 icon' />
 					</span>
 				)}
 
 				<span ref={stop} style={{ display: 'none' }}>
-					<BsMicMute className="fs-4 icon" />
+					<BsMicMute className='fs-4 icon' />
 				</span>
 
-				<div className="pop-up position-absolute p-1">
+				<div className='pop-up position-absolute p-1'>
 					<div className={`icons position-relative ${toggle ? 'toggle' : ''}`}>
 						<input
-							type="file"
-							accept="video/*"
+							type='file'
+							accept='video/*'
 							style={{ display: 'none' }}
-							id="videoUpload"
+							id='videoUpload'
 							onChange={(e) => {
 								setVideo(e.target.files[0]);
 								setSendBtn(true);
 								e.target.value = '';
 							}}
 						/>
-						<label htmlFor="videoUpload">
-							<BsFileEarmarkPlay className="icon" title="Video upload" />
+						<label htmlFor='videoUpload'>
+							<BsFileEarmarkPlay className='icon' title='Video upload' />
 						</label>
 						<input
-							type="file"
-							accept=".pdf*"
+							type='file'
+							accept='.pdf*'
 							style={{ display: 'none' }}
-							id="fileUpload"
+							id='fileUpload'
 							onChange={(e) => {
 								setFile(e.target.files[0]);
 								setSendBtn(true);
 								e.target.value = '';
 							}}
 						/>
-						<label htmlFor="fileUpload">
-							<BsFileEarmarkText className="icon" title="PDF upload" />
+						<label htmlFor='fileUpload'>
+							<BsFileEarmarkText className='icon' title='PDF upload' />
 						</label>
 
 						<input
-							type="file"
-							accept="image/*"
+							type='file'
+							accept='image/*'
 							style={{ display: 'none' }}
-							id="imgAttach"
-							value=""
+							id='imgAttach'
+							value=''
 							onChange={(e) => {
 								setImg(e.target.files[0]);
 								setSendBtn(true);
 								e.target.value = '';
 							}}
 						/>
-						<label htmlFor="imgAttach">
-							<TiImage className="icon" title="Image upload" />
+						<label htmlFor='imgAttach'>
+							<TiImage className='icon' title='Image upload' />
 						</label>
 					</div>
 				</div>
 
-
 				<input
-					className="msg_input"
-					type="text"
+					className='msg_input'
+					type='text'
 					value={text}
-					placeholder="Type Message..."
+					placeholder='Type Message...'
 					onChange={(e) => setText(e.target.value)}
 					onKeyDown={(e) => {
 						if (e.code === 'Enter' || e.code === 'NumpadEnter') handleSend();
 					}}
 				/>
-				<img src={currentUser.photoURL} alt="curUserImg" />
-
+				<img src={currentUser.photoURL} alt='curUserImg' />
 
 				{(img || file || video || voice) && (
-					<div className="preview  position-absolute text-center shadow">
-						<div className="d-flex justify-content-center">
+					<div className='preview  position-absolute text-center shadow'>
+						<div className='d-flex justify-content-center'>
 							{img && (
-								<div className="preview-img">
+								<div className='preview-img'>
 									<img src={URL.createObjectURL(img)} />
 								</div>
 							)}
 							{file && (
-								<div className="preview-file">
-									<iframe title="pdf viewer" src={URL.createObjectURL(file)} className="w-75" height="200px"></iframe>
+								<div className='preview-file'>
+									<iframe title='pdf viewer' src={URL.createObjectURL(file)} className='w-75' height='200px'></iframe>
 								</div>
 							)}
 
 							{video && (
-								<div className="preview-vid">
+								<div className='preview-vid'>
 									<video controls>
-										<source src={URL.createObjectURL(video)} type="" />
+										<source src={URL.createObjectURL(video)} type='' />
 									</video>
 								</div>
 							)}
 							{voice && (
-								<div className="preview-voice">
+								<div className='preview-voice'>
 									<audio controls>
-										<source src={URL.createObjectURL(voice)} type="audio/ogg" />
+										<source src={URL.createObjectURL(voice)} type='audio/ogg' />
 									</audio>
 								</div>
 							)}
@@ -336,10 +336,16 @@ export const Input = () => {
 					</div>
 				)}
 				{progress > 0 && progress < 100 && (
-					<div className="uploading position-absolute text-center shadow">
+					<div className='uploading position-absolute text-center shadow'>
 						uploading... <small>{progress}%</small>
-						<div className="progress">
-							<div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Animated striped example" aria-valuemin="0" aria-valuemax="100" style={{ width: `${progress}%` }}></div>
+						<div className='progress'>
+							<div
+								className='progress-bar progress-bar-striped progress-bar-animated'
+								role='progressbar'
+								aria-label='Animated striped example'
+								aria-valuemin='0'
+								aria-valuemax='100'
+								style={{ width: `${progress}%` }}></div>
 						</div>
 					</div>
 				)}

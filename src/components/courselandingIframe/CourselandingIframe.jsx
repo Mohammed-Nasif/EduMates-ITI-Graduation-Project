@@ -1,80 +1,115 @@
-import './courselandingIframe.scss'
+import './courselandingIframe.scss';
 import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
 // import Iframe from 'react-iframe'
-import ReactPlayer from 'react-player'
-import { useState, useEffect } from 'react'
-// import axios from 'axios'
+import ReactPlayer from 'react-player';
+import { useState, useEffect, useContext } from 'react';
+import coursesapi from './../../coursesAPI/coursesapi';
+import { AuthContext } from '../../context/AuthContext';
+
 
 export const CourselandingIframe = (props) => {
-  // const baseURl =
-  //   'https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyDahH_bXneE701zW8UoiiB_2WgVX0lAXA4&part=snippet&maxResults=10&playlistId=PLDoPjvoNmBAw8NNtJF4Bvhhbnt6MghtSq'
-  //   const [playList, setPlayList] = useState([])
-  //  useEffect(() => {
-  //       axios.get(baseURl).then(response => {
-  //       setPlayList(response.data)
-  //       console.log(playList);
+	const [courseRating, setCourseRating] = useState(0);
+	const { currentUser } = useContext(AuthContext);
+    const combId = `${currentUser.uid}-${props.courseId}`;
 
-  //     })
-  //   }, [])
-  // axios
-  //   .get(baseURl)
-  //   .then(function (response) {
-  //     // handle success
-  //     console.log(response)
-  //   })
-  //   .catch(function (error) {
-  //     // handle error
-  //     console.log(error)
-  //   })
-  //   .then(function () {
-  //     // always executed
-  //   })
-
-  return (
-    <>
-      <Courseheading courseName={props.courseName} courseRating={props.courseRating}/>
-      <>
-        <div className='iframe_wrapper'>
-          <ReactPlayer
-            url={`https://www.youtube-nocookie.com/embed/${props.courseVideo}`}
-            width='100%'
-            controls={true}
-          />
-          <h4 className=''>Welcome To My Course!</h4>
-        </div>
-      </>
-    </>
-  )
-}
-
-export const Courseheading = (props) => {
-  const rating = (value) => {
-		let rate = (value / 100) * 5;
+	const rating = (ratingArr) => {
+		let rate = calculateRatingValue(ratingArr);
 		return Math.round(rate * 2) / 2;
 	};
-  return (
-    <>
-      <div className='course_heading'>
-        <h4 className='course_name'>{props.courseName}</h4>
-        <div className='rating '>
-          {/* <BsStarFill className='star' />
-          <BsStarFill className='star' />
-          <BsStarFill className='star' />
-          <BsStarFill className='star' />
-          <BsStarFill className='star' /> */}
-          	{Array(5)
-							.fill(0)
-							.map((_, index) => {
-								if (rating(props.courseRating) >= index + 1) {
-									return <BsStarFill className='gold' size={20} key={index} />;
-								} else if (rating(props.courseRating) - index === 0.5) {
-									return <BsStarHalf className='gold' size={20} key={index} />;
-								} else {
-									return <BsStar className='gold' size={20} key={index} />;
-								}
-							})}
-        </div>
-      </div>
-    </>
-  )
-}
+	const calculateRatingValue = (ratingArr) => {
+		let rateValue = 0;
+		if (ratingArr.length === 0) {
+			rateValue = 0;
+		} else {
+			ratingArr.forEach((el) => {
+				rateValue += el;
+			});
+			rateValue = rateValue / ratingArr.length;
+		}
+		return Math.round(rateValue);
+	};
+
+	// get data from api to calculate the rating value
+	const getDataFromApi = async (endpoint) => {
+		try {
+		const response = await coursesapi.get(`/${endpoint}`);
+		return response.data;
+		} catch (error) {
+			console.log(error.response.status);
+			return error.response.status;
+		}
+	};
+
+	useEffect(() => {
+		let ratingArr = [];
+		let ratingValue = 0;
+		const getCourseRating = async () => {
+			const usersRating = await getDataFromApi('usercourses');
+			if(usersRating){
+				if (usersRating === 404) {
+					// console.log("course not found");
+					// missing endpoint
+					ratingArr = [];
+				} else {
+					// store rating array
+					usersRating.forEach((item)=>{
+						if(item.courseId === props.courseId){
+							ratingArr.push(item.userRating);
+						}
+					})
+					// console.log("course exist", ratingArr );
+				}
+				if(ratingArr.length === 0){
+					ratingValue = 0;
+				}
+				else{
+					ratingValue = rating(ratingArr);
+				}
+				setCourseRating(ratingValue);
+				// console.log(ratingValue);
+			}
+		};
+		getCourseRating();
+	}, []);
+
+	return (
+		<>
+			<Courseheading courseName={props.courseName} courseRating={courseRating} />
+			<>
+				<div className='iframe_wrapper'>
+					<ReactPlayer url={`https://www.youtube-nocookie.com/embed/${props.courseVideo}`} width='100%' controls={true} />
+					<h4 className=''>Welcome To My Course!</h4>
+				</div>
+			</>
+		</>
+	);
+};
+
+export const Courseheading = (props) => {
+	// const rating = (value) => {
+	// 	let rate = (value / 100) * 5;
+	// 	return Math.round(rate * 2) / 2;
+	// };
+
+  
+	return (
+		<>
+			<div className='course_heading'>
+				<h4 className='course_name'>{props.courseName}</h4>
+				<div className='rating '>
+					{Array(5)
+						.fill(0)
+						.map((_, index) => {
+							if (props.courseRating >= index + 1) {
+								return <BsStarFill className='gold' size={20} key={index} />;
+							} else if (props.courseRating - index === 0.5) {
+								return <BsStarHalf className='gold' size={20} key={index} />;
+							} else {
+								return <BsStar className='gold' size={20} key={index} />;
+							}
+						})}
+				</div>
+			</div>
+		</>
+	);
+};

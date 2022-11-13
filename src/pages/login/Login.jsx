@@ -8,26 +8,31 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../../firebase';
 import { updateDoc, doc, Timestamp } from 'firebase/firestore';
 import { AuthContext } from '../../context/AuthContext';
-import { useContext } from 'react';
-import { useState } from 'react';
 import { ForgetPassModal } from './Forgetpassmodal';
-import { useCallback } from 'react';
+import { useCallback, useState, useContext } from 'react';
 
 export const Login = () => {
 	const navigate = useNavigate();
 	const { currentUser } = useContext(AuthContext);
 	const [showModal, setShowModal] = useState();
+	const [loginError, setLoginError] = useState();
+	const [emailValue, setEmailValue] = useState('');
+	const [emailTouched, setEmailTouched] = useState(false);
+	const [passTouched, setPassTouched] = useState(false);
 
 	const {
 		register,
 		handleSubmit,
-		// formState: { errors },
-	} = useForm();
+		formState: { errors },
+	} = useForm({
+		mode: 'onSubmit',
+		reValidateMode: 'onChange',
+		shouldFocusError: true,
+	});
 
 	const onLoginSubmit = async (userData) => {
 		const email = userData.email;
 		const password = userData.password;
-
 		try {
 			await signInWithEmailAndPassword(auth, email, password);
 			if (currentUser) {
@@ -35,9 +40,11 @@ export const Login = () => {
 					login: { isLoggedIn: true, date: Timestamp.now() },
 				});
 			}
-			navigate('/eduMates/home');
+			navigate('/eduMates');
+			window.location.reload(false);
 		} catch (err) {
-			console.log(err);
+			// console.log(err);
+			setLoginError(err.message);
 		}
 	};
 
@@ -60,14 +67,34 @@ export const Login = () => {
 							type='email'
 							placeholder='Email address'
 							{...register('email', {
-								// required: true,
-								// pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$/,
+								required: true,
+								pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$/,
+								onChange: (e) => {
+									setEmailValue(e.target.value);
+									if (e.target.value.trim() === '') {
+										setLoginError('');
+									} else {
+										setEmailTouched(false);
+									}
+								},
+								onBlur: (e) => {
+									if (e.target.value.trim() === '') {
+										setEmailTouched(true);
+									} else {
+										setEmailTouched(false);
+									}
+								},
 							})}
 						/>
-
-						{/* {errors?.email?.type === 'required' && <p className='font-weight text-danger mt-2'>Email is required</p>}
-					{errors?.email?.type === 'pattern' && <p className='font-weight text-danger mt-2'>Email enter a valid email</p>} */}
 						<Form.Text className='text-muted'>We'll never share your email with anyone else.</Form.Text>
+						{emailTouched && emailValue.trim() === '' && errors?.email?.type !== 'required' && (
+							<p className='font-weight text-danger mt-1 mb-0'>Email is required</p>
+						)}
+						{errors?.email?.type === 'required' && <p className='font-weight text-danger mt-1 mb-0'>Email is required</p>}
+						{errors?.email?.type === 'pattern' && <p className='font-weight text-danger mt-1 mb-0'>Email enter a valid email</p>}
+						{errors?.email?.type !== 'pattern' && loginError === 'Firebase: Error (auth/user-not-found).' && emailValue.trim() !== '' && (
+							<p className='font-weight text-danger mt-1 mb-0'>This email not in EduMates</p>
+						)}
 					</Form.Group>
 
 					{/*Password*/}
@@ -77,17 +104,26 @@ export const Login = () => {
 							type='password'
 							placeholder='Password'
 							{...register('password', {
-								// required: true,
-								// pattern: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+								required: true,
+								onChange: (e) => {
+									if (e.target.value.trim() !== '') {
+										setPassTouched(false);
+									}
+								},
+								onBlur: (e) => {
+									if (e.target.value.trim() === '') {
+										setPassTouched(true);
+									} else {
+										setPassTouched(false);
+									}
+								},
 							})}
 						/>
-
-						{/* {errors?.password?.type === 'required' && <p className='font-weight text-danger mt-2'>Password is required</p>}
-					{errors?.password?.type === 'pattern' && (
-						<p className='font-weight text-danger mt-2'>
-							Password must contains Minimum 8 characters, at least one letter, one number and one special character.
-						</p>
-					)} */}
+						{passTouched && errors?.password?.type !== 'required' && <p className='font-weight text-danger mt-1 mb-0'>Password is required</p>}
+						{errors?.password?.type === 'required' && <p className='font-weight text-danger mt-1 mb-0'>Password is required</p>}
+						{loginError === 'Firebase: Error (auth/wrong-password).' && (
+							<p className='font-weight text-danger mt-1 mb-0'>Please check your password again</p>
+						)}
 					</Form.Group>
 
 					{/*Forget Password */}
@@ -108,7 +144,7 @@ export const Login = () => {
 				</Form>
 			</div>
 			<p className='text-center'>
-				Not on EduMates?{' '}
+				Not in EduMates?{' '}
 				<Link to='/register' className='fw-bolder'>
 					Signup
 				</Link>{' '}

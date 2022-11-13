@@ -25,18 +25,21 @@ import { PostsContext } from './../../context/PostsContext';
 import { arrayRemove, arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import { AuthContext } from '../../context/AuthContext';
 import { UsersContext } from '../../context/UsersContext';
+import { NotifiesContext } from '../../context/NotifiesContext';
 
 export const Profile = () => {
 	const param = useParams();
 	const { currentUser } = useContext(AuthContext);
 	const { allPosts } = useContext(PostsContext);
 	const { allUsers } = useContext(UsersContext);
+	const { dispatch } = useContext(NotifiesContext);
 
 	const [profileOwner, setProfileOwner] = useState({});
 
 	let isOwner = false,
 		isMAte = false;
-
+	// const [isOwner, setIsOwner] = useState(false);
+	// const [isMAte, setIsMAte] = useState(false);
 	const [uploadedPP, setUploadedPP] = useState('');
 	const [imgUploaded, setImgUploaded] = useState(false);
 	const [uploadedCover, setUploadedCover] = useState('');
@@ -49,10 +52,11 @@ export const Profile = () => {
 
 	if (param.userId === currentUser.uid) isOwner = true;
 	if (currentUser?.matesList?.includes(param.userId)) isMAte = true;
-
 	useEffect(() => {
 		window.scrollTo(0, 0);
 		setProfileOwner(() => allUsers.find((user) => user.uid === param.userId));
+
+		console.log('Heeelp');
 	}, [param.userId, profileOwner, allUsers]);
 
 	// function to upload profile picture
@@ -146,6 +150,13 @@ export const Profile = () => {
 		await updateDoc(doc(db, 'users', currentUser.uid), {
 			matesList: arrayUnion(profileOwner.uid),
 		});
+		dispatch({
+			type: 'FOLLOW_USER',
+			payload: {
+				userId: profileOwner.uid,
+				actionUser: { actionUserId: currentUser.uid, actionUserName: currentUser.displayName, actionUserPhoto: currentUser.photoURL },
+			},
+		});
 	};
 
 	// Un Follow
@@ -157,7 +168,7 @@ export const Profile = () => {
 
 	const feed = [];
 
-	let userPosts = allPosts.filter((post) => profileOwner.uid === post.createdBy);
+	let userPosts = allPosts.filter((post) => param.userId === post.createdBy);
 	for (let post of userPosts) {
 		feed.push({ date: post.createdAt, post: post, profileshared: false });
 	}
@@ -175,7 +186,7 @@ export const Profile = () => {
 	return (
 		<>
 			<section className='profile '>
-				<div className='container p-0 mx-auto'>
+				<div className='container-lg p-0 mx-auto'>
 					<div className='profile_wrapper  w-100 text-sm-center'>
 						<div className='cover_photo position-relative'>
 							<img ref={coverPicture} src={profileOwner?.coverURL} alt='profile_cover_img' />
@@ -194,11 +205,11 @@ export const Profile = () => {
 							</div>
 						)}
 						{cvrUpdateConfirm && (
-							<div className='cvr-img-confirm'>
-								<button className='btn btn-primary' onClick={confirmCvrImgUpdate}>
+							<div className='cvr-img-confirm '>
+								<button className='btn btn-primary ' onClick={confirmCvrImgUpdate}>
 									<GrCheckmark className='p-0 m-0' />
 								</button>
-								<button className='btn btn-secondary' onClick={cancelCvrImgUpdate}>
+								<button className='btn btn-secondary ' onClick={cancelCvrImgUpdate}>
 									<GrClose className='p-0 m-0' />
 								</button>
 							</div>
@@ -230,7 +241,7 @@ export const Profile = () => {
 									)}
 								</div>
 								<div className='personal_info text-start'>
-									<div className='d-flex justify-content-center align-items-center gap-2'>
+									<div className='d-flex justify-content-start align-items-center gap-2'>
 										<h2 className='user_name m-0 text-capitalize'>{profileOwner?.displayName}</h2>
 										<div className='icons'>
 											{profileOwner?.specialFlags?.isOwner && <img src={WebOwner} alt='Website Owners' title='Website Owners' />}
@@ -265,7 +276,7 @@ export const Profile = () => {
 								</button>
 							)}
 							{isOwner && (
-								<div className='edit_and_matList my-2 pe-2 d-flex flex-column align-items-start m-0 '>
+								<div className='edit_and_matList my-2 pe-2 d-flex flex-column align-items-start me-5 '>
 									<div className='edit' onClick={() => setModalShow(true)}>
 										<div className='text-dark'>
 											<h4 className='d-inline pointer fs-5'>Edit Profile</h4>
@@ -287,7 +298,7 @@ export const Profile = () => {
 						</div>
 					</div>
 
-					<div className='profile_content ps-3 d-flex'>
+					<div className='profile_content ps-md-3 d-flex'>
 						<main className=''>
 							{isOwner && (
 								<div className='mb-4'>
