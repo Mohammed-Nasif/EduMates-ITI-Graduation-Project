@@ -9,7 +9,7 @@ export const InstructorProfile = ({ instructor }) => {
 					<img src={instructor.photoURL} alt='instructor_photo ' />
 				</div>
 				<div className='instructor_info p-0 m-0 mt-1'>
-					<h6 className=''>{instructor.displayName}</h6>
+					<h6 className='text-capitalize'>{instructor.displayName}</h6>
 					<p className='text-secondary px-2 '>{instructor.description}</p>
 				</div>
 				<div className='follow_btn'>
