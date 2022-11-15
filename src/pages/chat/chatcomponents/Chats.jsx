@@ -31,27 +31,27 @@ export const Chats = () => {
 	};
 
 	return (
-		<div className="chats">
-			<p className=" ms-4 mt-1 fw-bold">Your chats</p>
+		<div className='chats'>
+			<p className=' ms-4 mt-1 fw-bold'>Your chats</p>
 			{chats &&
 				Object.entries(chats)
 					?.sort((a, b) => b[1].date - a[1].date)
 					.map((chat) => (
-						<div className="visible-section px-4 " key={chat[0]}>
-							<div className="row py-2 g-3 d-flex align-items-center align-items-center ">
-								<div className="col-9">
-									<div className="row g-2">
-										<div className="col-3 p-1 ">
-											<img className="userChat_pic" src={chat[1].userInfo.photoURL} alt="UserPic" />
+						<div className='visible-section px-4 ' key={chat[0]}>
+							<div className='row py-2 g-3 d-flex align-items-center align-items-center '>
+								<div className='col-9'>
+									<div className='row g-2'>
+										<div className='col-3 p-1 '>
+											<img className='userChat_pic' src={chat[1].userInfo.photoURL} alt='UserPic' />
 										</div>
-										<div className="col-9 mt-0 py-2 ">
-											<p className="fw-bold w-13 text-truncate lh-1">{chat[1].userInfo.displayName}</p>
-											<p className="w-10 text-truncate lh-1">{chat[1].lastMessage?.text}</p>
+										<div className='col-9 mt-0 py-2 '>
+											<p className='fw-bold w-13 text-truncate lh-1 text-capitalize'>{chat[1].userInfo.displayName}</p>
+											<p className='w-10 text-truncate lh-1'>{chat[1].lastMessage?.text}</p>
 										</div>
 									</div>
 								</div>
-								<div className="col-3 p-0 mb-2">
-									<button className="btn btn-outline-primary follow rounded-1" onClick={() => handleSelect(chat[1].userInfo)}>
+								<div className='col-3 p-0 mb-2'>
+									<button className='btn btn-outline-primary follow rounded-1' onClick={() => handleSelect(chat[1].userInfo)}>
 										Chat
 									</button>
 								</div>
