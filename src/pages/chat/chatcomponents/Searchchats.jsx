@@ -127,7 +127,7 @@ export const Searchchats = () => {
 							<img src={mate.photoURL} alt={mate.displayName} />
 						</div>
 						<div className='mate-name w-50'>
-							<small className='text-truncate'>{mate.displayName}</small>
+							<small className='text-truncate text-capitalize'>{mate.displayName}</small>
 						</div>
 						<BsChatDots className='icon' />
 					</div>

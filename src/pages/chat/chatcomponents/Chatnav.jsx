@@ -23,7 +23,7 @@ export const Chatnav = () => {
 					<img src={chatUser?.photoURL} alt="User Pic" />
 				</div>
 				<div className="nav_data">
-					<h2>{chatUser?.displayName}</h2>
+					<h2 className='text-capitalize'>{chatUser?.displayName}</h2>
 					<p className="d-flex flex-row align-items-center gap-1 pb-0">
 						{chatUser?.login?.isLoggedIn ? 'Active Now' : `Last seen ${chatUser?.login?.date.toDate().toLocaleString()}`} <span className={chatUser?.login?.isLoggedIn ? 'active_now_icon' : 'not_active_now_icon'}></span>
 					</p>

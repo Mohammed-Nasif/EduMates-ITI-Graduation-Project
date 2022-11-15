@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
-import { useForm, Controller, set } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth, db, storage } from '../../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
