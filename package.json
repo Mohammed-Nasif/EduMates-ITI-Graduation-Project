@@ -46,7 +46,9 @@
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
 		"serve-json": "json-server --watch ./src/database/db.json --port=4200 --delay 800",
-		"startdev": "concurrently --kill-others \"npm start\" \"npm run serve-json\""
+		"startdev": "concurrently --kill-others \"npm start\" \"npm run serve-json\"",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d build"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -67,6 +69,7 @@
 		]
 	},
 	"devDependencies": {
-		"@types/uuid": "^8.3.4"
+		"@types/uuid": "^8.3.4",
+		"gh-pages": "^4.0.0"
 	}
 }
