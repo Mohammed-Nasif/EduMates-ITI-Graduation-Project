@@ -1,7 +1,6 @@
 {
 	"name": "edumates",
 	"version": "0.1.0",
-	"homepage": "http://Mohammed-Nasif.github.io/EduMates-ITI-Graduation-Project",
 	"private": true,
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.16.5",
@@ -45,12 +44,13 @@
 	"scripts": {
 		"predeploy": "npm run build",
 		"deploy": "gh-pages -d build",
-		"start": "set HTTPS=true && set PORT=2798 && react-scripts start",
+		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
 		"serve-json": "json-server --watch ./src/database/db.json --port=4200 --delay 800",
-		"startdev": "concurrently --kill-others \"npm start\" \"npm run serve-json\""
+		"startdev": "concurrently --kill-others \"npm start\" \"npm run serve-json\"",
+		"deploy-dev": "concurrently --kill-others \"npm run build\" \"npm run serve-json\""
 	},
 	"eslintConfig": {
 		"extends": [
