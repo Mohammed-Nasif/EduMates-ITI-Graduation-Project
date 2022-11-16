@@ -1,6 +1,6 @@
 {
 	"name": "edumates",
-	"homepage": "http://Mohammed-Nasif.github.io/EduMates-ITI-Graduation-Project",
+	"homepage": "http://Mohammed-Nasif.github.io/EduMates-ITI-Graduation-Project/",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
@@ -13,6 +13,7 @@
 		"firebase": "^9.13.0",
 		"json-server": "^0.17.1",
 		"react": "^18.2.0",
+		"gh-pages": "^4.0.0",
 		"react-bootstrap": "^2.5.0",
 		"react-dom": "^18.2.0",
 		"react-hook-form": "^7.38.0",
@@ -42,14 +43,14 @@
 		"workbox-streams": "^6.5.4"
 	},
 	"scripts": {
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d build",
 		"start": "set HTTPS=true && set PORT=2798 && react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
 		"serve-json": "json-server --watch ./src/database/db.json --port=4200 --delay 800",
-		"startdev": "concurrently --kill-others \"npm start\" \"npm run serve-json\"",
-		"predeploy": "npm run build",
-		"deploy": "gh-pages -d build"
+		"startdev": "concurrently --kill-others \"npm start\" \"npm run serve-json\""
 	},
 	"eslintConfig": {
 		"extends": [
@@ -70,7 +71,6 @@
 		]
 	},
 	"devDependencies": {
-		"@types/uuid": "^8.3.4",
-		"gh-pages": "^4.0.0"
+		"@types/uuid": "^8.3.4"
 	}
 }
