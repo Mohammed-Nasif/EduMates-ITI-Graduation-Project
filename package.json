@@ -1,6 +1,7 @@
 {
 	"name": "edumates",
 	"version": "0.1.0",
+	"homepage": "http://Mohammed-Nasif.github.io/EduMates-ITI-Graduation-Project",
 	"private": true,
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.16.5",
@@ -10,6 +11,7 @@
 		"bootstrap": "^5.2.2",
 		"concurrently": "^7.5.0",
 		"firebase": "^9.13.0",
+		"gh-pages": "^4.0.0",
 		"json-server": "^0.17.1",
 		"react": "^18.2.0",
 		"react-bootstrap": "^2.5.0",
@@ -41,6 +43,8 @@
 		"workbox-streams": "^6.5.4"
 	},
 	"scripts": {
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d build",
 		"start": "set HTTPS=true && set PORT=2798 && react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
