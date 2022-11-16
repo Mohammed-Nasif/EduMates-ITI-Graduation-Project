@@ -463,7 +463,9 @@
     },
     {
       "id": "MmQ0EF4GXZdL5LExqEhOvpODKDf2",
-      "courses": []
+      "courses": [
+        "PLDoPjvoNmBAzlpyFHOaB3b-eubmF0TAV2"
+      ]
     },
     {
       "id": "bWU7U329HMOV5q2quAtQeH3FElf2",
@@ -601,6 +603,16 @@
       "lastLesson": 0,
       "progress": 0,
       "userRating": 0
+    },
+    {
+      "id": "MmQ0EF4GXZdL5LExqEhOvpODKDf2-PLDoPjvoNmBAzlpyFHOaB3b-eubmF0TAV2",
+      "courseId": "PLDoPjvoNmBAzlpyFHOaB3b-eubmF0TAV2",
+      "seenlessons": [
+        0
+      ],
+      "lastLesson": 0,
+      "progress": 0,
+      "userRating": 5
     }
   ]
 }
