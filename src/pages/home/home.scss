@@ -1,0 +1,28 @@
+@import '../../assets/sass/mixin';
+
+.home {
+	main {
+		width: 90%;
+		margin: 0 auto;
+		@include mediaQ(sm) {
+			width: 80%;
+		}
+		@include mediaQ(md) {
+			width: 55%;
+		}
+	}
+	aside {
+		width: 20%;
+
+		top: 4.5rem;
+		right: 2rem;
+		left: auto;
+		display: none;
+		@include mediaQ(md) {
+			display: block;
+		}
+	}
+	.fixed-top {
+		z-index: 0;
+	}
+}

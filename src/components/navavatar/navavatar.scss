@@ -1,0 +1,70 @@
+$PrimaryColor: #1d2224;
+$secondaryColor: #ffffff;
+$terColor: #0080ff;
+$quatColor: #686868;
+
+.navavatar-container {
+	// GENERAL STYLES:
+	.f-roboto {
+		font-family: 'Roboto', sans-serif;
+	}
+	.fw4 {
+		font-weight: 400;
+	}
+	.fw5 {
+		font-weight: 500;
+	}
+
+	a {
+		text-decoration: none !important;
+	}
+	// AVATAR STYLE:
+	.avatar-icon {
+		border-radius: 50%;
+		text-align: center;
+		cursor: pointer;
+		.nav-icon {
+			color: $secondaryColor;
+		}
+		.nav-icon.active {
+			color: $quatColor;
+		}
+	}
+	.dropdown {
+		width: 20%;
+		background-color: $PrimaryColor;
+		border-bottom-left-radius: 0.625rem;
+		border-bottom-right-radius: 0.625rem;
+		position: absolute;
+		top: 100%;
+		right: 3%;
+		margin: 0.4375rem;
+		padding: 0.1875rem 0.3125rem 0.3125rem;
+		.user-info {
+			width: 100%;
+			padding: 2%;
+			text-align: center;
+			.user-img {
+				width: 3.5rem;
+				height: 3.5rem;
+				border-radius: 50%;
+				margin: 0.3125rem auto;
+				img {
+					width: 100%;
+					height: 100%;
+					border-radius: 50%;
+				}
+			}
+			.user-name {
+				color: #0080ff;
+				font-size: 1rem;
+				line-height: 1.1719rem;
+			}
+			.profile-link,
+			.logout-link {
+				font-size: 0.75rem;
+				line-height: 0.875rem;
+			}
+		}
+	}
+}

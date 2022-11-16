@@ -1,0 +1,97 @@
+@import '../../assets/sass/mixin';
+$mainColor: #0080ff;
+
+.topics {
+	main {
+		width: 90%;
+		margin: 0 auto;
+		@include mediaQ(sm) {
+			width: 80%;
+		}
+		@include mediaQ(md) {
+			width: 60%;
+		}
+	}
+	aside {
+		width: 20%;
+
+		top: 5rem;
+		right: 2rem;
+		left: auto;
+		display: none;
+		@include mediaQ(md) {
+			display: block;
+		}
+	}
+	.fixed-top {
+		z-index: 0;
+	}
+	.topics-comp-container {
+		width: 100%;
+		.topics-container {
+			.title {
+				font-weight: 700;
+				font-size: 1.5rem;
+				line-height: 1.75rem;
+			}
+			.topics-content {
+				border-bottom: 0.0313rem solid gray;
+			}
+		}
+	}
+}
+
+.subtopics-container {
+	.sub-title {
+		font-weight: 700;
+		font-size: 1rem;
+		line-height: 1.1875rem;
+	}
+	.user-topics {
+		.topic-container {
+			cursor: default;
+			.name-container {
+				display: flex;
+				align-items: center;
+				.topic-name {
+					width: auto;
+					padding: 0.125rem 0.25rem;
+					margin: 0.125rem;
+					font-weight: 400;
+					font-size: 0.9375rem;
+					// line-height: 1.3125rem;
+					border: 0.125rem solid transparent;
+					border-radius: 0.25rem;
+				}
+				.topic-name.active {
+					color: #0080ff;
+					border: 0.125rem solid #0080ff;
+					border-radius: 0.25rem;
+				}
+			}
+		}
+		.icon-container {
+			flex-direction: row-reverse;
+			.delete-icon,
+			.add-icon {
+				display: block;
+				cursor: pointer;
+				color: rgb(54, 54, 54);
+			}
+			.delete-icon:hover {
+				// color: rgb(117, 116, 116);
+				color: #0080ff;
+			}
+			.add-icon {
+				color: rgb(54, 54, 54);
+				&:hover {
+					color: #0080ff;
+				}
+			}
+			.prev-click {
+				pointer-events: none;
+				color: rgb(117, 116, 116);
+			}
+		}
+	}
+}

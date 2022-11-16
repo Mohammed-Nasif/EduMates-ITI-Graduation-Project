@@ -1,0 +1,15 @@
+@import '../../assets/sass/mixin';
+
+:root {
+	font-size: 11px;
+
+	@include mediaQ(md) {
+		font-size: 14px;
+	}
+	@include mediaQ(lg) {
+		font-size: 16px;
+	}
+	@include mediaQ(xxlg) {
+		font-size: 16px;
+	}
+}

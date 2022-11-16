@@ -1,0 +1,177 @@
+@import '../../assets/sass/mixin';
+
+.profile {
+	.cover_photo {
+		height: 14.125rem;
+		overflow: hidden;
+		img {
+			width: 100%;
+			height: 14.125rem;
+			object-fit: cover;
+		}
+	}
+
+	.person {
+		position: relative;
+		top: -5rem;
+		left: 3.5rem;
+		.profile_img {
+			width: 9rem;
+			height: 9rem;
+			background-color: aliceblue;
+			overflow: hidden;
+			img {
+				width: 9rem;
+				height: 9rem;
+				object-fit: contain;
+			}
+		}
+	}
+	.follow {
+		height: 3rem;
+	}
+	.edit_and_matList {
+		.edit,
+		.mates {
+			font-size: 1.6rem;
+
+			a {
+				text-decoration: none;
+				cursor: pointer;
+			}
+		}
+	}
+	.upload-cvr-photo {
+		position: relative;
+		bottom: 2.5rem;
+		width: fit-content;
+		cursor: pointer;
+		input {
+			display: none;
+		}
+		label {
+			cursor: pointer !important;
+
+			&:hover {
+				border-color: whitesmoke !important;
+				background-color: whitesmoke !important;
+			}
+		}
+	}
+	.upload-profile-photo {
+		position: absolute;
+		top: 7.5rem;
+		left: 8rem;
+		width: 2rem;
+		height: 2rem;
+		background-color: rgba(133, 133, 133, 0.456);
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+		transition: all 0.2s linear;
+		input {
+			display: none;
+			opacity: 0;
+		}
+		.btn-custom {
+			border-radius: 50%;
+			position: absolute;
+			z-index: 1;
+			top: 2px;
+			color: white;
+			cursor: pointer;
+			.camera {
+				font-size: 1.25rem;
+			}
+		}
+		&:hover {
+			background-color: rgba(133, 133, 133, 0.656);
+		}
+	}
+
+	.cvr-img-confirm {
+		position: relative;
+		bottom: 4.5rem;
+		right: 21%;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 15px;
+
+		button {
+			width: 40px;
+			text-align: center;
+		}
+	}
+	.prf-img-confirm {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 10.5rem;
+		position: relative;
+		top: -22px;
+		left: -0.75rem;
+		z-index: 5;
+		button {
+			position: relative;
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			.icon {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+		}
+	}
+
+	.profile_content {
+		justify-content: space-around;
+		main {
+			width: 90%;
+			// margin: 0 auto;
+			@include mediaQ(sm) {
+				width: 80%;
+			}
+			@include mediaQ(md) {
+				width: 60%;
+			}
+		}
+		aside {
+			width: 25%;
+			left: auto;
+			display: none;
+			@include mediaQ(md) {
+				display: block;
+			}
+		}
+		.fixed-top {
+			z-index: 0;
+		}
+	}
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.icons {
+	display: flex;
+	gap: 10px;
+	img {
+		width: 30px;
+		height: 25px;
+	}
+	.prem {
+		width: 28px;
+		height: 28px;
+	}
+	.sys {
+		width: 70px;
+		height: 22px;
+	}
+}

@@ -1,0 +1,68 @@
+.add-new-post {
+	background-color: white;
+	color: #455a64;
+	height: auto;
+	.icon {
+		color: gray;
+	}
+	//scrolll
+	::-webkit-scrollbar {
+		width: 5px;
+	}
+	::-webkit-scrollbar-track {
+		background: #f1f1f1;
+	}
+	::-webkit-scrollbar-thumb {
+		background: #888;
+	}
+	::-webkit-scrollbar-thumb:hover {
+		background: #555;
+	}
+	textarea {
+		border: 0;
+		resize: none;
+		width: 100%;
+		&:focus-visible {
+			outline: none;
+		}
+	}
+	#img {
+		visibility: hidden;
+		position: fixed;
+	}
+	.btn:active {
+		border-color: transparent !important;
+	}
+	.preview {
+		max-height: 200px;
+		overflow: hidden;
+		img {
+			max-width: 100%;
+			transition: 0.5s all ease;
+		}
+		.del {
+			top: 1rem;
+			right: 1rem;
+			cursor: pointer;
+			z-index: 22;
+			display: none;
+		}
+		&:hover {
+			img {
+				scale: 1.1;
+				opacity: 0.4;
+			}
+			.del {
+				display: block;
+			}
+		}
+	}
+
+	&:has(textarea:focus) {
+		box-shadow: 0px 1px 10px lightgray;
+	}
+	.alert {
+		font-size: 0.5rem;
+		padding: 0.4rem;
+	}
+}

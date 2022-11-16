@@ -1,0 +1,28 @@
+.discussion-comment {
+	width: 80%;
+	padding: 2rem;
+	background-color: #fafafa;
+	border-radius: 1.25rem;
+	img {
+		border-radius: 50%;
+		width: 1.875rem;
+		height: 1.875rem;
+		object-fit: cover;
+	}
+	.user-name {
+		font-size: 0.875rem;
+	}
+	.comment-content {
+		font-size: 0.8125rem;
+	}
+	.inst-badge {
+		width: 0.8rem;
+		height: auto;
+	}
+	.description {
+		font-size: 0.6rem;
+	}
+}
+.comment {
+	margin-left: 5rem;
+}

@@ -1,0 +1,146 @@
+.post {
+	.user-photo {
+		img {
+			border-radius: 50%;
+			width: 2.8125rem;
+			height: 2.8125rem;
+			object-fit: cover;
+		}
+	}
+	.name a {
+		text-decoration: none;
+		color: inherit;
+	}
+	.date {
+		font-size: 0.75rem;
+		width: 40%;
+		cursor: default;
+	}
+	.drop {
+		width: 10rem;
+		top: 1rem;
+		right: 0.5rem;
+		background-color: #f1f1f1;
+		border-radius: 0.2rem;
+		opacity: 0;
+		visibility: hidden;
+		box-shadow: -2px 2px 5px lightgray;
+		transition: 0.2s all ease-in-out;
+		&::before {
+			content: '';
+			position: absolute;
+			width: 0px;
+			height: 0px;
+			border-bottom: 20px solid #f1f1f1;
+			border-left: 20px solid transparent;
+			right: 0;
+			top: -10px;
+			z-index: 1;
+		}
+		div {
+			position: relative;
+			z-index: 2;
+		}
+		div:hover {
+			background-color: #1d2224;
+			cursor: pointer;
+			color: white;
+		}
+	}
+	.show {
+		opacity: 1;
+		visibility: visible;
+		top: 2rem;
+	}
+
+	.post-image {
+		max-height: 300px;
+		img {
+			max-height: inherit;
+		}
+	}
+	.tag {
+		text-decoration: none;
+		color: #0080ff;
+		font-size: 0.75rem;
+		border-color: #0080ff !important;
+	}
+	.btn {
+		.icon {
+			position: relative;
+			bottom: 0px;
+			transition: 0.2s all ease-in-out;
+		}
+		&:active {
+			border-color: transparent !important;
+			.icon {
+				bottom: 7px;
+				rotate: 12deg;
+				scale: 1.3;
+			}
+		}
+		position: relative;
+		.badge {
+			font-size: 0.65rem;
+			line-height: 0.7rem;
+			position: absolute;
+			right: -25%;
+			top: 20%;
+		}
+	}
+
+	.comments {
+		.user-photo {
+			width: 40px;
+			height: 40px;
+			overflow: hidden;
+			img {
+				width: 100%;
+			}
+		}
+		.user-name {
+			font-size: 0.75rem;
+		}
+		.date {
+			font-size: xx-small;
+		}
+		.comment-body {
+			width: 75%;
+			margin-left: 1rem;
+			font-size: 0.85rem;
+			a {
+				text-decoration: none;
+				color: inherit;
+			}
+			textarea {
+				border: 1px solid lightgray;
+				border-radius: 0.5rem;
+				resize: none;
+				width: 100%;
+				&:focus-visible {
+					outline: none;
+				}
+			}
+		}
+		.remove-comment {
+			cursor: pointer;
+			font-size: 0.85rem;
+		}
+	}
+
+	p {
+		line-break: anywhere;
+	}
+}
+
+.sys-badge {
+	width: 2.5rem;
+	height: 1rem;
+}
+.inst-badge {
+	width: 1rem;
+}
+.special_badge {
+	width: 20px;
+	height: 18px;
+}

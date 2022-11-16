@@ -1,0 +1,37 @@
+.Mate {
+	.card {
+		border: 0.5px solid rgb(196, 196, 196);
+		border-radius: 1rem;
+		background-color: white;
+		width: 100%;
+		.cover-photo {
+			height: 8rem;
+			img {
+				border-top-left-radius: 1rem;
+				border-top-right-radius: 1rem;
+			}
+		}
+		.profile-photo {
+			img {
+				border-radius: 50%;
+				width: 5rem;
+				height: 5rem;
+				position: relative;
+				top: -40px;
+			}
+		}
+		.text-wrapper {
+			a {
+				text-decoration: none;
+				color: inherit;
+			}
+			p {
+				line-height: 0.5;
+			}
+			.description {
+				font-size: 12px;
+				line-height: 1.5;
+			}
+		}
+	}
+}

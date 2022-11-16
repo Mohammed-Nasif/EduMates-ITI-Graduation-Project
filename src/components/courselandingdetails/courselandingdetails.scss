@@ -1,0 +1,53 @@
+$mainColor: #0080ff;
+
+.course_landing_details {
+  margin-top: 1rem;
+
+  border-radius: 30px;
+  overflow: hidden;
+
+  background: white;
+  .course_details {
+    font-size: 0.9rem;
+  }
+  .course_lessons {
+    overflow: auto;
+    width: 100%;
+    max-height: 17rem;
+    &::-webkit-scrollbar {
+      width: 3px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background: $mainColor;
+    }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ul {
+      list-style-type: decimal;
+      padding: 0 1rem 0 0;
+      margin: 0;
+      li {
+        padding: 0.4rem 0.4rem;
+        margin: 0.3rem 0rem;
+        font-size: 1rem;
+        cursor: pointer;
+        color: black;
+        transition: all 0.9s;
+        &:hover {
+          color: $mainColor;
+          border-radius: 10px;
+        }
+        a{
+          color: black;
+          text-decoration: none;
+          &:hover {
+            color: $mainColor;
+            border-radius: 10px;
+          }
+        }
+      }
+    }
+  }
+}
