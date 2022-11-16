@@ -1,5 +1,6 @@
 {
 	"name": "edumates",
+	"homepage": "http://Mohammed-Nasif.github.io/EduMates-ITI-Graduation-Project",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
