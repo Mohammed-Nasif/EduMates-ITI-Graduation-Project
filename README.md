@@ -27,7 +27,7 @@ Getting people closer despite of physical distancing. Business, Marketing , Educ
 --- 
 # EduMates-Demo 
 
-#### [Visit EduMates](https://edu-mates.herokuapp.com/)
+#### [Visit EduMates](https://edu-mates.herokuapp.com/){:target="_blank" rel="noopener"}
 *OR*
 #### Watch The Live Demo
 [![Watch the video](https://github.com/Mohammed-Nasif/EduMates-ITI-Graduation-Project/blob/main/Documentations/Project%20Images/Watch%20Demo.png?raw=true)](https://www.youtube.com/watch?v=ZwzXjuTHjU8)
@@ -50,7 +50,7 @@ To use this project, first clone the repo on your device using the command below
 
 ```git init```
 
-```git clone https://github.com/navendu-pottekkat/nsfw-filter.git```
+```git clone https://github.com/Mohammed-Nasif/EduMates-ITI-Graduation-Project.git```
 
 # Usage
 [Back To Top ⬆️](#table-of-contents)
