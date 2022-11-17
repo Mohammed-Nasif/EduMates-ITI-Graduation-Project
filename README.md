@@ -68,6 +68,8 @@ To use this project, first clone the repo on your device using the command below
 
 - React Js.
 - React Route.
+- React Hook Form.
+- React Select.
 - FireBase.
 - JSON Server.
 - Axios.
