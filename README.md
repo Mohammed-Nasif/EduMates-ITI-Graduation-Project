@@ -20,7 +20,7 @@ Getting people closer despite of physical distancing. Business, Marketing , Educ
 ![GitHub All Releases](https://img.shields.io/github/downloads/navendu-pottekkat/awesome-readme/total) -->
 
 
-#EduMates Team
+# EduMates Team
 ![EduMates-Team](https://github.com/Mohammed-Nasif/EduMates-ITI-Graduation-Project/blob/main/Documentations/Project%20Images/EduMatesTeam.jpg?raw=true)
 
 
