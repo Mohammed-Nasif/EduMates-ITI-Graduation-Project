@@ -27,7 +27,7 @@ Getting people closer despite of physical distancing. Business, Marketing , Educ
 --- 
 # EduMates-Demo 
 
-#### [Visit EduMates](https://edu-mates.herokuapp.com/){:target="_blank" rel="noopener"}
+#### [Visit EduMates](https://edu-mates.herokuapp.com/)
 *OR*
 #### Watch The Live Demo
 [![Watch the video](https://github.com/Mohammed-Nasif/EduMates-ITI-Graduation-Project/blob/main/Documentations/Project%20Images/Watch%20Demo.png?raw=true)](https://www.youtube.com/watch?v=ZwzXjuTHjU8)
