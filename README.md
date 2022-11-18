@@ -25,13 +25,13 @@ Getting people closer despite of physical distancing. Business, Marketing , Educ
 
 
 ---
-# Features-Summary
+# Features Summary
 
-• Interactive Home Page With All Social media Features.
-• Real-Time Live Chat.
-• Real-Time Notification System
-• Courses With Enrollment and Rating System.
-• Q&A Section On Each Course.
+- Interactive Home Page With All Social media Features.
+- Real-Time Live Chat.
+- Real-Time Notification System
+- Courses With Enrollment and Rating System.
+- Q&A Section On Each Course.
 
 ---
 # EduMates-Demo 
