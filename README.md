@@ -24,7 +24,16 @@ Getting people closer despite of physical distancing. Business, Marketing , Educ
 ![EduMates-Team](https://github.com/Mohammed-Nasif/EduMates-ITI-Graduation-Project/blob/main/Documentations/Project%20Images/EduMatesTeam.jpg?raw=true)
 
 
---- 
+---
+# Features-Summary
+
+• Interactive Home Page With All Social media Features.
+• Real-Time Live Chat.
+• Real-Time Notification System
+• Courses With Enrollment and Rating System.
+• Q&A Section On Each Course.
+
+---
 # EduMates-Demo 
 
 #### [Visit EduMates](https://edu-mates.herokuapp.com/)
@@ -36,6 +45,7 @@ Getting people closer despite of physical distancing. Business, Marketing , Educ
 
 - [About EduMates](#edumates)
 - [EduMates Team](#edumates-team)
+- [Features Summary](#features-summary)
 - [EduMates Demo Preview](#edumates-demo)
 - [Table of contents](#table-of-contents)
 - [Installation](#installation)
